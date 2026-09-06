@@ -7,7 +7,9 @@
 var APP_CONFIG = Object.freeze({
   affiliateTag: 'lamamihacker-21',
   defaultCountry: 'ES',
-  clickStorageKey: 'regalazo-clicks-v1'
+  clickStorageKey: 'regalazo-clicks-v1',
+  installPromptEnabled: true,
+  installPromptDelayMs: 5200
 });
 
 var QUESTIONS = [
@@ -2476,7 +2478,7 @@ var LANGUAGE_COPY = {
       country: makeQuestionCopy('8 · Dónde compras', '¿En qué país estás?', 'Así abrimos la tienda de Amazon que corresponde.', { ES: makeOptionCopy('España'), US: makeOptionCopy('Estados Unidos'), GB: makeOptionCopy('Reino Unido'), DE: makeOptionCopy('Alemania'), FR: makeOptionCopy('Francia'), IT: makeOptionCopy('Italia'), CA: makeOptionCopy('Canadá') })
     },
     seo: { eyebrow: 'Guía de regalos', title: 'Ideas de regalos de cumpleaños para acertar', intro: 'Un buen regalo de cumpleaños no tiene que ser caro ni complicado. Lo importante es que conecte con la relación que tienes con esa persona, con algo que disfruta y con el momento que vais a celebrar. Regalazo combina esas pistas para proponerte ideas útiles, originales y fáciles de buscar.', cards: [{ title: 'Regalos para tu pareja', description: 'Ideas con intención para celebrar juntos: recuerdos, planes compartidos y pequeños lujos que no se sienten impersonales.', link: 'Ver ideas para pareja' }, { title: 'Regalos de cumpleaños baratos', description: 'Detalles con criterio por menos de 20, 40 o 50 euros, sin caer en el regalo genérico de última hora.', link: 'Ver ideas económicas' }, { title: 'Guía para elegir mejor', description: 'Una guía rápida para pensar en intereses, presupuesto, estilo y ocasión antes de comprar.', link: 'Leer la guía completa' }], faqTitle: 'Preguntas frecuentes sobre regalos de cumpleaños', faqs: [{ question: '¿Cómo elijo un regalo de cumpleaños original?', answer: 'Empieza por algo que la persona ya disfruta y cambia el formato: un accesorio para su afición, un plan para compartir o un objeto cotidiano mejor elegido. La originalidad suele estar en el encaje, no en que sea extravagante.' }, { question: '¿Qué regalo puedo hacer con poco presupuesto?', answer: 'Con menos de 20 o 40 euros funcionan bien los detalles que crean un momento: una selección gourmet, un accesorio útil, un pequeño kit creativo o algo para una afición concreta. El recomendador permite filtrar por presupuesto.' }, { question: '¿Tengo que saber la edad exacta?', answer: 'No. Basta con elegir un rango aproximado. También puedes indicar que no lo sabes y dejar que el resto de señales —relación, ocasión, gusto y estilo— pese más.' }] },
-    footer: ['Regalazo es un proyecto independiente. Los precios y la disponibilidad pueden cambiar.', 'Como asociado de Amazon, puedo obtener ingresos por compras que cumplan los requisitos aplicables.']
+    footer: ['Regalazo es un proyecto independiente. Los precios y la disponibilidad pueden cambiar.', 'En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.']
   },
   en: {
     locale: 'en', label: 'English', pickerLabel: 'Language', stepPrefix: 'Step ', stepJoin: ' of ',
@@ -2598,6 +2600,11 @@ Object.assign(GROWTH_COPY.en, { cardBrand: 'REGALAZO', cardIdea: 'GIFT IDEA', ca
 Object.assign(GROWTH_COPY.de, { cardBrand: 'REGALAZO', cardIdea: 'GESCHENKIDEE', cardChallenge: 'GESCHENK-CHALLENGE', cardDiscover: 'Entdecke deine Idee auf', cardFooter: 'Ohne Konto · personalisierte Ergebnisse · Amazon' });
 Object.assign(GROWTH_COPY.fr, { cardBrand: 'REGALAZO', cardIdea: 'IDÉE CADEAU', cardChallenge: 'DÉFI CADEAU', cardDiscover: 'Découvrez votre idée sur', cardFooter: 'Sans compte · résultats personnalisés · Amazon' });
 Object.assign(GROWTH_COPY.it, { cardBrand: 'REGALAZO', cardIdea: 'IDEA REGALO', cardChallenge: 'SFIDA REGALO', cardDiscover: 'Scopri la tua idea su', cardFooter: 'Senza account · risultati personalizzati · Amazon' });
+Object.assign(GROWTH_COPY.es, { sparkButton: 'Giro de chispa', sparkHint: 'Una tirada suave: cambia el orden y descubre otra combinación relevante.' });
+Object.assign(GROWTH_COPY.en, { sparkButton: 'Spark spin', sparkHint: 'A gentle spin: change the order and discover another relevant combination.' });
+Object.assign(GROWTH_COPY.de, { sparkButton: 'Ideen-Dreh', sparkHint: 'Ein sanfter Dreh: neue Reihenfolge, weiterhin passend zur Person.' });
+Object.assign(GROWTH_COPY.fr, { sparkButton: 'Tour de magie', sparkHint: 'Un tour tout doux : changez l’ordre et découvrez une autre combinaison pertinente.' });
+Object.assign(GROWTH_COPY.it, { sparkButton: 'Giro di idee', sparkHint: 'Un giro leggero: cambia l’ordine e scopri un’altra combinazione rilevante.' });
 Object.keys(ENHANCED_RESULT_COPY).forEach(function (language) {
   if (!LANGUAGE_COPY[language]) return;
   LANGUAGE_COPY[language].results = Object.assign({}, LANGUAGE_COPY[language].results, ENHANCED_RESULT_COPY[language]);
@@ -2605,7 +2612,7 @@ Object.keys(ENHANCED_RESULT_COPY).forEach(function (language) {
   LANGUAGE_COPY[language].growth = GROWTH_COPY[language] || GROWTH_COPY.es;
 });
 
-var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, challengeMode: false, challengePick: null, challengeChoice: null, answers: { interests: [] } };
+var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, challengeMode: false, challengePick: null, challengeChoice: null, casinoSpinning: false, answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
 var pendingScrollPosition = null;
@@ -2654,7 +2661,15 @@ function readLanguage() {
     var stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
     if (LANGUAGE_COPY[stored]) return stored;
   } catch (error) {}
-  return 'es';
+  var browserLanguages = [];
+  try {
+    browserLanguages = (Array.isArray(navigator.languages) ? navigator.languages : []).concat(navigator.language || []);
+  } catch (error) {}
+  for (var index = 0; index < browserLanguages.length; index += 1) {
+    var language = String(browserLanguages[index] || '').toLowerCase().split('-')[0];
+    if (LANGUAGE_COPY[language]) return language;
+  }
+  return 'en';
 }
 
 function getQuestionCopy(id) {
@@ -2821,6 +2836,7 @@ function registerPwa() {
       }).catch(function () {});
     });
   }
+  if (!APP_CONFIG.installPromptEnabled) return;
   window.addEventListener('beforeinstallprompt', function (event) {
     event.preventDefault();
     deferredInstallPrompt = event;
@@ -2832,7 +2848,7 @@ function registerPwa() {
         pwaPrompt.hidden = false;
         trackEvent('pwa_install_prompt_viewed', {});
       }
-    }, 2400);
+    }, APP_CONFIG.installPromptDelayMs);
   });
   window.addEventListener('appinstalled', function () {
     deferredInstallPrompt = null;
@@ -3453,6 +3469,25 @@ function modeButtonMarkup(mode, label, active) {
   return '<button class="mode-button' + (active ? ' is-active' : '') + '" type="button" data-action="mode" data-mode="' + escapeHtml(mode) + '" aria-pressed="' + String(active) + '">' + escapeHtml(label) + '</button>';
 }
 
+function spinRecommendations() {
+  if (state.casinoSpinning) return;
+  var reducedMotion = false;
+  try {
+    reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (error) {}
+  state.casinoSpinning = true;
+  results.setAttribute('aria-busy', 'true');
+  results.classList.add('casino-spin');
+  trackEvent('spark_spin_started', { mode: state.recommendationMode || 'fit' });
+  window.setTimeout(function () {
+    state.variant += 1;
+    state.casinoSpinning = false;
+    results.removeAttribute('aria-busy');
+    trackEvent('spark_spin_completed', { variant: state.variant, mode: state.recommendationMode || 'fit' });
+    renderResults(false);
+  }, reducedMotion ? 0 : 760);
+}
+
 function renderResults(shouldCelebrate, preserveRecommendations, preservePosition) {
   var savedPosition = preservePosition ? getScrollPosition() : null;
   var copy = currentCopy();
@@ -3468,14 +3503,16 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
     title = interpolate(copy.results.relationTitle, { relation: relation });
   }
   var activeMode = state.recommendationMode || 'fit';
+  var growth = copy.growth || GROWTH_COPY.es;
   var modeButtons = modeButtonMarkup('fit', copy.results.modeFit, activeMode === 'fit') + modeButtonMarkup('surprise', copy.results.modeSurprise, activeMode === 'surprise') + modeButtonMarkup('new', copy.results.modeNew, activeMode === 'new');
+  var sparkButton = '<button class="spark-button" type="button" data-action="spark"><span aria-hidden="true">✦</span>' + escapeHtml(growth.sparkButton || 'Giro de chispa') + '</button>';
   results.innerHTML = '<div class="results-head">' +
     '<p class="results-kicker">' + escapeHtml(copy.results.ready) + '</p>' +
     '<h2 id="results-title">' + escapeHtml(title) + '</h2>' +
     '<p class="results-intro">' + escapeHtml(copy.results.intro) + '</p>' +
     '<div class="summary-chips" aria-label="' + escapeHtml(copy.results.chips) + '">' + summaryChips(state.answers) + '</div>' +
     '</div>' +
-    '<div class="results-mode-panel" aria-label="' + escapeHtml(copy.results.modeLabel) + '"><span class="results-mode-label">' + escapeHtml(copy.results.modeLabel) + '</span><div class="results-modes" role="group">' + modeButtons + '</div><p class="results-mode-hint">' + escapeHtml(copy.results.modeHint) + '</p></div>' +
+    '<div class="results-mode-panel" aria-label="' + escapeHtml(copy.results.modeLabel) + '"><span class="results-mode-label">' + escapeHtml(copy.results.modeLabel) + '</span><div class="results-modes" role="group">' + modeButtons + '</div><p class="results-mode-hint">' + escapeHtml(copy.results.modeHint) + '</p><p class="spark-hint">' + escapeHtml(growth.sparkHint || '') + '</p>' + sparkButton + '</div>' +
     '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">' + escapeHtml(copy.results.adjust) + '</button><button class="button button-ghost" type="button" data-action="refresh">' + escapeHtml(copy.results.refresh) + '</button><button class="button button-ghost" type="button" data-action="share">' + escapeHtml(copy.results.share) + '</button></div>' +
     challengeCardMarkup(copy) +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
@@ -3513,7 +3550,7 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
     window.requestAnimationFrame(revealResultsAtTop);
     window.setTimeout(revealResultsAtTop, 0);
   }
-  results.classList.remove('results-transition');
+  results.classList.remove('results-transition', 'casino-spin');
   void results.offsetWidth;
   results.classList.add('results-transition');
   if (shouldCelebrate !== false) celebrate();
@@ -3539,7 +3576,7 @@ function resetApp() {
       window.history.replaceState({}, '', resetUrl.pathname + (resetUrl.search ? resetUrl.search : '') + resetUrl.hash);
     }
   } catch (error) {}
-  state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, recommendationMode: 'fit', analyticsStarted: false, challengeMode: false, challengePick: null, challengeChoice: null, answers: { interests: [] } };
+  state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, recommendationMode: 'fit', analyticsStarted: false, challengeMode: false, challengePick: null, challengeChoice: null, casinoSpinning: false, answers: { interests: [] } };
   currentRecommendations = [];
   applyLanguage();
   hero.hidden = false;
@@ -3731,6 +3768,8 @@ results.addEventListener('click', function (event) {
   var action = event.target.closest('[data-action]');
   if (action) {
     var actionName = action.getAttribute('data-action');
+    if (actionName === 'spark') { spinRecommendations(); return; }
+    if (state.casinoSpinning) return;
     if (actionName === 'adjust') showWizardAtLastStep();
     if (actionName === 'refresh') { state.variant += 1; trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' }); renderResults(false); }
     if (actionName === 'mode') {

@@ -13,6 +13,9 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - El resultado incluye canales rápidos de WhatsApp y Telegram, y permite generar una tarjeta PNG para compartir en redes o mensajería.
 - Responsive endurecido para móvil estrecho: panel de compartir contenido dentro de la tarjeta, controles que pueden envolver texto largo y cero overflow horizontal.
 - PWA instalable: manifest, icono, service worker de shell y aviso de instalación solo cuando el navegador lo permite. Esto deja el producto listo para empaquetarlo más adelante como Android/TWA sin mantener una app nativa desde el día uno.
+- El aviso PWA es compacto, aparece con retraso para no tapar el selector y se controla desde `APP_CONFIG.installPromptEnabled` y `APP_CONFIG.installPromptDelayMs` en `app.js`; basta con cambiar el primer valor a `false` cuando haya que ocultarlo.
+- El idioma inicial respeta una preferencia guardada por el usuario; si no existe, usa el idioma del navegador o del sistema cuando está disponible y cae a inglés. Elegir otro idioma lo deja como preferencia persistente.
+- En resultados, el “Giro de chispa” ofrece una transición corta y opcional para reordenar la siguiente tanda sin perder el filtro de relevancia. Respeta `prefers-reduced-motion`.
 - Bloque de descubrimiento semanal para renovar el motivo de vuelta sin añadir un feed ni una base de datos.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
 - Etiqueta de afiliación heredada de la configuración del GPT: lamamihacker-21. Debe verificarse en la cuenta de Amazon Associates antes de considerarla operativa.
@@ -48,6 +51,8 @@ Es una web estática sin dependencias externas:
 - netlify.toml: publicación desde la raíz y cabeceras básicas.
 - manifest.webmanifest, sw.js, icon.svg y og-image.svg: instalación, caché del shell, identidad y preview social.
 - docs/gpt-recovery.md: recuperación y límites de la configuración del GPT.
+- docs/growth-playbook.md: acciones priorizadas para SEO, AEO, viralidad, PWA, medición y monetización responsable.
+- aviso-legal/, terminos-de-uso/, privacidad/ y cookies/: textos legales de lanzamiento enlazados desde el footer.
 
 La aplicación usa rutas relativas y no acopla el dominio actual, por lo que puede pasar a un dominio propio más adelante sin reescribir la lógica. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
 
@@ -83,7 +88,7 @@ Cuando se conecte un dominio propio, hay que sustituir la URL de Netlify en los 
 
 La versión pública no carga un SDK externo ni envía analítica por defecto. app.js expone window.RegalazoAnalytics y mantiene una cola local de eventos durante la sesión; ANALYTICS_CONFIG está desactivado y el token está vacío.
 
-Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), recommendations_mode_changed (mode, variant), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_channel_clicked (method, mode), share_completed (method, mode), shared_result_opened (mode, hasPick, challenge), challenge_started, challenge_pick_made (giftId, position, hasIncomingPick), share_card_created (method), weekly_discovery_viewed (giftId), weekly_discovery_clicked, pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice, pwa_installed, pwa_install_dismissed y quiz_reset. Todos incluyen app, language, version y marca temporal.
+Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), recommendations_mode_changed (mode, variant), spark_spin_started (mode), spark_spin_completed (variant, mode), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_channel_clicked (method, mode), share_completed (method, mode), shared_result_opened (mode, hasPick, challenge), challenge_started, challenge_pick_made (giftId, position, hasIncomingPick), share_card_created (method), weekly_discovery_viewed (giftId), weekly_discovery_clicked, pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice, pwa_installed, pwa_install_dismissed y quiz_reset. Todos incluyen app, language, version y marca temporal.
 
 Para activarlo habrá que definir consentimiento y privacidad, cargar el SDK o un endpoint propio después de ese consentimiento, proporcionar el token mediante el proceso de despliegue y validar primero en desarrollo. No se guardan nombres, emails ni texto libre.
 
