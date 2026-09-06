@@ -3025,7 +3025,17 @@ function chooseDiverseGiftItems(items, limit) {
   });
   if (result.length < limit) {
     items.forEach(function (item) {
-      vafunction rankGifts(answers, variant) {
+      var baseId = item.gift.baseId || item.gift.id;
+      if (result.length < limit && result.indexOf(item) === -1 && !baseCounts[baseId]) {
+        result.push(item);
+        baseCounts[baseId] = 1;
+      }
+    });
+  }
+  return result.slice(0, limit);
+}
+
+function rankGifts(answers, variant) {
   variant = Number.isFinite(variant) ? variant : 0;
   var budget = budgetFor(answers.budget);
   var interests = selectedInterests(answers);
