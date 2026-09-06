@@ -47,6 +47,8 @@ Crear páginas solo cuando tengan una respuesta propia, ejemplos y una ruta clar
 
 Cada página debe incluir una respuesta rápida al principio, criterios de elección, ejemplos concretos, límites de presupuesto, preguntas frecuentes reales, enlaces internos y una CTA hacia el selector. Evitar páginas programáticas que solo cambien “novia” por “novio”.
 
+El primer lote operativo está en el [calendario editorial](seo-content-calendar.md): incluye un hub en `/guias-de-regalos/`, páginas para madre, padre, amiga, amigo, hermana y hermano, dos situaciones (última hora y alguien que tiene de todo) y dos aficiones (café y viajes). La cadencia posterior debe salir de consultas reales y mantener una página mejorada o una intención nueva cada semana o quincena.
+
 ### AEO y buscadores con IA
 
 - Responder con frases directas a preguntas naturales: “¿qué regalo hago con 20 euros?”, “¿qué regalar a alguien que tiene de todo?” y “¿cómo elegir un regalo útil?”.

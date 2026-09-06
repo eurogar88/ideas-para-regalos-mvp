@@ -15,6 +15,7 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - PWA instalable: manifest, icono, service worker de shell y aviso de instalación solo cuando el navegador lo permite. Esto deja el producto listo para empaquetarlo más adelante como Android/TWA sin mantener una app nativa desde el día uno.
 - El aviso PWA es compacto, aparece con retraso para no tapar el selector y se controla desde `APP_CONFIG.installPromptEnabled` y `APP_CONFIG.installPromptDelayMs` en `app.js`; basta con cambiar el primer valor a `false` cuando haya que ocultarlo.
 - El idioma inicial respeta una preferencia guardada por el usuario; si no existe, usa el idioma del navegador o del sistema cuando está disponible y cae a inglés. Elegir otro idioma lo deja como preferencia persistente.
+- Modo oscuro alternable con un solo icono en todas las páginas; respeta la preferencia del sistema en la primera visita, recuerda la elección localmente y evita el destello claro gracias a un preloader inline.
 - En resultados, el “Giro de chispa” ofrece una transición corta y opcional para reordenar la siguiente tanda sin perder el filtro de relevancia. Respeta `prefers-reduced-motion`.
 - Bloque de descubrimiento semanal para renovar el motivo de vuelta sin añadir un feed ni una base de datos.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
@@ -48,10 +49,12 @@ Es una web estática sin dependencias externas:
 - index.html: estructura, copy, accesibilidad y wizard.
 - styles.css: diseño responsive mobile-first.
 - app.js: catálogo, ranking, generación de resultados y enlaces de salida.
+- theme.js: alternancia de tema claro/oscuro, preferencia persistente y sincronización del color de la barra del navegador.
 - netlify.toml: publicación desde la raíz y cabeceras básicas.
 - manifest.webmanifest, sw.js, icon.svg y og-image.svg: instalación, caché del shell, identidad y preview social.
 - docs/gpt-recovery.md: recuperación y límites de la configuración del GPT.
 - docs/growth-playbook.md: acciones priorizadas para SEO, AEO, viralidad, PWA, medición y monetización responsable.
+- docs/seo-content-calendar.md: clusters editoriales, cadencia de publicación, reglas de calidad y checklist de cada URL.
 - aviso-legal/, terminos-de-uso/, privacidad/ y cookies/: textos legales de lanzamiento enlazados desde el footer.
 
 La aplicación usa rutas relativas y no acopla el dominio actual, por lo que puede pasar a un dominio propio más adelante sin reescribir la lógica. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
@@ -77,7 +80,7 @@ La web prioriza SEO técnico y carga rápida sin añadir dependencias ni coste v
 - La portada tiene title, meta description, canonical, robots, Open Graph, Twitter metadata y datos estructurados WebSite/WebApplication.
 - El primer contenido del selector está presente en HTML desde la respuesta inicial; JavaScript solo mejora la interacción.
 - Hay contenido editorial rastreable y páginas específicas para [regalos de cumpleaños](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos/), [regalos baratos](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-baratos/), [regalos por menos de 30 euros](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-por-menos-de-30-euros/), [regalos originales](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-originales/), [regalos para pareja](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-pareja/), [regalos para novia](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novia/) y [regalos para novio](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novio/).
-- Las guías empiezan con una respuesta directa, usan preguntas completas como subtítulos y publican FAQPage + BreadcrumbList JSON-LD. `llms.txt` resume el producto, sus respuestas útiles y sus límites para facilitar el descubrimiento por sistemas de IA; no se considera una garantía de indexación.
+- Las guías empiezan con una respuesta directa, usan preguntas completas como subtítulos y publican FAQPage + BreadcrumbList JSON-LD. El [hub de guías](https://ideas-para-regalos-mvp.netlify.app/guias-de-regalos/) organiza clusters por persona, situación y afición, y el [calendario editorial](docs/seo-content-calendar.md) define cómo publicar y refrescar contenido útil sin páginas clonadas. `llms.txt` resume el producto, sus respuestas útiles y sus límites para facilitar el descubrimiento por sistemas de IA; no se considera una garantía de indexación.
 - robots.txt y sitemap.xml están publicados en la raíz y enlazan la versión actual de Netlify.
 - No se cargan fuentes externas, imágenes pesadas, librerías ni analytics; app.js usa defer y Netlify sirve los estáticos desde CDN.
 - Las páginas HTML se revalidan y CSS/JS usan caché con stale-while-revalidate para mejorar visitas repetidas.
