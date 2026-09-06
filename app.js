@@ -170,6 +170,7 @@ var state = { step: 0, answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
 var pendingScrollPosition = null;
+var lastScrollPosition = { left: window.scrollX || 0, top: window.scrollY || 0 };
 var hero = document.getElementById('hero');
 var wizard = document.getElementById('wizard');
 var trustStrip = document.querySelector('.trust-strip');
@@ -267,10 +268,11 @@ function advance(scrollPosition) {
     showToast(question.multiple ? 'Elige al menos un gusto para continuar.' : 'Elige una opción para continuar.');
     return;
   }
-  var position = scrollPosition || getScrollPosition();
+  var position = scrollPosition || lastScrollPosition || getScrollPosition();
   state.step += 1;
   render();
   restoreScrollPosition(position);
+  lastScrollPosition = position;
 }
 
 function goBack() {
@@ -441,6 +443,9 @@ function renderResults() {
   trustStrip.hidden = true;
   seoContent.hidden = true;
   window.scrollTo(0, 0);
+  window.requestAnimationFrame(function () {
+    window.scrollTo(0, 0);
+  });
   results.hidden = false;
   results.classList.remove('results-transition');
   void results.offsetWidth;
@@ -515,7 +520,10 @@ function restoreScrollPosition(position) {
 
 questionRegion.addEventListener('pointerdown', function (event) {
   var option = event.target.closest('[data-option]');
-  if (option) pendingScrollPosition = getScrollPosition();
+  if (option) {
+    pendingScrollPosition = getScrollPosition();
+    lastScrollPosition = pendingScrollPosition;
+  }
 });
 
 questionRegion.addEventListener('click', function (event) {
