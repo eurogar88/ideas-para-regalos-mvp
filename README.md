@@ -6,11 +6,15 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 
 - Asistente de 8 pasos: relación, género, edad aproximada, ocasión, presupuesto, gusto principal, estilo y país del comprador.
 - Motor determinista local con catálogo editorial y ranking por coincidencias.
+- Capa de composición con 7 enfoques editoriales —encaje, toque personal, plan, pack, giro inesperado, descubrimiento y pequeño lujo— que amplía las 360 ideas base hasta 2.055 composiciones compatibles.
+- Tres modos de resultado: Mejor encaje, Más sorprendentes y Novedades. El historial anónimo local evita repetir composiciones para el mismo perfil.
 - Diez recomendaciones con título, motivo, precio orientativo y enlace de búsqueda relevante.
+- Cada resultado puede compartirse con sus respuestas codificadas en la URL, para convertir la selección en un pequeño reto entre amigos o pareja.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
 - Etiqueta de afiliación heredada de la configuración del GPT: lamamihacker-21. Debe verificarse en la cuenta de Amazon Associates antes de considerarla operativa.
 - Sin registro, sin nombres y sin datos enviados a un servidor.
 - Sin runtime de OpenClaw y sin llamadas a modelos de IA en esta primera versión. La IA queda como extensión opcional para más adelante, no como coste fijo del MVP.
+- Novedades no significa inventario en tiempo real: prioriza composiciones de descubrimiento y añade ordenación por incorporaciones recientes a la búsqueda de Amazon cuando el marketplace la admite. La página lo comunica y pide comprobar fecha, precio y disponibilidad.
 
 ## URLs
 
@@ -40,7 +44,7 @@ Es una web estática sin dependencias externas:
 - netlify.toml: publicación desde la raíz y cabeceras básicas.
 - docs/gpt-recovery.md: recuperación y límites de la configuración del GPT.
 
-La aplicación usa rutas relativas y no acopla el dominio actual, por lo que puede pasar a un dominio propio más adelante sin reescribir la lógica. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación.
+La aplicación usa rutas relativas y no acopla el dominio actual, por lo que puede pasar a un dominio propio más adelante sin reescribir la lógica. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
 
 ## Despliegue
 
@@ -73,7 +77,7 @@ Cuando se conecte un dominio propio, hay que sustituir la URL de Netlify en los 
 
 La versión pública no carga un SDK externo ni envía analítica por defecto. app.js expone window.RegalazoAnalytics y mantiene una cola local de eventos durante la sesión; ANALYTICS_CONFIG está desactivado y el token está vacío.
 
-Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant), recommendations_refreshed (variant), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked y quiz_reset. Todos incluyen app, language, version y marca temporal.
+Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), recommendations_mode_changed (mode, variant), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_completed (method, mode), shared_result_opened (mode) y quiz_reset. Todos incluyen app, language, version y marca temporal.
 
 Para activarlo habrá que definir consentimiento y privacidad, cargar el SDK o un endpoint propio después de ese consentimiento, proporcionar el token mediante el proceso de despliegue y validar primero en desarrollo. No se guardan nombres, emails ni texto libre.
 
