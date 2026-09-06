@@ -12,6 +12,20 @@ var APP_CONFIG = Object.freeze({
 
 var QUESTIONS = [
   {
+    id: 'gender',
+    kicker: '2 · Género',
+    title: '¿Qué género describe mejor a esa persona?',
+    subtitle: 'Si no lo sabes o prefieres no decirlo, puedes elegir esa opción.',
+    options: [
+      { value: 'woman', label: 'Mujer', icon: '♀️' },
+      { value: 'man', label: 'Hombre', icon: '♂️' },
+      { value: 'nonbinary', label: 'Persona no binaria', icon: '✨' },
+      { value: 'other', label: 'Otra identidad', icon: '🌈' },
+      { value: 'prefer-not', label: 'Prefiero no decirlo', icon: '🤍' },
+      { value: 'unknown', label: 'No lo sé', icon: '🤷' }
+    ]
+  },
+  {
     id: 'relation',
     kicker: '1 · Para quién',
     title: '¿Qué relación tienes con esta persona?',
@@ -28,7 +42,7 @@ var QUESTIONS = [
   },
   {
     id: 'age',
-    kicker: '2 · Edad',
+    kicker: '3 · Edad',
     title: '¿En qué rango de edad está?',
     subtitle: 'Aproximada es perfecto. No necesitas saber el número exacto.',
     options: [
@@ -43,7 +57,7 @@ var QUESTIONS = [
   },
   {
     id: 'occasion',
-    kicker: '3 · Momento',
+    kicker: '4 · Momento',
     title: '¿Qué estás celebrando?',
     subtitle: 'El contexto cambia mucho el tipo de regalo que se siente bien.',
     options: [
@@ -57,7 +71,7 @@ var QUESTIONS = [
   },
   {
     id: 'budget',
-    kicker: '4 · Presupuesto',
+    kicker: '5 · Presupuesto',
     title: '¿Cuánto quieres gastar?',
     subtitle: 'Tomamos el máximo como guía, no como una obligación.',
     options: [
@@ -70,10 +84,9 @@ var QUESTIONS = [
   },
   {
     id: 'interests',
-    kicker: '5 · Sus gustos',
+    kicker: '6 · Sus gustos',
     title: '¿Qué le mueve por dentro?',
-    subtitle: 'Elige hasta 3. Si dudas, mezcla lo que más le representa.',
-    multiple: true,
+    subtitle: 'Elige el gusto que más le representa.',
     options: [
       { value: 'tech', label: 'Tecnología', icon: '📱' },
       { value: 'sport', label: 'Deporte', icon: '🏃' },
@@ -89,7 +102,7 @@ var QUESTIONS = [
   },
   {
     id: 'style',
-    kicker: '6 · Estilo',
+    kicker: '7 · Estilo',
     title: '¿Qué sensación quieres provocar?',
     subtitle: 'Elige el aire del regalo, incluso si todavía no sabes cuál será.',
     options: [
@@ -102,7 +115,7 @@ var QUESTIONS = [
   },
   {
     id: 'country',
-    kicker: '7 · Dónde compras',
+    kicker: '8 · Dónde compras',
     title: '¿En qué país estás?',
     subtitle: 'Así abrimos la tienda de Amazon que corresponde.',
     options: [
@@ -203,15 +216,12 @@ function optionMarkup(question, option) {
 
 function renderQuestion() {
   var question = QUESTIONS[state.step];
-  var values = selectedValues(question);
   var percent = Math.round(((state.step + 1) / QUESTIONS.length) * 100);
   stepLabel.textContent = 'Paso ' + (state.step + 1) + ' de ' + QUESTIONS.length;
   progressValue.textContent = percent + '%';
   progressBar.style.width = percent + '%';
   backButton.hidden = state.step === 0;
-  nextButton.hidden = false;
-  nextButton.disabled = values.length === 0;
-  nextButton.innerHTML = question.multiple ? 'Ver mis ideas <span aria-hidden="true">→</span>' : 'Elegir y seguir <span aria-hidden="true">→</span>';
+  nextButton.hidden = true;
   questionRegion.innerHTML = '<p class="question-kicker">' + escapeHtml(question.kicker) + '</p>' +
     '<h2 id="question-title" class="question-title">' + escapeHtml(question.title) + '</h2>' +
     '<p class="question-subtitle">' + escapeHtml(question.subtitle) + '</p>' +
@@ -240,6 +250,8 @@ function handleOption(value) {
     state.answers[question.id] = exists ? current.filter(function (item) { return item !== value; }) : current.concat(value);
   } else {
     state.answers[question.id] = value;
+    advance();
+    return;
   }
   renderQuestion();
 }
@@ -253,7 +265,6 @@ function advance() {
   state.step += 1;
   render();
   if (state.step < QUESTIONS.length) {
-    questionRegion.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
@@ -261,7 +272,6 @@ function goBack() {
   if (state.step > 0) {
     state.step -= 1;
     renderQuestion();
-    questionRegion.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
@@ -327,7 +337,7 @@ function buildReason(gift, answers) {
 }
 
 function summaryChips(answers) {
-  var chips = [getLabel('relation', answers.relation), getLabel('age', answers.age), getLabel('occasion', answers.occasion), budgetFor(answers.budget).label, getLabel('style', answers.style), getLabel('country', answers.country)];
+  var chips = [getLabel('relation', answers.relation), getLabel('gender', answers.gender), getLabel('age', answers.age), getLabel('occasion', answers.occasion), budgetFor(answers.budget).label, getLabel('style', answers.style), getLabel('country', answers.country)];
   (answers.interests || []).slice(0, 3).forEach(function (interest) { chips.push(getLabel('interests', interest)); });
   return chips.filter(Boolean).map(function (chip) { return '<span class="summary-chip">' + escapeHtml(chip) + '</span>'; }).join('');
 }
@@ -357,7 +367,6 @@ function renderResults() {
   wizard.hidden = true;
   trustStrip.hidden = true;
   results.hidden = false;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showWizardAtLastStep() {
@@ -367,7 +376,6 @@ function showWizardAtLastStep() {
   results.hidden = true;
   state.step = QUESTIONS.length - 1;
   renderQuestion();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function resetApp() {
@@ -377,7 +385,6 @@ function resetApp() {
   trustStrip.hidden = false;
   results.hidden = true;
   render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function recordClick(giftId) {
