@@ -28,7 +28,7 @@ El GPT antiguo sí sigue disponible en la cuenta de ChatGPT y se puede abrir des
 
 ## Comportamiento recuperado
 
-La configuración de la versión española pedía una única línea con siete datos, en este orden:
+La configuración de la versión española pedía una única línea con siete datos (el género iba unido a la edad); la interfaz actual los presenta como ocho pasos para facilitar el flujo, en este orden:
 
 1. Edad y género de la persona.
 2. Relación con quien regala.
@@ -56,9 +56,9 @@ La auditoría recuperó la configuración desde el editor del GPT. No se exporta
 
 ## Qué se reconstruye ahora
 
-La interfaz convierte los siete campos de una línea en una secuencia de tarjetas tocables. El quinto campo permite seleccionar hasta tres intereses. La salida conserva 10 ideas, el orden de afinación por país y el enlace de búsqueda de Amazon, pero añade una separación explícita entre catálogo y motor.
+La interfaz convierte los siete campos originales en ocho pasos de tarjetas tocables: separa género de edad y hace que cada elección avance automáticamente. El paso de gustos recoge un gusto principal (una sola opción) para conservar el flujo de un toque por pregunta. La salida conserva 10 ideas, el orden de afinación por país y el enlace de búsqueda de Amazon, pero añade una separación explícita entre catálogo y motor.
 
-El catálogo local es la fuente de verdad de títulos, consultas, categorías y precios orientativos. El motor puntúa esos registros por presupuesto, relación, edad, ocasión, intereses y estilo. La salida nunca crea una URL de producto desde cero ni afirma que el precio o el stock sean actuales.
+El catálogo local es la fuente de verdad de títulos, consultas, categorías y precios orientativos. El motor puntúa esos registros por presupuesto, relación, edad, ocasión, gusto principal y estilo; el género se conserva como contexto visible para futuras mejoras, sin aplicar filtros estereotipados por defecto. La salida nunca crea una URL de producto desde cero ni afirma que el precio o el stock sean actuales.
 
 ## Información que falta antes de introducir IA
 
@@ -71,9 +71,13 @@ La configuración ya es suficiente para reconstruir el flujo, pero no para afirm
 - Catálogo real, fuentes de producto, periodicidad de actualización y tratamiento de productos retirados.
 - Modelo, presupuesto mensual, límites y política de fallback para la futura llamada de IA.
 
+## Decisión de coste del MVP
+
+No se activa IA en esta publicación. La versión determinista no usa OpenClaw, claves ni llamadas a modelos y mantiene el producto público sin coste variable de inferencia. La IA futura solo se probará si los datos de uso muestran una mejora clara y existe un presupuesto explícito; si se incorpora, será opcional y con fallback determinista.
+
 ## Contrato recomendado para la IA futura
 
-Entrada: GiftBrief con relation, age, occasion, budget, interests, style y country.
+Entrada: GiftBrief con relation, gender, age, occasion, budget, primaryInterest, style y country.
 
 Salida: una lista de ids existentes del catálogo, con una explicación breve y una puntuación de encaje.
 
