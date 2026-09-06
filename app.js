@@ -2171,7 +2171,138 @@ var GIFT_CATALOG = [
 
 ];
 
-var state = { step: 0, variant: Math.floor(Math.random() * 8), answers: { interests: [] } };
+
+function makeOptionCopy(label, detail) {
+  return { label: label, detail: detail || '' };
+}
+
+function makeQuestionCopy(kicker, title, subtitle, options) {
+  return { kicker: kicker, title: title, subtitle: subtitle, options: options };
+}
+
+var LANGUAGE_COPY = {
+  es: {
+    locale: 'es', label: 'Español', pickerLabel: 'Idioma', stepPrefix: 'Paso ', stepJoin: ' de ',
+    heroEyebrow: 'Ideas para regalos', heroTitle: 'Encuentra un regalo de cumpleaños que encaje de verdad.', heroCopy: 'Responde con unos toques y descubre 10 ideas de regalos de cumpleaños según la persona, la ocasión, sus gustos y tu presupuesto.', heroNotes: [{ value: '8', label: 'toques' }, { value: '10', label: 'ideas' }, { value: 'sin', label: 'registro' }],
+    trust: [{ title: 'Ideas pensadas', detail: 'Mezcla de clásicos y sorpresas' }, { title: 'Enlaces claros', detail: 'Te llevamos a una búsqueda relevante' }, { title: 'Sin cuenta', detail: 'Tus respuestas se quedan en tu navegador' }],
+    keyboardHint: 'Toca una opción y pasaremos al siguiente paso. No hace falta escribir nombres ni descripciones.',
+    messages: { choose: 'Elige una opción para continuar.', chooseInterest: 'Elige al menos un gusto para continuar.', maxInterests: 'Elige hasta 3 gustos para que las ideas no se dispersen.', multiHint: 'Puedes elegir hasta 3 opciones', copied: 'Enlace copiado.', copyHint: 'Copia el enlace de esta página para compartirlo.' },
+    results: { ready: 'Tu selección está lista', genericTitle: '10 ideas para acertar', relationTitle: '10 ideas para tu {relation}.', intro: 'Una mezcla de opciones útiles, originales y con algo que contar. Abre las que te llamen y compara en la tienda de tu país.', chips: 'Tus preferencias', adjust: '← Ajustar respuestas', refresh: 'Ver otras ideas', share: 'Compartir selección', shareText: 'He encontrado ideas de regalo en Regalazo 🎁', badge: 'Mejor encaje', price: '≈ {price} € · presupuesto orientativo', link: 'Ver opciones en Amazon', note: 'Estas son búsquedas relevantes, no fichas de producto concretas. Amazon puede mostrar otras opciones y los precios o la disponibilidad pueden cambiar.' },
+    questions: {
+      relation: makeQuestionCopy('1 · Para quién', '¿Qué relación tienes con esta persona?', 'El vínculo ayuda a encontrar el tono adecuado.', { partner: makeOptionCopy('Pareja', 'algo con intención'), parent: makeOptionCopy('Madre o padre', 'un detalle especial'), sibling: makeOptionCopy('Hermano/a', 'con complicidad'), friend: makeOptionCopy('Amigo/a', 'para sorprenderle'), child: makeOptionCopy('Hijo/a', 'según su etapa'), coworker: makeOptionCopy('Compañero/a', 'acierto sin complicarse'), other: makeOptionCopy('Otra persona', 'lo afinamos después') }),
+      gender: makeQuestionCopy('2 · Género', '¿Qué género describe mejor a esa persona?', 'Si no lo sabes o prefieres no decirlo, puedes elegir esa opción.', { woman: makeOptionCopy('Mujer'), man: makeOptionCopy('Hombre'), nonbinary: makeOptionCopy('Persona no binaria'), other: makeOptionCopy('Otra identidad'), 'prefer-not': makeOptionCopy('Prefiero no decirlo'), unknown: makeOptionCopy('No lo sé') }),
+      age: makeQuestionCopy('3 · Edad', '¿En qué rango de edad está?', 'Aproximada es perfecto. No necesitas saber el número exacto.', { child: makeOptionCopy('Menos de 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 o más'), unknown: makeOptionCopy('No lo sé') }),
+      occasion: makeQuestionCopy('4 · Momento', '¿Qué estás celebrando?', 'El contexto cambia mucho el tipo de regalo que se siente bien.', { birthday: makeOptionCopy('Cumpleaños'), anniversary: makeOptionCopy('Aniversario'), christmas: makeOptionCopy('Navidad'), 'secret-santa': makeOptionCopy('Amigo invisible'), thankyou: makeOptionCopy('Agradecimiento'), justbecause: makeOptionCopy('Porque sí') }),
+      budget: makeQuestionCopy('5 · Presupuesto', '¿Cuánto quieres gastar?', 'Tomamos el máximo como guía, no como una obligación.', { under20: makeOptionCopy('Menos de 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Más de 150 €') }),
+      interests: makeQuestionCopy('6 · Sus gustos', '¿Qué le mueve por dentro?', 'Elige el gusto que más le representa.', { tech: makeOptionCopy('Tecnología'), sport: makeOptionCopy('Deporte'), food: makeOptionCopy('Cocina y sabores'), travel: makeOptionCopy('Viajes'), beauty: makeOptionCopy('Cuidado personal'), books: makeOptionCopy('Libros'), gaming: makeOptionCopy('Juegos'), music: makeOptionCopy('Música'), home: makeOptionCopy('Casa y calma'), creative: makeOptionCopy('Crear cosas') }),
+      style: makeQuestionCopy('7 · Estilo', '¿Qué sensación quieres provocar?', 'Elige el aire del regalo, incluso si todavía no sabes cuál será.', { useful: makeOptionCopy('Útil', 'lo usará de verdad'), original: makeOptionCopy('Original', 'que no se vea venir'), emotional: makeOptionCopy('Emocional', 'que diga algo'), fun: makeOptionCopy('Divertido', 'para pasarlo bien'), premium: makeOptionCopy('Premium', 'un pequeño lujo') }),
+      country: makeQuestionCopy('8 · Dónde compras', '¿En qué país estás?', 'Así abrimos la tienda de Amazon que corresponde.', { ES: makeOptionCopy('España'), US: makeOptionCopy('Estados Unidos'), GB: makeOptionCopy('Reino Unido'), DE: makeOptionCopy('Alemania'), FR: makeOptionCopy('Francia'), IT: makeOptionCopy('Italia'), CA: makeOptionCopy('Canadá') })
+    },
+    seo: { eyebrow: 'Guía de regalos', title: 'Ideas de regalos de cumpleaños para acertar', intro: 'Un buen regalo de cumpleaños no tiene que ser caro ni complicado. Lo importante es que conecte con la relación que tienes con esa persona, con algo que disfruta y con el momento que vais a celebrar. Regalazo combina esas pistas para proponerte ideas útiles, originales y fáciles de buscar.', cards: [{ title: 'Regalos para tu pareja', description: 'Ideas con intención para celebrar juntos: recuerdos, planes compartidos y pequeños lujos que no se sienten impersonales.', link: 'Ver ideas para pareja' }, { title: 'Regalos de cumpleaños baratos', description: 'Detalles con criterio por menos de 20, 40 o 50 euros, sin caer en el regalo genérico de última hora.', link: 'Ver ideas económicas' }, { title: 'Guía para elegir mejor', description: 'Una guía rápida para pensar en intereses, presupuesto, estilo y ocasión antes de comprar.', link: 'Leer la guía completa' }], faqTitle: 'Preguntas frecuentes sobre regalos de cumpleaños', faqs: [{ question: '¿Cómo elijo un regalo de cumpleaños original?', answer: 'Empieza por algo que la persona ya disfruta y cambia el formato: un accesorio para su afición, un plan para compartir o un objeto cotidiano mejor elegido. La originalidad suele estar en el encaje, no en que sea extravagante.' }, { question: '¿Qué regalo puedo hacer con poco presupuesto?', answer: 'Con menos de 20 o 40 euros funcionan bien los detalles que crean un momento: una selección gourmet, un accesorio útil, un pequeño kit creativo o algo para una afición concreta. El recomendador permite filtrar por presupuesto.' }, { question: '¿Tengo que saber la edad exacta?', answer: 'No. Basta con elegir un rango aproximado. También puedes indicar que no lo sabes y dejar que el resto de señales —relación, ocasión, gusto y estilo— pese más.' }] },
+    footer: ['Regalazo es un proyecto independiente. Los precios y la disponibilidad pueden cambiar.', 'Como asociado de Amazon, puedo obtener ingresos por compras que cumplan los requisitos aplicables.']
+  },
+  en: {
+    locale: 'en', label: 'English', pickerLabel: 'Language', stepPrefix: 'Step ', stepJoin: ' of ',
+    heroEyebrow: 'Gift ideas', heroTitle: 'Find a birthday gift that truly fits.', heroCopy: 'Tap through a few questions and discover 10 birthday gift ideas based on the person, the occasion, their interests and your budget.', heroNotes: [{ value: '8', label: 'taps' }, { value: '10', label: 'ideas' }, { value: 'no', label: 'sign-up' }],
+    trust: [{ title: 'Thoughtful ideas', detail: 'A mix of classics and surprises' }, { title: 'Clear links', detail: 'We take you to a relevant search' }, { title: 'No account', detail: 'Your answers stay in your browser' }],
+    keyboardHint: 'Tap an option and we will move to the next step. No names or descriptions needed.',
+    messages: { choose: 'Choose an option to continue.', chooseInterest: 'Choose at least one interest to continue.', maxInterests: 'Choose up to 3 interests so the ideas stay focused.', multiHint: 'Choose up to 3 options', copied: 'Link copied.', copyHint: 'Copy this page link to share it.' },
+    results: { ready: 'Your selection is ready', genericTitle: '10 ideas to get it right', relationTitle: '10 ideas for your {relation}.', intro: 'A mix of useful, original ideas with something to say. Open the ones that catch your eye and compare them in your local store.', chips: 'Your preferences', adjust: '← Adjust answers', refresh: 'See more ideas', share: 'Share selection', shareText: 'I found gift ideas on Regalazo 🎁', badge: 'Best match', price: '≈ €{price} · guide price', link: 'See options on Amazon', note: 'These are relevant searches, not specific product listings. Amazon may show other options, and prices or availability can change.' },
+    questions: {
+      relation: makeQuestionCopy('1 · For whom', 'What is your relationship with this person?', 'The relationship helps us find the right tone.', { partner: makeOptionCopy('Partner', 'something with intention'), parent: makeOptionCopy('Mother or father', 'a special detail'), sibling: makeOptionCopy('Sibling', 'with shared history'), friend: makeOptionCopy('Friend', 'to surprise them'), child: makeOptionCopy('Son or daughter', 'for their stage'), coworker: makeOptionCopy('Colleague', 'an easy win'), other: makeOptionCopy('Someone else', 'we will refine it later') }),
+      gender: makeQuestionCopy('2 · Gender', 'Which gender best describes this person?', 'If you do not know or would rather not say, you can choose that option.', { woman: makeOptionCopy('Woman'), man: makeOptionCopy('Man'), nonbinary: makeOptionCopy('Non-binary person'), other: makeOptionCopy('Another identity'), 'prefer-not': makeOptionCopy('Prefer not to say'), unknown: makeOptionCopy('I do not know') }),
+      age: makeQuestionCopy('3 · Age', 'What age range are they in?', 'An approximate range is perfect. You do not need the exact number.', { child: makeOptionCopy('Under 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 or older'), unknown: makeOptionCopy('I do not know') }),
+      occasion: makeQuestionCopy('4 · Occasion', 'What are you celebrating?', 'The context changes the kind of gift that feels right.', { birthday: makeOptionCopy('Birthday'), anniversary: makeOptionCopy('Anniversary'), christmas: makeOptionCopy('Christmas'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Thank you'), justbecause: makeOptionCopy('Just because') }),
+      budget: makeQuestionCopy('5 · Budget', 'How much do you want to spend?', 'We use the maximum as a guide, not a rule.', { under20: makeOptionCopy('Under €20'), '20to40': makeOptionCopy('€20–40'), '40to75': makeOptionCopy('€40–75'), '75to150': makeOptionCopy('€75–150'), over150: makeOptionCopy('Over €150') }),
+      interests: makeQuestionCopy('6 · Their interests', 'What makes them tick?', 'Choose the interest that represents them best.', { tech: makeOptionCopy('Technology'), sport: makeOptionCopy('Sports'), food: makeOptionCopy('Food and flavors'), travel: makeOptionCopy('Travel'), beauty: makeOptionCopy('Personal care'), books: makeOptionCopy('Books'), gaming: makeOptionCopy('Games'), music: makeOptionCopy('Music'), home: makeOptionCopy('Home and calm'), creative: makeOptionCopy('Making things') }),
+      style: makeQuestionCopy('7 · Style', 'What feeling do you want to create?', 'Choose the mood of the gift, even if you do not know the exact item yet.', { useful: makeOptionCopy('Useful', 'they will really use it'), original: makeOptionCopy('Original', 'they will not see it coming'), emotional: makeOptionCopy('Emotional', 'it says something'), fun: makeOptionCopy('Fun', 'for a good time'), premium: makeOptionCopy('Premium', 'a little luxury') }),
+      country: makeQuestionCopy('8 · Where you shop', 'Which country are you in?', 'We will open the matching Amazon store.', { ES: makeOptionCopy('Spain'), US: makeOptionCopy('United States'), GB: makeOptionCopy('United Kingdom'), DE: makeOptionCopy('Germany'), FR: makeOptionCopy('France'), IT: makeOptionCopy('Italy'), CA: makeOptionCopy('Canada') })
+    },
+    seo: { eyebrow: 'Gift guide', title: 'Birthday gift ideas to get it right', intro: 'A good birthday gift does not have to be expensive or complicated. What matters is the connection with the person, something they enjoy and the moment you are celebrating. Regalazo combines those clues to suggest useful, original ideas that are easy to find.', cards: [{ title: 'Gifts for your partner', description: 'Thoughtful ideas for celebrating together: memories, shared plans and little luxuries that do not feel impersonal.', link: 'See partner gift ideas' }, { title: 'Affordable birthday gifts', description: 'Considered details under 20, 40 or 50 euros, without falling into the last-minute generic gift.', link: 'See budget ideas' }, { title: 'How to choose better', description: 'A quick guide to thinking about interests, budget, style and occasion before buying.', link: 'Read the full guide' }], faqTitle: 'Frequently asked questions about birthday gifts', faqs: [{ question: 'How do I choose an original birthday gift?', answer: 'Start with something the person already enjoys and change the format: an accessory for a hobby, a plan to share or a better-chosen everyday object. Originality is usually about the fit, not extravagance.' }, { question: 'What gift can I give on a small budget?', answer: 'Under 20 or 40 euros, details that create a moment work well: a gourmet selection, a useful accessory, a small creative kit or something for a specific hobby. The recommender lets you filter by budget.' }, { question: 'Do I need to know their exact age?', answer: 'No. An approximate range is enough. You can also say you do not know and let the other clues —relationship, occasion, interests and style— carry more weight.' }] },
+    footer: ['Regalazo is an independent project. Prices and availability may change.', 'As an Amazon Associate, I may earn from qualifying purchases.']
+  },
+  de: {
+    locale: 'de', label: 'Deutsch', pickerLabel: 'Sprache', stepPrefix: 'Schritt ', stepJoin: ' von ',
+    heroEyebrow: 'Geschenkideen', heroTitle: 'Finde ein Geburtstagsgeschenk, das wirklich passt.', heroCopy: 'Tippe dich durch ein paar Fragen und entdecke 10 Geburtstagsgeschenke passend zur Person, zum Anlass, zu ihren Interessen und zu deinem Budget.', heroNotes: [{ value: '8', label: 'Tipps' }, { value: '10', label: 'Ideen' }, { value: 'ohne', label: 'Konto' }],
+    trust: [{ title: 'Durchdachte Ideen', detail: 'Eine Mischung aus Klassikern und Überraschungen' }, { title: 'Klare Links', detail: 'Wir führen dich zu einer passenden Suche' }, { title: 'Kein Konto', detail: 'Deine Antworten bleiben im Browser' }],
+    keyboardHint: 'Tippe eine Option an und wir gehen direkt zum nächsten Schritt. Namen und Beschreibungen sind nicht nötig.',
+    messages: { choose: 'Wähle eine Option, um fortzufahren.', chooseInterest: 'Wähle mindestens ein Interesse.', maxInterests: 'Wähle bis zu 3 Interessen, damit die Ideen fokussiert bleiben.', multiHint: 'Du kannst bis zu 3 Optionen wählen', copied: 'Link kopiert.', copyHint: 'Kopiere den Link dieser Seite zum Teilen.' },
+    results: { ready: 'Deine Auswahl ist fertig', genericTitle: '10 Ideen, die passen', relationTitle: '10 Ideen für {relation}.', intro: 'Eine Mischung aus nützlichen und originellen Ideen mit persönlicher Note. Öffne die Vorschläge, die dir gefallen, und vergleiche sie im passenden Shop.', chips: 'Deine Auswahl', adjust: '← Antworten ändern', refresh: 'Weitere Ideen', share: 'Auswahl teilen', shareText: 'Ich habe Geschenkideen bei Regalazo gefunden 🎁', badge: 'Beste Übereinstimmung', price: '≈ {price} € · Richtwert', link: 'Optionen auf Amazon ansehen', note: 'Dies sind passende Suchen, keine konkreten Produktangebote. Amazon kann andere Optionen anzeigen; Preise und Verfügbarkeit können sich ändern.' },
+    questions: {
+      relation: makeQuestionCopy('1 · Für wen', 'Welche Beziehung hast du zu dieser Person?', 'Die Beziehung hilft uns, den passenden Ton zu finden.', { partner: makeOptionCopy('Partner/in', 'mit persönlicher Note'), parent: makeOptionCopy('Mutter oder Vater', 'ein besonderes Detail'), sibling: makeOptionCopy('Geschwister', 'mit Verbundenheit'), friend: makeOptionCopy('Freund/in', 'zum Überraschen'), child: makeOptionCopy('Sohn oder Tochter', 'passend zum Alter'), coworker: makeOptionCopy('Kolleg/in', 'unkompliziert passend'), other: makeOptionCopy('Andere Person', 'das verfeinern wir später') }),
+      gender: makeQuestionCopy('2 · Geschlecht', 'Welches Geschlecht beschreibt die Person am besten?', 'Wenn du es nicht weißt oder nicht sagen möchtest, kannst du diese Option wählen.', { woman: makeOptionCopy('Frau'), man: makeOptionCopy('Mann'), nonbinary: makeOptionCopy('Nicht-binäre Person'), other: makeOptionCopy('Andere Identität'), 'prefer-not': makeOptionCopy('Möchte ich nicht sagen'), unknown: makeOptionCopy('Ich weiß es nicht') }),
+      age: makeQuestionCopy('3 · Alter', 'In welcher Altersgruppe ist die Person?', 'Eine ungefähre Angabe reicht völlig. Die genaue Zahl musst du nicht kennen.', { child: makeOptionCopy('Unter 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 oder älter'), unknown: makeOptionCopy('Ich weiß es nicht') }),
+      occasion: makeQuestionCopy('4 · Anlass', 'Was feiert ihr?', 'Der Anlass verändert, welches Geschenk sich richtig anfühlt.', { birthday: makeOptionCopy('Geburtstag'), anniversary: makeOptionCopy('Jahrestag'), christmas: makeOptionCopy('Weihnachten'), 'secret-santa': makeOptionCopy('Wichteln'), thankyou: makeOptionCopy('Dankeschön'), justbecause: makeOptionCopy('Einfach so') }),
+      budget: makeQuestionCopy('5 · Budget', 'Wie viel möchtest du ausgeben?', 'Wir nutzen den Höchstbetrag als Orientierung, nicht als Pflicht.', { under20: makeOptionCopy('Unter 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Über 150 €') }),
+      interests: makeQuestionCopy('6 · Interessen', 'Wofür begeistert sich die Person?', 'Wähle das Interesse, das am besten passt.', { tech: makeOptionCopy('Technik'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Kochen und Genuss'), travel: makeOptionCopy('Reisen'), beauty: makeOptionCopy('Pflege'), books: makeOptionCopy('Bücher'), gaming: makeOptionCopy('Spiele'), music: makeOptionCopy('Musik'), home: makeOptionCopy('Zuhause und Ruhe'), creative: makeOptionCopy('Kreativ sein') }),
+      style: makeQuestionCopy('7 · Stil', 'Welche Stimmung soll das Geschenk auslösen?', 'Wähle die Richtung des Geschenks, auch wenn du den konkreten Artikel noch nicht kennst.', { useful: makeOptionCopy('Nützlich', 'wird wirklich verwendet'), original: makeOptionCopy('Originell', 'damit rechnet niemand'), emotional: makeOptionCopy('Emotional', 'sagt etwas aus'), fun: makeOptionCopy('Lustig', 'für gute Laune'), premium: makeOptionCopy('Hochwertig', 'ein kleiner Luxus') }),
+      country: makeQuestionCopy('8 · Einkaufsland', 'In welchem Land bist du?', 'Wir öffnen den passenden Amazon-Shop.', { ES: makeOptionCopy('Spanien'), US: makeOptionCopy('Vereinigte Staaten'), GB: makeOptionCopy('Vereinigtes Königreich'), DE: makeOptionCopy('Deutschland'), FR: makeOptionCopy('Frankreich'), IT: makeOptionCopy('Italien'), CA: makeOptionCopy('Kanada') })
+    },
+    seo: { eyebrow: 'Geschenkguide', title: 'Geburtstagsgeschenke, die wirklich passen', intro: 'Ein gutes Geburtstagsgeschenk muss weder teuer noch kompliziert sein. Entscheidend sind die Beziehung, etwas, das die Person mag, und der Anlass. Regalazo verbindet diese Hinweise zu nützlichen, originellen und leicht auffindbaren Ideen.', cards: [{ title: 'Geschenke für deine Partnerperson', description: 'Ideen mit persönlicher Note: gemeinsame Erinnerungen, Pläne und kleine Luxusmomente.', link: 'Ideen für Partner ansehen' }, { title: 'Günstige Geburtstagsgeschenke', description: 'Durchdachte Details unter 20, 40 oder 50 Euro statt eines beliebigen Last-Minute-Geschenks.', link: 'Budget-Ideen ansehen' }, { title: 'Besser auswählen', description: 'Ein kurzer Guide zu Interessen, Budget, Stil und Anlass vor dem Kauf.', link: 'Guide lesen' }], faqTitle: 'Häufige Fragen zu Geburtstagsgeschenken', faqs: [{ question: 'Wie finde ich ein originelles Geburtstagsgeschenk?', answer: 'Beginne mit etwas, das die Person bereits mag, und ändere das Format: ein Zubehör für ein Hobby, ein gemeinsamer Plan oder ein besser ausgewählter Alltagsgegenstand. Originalität liegt meist in der Passung.' }, { question: 'Was kann ich mit kleinem Budget schenken?', answer: 'Unter 20 oder 40 Euro funktionieren Details, die einen Moment schaffen: eine Feinkostauswahl, ein nützliches Accessoire, ein kleines Kreativset oder etwas für ein konkretes Hobby.' }, { question: 'Muss ich das genaue Alter wissen?', answer: 'Nein. Eine ungefähre Altersgruppe reicht. Du kannst auch angeben, dass du es nicht weißt, und die anderen Hinweise stärker gewichten lassen.' }] },
+    footer: ['Regalazo ist ein unabhängiges Projekt. Preise und Verfügbarkeit können sich ändern.', 'Als Amazon-Partner kann ich an qualifizierten Käufen verdienen.']
+  },
+  fr: {
+    locale: 'fr', label: 'Français', pickerLabel: 'Langue', stepPrefix: 'Étape ', stepJoin: ' sur ',
+    heroEyebrow: 'Idées cadeaux', heroTitle: 'Trouvez un cadeau d’anniversaire qui lui correspond vraiment.', heroCopy: 'Répondez à quelques questions en appuyant sur l’écran et découvrez 10 idées selon la personne, l’occasion, ses goûts et votre budget.', heroNotes: [{ value: '8', label: 'touches' }, { value: '10', label: 'idées' }, { value: 'sans', label: 'compte' }],
+    trust: [{ title: 'Idées choisies', detail: 'Un mélange de classiques et de surprises' }, { title: 'Liens clairs', detail: 'Nous ouvrons une recherche pertinente' }, { title: 'Sans compte', detail: 'Vos réponses restent dans votre navigateur' }],
+    keyboardHint: 'Touchez une option pour passer directement à l’étape suivante. Aucun nom ni description à écrire.',
+    messages: { choose: 'Choisissez une option pour continuer.', chooseInterest: 'Choisissez au moins un goût pour continuer.', maxInterests: 'Choisissez jusqu’à 3 goûts pour garder des idées ciblées.', multiHint: 'Vous pouvez choisir jusqu’à 3 options', copied: 'Lien copié.', copyHint: 'Copiez le lien de cette page pour la partager.' },
+    results: { ready: 'Votre sélection est prête', genericTitle: '10 idées pour faire mouche', relationTitle: '10 idées pour {relation}.', intro: 'Un mélange d’idées utiles et originales, avec une vraie intention. Ouvrez celles qui vous attirent et comparez-les dans votre boutique locale.', chips: 'Vos préférences', adjust: '← Modifier les réponses', refresh: 'Voir d’autres idées', share: 'Partager la sélection', shareText: 'J’ai trouvé des idées cadeaux sur Regalazo 🎁', badge: 'Meilleure idée', price: '≈ {price} € · budget indicatif', link: 'Voir les options sur Amazon', note: 'Ce sont des recherches pertinentes, pas des fiches produit précises. Amazon peut afficher d’autres options et les prix ou la disponibilité peuvent changer.' },
+    questions: {
+      relation: makeQuestionCopy('1 · Pour qui', 'Quelle relation avez-vous avec cette personne ?', 'Le lien aide à trouver le ton juste.', { partner: makeOptionCopy('Partenaire', 'avec une intention'), parent: makeOptionCopy('Mère ou père', 'une attention spéciale'), sibling: makeOptionCopy('Frère ou sœur', 'avec complicité'), friend: makeOptionCopy('Ami(e)', 'pour le surprendre'), child: makeOptionCopy('Fils ou fille', 'selon son âge'), coworker: makeOptionCopy('Collègue', 'une valeur sûre'), other: makeOptionCopy('Autre personne', 'nous affinerons ensuite') }),
+      gender: makeQuestionCopy('2 · Genre', 'Quel genre décrit le mieux cette personne ?', 'Si vous ne savez pas ou préférez ne pas le dire, vous pouvez choisir cette option.', { woman: makeOptionCopy('Femme'), man: makeOptionCopy('Homme'), nonbinary: makeOptionCopy('Personne non binaire'), other: makeOptionCopy('Autre identité'), 'prefer-not': makeOptionCopy('Je préfère ne pas le dire'), unknown: makeOptionCopy('Je ne sais pas') }),
+      age: makeQuestionCopy('3 · Âge', 'Dans quelle tranche d’âge est-elle ?', 'Une estimation suffit. Vous n’avez pas besoin de connaître le nombre exact.', { child: makeOptionCopy('Moins de 12 ans'), teen: makeOptionCopy('12–17 ans'), 'young-adult': makeOptionCopy('18–24 ans'), adult: makeOptionCopy('25–34 ans'), midlife: makeOptionCopy('35–49 ans'), '50plus': makeOptionCopy('50 ans ou plus'), unknown: makeOptionCopy('Je ne sais pas') }),
+      occasion: makeQuestionCopy('4 · Occasion', 'Que célébrez-vous ?', 'Le contexte change beaucoup le type de cadeau qui convient.', { birthday: makeOptionCopy('Anniversaire'), anniversary: makeOptionCopy('Anniversaire de couple'), christmas: makeOptionCopy('Noël'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Remerciement'), justbecause: makeOptionCopy('Juste comme ça') }),
+      budget: makeQuestionCopy('5 · Budget', 'Combien souhaitez-vous dépenser ?', 'Le maximum sert de repère, pas d’obligation.', { under20: makeOptionCopy('Moins de 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Plus de 150 €') }),
+      interests: makeQuestionCopy('6 · Ses goûts', 'Qu’est-ce qui la fait vibrer ?', 'Choisissez le goût qui lui ressemble le plus.', { tech: makeOptionCopy('Technologie'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Cuisine et saveurs'), travel: makeOptionCopy('Voyages'), beauty: makeOptionCopy('Soin de soi'), books: makeOptionCopy('Livres'), gaming: makeOptionCopy('Jeux'), music: makeOptionCopy('Musique'), home: makeOptionCopy('Maison et calme'), creative: makeOptionCopy('Créer') }),
+      style: makeQuestionCopy('7 · Style', 'Quelle sensation voulez-vous provoquer ?', 'Choisissez l’esprit du cadeau, même si vous ne connaissez pas encore l’objet.', { useful: makeOptionCopy('Utile', 'elle s’en servira vraiment'), original: makeOptionCopy('Original', 'pour surprendre'), emotional: makeOptionCopy('Émotionnel', 'pour dire quelque chose'), fun: makeOptionCopy('Amusant', 'pour passer un bon moment'), premium: makeOptionCopy('Premium', 'un petit luxe') }),
+      country: makeQuestionCopy('8 · Où acheter', 'Dans quel pays êtes-vous ?', 'Nous ouvrirons la boutique Amazon correspondante.', { ES: makeOptionCopy('Espagne'), US: makeOptionCopy('États-Unis'), GB: makeOptionCopy('Royaume-Uni'), DE: makeOptionCopy('Allemagne'), FR: makeOptionCopy('France'), IT: makeOptionCopy('Italie'), CA: makeOptionCopy('Canada') })
+    },
+    seo: { eyebrow: 'Guide cadeaux', title: 'Idées de cadeaux d’anniversaire pour viser juste', intro: 'Un bon cadeau d’anniversaire n’a pas besoin d’être cher ou compliqué. Ce qui compte, c’est le lien avec la personne, ce qu’elle aime et le moment célébré. Regalazo combine ces indices pour proposer des idées utiles, originales et faciles à trouver.', cards: [{ title: 'Cadeaux pour votre partenaire', description: 'Des idées attentionnées pour célébrer ensemble : souvenirs, projets partagés et petits luxes.', link: 'Voir les idées pour partenaire' }, { title: 'Cadeaux d’anniversaire pas chers', description: 'Des attentions choisies à moins de 20, 40 ou 50 euros, sans cadeau générique de dernière minute.', link: 'Voir les idées petit budget' }, { title: 'Mieux choisir son cadeau', description: 'Un guide rapide pour penser aux goûts, au budget, au style et à l’occasion.', link: 'Lire le guide complet' }], faqTitle: 'Questions fréquentes sur les cadeaux d’anniversaire', faqs: [{ question: 'Comment choisir un cadeau d’anniversaire original ?', answer: 'Partez de quelque chose que la personne aime déjà et changez le format : un accessoire pour son loisir, une activité à partager ou un objet du quotidien mieux choisi. L’originalité est souvent dans la pertinence.' }, { question: 'Quel cadeau offrir avec un petit budget ?', answer: 'Avec moins de 20 ou 40 euros, les détails qui créent un moment fonctionnent bien : une sélection gourmande, un accessoire utile, un petit kit créatif ou quelque chose pour un loisir précis.' }, { question: 'Faut-il connaître l’âge exact ?', answer: 'Non. Une tranche approximative suffit. Vous pouvez aussi indiquer que vous ne savez pas et laisser les autres indices peser davantage.' }] },
+    footer: ['Regalazo est un projet indépendant. Les prix et la disponibilité peuvent changer.', 'En tant qu’associé Amazon, je peux percevoir des revenus sur les achats admissibles.']
+  },
+  it: {
+    locale: 'it', label: 'Italiano', pickerLabel: 'Lingua', stepPrefix: 'Passo ', stepJoin: ' di ',
+    heroEyebrow: 'Idee regalo', heroTitle: 'Trova un regalo di compleanno che sia davvero azzeccato.', heroCopy: 'Rispondi con pochi tocchi e scopri 10 idee regalo in base alla persona, all’occasione, ai suoi interessi e al tuo budget.', heroNotes: [{ value: '8', label: 'tocchi' }, { value: '10', label: 'idee' }, { value: 'senza', label: 'account' }],
+    trust: [{ title: 'Idee pensate', detail: 'Un mix di classici e sorprese' }, { title: 'Link chiari', detail: 'Ti portiamo a una ricerca pertinente' }, { title: 'Senza account', detail: 'Le tue risposte restano nel browser' }],
+    keyboardHint: 'Tocca un’opzione e passeremo subito alla domanda successiva. Non servono nomi o descrizioni.',
+    messages: { choose: 'Scegli un’opzione per continuare.', chooseInterest: 'Scegli almeno un interesse per continuare.', maxInterests: 'Scegli fino a 3 interessi per mantenere le idee mirate.', multiHint: 'Puoi scegliere fino a 3 opzioni', copied: 'Link copiato.', copyHint: 'Copia il link di questa pagina per condividerla.' },
+    results: { ready: 'La tua selezione è pronta', genericTitle: '10 idee per fare centro', relationTitle: '10 idee regalo per {relation}.', intro: 'Un mix di idee utili e originali, con qualcosa da raccontare. Apri quelle che ti attirano e confrontale nel tuo negozio locale.', chips: 'Le tue preferenze', adjust: '← Modifica risposte', refresh: 'Vedi altre idee', share: 'Condividi selezione', shareText: 'Ho trovato idee regalo su Regalazo 🎁', badge: 'Abbinamento migliore', price: '≈ {price} € · budget indicativo', link: 'Vedi opzioni su Amazon', note: 'Sono ricerche pertinenti, non schede di prodotti specifici. Amazon può mostrare altre opzioni e prezzi o disponibilità possono cambiare.' },
+    questions: {
+      relation: makeQuestionCopy('1 · Per chi', 'Che rapporto hai con questa persona?', 'Il rapporto aiuta a trovare il tono giusto.', { partner: makeOptionCopy('Partner', 'qualcosa con intenzione'), parent: makeOptionCopy('Mamma o papà', 'un dettaglio speciale'), sibling: makeOptionCopy('Fratello o sorella', 'con complicità'), friend: makeOptionCopy('Amico/a', 'per sorprenderlo/a'), child: makeOptionCopy('Figlio/a', 'in base alla sua età'), coworker: makeOptionCopy('Collega', 'una scelta semplice'), other: makeOptionCopy('Altra persona', 'lo definiremo dopo') }),
+      gender: makeQuestionCopy('2 · Genere', 'Quale genere descrive meglio questa persona?', 'Se non lo sai o preferisci non dirlo, puoi scegliere questa opzione.', { woman: makeOptionCopy('Donna'), man: makeOptionCopy('Uomo'), nonbinary: makeOptionCopy('Persona non binaria'), other: makeOptionCopy('Altra identità'), 'prefer-not': makeOptionCopy('Preferisco non dirlo'), unknown: makeOptionCopy('Non lo so') }),
+      age: makeQuestionCopy('3 · Età', 'In quale fascia d’età si trova?', 'Una stima va benissimo. Non serve conoscere il numero esatto.', { child: makeOptionCopy('Meno di 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 o più'), unknown: makeOptionCopy('Non lo so') }),
+      occasion: makeQuestionCopy('4 · Occasione', 'Che cosa state festeggiando?', 'Il contesto cambia molto il tipo di regalo più adatto.', { birthday: makeOptionCopy('Compleanno'), anniversary: makeOptionCopy('Anniversario'), christmas: makeOptionCopy('Natale'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Ringraziamento'), justbecause: makeOptionCopy('Perché sì') }),
+      budget: makeQuestionCopy('5 · Budget', 'Quanto vuoi spendere?', 'Usiamo il massimo come riferimento, non come obbligo.', { under20: makeOptionCopy('Meno di 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Più di 150 €') }),
+      interests: makeQuestionCopy('6 · I suoi interessi', 'Che cosa lo/a appassiona?', 'Scegli l’interesse che lo/a rappresenta di più.', { tech: makeOptionCopy('Tecnologia'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Cucina e sapori'), travel: makeOptionCopy('Viaggi'), beauty: makeOptionCopy('Cura personale'), books: makeOptionCopy('Libri'), gaming: makeOptionCopy('Giochi'), music: makeOptionCopy('Musica'), home: makeOptionCopy('Casa e calma'), creative: makeOptionCopy('Creare cose') }),
+      style: makeQuestionCopy('7 · Stile', 'Che sensazione vuoi provocare?', 'Scegli lo stile del regalo, anche se non sai ancora quale sarà.', { useful: makeOptionCopy('Utile', 'lo userà davvero'), original: makeOptionCopy('Originale', 'per sorprenderlo/a'), emotional: makeOptionCopy('Emotivo', 'per dire qualcosa'), fun: makeOptionCopy('Divertente', 'per stare bene insieme'), premium: makeOptionCopy('Premium', 'un piccolo lusso') }),
+      country: makeQuestionCopy('8 · Dove acquisti', 'In quale Paese ti trovi?', 'Apriremo il negozio Amazon corrispondente.', { ES: makeOptionCopy('Spagna'), US: makeOptionCopy('Stati Uniti'), GB: makeOptionCopy('Regno Unito'), DE: makeOptionCopy('Germania'), FR: makeOptionCopy('Francia'), IT: makeOptionCopy('Italia'), CA: makeOptionCopy('Canada') })
+    },
+    seo: { eyebrow: 'Guida ai regali', title: 'Idee regalo di compleanno per andare sul sicuro', intro: 'Un buon regalo di compleanno non deve essere costoso o complicato. Conta il rapporto con la persona, ciò che le piace e il momento da festeggiare. Regalazo combina questi indizi per proporti idee utili, originali e facili da trovare.', cards: [{ title: 'Regali per il tuo partner', description: 'Idee pensate per festeggiare insieme: ricordi, progetti condivisi e piccoli lussi.', link: 'Vedi idee per partner' }, { title: 'Regali di compleanno economici', description: 'Dettagli scelti sotto i 20, 40 o 50 euro, senza il solito regalo generico dell’ultimo minuto.', link: 'Vedi idee economiche' }, { title: 'Come scegliere meglio', description: 'Una guida rapida a interessi, budget, stile e occasione prima di comprare.', link: 'Leggi la guida completa' }], faqTitle: 'Domande frequenti sui regali di compleanno', faqs: [{ question: 'Come scelgo un regalo di compleanno originale?', answer: 'Parti da qualcosa che la persona ama già e cambia formato: un accessorio per un hobby, un’attività da condividere o un oggetto quotidiano scelto meglio. L’originalità spesso sta nell’abbinamento.' }, { question: 'Che regalo posso fare con un budget ridotto?', answer: 'Sotto i 20 o 40 euro funzionano bene i dettagli che creano un momento: una selezione gourmet, un accessorio utile, un piccolo kit creativo o qualcosa per un hobby preciso.' }, { question: 'Devo conoscere l’età esatta?', answer: 'No. Basta una fascia approssimativa. Puoi anche dire che non lo sai e lasciare che gli altri indizi pesino di più.' }] },
+    footer: ['Regalazo è un progetto indipendente. Prezzi e disponibilità possono cambiare.', 'In qualità di Associato Amazon, posso ricevere compensi sugli acquisti idonei.']
+  }
+};
+
+var ANALYTICS_CONFIG = Object.freeze({ provider: 'mixpanel', enabled: false, token: '', version: 'v1' });
+var ANALYTICS_QUEUE = [];
+
+
+var GIFT_TITLE_COPY = {
+  en: {
+    'mini-photo-printer': 'Mini photo printer for memories', 'coffee-kit': 'Specialty coffee ritual', 'tea-ritual': 'Tea break set', 'portable-speaker': 'Speaker for a soundtrack', 'e-reader': 'E-reader for getting lost in stories', 'book-light': 'Neck reading light', 'botanical-puzzle': 'Art puzzle to unwind', 'botanical-lego': 'Flowers that need no water', 'couple-board-game': 'Board game for two', 'travel-organizer': 'Travel cable organizer', 'packing-cubes': 'Better organized luggage', 'card-holder': 'Card holder for every day', 'mechanical-keyboard': 'Keyboard to work or play better', 'earbuds': 'Earbuds for their everyday moments', 'usbc-hub': 'Hub to connect everything', 'resistance-bands': 'A workout that fits at home', 'yoga-mat': 'Mat to slow down', 'running-belt': 'Belt for running light', 'chocolate-box': 'Box of chocolates with a story', 'hot-sauce-set': 'Spicy sauce tasting route', 'skincare-set': 'Unhurried self-care kit', 'selfcare-candle': 'Candle to change the mood', 'herb-garden': 'Mini kitchen herb garden', 'chef-knife': 'A tool for better cooking', 'instant-camera': 'Camera for instant photos', 'fountain-pen': 'Notebook and pen for ideas', 'watercolor-kit': 'Creative kit without instructions', 'portable-projector': 'Impromptu cinema on any wall', 'massage-gun': 'Recovery after moving', 'digital-luggage-scale': 'The scale that avoids surprises', 'digital-photo-frame': 'Photos that change on their own', 'urban-backpack': 'Backpack for every day', 'powerbank': 'Battery to stay charged', 'date-night-box': 'At-home date night box', 'movie-night-kit': 'Home cinema kit', 'picnic-set': 'Set for an impromptu picnic', 'cocktail-kit': 'Cocktail-making kit', 'spice-rack': 'World spices collection', 'pasta-maker': 'Fresh pasta-making kit', 'wireless-charging-station': 'Charging station to keep everything close', 'smart-speaker': 'Smart speaker for the home', 'monitor-light-bar': 'Light to upgrade the desk', 'webcam-light': 'Compact light for video calls', 'card-game': 'Conversation card game', 'cooperative-board-game': 'Cooperative game for an afternoon', 'gaming-headset': 'Headset for their setup', 'foam-roller': 'Post-workout recovery kit', 'hiking-bottle': 'Durable bottle for their routes', 'fitness-tracker': 'Band to move more', 'hiking-headlamp': 'Headlamp for getaways', 'toiletry-bag': 'Well-organized wash bag', 'passport-wallet': 'Travel wallet for light packing', 'weekend-bag': 'Weekend getaway bag', 'travel-pillow': 'Comfortable pillow for travelling', 'photo-album': 'Album for arranging memories', 'custom-map-print': 'Map of an important place', 'photo-light-box': 'Light box with a special photo', 'memory-journal': 'Journal to fill with stories', 'calligraphy-kit': 'Lettering kit to get started', 'model-building-kit': 'Model kit to build at your own pace', 'bath-salts-set': 'Bath set to slow down', 'sleep-mask': 'Sleep mask and a small rest ritual', 'standing-mirror': 'Stylish tabletop mirror', 'room-diffuser': 'Diffuser to change the atmosphere', 'cozy-blanket': 'Soft blanket for sofa time', 'desk-organizer': 'Beautiful desk organizer', 'cookbook': 'Recipe book to whet the appetite', 'bookstand': 'Stand for reading or cooking', 'vinyl-record': 'A vinyl record to listen to slowly', 'midi-keyboard': 'Keyboard to play with music', 'noise-cancelling-headphones': 'Headphones for a little quiet', 'instant-film-pack': 'Instant film pack', 'smartwatch': 'Watch for everyday life', 'coffee-grinder': 'Grinder to improve the coffee', 'cast-iron-pot': 'Pot for slow cooking', 'digital-notebook': 'Digital notebook for writing and planning', 'portable-mic': 'Microphone for creating or singing', 'lego-architecture': 'Architecture build to display', 'backgammon-set': 'Backgammon for long afternoons', 'spa-headband-set': 'Self-care set to switch off', 'tea-subscription': 'Tea selection to discover', 'sauce-making-kit': 'Homemade sauce kit', 'reusable-cup': 'Reusable cup for their mornings'
+  },
+  de: {
+    'mini-photo-printer': 'Mini-Fotodrucker für Erinnerungen', 'coffee-kit': 'Ritual für Spezialitätenkaffee', 'tea-ritual': 'Teeset für eine kleine Pause', 'portable-speaker': 'Lautsprecher für den Soundtrack', 'e-reader': 'E-Reader für Geschichten', 'book-light': 'Leselampe zum Umhängen', 'botanical-puzzle': 'Kunstpuzzle zum Abschalten', 'botanical-lego': 'Blumen, die kein Wasser brauchen', 'couple-board-game': 'Brettspiel für zwei', 'travel-organizer': 'Kabel-Organizer für unterwegs', 'packing-cubes': 'Besser gepackter Koffer', 'card-holder': 'Kartenetui für jeden Tag', 'mechanical-keyboard': 'Tastatur für Arbeit und Gaming', 'earbuds': 'Kopfhörer für den Alltag', 'usbc-hub': 'Hub für alle Anschlüsse', 'resistance-bands': 'Training für zu Hause', 'yoga-mat': 'Matte zum Runterkommen', 'running-belt': 'Laufgürtel für unterwegs', 'chocolate-box': 'Pralinenbox mit Geschichte', 'hot-sauce-set': 'Scharfe Saucen zum Probieren', 'skincare-set': 'Pflegeset ohne Eile', 'selfcare-candle': 'Kerze für eine andere Stimmung', 'herb-garden': 'Mini-Kräutergarten für die Küche', 'chef-knife': 'Küchenwerkzeug fürs bessere Kochen', 'instant-camera': 'Kamera für Sofortbilder', 'fountain-pen': 'Notizbuch und Füller für Ideen', 'watercolor-kit': 'Kreativset ohne Anleitung', 'portable-projector': 'Kino an jeder Wand', 'massage-gun': 'Erholung nach dem Sport', 'digital-luggage-scale': 'Gepäckwaage gegen Überraschungen', 'digital-photo-frame': 'Digitaler Rahmen mit wechselnden Fotos', 'urban-backpack': 'Rucksack für den Alltag', 'powerbank': 'Powerbank für unterwegs', 'date-night-box': 'Box für einen Abend zu zweit zu Hause', 'movie-night-kit': 'Heimkino-Set', 'picnic-set': 'Set für ein spontanes Picknick', 'cocktail-kit': 'Cocktail-Set', 'spice-rack': 'Gewürzsammlung aus aller Welt', 'pasta-maker': 'Set für frische Pasta', 'wireless-charging-station': 'Ladestation für alles Wichtige', 'smart-speaker': 'Smarter Lautsprecher für zu Hause', 'monitor-light-bar': 'Licht für einen besseren Schreibtisch', 'webcam-light': 'Kompaktes Licht für Videocalls', 'card-game': 'Kartenspiel für gute Gespräche', 'cooperative-board-game': 'Kooperatives Spiel für einen Nachmittag', 'gaming-headset': 'Headset für das Gaming-Setup', 'foam-roller': 'Regenerationsset nach dem Training', 'hiking-bottle': 'Robuste Flasche für unterwegs', 'fitness-tracker': 'Fitnessband für mehr Bewegung', 'hiking-headlamp': 'Stirnlampe für Ausflüge', 'toiletry-bag': 'Gut organisierter Kulturbeutel', 'passport-wallet': 'Reiseetui für leichtes Gepäck', 'weekend-bag': 'Tasche für den Wochenendtrip', 'travel-pillow': 'Bequemes Kissen für unterwegs', 'photo-album': 'Album für schöne Erinnerungen', 'custom-map-print': 'Karte eines wichtigen Ortes', 'photo-light-box': 'Leuchtbox mit einem besonderen Foto', 'memory-journal': 'Tagebuch für gemeinsame Geschichten', 'calligraphy-kit': 'Lettering-Set zum Ausprobieren', 'model-building-kit': 'Modellbausatz im eigenen Tempo', 'bath-salts-set': 'Badeset zum Abschalten', 'sleep-mask': 'Schlafmaske für ein kleines Ruhe-Ritual', 'standing-mirror': 'Stilvoller Tischspiegel', 'room-diffuser': 'Diffuser für eine andere Atmosphäre', 'cozy-blanket': 'Weiche Decke für die Couch', 'desk-organizer': 'Schöner Schreibtisch-Organizer', 'cookbook': 'Kochbuch, das Appetit macht', 'bookstand': 'Ständer zum Lesen oder Kochen', 'vinyl-record': 'Eine Schallplatte zum bewussten Hören', 'midi-keyboard': 'Keyboard zum Musikmachen', 'noise-cancelling-headphones': 'Kopfhörer für ein wenig Ruhe', 'instant-film-pack': 'Packung Sofortbildfilm', 'smartwatch': 'Uhr für den Alltag', 'coffee-grinder': 'Mühle für besseren Kaffee', 'cast-iron-pot': 'Topf fürs langsame Kochen', 'digital-notebook': 'Digitales Notizbuch zum Schreiben und Planen', 'portable-mic': 'Mikrofon zum Erstellen oder Singen', 'lego-architecture': 'Architektur-Bausatz zum Ausstellen', 'backgammon-set': 'Backgammon für lange Nachmittage', 'spa-headband-set': 'Selfcare-Set zum Abschalten', 'tea-subscription': 'Teeauswahl zum Entdecken', 'sauce-making-kit': 'Set für hausgemachte Saucen', 'reusable-cup': 'Mehrwegbecher für den Morgen'
+  },
+  fr: {
+    'mini-photo-printer': 'Mini-imprimante photo souvenir', 'coffee-kit': 'Rituel de café de spécialité', 'tea-ritual': 'Set pour une pause thé', 'portable-speaker': 'Enceinte pour votre bande-son', 'e-reader': 'Liseuse pour se perdre dans les histoires', 'book-light': 'Lampe de lecture tour de cou', 'botanical-puzzle': 'Puzzle d’art pour déconnecter', 'botanical-lego': 'Des fleurs sans eau', 'couple-board-game': 'Jeu de société pour deux', 'travel-organizer': 'Organiseur de câbles de voyage', 'packing-cubes': 'Valise mieux organisée', 'card-holder': 'Porte-cartes pour tous les jours', 'mechanical-keyboard': 'Clavier pour mieux travailler ou jouer', 'earbuds': 'Écouteurs pour ses moments', 'usbc-hub': 'Hub pour tout connecter', 'resistance-bands': 'Entraînement à la maison', 'yoga-mat': 'Tapis pour ralentir', 'running-belt': 'Ceinture pour courir léger', 'chocolate-box': 'Boîte de chocolats avec une histoire', 'hot-sauce-set': 'Parcours de sauces piquantes', 'skincare-set': 'Kit de soin sans se presser', 'selfcare-candle': 'Bougie pour changer l’ambiance', 'herb-garden': 'Mini-potager d’herbes aromatiques', 'chef-knife': 'Un outil pour mieux cuisiner', 'instant-camera': 'Appareil photo instantané', 'fountain-pen': 'Carnet et stylo pour ses idées', 'watercolor-kit': 'Kit créatif sans mode d’emploi', 'portable-projector': 'Cinéma improvisé sur un mur', 'massage-gun': 'Récupération après l’effort', 'digital-luggage-scale': 'La balance qui évite les surprises', 'digital-photo-frame': 'Cadre photo aux images changeantes', 'urban-backpack': 'Sac à dos pour tous les jours', 'powerbank': 'Batterie externe pour ne pas tomber à plat', 'date-night-box': 'Coffret pour une soirée à deux à la maison', 'movie-night-kit': 'Kit cinéma à la maison', 'picnic-set': 'Set pour un pique-nique improvisé', 'cocktail-kit': 'Kit pour préparer des cocktails', 'spice-rack': 'Collection d’épices du monde', 'pasta-maker': 'Kit pour préparer des pâtes fraîches', 'wireless-charging-station': 'Station de charge pour tout garder à portée', 'smart-speaker': 'Enceinte intelligente pour la maison', 'monitor-light-bar': 'Lampe pour améliorer le bureau', 'webcam-light': 'Lampe compacte pour les appels vidéo', 'card-game': 'Jeu de cartes pour lancer la conversation', 'cooperative-board-game': 'Jeu coopératif pour un après-midi', 'gaming-headset': 'Casque pour son setup', 'foam-roller': 'Kit de récupération après le sport', 'hiking-bottle': 'Gourde résistante pour les randonnées', 'fitness-tracker': 'Bracelet pour bouger davantage', 'hiking-headlamp': 'Lampe frontale pour les escapades', 'toiletry-bag': 'Trousse de toilette bien organisée', 'passport-wallet': 'Portefeuille de voyage léger', 'weekend-bag': 'Sac pour une escapade le temps d’un week-end', 'travel-pillow': 'Coussin confortable pour voyager', 'photo-album': 'Album pour ranger les souvenirs', 'custom-map-print': 'Carte d’un lieu important', 'photo-light-box': 'Boîte lumineuse avec une photo spéciale', 'memory-journal': 'Carnet pour remplir des histoires', 'calligraphy-kit': 'Kit de lettering pour débuter', 'model-building-kit': 'Maquette à construire à son rythme', 'bath-salts-set': 'Set de bain pour ralentir', 'sleep-mask': 'Masque de sommeil et rituel de repos', 'standing-mirror': 'Miroir de table élégant', 'room-diffuser': 'Diffuseur pour changer l’atmosphère', 'cozy-blanket': 'Plaid doux pour le canapé', 'desk-organizer': 'Organiseur de bureau élégant', 'cookbook': 'Livre de recettes qui met en appétit', 'bookstand': 'Support pour lire ou cuisiner', 'vinyl-record': 'Un vinyle à écouter tranquillement', 'midi-keyboard': 'Clavier pour jouer avec la musique', 'noise-cancelling-headphones': 'Casque pour s’isoler un peu', 'instant-film-pack': 'Pack de film instantané', 'smartwatch': 'Montre pour le quotidien', 'coffee-grinder': 'Moulin pour améliorer le café', 'cast-iron-pot': 'Cocotte pour cuisiner doucement', 'digital-notebook': 'Carnet numérique pour écrire et s’organiser', 'portable-mic': 'Micro pour créer du contenu ou chanter', 'lego-architecture': 'Construction architecturale à exposer', 'backgammon-set': 'Backgammon pour les longues après-midi', 'spa-headband-set': 'Set de soin pour déconnecter', 'tea-subscription': 'Sélection de thés à découvrir', 'sauce-making-kit': 'Kit pour préparer des sauces maison', 'reusable-cup': 'Gobelet réutilisable pour ses matins'
+  },
+  it: {
+    'mini-photo-printer': 'Mini stampante fotografica per ricordi', 'coffee-kit': 'Rituale del caffè specialty', 'tea-ritual': 'Set per una pausa tè', 'portable-speaker': 'Altoparlante per la colonna sonora', 'e-reader': 'E-reader per perdersi nelle storie', 'book-light': 'Lampada da lettura da collo', 'botanical-puzzle': 'Puzzle d’arte per staccare', 'botanical-lego': 'Fiori che non hanno bisogno d’acqua', 'couple-board-game': 'Gioco da tavolo per due', 'travel-organizer': 'Organizer per cavi da viaggio', 'packing-cubes': 'Valigia più ordinata', 'card-holder': 'Portacarte per ogni giorno', 'mechanical-keyboard': 'Tastiera per lavorare o giocare meglio', 'earbuds': 'Auricolari per i suoi momenti', 'usbc-hub': 'Hub per collegare tutto', 'resistance-bands': 'Allenamento che sta in casa', 'yoga-mat': 'Tappetino per rallentare', 'running-belt': 'Cintura per correre leggeri', 'chocolate-box': 'Scatola di cioccolatini con una storia', 'hot-sauce-set': 'Percorso di salse piccanti', 'skincare-set': 'Kit di cura personale senza fretta', 'selfcare-candle': 'Candela per cambiare atmosfera', 'herb-garden': 'Mini orto di erbe in cucina', 'chef-knife': 'Uno strumento per cucinare meglio', 'instant-camera': 'Fotocamera istantanea', 'fountain-pen': 'Quaderno e penna per le sue idee', 'watercolor-kit': 'Kit creativo senza istruzioni', 'portable-projector': 'Cinema improvvisato su qualsiasi parete', 'massage-gun': 'Recupero dopo essersi mossi', 'digital-luggage-scale': 'La bilancia che evita sorprese', 'digital-photo-frame': 'Cornice digitale con foto che cambiano', 'urban-backpack': 'Zaino per ogni giorno', 'powerbank': 'Powerbank per non restare senza batteria', 'date-night-box': 'Box per una serata in casa a due', 'movie-night-kit': 'Kit cinema in casa', 'picnic-set': 'Set per un picnic improvvisato', 'cocktail-kit': 'Kit per preparare cocktail', 'spice-rack': 'Collezione di spezie dal mondo', 'pasta-maker': 'Kit per fare la pasta fresca', 'wireless-charging-station': 'Base di ricarica per avere tutto a portata', 'smart-speaker': 'Altoparlante smart per casa', 'monitor-light-bar': 'Luce per migliorare la scrivania', 'webcam-light': 'Luce compatta per le videochiamate', 'card-game': 'Gioco di carte per iniziare a parlare', 'cooperative-board-game': 'Gioco cooperativo per un pomeriggio', 'gaming-headset': 'Cuffie per il suo setup', 'foam-roller': 'Kit di recupero dopo l’allenamento', 'hiking-bottle': 'Borraccia resistente per i suoi percorsi', 'fitness-tracker': 'Bracciale per muoversi di più', 'hiking-headlamp': 'Lampada frontale per le escursioni', 'toiletry-bag': 'Beauty case ben organizzato', 'passport-wallet': 'Portadocumenti da viaggio leggero', 'weekend-bag': 'Borsa per un weekend fuori', 'travel-pillow': 'Cuscino comodo per viaggiare', 'photo-album': 'Album per ordinare i ricordi', 'custom-map-print': 'Mappa di un luogo importante', 'photo-light-box': 'Light box con una foto speciale', 'memory-journal': 'Diario da riempire di storie', 'calligraphy-kit': 'Kit di lettering per iniziare', 'model-building-kit': 'Modello da costruire con calma', 'bath-salts-set': 'Set da bagno per rallentare', 'sleep-mask': 'Mascherina e piccolo rituale di riposo', 'standing-mirror': 'Specchio da tavolo con stile', 'room-diffuser': 'Diffusore per cambiare atmosfera', 'cozy-blanket': 'Coperta morbida per il divano', 'desk-organizer': 'Organizer da scrivania elegante', 'cookbook': 'Libro di ricette che fa venire fame', 'bookstand': 'Leggio per leggere o cucinare', 'vinyl-record': 'Un vinile da ascoltare con calma', 'midi-keyboard': 'Tastiera per giocare con la musica', 'noise-cancelling-headphones': 'Cuffie per isolarsi un po’', 'instant-film-pack': 'Pack di pellicola istantanea', 'smartwatch': 'Orologio per la vita di ogni giorno', 'coffee-grinder': 'Macinacaffè per migliorare il caffè', 'cast-iron-pot': 'Pentola per cucinare a fuoco lento', 'digital-notebook': 'Quaderno digitale per scrivere e organizzarsi', 'portable-mic': 'Microfono per creare o cantare', 'lego-architecture': 'Costruzione architettonica da esporre', 'backgammon-set': 'Backgammon per pomeriggi lunghi', 'spa-headband-set': 'Set per prendersi cura di sé', 'tea-subscription': 'Selezione di tè da scoprire', 'sauce-making-kit': 'Kit per preparare salse fatte in casa', 'reusable-cup': 'Bicchiere riutilizzabile per le mattine'
+  }
+};
+
+var state = { step: 0, variant: Math.floor(Math.random() * 8), language: readLanguage(), analyticsStarted: false, answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
 var pendingScrollPosition = null;
@@ -2188,6 +2319,7 @@ var progressBar = document.getElementById('progress-bar');
 var backButton = document.getElementById('back-button');
 var nextButton = document.getElementById('next-button');
 var toast = document.getElementById('toast');
+var languageSelect = document.getElementById('language-select');
 
 function escapeHtml(value) {
   var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
@@ -2203,7 +2335,135 @@ function getOption(id, value) {
   return question ? question.options.find(function (option) { return option.value === value; }) : null;
 }
 
+var LANGUAGE_STORAGE_KEY = 'regalazo-language-v1';
+
+function currentCopy() {
+  return LANGUAGE_COPY[state.language] || LANGUAGE_COPY.es;
+}
+
+function readLanguage() {
+  try {
+    var stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (LANGUAGE_COPY[stored]) return stored;
+  } catch (error) {}
+  return 'es';
+}
+
+function getQuestionCopy(id) {
+  var copy = currentCopy().questions[id];
+  return copy || LANGUAGE_COPY.es.questions[id];
+}
+
+function interpolate(template, replacements) {
+  return String(template).replace(/\{(\w+)\}/g, function (_, key) {
+    return Object.prototype.hasOwnProperty.call(replacements, key) ? replacements[key] : '';
+  });
+}
+
+function localizedGift(gift) {
+  var titles = GIFT_TITLE_COPY[state.language] || {};
+  return {
+    title: titles[gift.id] || gift.title,
+    tags: gift.tags,
+    reason: gift.reason
+  };
+}
+
+function trackEvent(eventName, properties) {
+  var baseProperties = {
+    app: 'regalazo',
+    language: state.language,
+    version: ANALYTICS_CONFIG.version
+  };
+  var event = {
+    event: eventName,
+    properties: Object.assign(baseProperties, properties || {}),
+    timestamp: new Date().toISOString()
+  };
+  ANALYTICS_QUEUE.push(event);
+  if (ANALYTICS_CONFIG.enabled && ANALYTICS_CONFIG.token && window.mixpanel && typeof window.mixpanel.track === 'function') {
+    window.mixpanel.track(eventName, event.properties);
+  }
+}
+
+window.RegalazoAnalytics = Object.freeze({
+  track: trackEvent,
+  getQueue: function () { return ANALYTICS_QUEUE.slice(); }
+});
+
+function applyLanguage() {
+  var copy = currentCopy();
+  document.documentElement.lang = copy.locale;
+  document.title = copy.heroTitle + ' | Regalazo';
+  var meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.setAttribute('content', copy.heroCopy);
+  if (languageSelect) {
+    languageSelect.value = state.language;
+    languageSelect.setAttribute('aria-label', copy.pickerLabel);
+  }
+  var heroEyebrow = document.querySelector('.hero .eyebrow');
+  var heroTitle = document.getElementById('hero-title');
+  var heroCopy = document.querySelector('.hero-copy');
+  if (heroEyebrow) heroEyebrow.textContent = copy.heroEyebrow;
+  if (heroTitle) heroTitle.textContent = copy.heroTitle;
+  if (heroCopy) heroCopy.textContent = copy.heroCopy;
+
+  var notes = document.querySelectorAll('.hero-notes > span');
+  copy.heroNotes.forEach(function (note, index) {
+    if (notes[index]) notes[index].innerHTML = '<strong>' + escapeHtml(note.value) + '</strong> ' + escapeHtml(note.label);
+  });
+
+  var trustItems = document.querySelectorAll('.trust-item');
+  copy.trust.forEach(function (item, index) {
+    if (!trustItems[index]) return;
+    var strong = trustItems[index].querySelector('strong');
+    var small = trustItems[index].querySelector('small');
+    if (strong) strong.textContent = item.title;
+    if (small) small.textContent = item.detail;
+  });
+
+  var hint = document.querySelector('.keyboard-hint');
+  if (hint) hint.textContent = copy.keyboardHint;
+
+  var seoEyebrow = document.querySelector('.seo-content .eyebrow');
+  var seoTitle = document.getElementById('seo-title');
+  var seoIntro = document.querySelector('.seo-intro');
+  if (seoEyebrow) seoEyebrow.textContent = copy.seo.eyebrow;
+  if (seoTitle) seoTitle.textContent = copy.seo.title;
+  if (seoIntro) seoIntro.textContent = copy.seo.intro;
+
+  var seoCards = document.querySelectorAll('.seo-card');
+  copy.seo.cards.forEach(function (card, index) {
+    if (!seoCards[index]) return;
+    var cardTitle = seoCards[index].querySelector('h3');
+    var cardDescription = seoCards[index].querySelector('p');
+    var cardLink = seoCards[index].querySelector('a');
+    if (cardTitle) cardTitle.textContent = card.title;
+    if (cardDescription) cardDescription.textContent = card.description;
+    if (cardLink) cardLink.innerHTML = escapeHtml(card.link) + ' <span aria-hidden="true">→</span>';
+  });
+
+  var faqTitle = document.querySelector('.faq-title');
+  if (faqTitle) faqTitle.textContent = copy.seo.faqTitle;
+  var faqItems = document.querySelectorAll('.faq-item');
+  copy.seo.faqs.forEach(function (faq, index) {
+    if (!faqItems[index]) return;
+    var summary = faqItems[index].querySelector('summary');
+    var answer = faqItems[index].querySelector('p');
+    if (summary) summary.textContent = faq.question;
+    if (answer) answer.textContent = faq.answer;
+  });
+
+  var footerParagraphs = document.querySelectorAll('.site-footer p');
+  copy.footer.forEach(function (text, index) {
+    if (footerParagraphs[index]) footerParagraphs[index].textContent = text;
+  });
+}
+
 function getLabel(id, value) {
+  var questionCopy = getQuestionCopy(id);
+  var localizedOption = questionCopy && questionCopy.options[value];
+  if (localizedOption) return localizedOption.label;
   var option = getOption(id, value);
   return option ? option.label : 'Cualquiera';
 }
@@ -2215,27 +2475,33 @@ function selectedValues(question) {
 
 function optionMarkup(question, option) {
   var selected = selectedValues(question).indexOf(option.value) !== -1;
-  var details = option.detail ? '<span class="option-detail">' + escapeHtml(option.detail) + '</span>' : '';
+  var questionCopy = getQuestionCopy(question.id);
+  var localizedOption = questionCopy && questionCopy.options[option.value];
+  var label = localizedOption ? localizedOption.label : option.label;
+  var detail = localizedOption ? localizedOption.detail : option.detail;
+  var details = detail ? '<span class="option-detail">' + escapeHtml(detail) + '</span>' : '';
   return '<button class="option-card" type="button" data-option="' + escapeHtml(option.value) + '" aria-pressed="' + String(selected) + '">' +
     '<span class="option-icon" aria-hidden="true">' + option.icon + '</span>' +
-    '<span class="option-copy"><span class="option-label">' + escapeHtml(option.label) + '</span>' + details + '</span>' +
+    '<span class="option-copy"><span class="option-label">' + escapeHtml(label) + '</span>' + details + '</span>' +
     '</button>';
 }
 
 function renderQuestion() {
   var question = QUESTIONS[state.step];
+  var localizedQuestion = getQuestionCopy(question.id);
+  var copy = currentCopy();
   var percent = Math.round(((state.step + 1) / QUESTIONS.length) * 100);
-  stepLabel.textContent = 'Paso ' + (state.step + 1) + ' de ' + QUESTIONS.length;
+  stepLabel.textContent = copy.stepPrefix + (state.step + 1) + copy.stepJoin + QUESTIONS.length;
   progressValue.textContent = percent + '%';
   progressBar.style.width = percent + '%';
   backButton.hidden = state.step === 0;
   nextButton.hidden = true;
-  questionRegion.innerHTML = '<p class="question-kicker">' + escapeHtml(question.kicker) + '</p>' +
-    '<h2 id="question-title" class="question-title">' + escapeHtml(question.title) + '</h2>' +
-    '<p class="question-subtitle">' + escapeHtml(question.subtitle) + '</p>' +
+  questionRegion.innerHTML = '<p class="question-kicker">' + escapeHtml(localizedQuestion.kicker) + '</p>' +
+    '<h2 id="question-title" class="question-title">' + escapeHtml(localizedQuestion.title) + '</h2>' +
+    '<p class="question-subtitle">' + escapeHtml(localizedQuestion.subtitle) + '</p>' +
     '<div class="options-grid" role="group" aria-labelledby="question-title">' +
     question.options.map(function (option) { return optionMarkup(question, option); }).join('') +
-    '</div>' + (question.multiple ? '<p class="multi-hint"><span aria-hidden="true">＋</span> Puedes elegir hasta 3 opciones</p>' : '');
+    '</div>' + (question.multiple ? '<p class="multi-hint"><span aria-hidden="true">＋</span> ' + escapeHtml(copy.messages.multiHint) + '</p>' : '');
   questionRegion.classList.remove('question-transition');
   void questionRegion.offsetWidth;
   questionRegion.classList.add('question-transition');
@@ -2251,16 +2517,22 @@ function render() {
 
 function handleOption(value, scrollPosition) {
   var question = QUESTIONS[state.step];
+  if (state.step === 0 && !state.analyticsStarted) {
+    state.analyticsStarted = true;
+    trackEvent('quiz_started', {});
+  }
   if (question.multiple) {
     var current = selectedValues(question);
     var exists = current.indexOf(value) !== -1;
     if (!exists && current.length >= 3) {
-      showToast('Elige hasta 3 gustos para que las ideas no se dispersen.');
+      showToast(currentCopy().messages.maxInterests);
       return;
     }
     state.answers[question.id] = exists ? current.filter(function (item) { return item !== value; }) : current.concat(value);
+    trackEvent('quiz_answered', { questionId: question.id, value: state.answers[question.id], step: state.step + 1 });
   } else {
     state.answers[question.id] = value;
+    trackEvent('quiz_answered', { questionId: question.id, value: value, step: state.step + 1 });
     advance(scrollPosition);
     return;
   }
@@ -2270,7 +2542,7 @@ function handleOption(value, scrollPosition) {
 function advance(scrollPosition) {
   var question = QUESTIONS[state.step];
   if (selectedValues(question).length === 0) {
-    showToast(question.multiple ? 'Elige al menos un gusto para continuar.' : 'Elige una opción para continuar.');
+    showToast(question.multiple ? currentCopy().messages.chooseInterest : currentCopy().messages.choose);
     return;
   }
   var position = scrollPosition || lastScrollPosition || getScrollPosition();
@@ -2365,7 +2637,7 @@ function buildReason(gift, answers) {
 }
 
 function summaryChips(answers) {
-  var chips = [getLabel('relation', answers.relation), getLabel('gender', answers.gender), getLabel('age', answers.age), getLabel('occasion', answers.occasion), budgetFor(answers.budget).label, getLabel('style', answers.style), getLabel('country', answers.country)];
+  var chips = [getLabel('relation', answers.relation), getLabel('gender', answers.gender), getLabel('age', answers.age), getLabel('occasion', answers.occasion), getLabel('budget', answers.budget), getLabel('style', answers.style), getLabel('country', answers.country)];
   selectedInterests(answers).slice(0, 3).forEach(function (interest) { chips.push(getLabel('interests', interest)); });
   return chips.filter(Boolean).map(function (chip) { return '<span class="summary-chip">' + escapeHtml(chip) + '</span>'; }).join('');
 }
@@ -2430,28 +2702,33 @@ function celebrate() {
 }
 
 function renderResults(shouldCelebrate) {
+  var copy = currentCopy();
   currentRecommendations = rankGifts(state.answers, state.variant);
-  var title = '10 ideas para acertar';
+  trackEvent('recommendations_viewed', { resultCount: currentRecommendations.length, variant: state.variant });
+  var title = copy.results.genericTitle + '.';
   var relation = getLabel('relation', state.answers.relation).toLowerCase();
-  if (relation && relation !== 'otra persona') title = '10 ideas para tu ' + relation;
+  if (state.answers.relation && state.answers.relation !== 'other') {
+    title = interpolate(copy.results.relationTitle, { relation: relation });
+  }
   results.innerHTML = '<div class="results-head">' +
-    '<p class="results-kicker">Tu selección está lista</p>' +
-    '<h2 id="results-title">' + title + '.</h2>' +
-    '<p class="results-intro">Una mezcla de opciones útiles, originales y con algo que contar. Abre las que te llamen y compara en la tienda de tu país.</p>' +
-    '<div class="summary-chips" aria-label="Tus preferencias">' + summaryChips(state.answers) + '</div>' +
+    '<p class="results-kicker">' + escapeHtml(copy.results.ready) + '</p>' +
+    '<h2 id="results-title">' + escapeHtml(title) + '</h2>' +
+    '<p class="results-intro">' + escapeHtml(copy.results.intro) + '</p>' +
+    '<div class="summary-chips" aria-label="' + escapeHtml(copy.results.chips) + '">' + summaryChips(state.answers) + '</div>' +
     '</div>' +
-    '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">← Ajustar respuestas</button><button class="button button-ghost" type="button" data-action="refresh">Ver otras ideas</button><button class="button button-ghost" type="button" data-action="share">Compartir selección</button></div>' +
+    '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">' + escapeHtml(copy.results.adjust) + '</button><button class="button button-ghost" type="button" data-action="refresh">' + escapeHtml(copy.results.refresh) + '</button><button class="button button-ghost" type="button" data-action="share">' + escapeHtml(copy.results.share) + '</button></div>' +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
-      var tags = gift.tags.map(function (tag) { return '<span class="gift-tag">' + escapeHtml(tag) + '</span>'; }).join('');
+      var localized = localizedGift(gift);
+      var tags = localized.tags.map(function (tag) { return '<span class="gift-tag">' + escapeHtml(tag) + '</span>'; }).join('');
       return '<article class="gift-card' + (index === 0 ? ' gift-card-featured' : '') + '" style="--gift-index: ' + index + ';">' +
-        (index === 0 ? '<p class="gift-badge">Mejor encaje</p>' : '') +
+        (index === 0 ? '<p class="gift-badge">' + escapeHtml(copy.results.badge) + '</p>' : '') +
         '<div class="gift-card-top"><span class="gift-number">' + String(index + 1).padStart(2, '0') + '</span><span class="gift-icon" aria-hidden="true">' + gift.icon + '</span></div>' +
-        '<h3>' + escapeHtml(gift.title) + '</h3><p class="gift-price">≈ ' + gift.price + ' € · presupuesto orientativo</p>' +
+        '<h3>' + escapeHtml(localized.title) + '</h3><p class="gift-price">' + escapeHtml(interpolate(copy.results.price, { price: gift.price })) + '</p>' +
         '<p class="gift-reason">' + escapeHtml(buildReason(gift, state.answers)) + '</p>' +
         '<div class="gift-tags">' + tags + '</div>' +
-        '<a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '">Ver opciones en Amazon <span aria-hidden="true">↗</span></a></article>';
+        '<a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a></article>';
     }).join('') + '</div>' +
-    '<p class="results-note">Estas son búsquedas relevantes, no fichas de producto concretas. Amazon puede mostrar otras opciones y los precios o la disponibilidad pueden cambiar.</p>';
+    '<p class="results-note">' + escapeHtml(copy.results.note) + '</p>';
   hero.hidden = true;
   wizard.hidden = true;
   trustStrip.hidden = true;
@@ -2482,7 +2759,9 @@ function showWizardAtLastStep() {
 }
 
 function resetApp() {
-  state = { step: 0, variant: Math.floor(Math.random() * 8), answers: { interests: [] } };
+  trackEvent('quiz_reset', {});
+  state = { step: 0, variant: Math.floor(Math.random() * 8), language: state.language, analyticsStarted: false, answers: { interests: [] } };
+  applyLanguage();
   hero.hidden = false;
   wizard.hidden = false;
   trustStrip.hidden = false;
@@ -2491,26 +2770,28 @@ function resetApp() {
   render();
 }
 
-function recordClick(giftId) {
+function recordClick(giftId, position) {
   try {
     var clicks = JSON.parse(localStorage.getItem(APP_CONFIG.clickStorageKey) || '[]');
-    clicks.push({ id: giftId, at: new Date().toISOString(), country: state.answers.country || APP_CONFIG.defaultCountry });
+    clicks.push({ id: giftId, position: position ? Number(position) : null, at: new Date().toISOString(), country: state.answers.country || APP_CONFIG.defaultCountry });
     localStorage.setItem(APP_CONFIG.clickStorageKey, JSON.stringify(clicks.slice(-100)));
   } catch (error) {
     // Private browsing or blocked storage should never stop an outbound link.
   }
+  trackEvent('gift_outbound_clicked', { giftId: giftId, position: position ? Number(position) : null, country: state.answers.country || APP_CONFIG.defaultCountry });
 }
 
 function shareSelection() {
-  var text = 'He encontrado ideas de regalo en Regalazo 🎁';
+  var copy = currentCopy();
+  trackEvent('share_clicked', {});
   if (navigator.share) {
-    navigator.share({ title: 'Mi selección de regalos', text: text, url: window.location.href }).catch(function () {});
+    navigator.share({ title: copy.results.share, text: copy.results.shareText, url: window.location.href }).catch(function () {});
     return;
   }
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(window.location.href).then(function () { showToast('Enlace copiado.'); }).catch(function () { showToast('Copia el enlace de esta página para compartirlo.'); });
+    navigator.clipboard.writeText(window.location.href).then(function () { showToast(copy.messages.copied); }).catch(function () { showToast(copy.messages.copyHint); });
   } else {
-    showToast('Copia el enlace de esta página para compartirlo.');
+    showToast(copy.messages.copyHint);
   }
 }
 
@@ -2560,12 +2841,12 @@ results.addEventListener('click', function (event) {
   var action = event.target.closest('[data-action]');
   if (action) {
     if (action.getAttribute('data-action') === 'adjust') showWizardAtLastStep();
-    if (action.getAttribute('data-action') === 'refresh') { state.variant += 1; renderResults(false); }
+    if (action.getAttribute('data-action') === 'refresh') { state.variant += 1; trackEvent('recommendations_refreshed', { variant: state.variant }); renderResults(false); }
     if (action.getAttribute('data-action') === 'share') shareSelection();
     return;
   }
   var link = event.target.closest('[data-gift-id]');
-  if (link) recordClick(link.getAttribute('data-gift-id'));
+  if (link) recordClick(link.getAttribute('data-gift-id'), link.getAttribute('data-gift-position'));
 });
 
 document.querySelector('.brand').addEventListener('click', function (event) {
@@ -2575,4 +2856,28 @@ document.querySelector('.brand').addEventListener('click', function (event) {
   }
 });
 
+function setLanguage(language) {
+  if (!LANGUAGE_COPY[language]) return;
+  var previousLanguage = state.language;
+  if (previousLanguage === language) {
+    applyLanguage();
+    return;
+  }
+  state.language = language;
+  try {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  } catch (error) {}
+  applyLanguage();
+  trackEvent('language_changed', { from: previousLanguage, to: language });
+  if (!results.hidden) renderResults(false);
+  else render();
+}
+
+if (languageSelect) {
+  languageSelect.addEventListener('change', function (event) {
+    setLanguage(event.target.value);
+  });
+}
+
+applyLanguage();
 render();
