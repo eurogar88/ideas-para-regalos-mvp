@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#fff9f2">
+    <meta name="description" content="Encuentra un regalo que encaje de verdad con unos pocos toques.">
+    <meta property="og:title" content="Regalazo · Ideas para regalos">
+    <meta property="og:description" content="Recomendaciones de regalos personalizadas, sin escribir casi nada.">
+    <meta property="og:type" content="website">
+    <title>Regalazo · Ideas para regalos</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Regalazo, volver al inicio">
+          <span class="brand-mark" aria-hidden="true">🎁</span>
+          <span>Regalazo</span>
+        </a>
+        <span class="header-pill">sin registro</span>
+      </header>
+
+      <main id="app" class="app-main">
+        <section id="hero" class="hero" aria-labelledby="hero-title">
+          <p class="eyebrow">Ideas para regalos</p>
+          <h1 id="hero-title">Un regalazo empieza por conocerle.</h1>
+          <p class="hero-copy">Responde con toques y descubre 10 ideas que encajan con esa persona, la ocasión y tu presupuesto.</p>
+          <div class="hero-notes" aria-label="Ventajas">
+            <span><strong>01</strong> pocos pasos</span>
+            <span><strong>02</strong> ideas con criterio</span>
+            <span><strong>03</strong> compra donde prefieras</span>
+          </div>
+        </section>
+
+        <section id="wizard" class="wizard-card" aria-labelledby="question-title">
+          <div class="progress-meta">
+            <span id="step-label">Paso 1 de 7</span>
+            <span id="progress-value">14%</span>
+          </div>
+          <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+          <div id="question-region" class="question-region"></div>
+          <div class="wizard-actions">
+            <button id="back-button" class="button button-ghost" type="button" hidden>← Atrás</button>
+            <button id="next-button" class="button button-primary" type="button" disabled>Elegir y seguir <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="keyboard-hint">Toca una opción. No hace falta escribir nombres ni descripciones.</p>
+        </section>
+
+        <section class="trust-strip" aria-label="Cómo funciona">
+          <div class="trust-item"><span class="trust-icon" aria-hidden="true">✦</span><span><strong>Ideas pensadas</strong><small>Mezcla de clásicos y sorpresas</small></span></div>
+          <div class="trust-item"><span class="trust-icon" aria-hidden="true">⌁</span><span><strong>Enlaces claros</strong><small>Te llevamos a una búsqueda relevante</small></span></div>
+          <div class="trust-item"><span class="trust-icon" aria-hidden="true">◌</span><span><strong>Sin cuenta</strong><small>Tus respuestas se quedan en tu navegador</small></span></div>
+        </section>
+
+        <section id="results" class="results" aria-labelledby="results-title" hidden></section>
+
+        <noscript>
+          <div class="noscript-card">Activa JavaScript para usar el selector de regalos.</div>
+        </noscript>
+      </main>
+
+      <footer class="site-footer">
+        <p>Regalazo es un proyecto independiente. Los precios y la disponibilidad pueden cambiar.</p>
+        <p>Como asociado de Amazon, puedo obtener ingresos por compras que cumplan los requisitos aplicables.</p>
+      </footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>
