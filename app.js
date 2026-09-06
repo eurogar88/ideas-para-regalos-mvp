@@ -2730,6 +2730,8 @@ function rankGifts(answers, variant) {
     };
   });
   ranked.sort(function (a, b) { return b.baseScore - a.baseScore || a.index - b.index; });
+  var budgetRanked = ranked.filter(function (item) { return item.gift.price <= budget.max; });
+  if (budget.max < 150 && budgetRanked.length >= 10) ranked = budgetRanked;
   var topScore = ranked.length ? ranked[0].baseScore : 0;
   var freshStrong = ranked.filter(function (item) { return item.fresh && item.baseScore >= topScore - 12; });
   var freshGood = ranked.filter(function (item) { return item.fresh && item.baseScore >= topScore - 18; });
