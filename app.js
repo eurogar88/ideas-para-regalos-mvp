@@ -2560,7 +2560,7 @@ var LANGUAGE_COPY = {
   }
 };
 
-var ANALYTICS_CONFIG = Object.freeze({ provider: 'mixpanel', enabled: false, token: '', version: 'v1' });
+var ANALYTICS_CONFIG = Object.freeze({ provider: 'mixpanel', enabled: false, token: '', version: 'growth-v2' });
 var ANALYTICS_QUEUE = [];
 
 
@@ -2580,14 +2580,22 @@ var GIFT_TITLE_COPY = {
 
 };
 var ENHANCED_RESULT_COPY = {"es":{"modeLabel":"Afinar el radar","modeFit":"Mejor encaje","modeSurprise":"Más sorprendentes","modeNew":"Novedades","modeHint":"Cambia el enfoque y descubre otra tanda sin repetir lo anterior.","shareTitle":"¿Quién te conoce mejor?","shareCopy":"Comparte este radar y comparad qué regalo elegiríais.","shareButton":"Compartir mi radar","newBadge":"Descubrimiento","noveltyNote":"El modo Novedades prioriza búsquedas ordenadas por incorporaciones recientes cuando Amazon las ofrece. Comprueba fecha, precio y disponibilidad."},"en":{"modeLabel":"Tune the radar","modeFit":"Best fit","modeSurprise":"More surprising","modeNew":"New finds","modeHint":"Change the angle and discover another round without repeating what you have seen.","shareTitle":"Who knows them best?","shareCopy":"Share this radar and compare which gift you would choose.","shareButton":"Share my radar","newBadge":"New find","noveltyNote":"New finds prioritises searches sorted by recent additions when Amazon offers them. Check date, price and availability."},"de":{"modeLabel":"Radar einstellen","modeFit":"Beste Passung","modeSurprise":"Überraschender","modeNew":"Neuheiten","modeHint":"Ändere den Blickwinkel und entdecke neue Ideen, ohne bereits gesehene zu wiederholen.","shareTitle":"Wer kennt diese Person am besten?","shareCopy":"Teile diesen Radar und vergleicht, welches Geschenk ihr wählen würdet.","shareButton":"Meinen Radar teilen","newBadge":"Neue Entdeckung","noveltyNote":"Neuheiten priorisiert Suchen nach aktuellen Ergänzungen, wenn Amazon diese Sortierung anbietet. Prüfe Datum, Preis und Verfügbarkeit."},"fr":{"modeLabel":"Affiner le radar","modeFit":"Meilleure adéquation","modeSurprise":"Plus surprenantes","modeNew":"Nouveautés","modeHint":"Changez d’angle et découvrez une nouvelle sélection sans revoir les mêmes idées.","shareTitle":"Qui connaît le mieux cette personne ?","shareCopy":"Partagez ce radar et comparez le cadeau que vous choisiriez.","shareButton":"Partager mon radar","newBadge":"Nouvelle découverte","noveltyNote":"Le mode Nouveautés privilégie les recherches triées par ajouts récents lorsque Amazon le permet. Vérifiez la date, le prix et la disponibilité."},"it":{"modeLabel":"Affina il radar","modeFit":"Miglior abbinamento","modeSurprise":"Più sorprendenti","modeNew":"Novità","modeHint":"Cambia prospettiva e scopri un altro giro senza ripetere le idee già viste.","shareTitle":"Chi conosce meglio questa persona?","shareCopy":"Condividi questo radar e confrontate quale regalo scegliereste.","shareButton":"Condividi il mio radar","newBadge":"Nuova scoperta","noveltyNote":"La modalità Novità privilegia le ricerche ordinate per inserimenti recenti quando Amazon lo consente. Controlla data, prezzo e disponibilità."}};
-var HERO_NOTE_COPY = {"es":[{"value":"8","label":"toques"},{"value":"2.000+","label":"combinaciones"},{"value":"sin","label":"cuenta"}],"en":[{"value":"8","label":"taps"},{"value":"2,000+","label":"combinations"},{"value":"no","label":"sign-up"}],"de":[{"value":"8","label":"Klicks"},{"value":"2.000+","label":"Kombinationen"},{"value":"ohne","label":"Konto"}],"fr":[{"value":"8","label":"touches"},{"value":"2 000+","label":"combinaisons"},{"value":"sans","label":"compte"}],"it":[{"value":"8","label":"tap"},{"value":"2.000+","label":"combinazioni"},{"value":"senza","label":"account"}]};
+  var HERO_NOTE_COPY = {"es":[{"value":"8","label":"toques"},{"value":"<1","label":"minuto"},{"value":"10","label":"resultados"},{"value":"sin","label":"cuenta"}],"en":[{"value":"8","label":"taps"},{"value":"<1","label":"minute"},{"value":"10","label":"results"},{"value":"no","label":"sign-up"}],"de":[{"value":"8","label":"Klicks"},{"value":"<1","label":"Minute"},{"value":"10","label":"Ergebnisse"},{"value":"ohne","label":"Konto"}],"fr":[{"value":"8","label":"touches"},{"value":"<1","label":"minute"},{"value":"10","label":"résultats"},{"value":"sans","label":"compte"}],"it":[{"value":"8","label":"tap"},{"value":"<1","label":"minuto"},{"value":"10","label":"risultati"},{"value":"senza","label":"account"}]};
+var GROWTH_COPY = {
+  es: { challengeHeading: 'Reto de regalo', challengeIntro: 'Elige tu favorita y reta a otra persona: ¿coincidiréis?', challengeIncomingHeading: 'Alguien te ha pasado su radar', challengeIncomingIntro: 'Ya hay una elección al otro lado. Elige la tuya y descubre si coincidís.', challengeChoiceHeading: 'Tu elección está hecha', challengeCurrentIntro: 'Has elegido {current}. Compártelo y reta a otra persona.', challengeMatchHeading: '¡Coincidís!', challengeDifferentHeading: 'Tenéis gustos distintos', challengeCompare: 'Tú: {previous}. La otra elección: {current}.', challengePick: 'Yo elegiría esta', challengePicked: 'Tu elección', challengeShare: 'Compartir el reto', whatsapp: 'WhatsApp', telegram: 'Telegram', saveCard: 'Guardar tarjeta', cardSaved: 'Tarjeta lista para compartir.', cardDownloaded: 'Hemos guardado la tarjeta como imagen.', cardUnavailable: 'No se ha podido generar la tarjeta; prueba a compartir el enlace.', weeklyBadge: 'Descubrimiento de la semana', weeklyIntro: 'Una idea distinta del catálogo para salir de lo de siempre: {title}.', weeklyLink: 'Abrir el radar', weeklyPricePrefix: 'Precio orientativo', installTitle: 'Llévate Regalazo contigo', installText: 'Instálalo para tener el radar a mano cuando vuelva a surgir un cumpleaños.', installButton: 'Instalar', installDismiss: 'Ahora no' },
+  en: { challengeHeading: 'Gift challenge', challengeIntro: 'Pick your favourite and challenge someone else: will you match?', challengeIncomingHeading: 'Someone sent you their radar', challengeIncomingIntro: 'There is already a choice on the other side. Pick yours and see if you match.', challengeChoiceHeading: 'Your choice is in', challengeCurrentIntro: 'You picked {current}. Share it and challenge someone else.', challengeMatchHeading: 'You match!', challengeDifferentHeading: 'You have different tastes', challengeCompare: 'You: {previous}. Their choice: {current}.', challengePick: 'I would choose this', challengePicked: 'Your choice', challengeShare: 'Share the challenge', whatsapp: 'WhatsApp', telegram: 'Telegram', saveCard: 'Save card', cardSaved: 'Card ready to share.', cardDownloaded: 'We saved the card as an image.', cardUnavailable: 'The image could not be created; try sharing the link.', weeklyBadge: 'Discovery of the week', weeklyIntro: 'A different catalogue idea to escape the obvious: {title}.', weeklyLink: 'Open the radar', weeklyPricePrefix: 'Guide price', installTitle: 'Take Regalazo with you', installText: 'Install it so the radar is ready when the next birthday appears.', installButton: 'Install', installDismiss: 'Not now' },
+  de: { challengeHeading: 'Geschenk-Challenge', challengeIntro: 'Wähle deinen Favoriten und fordere jemanden heraus: Trefft ihr dieselbe Wahl?', challengeIncomingHeading: 'Jemand hat dir den Radar geschickt', challengeIncomingIntro: 'Auf der anderen Seite gibt es bereits eine Wahl. Wähle deine und vergleicht euch.', challengeChoiceHeading: 'Deine Wahl steht fest', challengeCurrentIntro: 'Du hast {current} gewählt. Teile den Radar und fordere jemanden heraus.', challengeMatchHeading: 'Ihr seid euch einig!', challengeDifferentHeading: 'Ihr habt unterschiedlichen Geschmack', challengeCompare: 'Du: {previous}. Die andere Wahl: {current}.', challengePick: 'Das würde ich wählen', challengePicked: 'Deine Wahl', challengeShare: 'Challenge teilen', whatsapp: 'WhatsApp', telegram: 'Telegram', saveCard: 'Karte speichern', cardSaved: 'Karte zum Teilen bereit.', cardDownloaded: 'Die Karte wurde als Bild gespeichert.', cardUnavailable: 'Das Bild konnte nicht erstellt werden; teile stattdessen den Link.', weeklyBadge: 'Entdeckung der Woche', weeklyIntro: 'Eine andere Katalogidee abseits des Offensichtlichen: {title}.', weeklyLink: 'Radar öffnen', weeklyPricePrefix: 'Richtwert', installTitle: 'Regalazo immer dabei', installText: 'Installiere den Radar für den nächsten Geburtstag.', installButton: 'Installieren', installDismiss: 'Jetzt nicht' },
+  fr: { challengeHeading: 'Défi cadeau', challengeIntro: 'Choisissez votre préférée et défiez quelqu’un : allez-vous choisir la même ?', challengeIncomingHeading: 'Quelqu’un vous a envoyé son radar', challengeIncomingIntro: 'Un choix existe déjà de l’autre côté. Faites le vôtre et comparez.', challengeChoiceHeading: 'Votre choix est fait', challengeCurrentIntro: 'Vous avez choisi {current}. Partagez-le et défiez quelqu’un.', challengeMatchHeading: 'Vous êtes d’accord !', challengeDifferentHeading: 'Vous avez des goûts différents', challengeCompare: 'Vous : {previous}. L’autre choix : {current}.', challengePick: 'Je choisirais celui-ci', challengePicked: 'Votre choix', challengeShare: 'Partager le défi', whatsapp: 'WhatsApp', telegram: 'Telegram', saveCard: 'Enregistrer la carte', cardSaved: 'Carte prête à partager.', cardDownloaded: 'La carte a été enregistrée comme image.', cardUnavailable: 'Impossible de créer l’image ; partagez plutôt le lien.', weeklyBadge: 'Découverte de la semaine', weeklyIntro: 'Une idée différente du catalogue pour sortir de l’évidence : {title}.', weeklyLink: 'Ouvrir le radar', weeklyPricePrefix: 'Prix indicatif', installTitle: 'Emportez Regalazo', installText: 'Installez le radar pour l’avoir sous la main au prochain anniversaire.', installButton: 'Installer', installDismiss: 'Pas maintenant' },
+  it: { challengeHeading: 'Sfida regalo', challengeIntro: 'Scegli il tuo preferito e sfida qualcuno: sceglierete la stessa idea?', challengeIncomingHeading: 'Qualcuno ti ha inviato il suo radar', challengeIncomingIntro: 'Dall’altra parte c’è già una scelta. Fai la tua e confrontatevi.', challengeChoiceHeading: 'La tua scelta è fatta', challengeCurrentIntro: 'Hai scelto {current}. Condividilo e sfida qualcun altro.', challengeMatchHeading: 'Avete scelto lo stesso!', challengeDifferentHeading: 'Avete gusti diversi', challengeCompare: 'Tu: {previous}. L’altra scelta: {current}.', challengePick: 'Sceglierei questo', challengePicked: 'La tua scelta', challengeShare: 'Condividi la sfida', whatsapp: 'WhatsApp', telegram: 'Telegram', saveCard: 'Salva scheda', cardSaved: 'Scheda pronta da condividere.', cardDownloaded: 'La scheda è stata salvata come immagine.', cardUnavailable: 'Impossibile creare l’immagine; condividi il link.', weeklyBadge: 'Scoperta della settimana', weeklyIntro: 'Un’idea diversa dal catalogo per uscire dal solito: {title}.', weeklyLink: 'Apri il radar', weeklyPricePrefix: 'Prezzo indicativo', installTitle: 'Porta Regalazo con te', installText: 'Installa il radar per averlo pronto al prossimo compleanno.', installButton: 'Installa', installDismiss: 'Non ora' }
+};
 Object.keys(ENHANCED_RESULT_COPY).forEach(function (language) {
   if (!LANGUAGE_COPY[language]) return;
   LANGUAGE_COPY[language].results = Object.assign({}, LANGUAGE_COPY[language].results, ENHANCED_RESULT_COPY[language]);
   LANGUAGE_COPY[language].heroNotes = HERO_NOTE_COPY[language] || LANGUAGE_COPY[language].heroNotes;
+  LANGUAGE_COPY[language].growth = GROWTH_COPY[language] || GROWTH_COPY.es;
 });
 
-var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
+var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, challengeMode: false, challengePick: null, challengeChoice: null, answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
 var pendingScrollPosition = null;
@@ -2605,6 +2613,11 @@ var backButton = document.getElementById('back-button');
 var nextButton = document.getElementById('next-button');
 var toast = document.getElementById('toast');
 var languageSelect = document.getElementById('language-select');
+var weeklyDiscovery = document.getElementById('weekly-discovery');
+var pwaPrompt = document.getElementById('pwa-prompt');
+var pwaInstallButton = document.getElementById('pwa-install');
+var pwaDismissButton = document.getElementById('pwa-dismiss');
+var deferredInstallPrompt = null;
 
 function escapeHtml(value) {
   var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
@@ -2748,6 +2761,96 @@ function applyLanguage() {
   copy.footer.forEach(function (text, index) {
     if (footerParagraphs[index]) footerParagraphs[index].textContent = text;
   });
+  renderWeeklyDiscovery();
+  updatePwaCopy();
+}
+
+function renderWeeklyDiscovery() {
+  if (!weeklyDiscovery || !GIFT_CATALOG.length) return;
+  var week = Math.floor((Date.now() - Date.UTC(2024, 0, 1)) / 604800000);
+  var gift = GIFT_CATALOG[Math.abs(week) % GIFT_CATALOG.length];
+  var titles = GIFT_TITLE_COPY[state.language] || {};
+  var growth = currentCopy().growth || GROWTH_COPY.es;
+  var title = titles[gift.id] || gift.title;
+  var badge = document.getElementById('weekly-badge');
+  var heading = document.getElementById('weekly-title');
+  var copy = document.getElementById('weekly-copy');
+  var price = document.getElementById('weekly-price');
+  var link = document.getElementById('weekly-link');
+  if (badge) badge.textContent = growth.weeklyBadge;
+  if (heading) heading.textContent = title;
+  if (copy) copy.textContent = interpolate(growth.weeklyIntro, { title: title });
+  if (price) price.textContent = growth.weeklyPricePrefix + ': ≈ ' + String(gift.price) + ' €';
+  if (link) {
+    link.innerHTML = escapeHtml(growth.weeklyLink) + ' <span aria-hidden="true">→</span>';
+    link.setAttribute('data-gift-id', gift.id);
+  }
+  if (!weeklyDiscovery.dataset.tracked) {
+    weeklyDiscovery.dataset.tracked = 'true';
+    trackEvent('weekly_discovery_viewed', { giftId: gift.id });
+  }
+}
+
+function updatePwaCopy() {
+  var growth = currentCopy().growth || GROWTH_COPY.es;
+  var title = document.getElementById('pwa-prompt-title');
+  var text = document.getElementById('pwa-prompt-text');
+  var install = document.getElementById('pwa-install');
+  var dismiss = document.getElementById('pwa-dismiss');
+  if (title) title.textContent = growth.installTitle;
+  if (text) text.textContent = growth.installText;
+  if (install) install.textContent = growth.installButton;
+  if (dismiss) dismiss.setAttribute('aria-label', growth.installDismiss);
+}
+
+function registerPwa() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').then(function () {
+        trackEvent('pwa_ready', {});
+      }).catch(function () {});
+    });
+  }
+  window.addEventListener('beforeinstallprompt', function (event) {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    try {
+      if (localStorage.getItem('regalazo-pwa-dismissed-v1') === '1') return;
+    } catch (error) {}
+    window.setTimeout(function () {
+      if (pwaPrompt && deferredInstallPrompt) {
+        pwaPrompt.hidden = false;
+        trackEvent('pwa_install_prompt_viewed', {});
+      }
+    }, 2400);
+  });
+  window.addEventListener('appinstalled', function () {
+    deferredInstallPrompt = null;
+    if (pwaPrompt) pwaPrompt.hidden = true;
+    trackEvent('pwa_installed', {});
+  });
+  if (pwaInstallButton) {
+    pwaInstallButton.addEventListener('click', function () {
+      if (!deferredInstallPrompt) return;
+      var promptEvent = deferredInstallPrompt;
+      deferredInstallPrompt = null;
+      if (pwaPrompt) pwaPrompt.hidden = true;
+      trackEvent('pwa_install_prompted', {});
+      promptEvent.prompt();
+      if (promptEvent.userChoice && typeof promptEvent.userChoice.then === 'function') {
+        promptEvent.userChoice.then(function (choice) {
+          trackEvent('pwa_install_choice', { outcome: choice && choice.outcome || 'unknown' });
+        }).catch(function () {});
+      }
+    });
+  }
+  if (pwaDismissButton) {
+    pwaDismissButton.addEventListener('click', function () {
+      if (pwaPrompt) pwaPrompt.hidden = true;
+      try { localStorage.setItem('regalazo-pwa-dismissed-v1', '1'); } catch (error) {}
+      trackEvent('pwa_install_dismissed', {});
+    });
+  }
 }
 
 function getLabel(id, value) {
@@ -3198,11 +3301,150 @@ function celebrate() {
   window.requestAnimationFrame(draw);
 }
 
+function currentGiftById(giftId) {
+  if (!giftId) return null;
+  var inResults = currentRecommendations.find(function (gift) { return gift.id === giftId; });
+  if (inResults) return inResults;
+  var separator = String(giftId).indexOf('::');
+  if (separator === -1) return GIFT_CATALOG.find(function (gift) { return gift.id === giftId; }) || null;
+  var baseId = String(giftId).slice(0, separator);
+  var recipeId = String(giftId).slice(separator + 2);
+  var baseGift = GIFT_CATALOG.find(function (gift) { return gift.id === baseId; });
+  var recipe = GIFT_RECIPES.find(function (item) { return item.id === recipeId; });
+  return baseGift && recipe ? composeGift(baseGift, recipe, state.answers, state.variant) : null;
+}
+
+function challengeCardMarkup(copy) {
+  var growth = copy.growth || GROWTH_COPY.es;
+  var previous = currentGiftById(state.challengePick);
+  var choice = currentGiftById(state.challengeChoice);
+  var heading = growth.challengeHeading;
+  var intro = growth.challengeIntro;
+  if (previous && choice) {
+    heading = previous.id === choice.id ? growth.challengeMatchHeading : growth.challengeDifferentHeading;
+    intro = interpolate(growth.challengeCompare, { previous: localizedGift(previous).title, current: localizedGift(choice).title });
+  } else if (previous) {
+    heading = growth.challengeIncomingHeading;
+    intro = growth.challengeIncomingIntro;
+  } else if (choice) {
+    heading = growth.challengeChoiceHeading;
+    intro = interpolate(growth.challengeCurrentIntro, { current: localizedGift(choice).title });
+  }
+  return '<aside class="share-card challenge-card" aria-live="polite"><span class="share-card-icon challenge-card-icon" aria-hidden="true">↔</span><div class="share-card-copy"><p class="share-card-kicker">' + escapeHtml(heading) + '</p><p>' + escapeHtml(intro) + '</p></div><div class="share-actions"><button class="button button-primary share-card-button" type="button" data-action="share">' + escapeHtml(growth.challengeShare) + '</button><a class="share-channel share-whatsapp" href="' + escapeHtml(buildWhatsAppUrl()) + '" target="_blank" rel="noopener" data-share-method="whatsapp">' + escapeHtml(growth.whatsapp) + ' <span aria-hidden="true">↗</span></a><a class="share-channel share-telegram" href="' + escapeHtml(buildTelegramUrl()) + '" target="_blank" rel="noopener" data-share-method="telegram">' + escapeHtml(growth.telegram) + ' <span aria-hidden="true">↗</span></a><button class="share-channel share-card-download" type="button" data-action="download-card">' + escapeHtml(growth.saveCard) + '</button></div></aside>';
+}
+
+function giftPickMarkup(gift, copy) {
+  var growth = copy.growth || GROWTH_COPY.es;
+  var picked = state.challengeChoice === gift.id;
+  return '<button class="gift-pick' + (picked ? ' is-picked' : '') + '" type="button" data-action="pick" data-gift-id="' + escapeHtml(gift.id) + '" aria-pressed="' + String(picked) + '">' + escapeHtml(picked ? growth.challengePicked : growth.challengePick) + '</button>';
+}
+
+function drawWrappedText(context, text, x, y, maxWidth, lineHeight, maxLines) {
+  var words = String(text).split(/\s+/);
+  var line = '';
+  var lines = [];
+  words.forEach(function (word) {
+    var test = line ? line + ' ' + word : word;
+    if (context.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  lines.slice(0, maxLines || lines.length).forEach(function (value, index) { context.fillText(value, x, y + index * lineHeight); });
+  return Math.min(lines.length, maxLines || lines.length);
+}
+
+function createShareCard() {
+  var copy = currentCopy();
+  var growth = copy.growth || GROWTH_COPY.es;
+  var gift = currentGiftById(state.challengeChoice) || currentRecommendations[0];
+  if (!gift) {
+    showToast(growth.cardUnavailable);
+    return;
+  }
+  var localized = localizedGift(gift);
+  var canvas = document.createElement('canvas');
+  canvas.width = 1080;
+  canvas.height = 1350;
+  var context = canvas.getContext('2d');
+  if (!context) {
+    showToast(growth.cardUnavailable);
+    return;
+  }
+  var background = context.createLinearGradient(0, 0, 1080, 1350);
+  background.addColorStop(0, '#fff9f2');
+  background.addColorStop(0.55, '#fff0eb');
+  background.addColorStop(1, '#eee9f8');
+  context.fillStyle = background;
+  context.fillRect(0, 0, 1080, 1350);
+  context.fillStyle = '#b64b3c';
+  context.font = '800 34px Arial, sans-serif';
+  context.fillText('REGALAZO · ' + (state.challengeChoice ? 'RETO DE REGALO' : 'IDEA DE REGALO'), 80, 112);
+  context.fillStyle = '#29241f';
+  context.font = '900 72px Arial, sans-serif';
+  var titleLines = drawWrappedText(context, localized.title, 80, 270, 900, 86, 4);
+  context.fillStyle = '#b64b3c';
+  context.font = '800 42px Arial, sans-serif';
+  context.fillText(String(giftMatchRate(gift, state.answers)) + '% · ' + (MATCH_RATE_LABELS[state.language] || MATCH_RATE_LABELS.es), 80, 340 + titleLines * 86);
+  context.fillStyle = '#756d65';
+  context.font = '500 34px Arial, sans-serif';
+  drawWrappedText(context, buildReason(gift, state.answers), 80, 510 + titleLines * 86, 900, 52, 6);
+  context.fillStyle = '#29241f';
+  context.font = '900 92px Arial, sans-serif';
+  context.fillText(gift.icon, 80, 1090);
+  context.font = '800 32px Arial, sans-serif';
+  context.fillText('Descubre tu idea en', 230, 1050);
+  context.fillStyle = '#b64b3c';
+  context.fillText('ideas-para-regalos-mvp.netlify.app', 230, 1100);
+  context.fillStyle = '#756d65';
+  context.font = '500 28px Arial, sans-serif';
+  context.fillText('Sin registro · resultados personalizados · Amazon', 80, 1235);
+  canvas.toBlob(function (blob) {
+    if (!blob) {
+      showToast(growth.cardUnavailable);
+      return;
+    }
+    var filename = 'regalazo-' + (state.challengeChoice ? 'reto' : 'idea') + '.png';
+    try {
+      var canNativeShare = typeof navigator.share === 'function' && typeof navigator.canShare === 'function' && typeof File === 'function';
+      if (canNativeShare) {
+        var file = new File([blob], filename, { type: 'image/png' });
+        if (navigator.canShare({ files: [file] })) {
+          navigator.share({ title: growth.challengeShare, text: currentCopy().results.shareText, files: [file], url: buildShareUrl() }).then(function () {
+            trackEvent('share_completed', { method: 'card-native', mode: state.recommendationMode || 'fit' });
+          }).catch(function () {});
+          trackEvent('share_card_created', { method: 'native' });
+          return;
+        }
+      }
+    } catch (error) {}
+    try {
+      var objectUrl = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 1000);
+      showToast(growth.cardDownloaded);
+      trackEvent('share_card_created', { method: 'download' });
+      trackEvent('share_completed', { method: 'card-download', mode: state.recommendationMode || 'fit' });
+    } catch (error) {
+      showToast(growth.cardUnavailable);
+    }
+  }, 'image/png');
+}
+
 function modeButtonMarkup(mode, label, active) {
   return '<button class="mode-button' + (active ? ' is-active' : '') + '" type="button" data-action="mode" data-mode="' + escapeHtml(mode) + '" aria-pressed="' + String(active) + '">' + escapeHtml(label) + '</button>';
 }
 
-function renderResults(shouldCelebrate, preserveRecommendations) {
+function renderResults(shouldCelebrate, preserveRecommendations, preservePosition) {
+  var savedPosition = preservePosition ? getScrollPosition() : null;
   var copy = currentCopy();
   if (!preserveRecommendations || !currentRecommendations.length) {
     currentRecommendations = rankGifts(state.answers, state.variant);
@@ -3225,12 +3467,14 @@ function renderResults(shouldCelebrate, preserveRecommendations) {
     '</div>' +
     '<div class="results-mode-panel" aria-label="' + escapeHtml(copy.results.modeLabel) + '"><span class="results-mode-label">' + escapeHtml(copy.results.modeLabel) + '</span><div class="results-modes" role="group">' + modeButtons + '</div><p class="results-mode-hint">' + escapeHtml(copy.results.modeHint) + '</p></div>' +
     '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">' + escapeHtml(copy.results.adjust) + '</button><button class="button button-ghost" type="button" data-action="refresh">' + escapeHtml(copy.results.refresh) + '</button><button class="button button-ghost" type="button" data-action="share">' + escapeHtml(copy.results.share) + '</button></div>' +
-    '<aside class="share-card"><span class="share-card-icon" aria-hidden="true">↗</span><div class="share-card-copy"><p class="share-card-kicker">' + escapeHtml(copy.results.shareTitle) + '</p><p>' + escapeHtml(copy.results.shareCopy) + '</p></div><button class="button button-primary share-card-button" type="button" data-action="share">' + escapeHtml(copy.results.shareButton) + '</button></aside>' +
+    challengeCardMarkup(copy) +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
       var localized = localizedGift(gift);
       var tags = localized.tags.map(function (tag) { return '<span class="gift-tag">' + escapeHtml(tag) + '</span>'; }).join('');
       var discovery = activeMode === 'new' || localized.isDiscovery;
-      var cardClass = 'gift-card' + (index === 0 ? ' gift-card-featured' : '') + (discovery ? ' gift-card-discovery' : '');
+      var picked = state.challengeChoice === gift.id;
+      var incoming = state.challengePick === gift.id && !picked;
+      var cardClass = 'gift-card' + (index === 0 ? ' gift-card-featured' : '') + (discovery ? ' gift-card-discovery' : '') + (picked ? ' gift-card-picked' : '') + (incoming ? ' gift-card-incoming' : '');
       var angle = localized.angle ? '<p class="gift-angle"><span class="gift-angle-mark" aria-hidden="true">✦</span>' + escapeHtml(localized.angle) + (discovery ? ' <span class="gift-new-badge">' + escapeHtml(copy.results.newBadge) + '</span>' : '') + '</p>' : '';
       return '<article class="' + cardClass + '" style="--gift-index: ' + index + ';">' +
         (index === 0 ? '<p class="gift-badge">' + escapeHtml(copy.results.badge) + '</p>' : '') +
@@ -3239,7 +3483,7 @@ function renderResults(shouldCelebrate, preserveRecommendations) {
         '<div class="gift-match" aria-label="' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '"><span class="gift-match-label">' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '</span><span class="gift-match-track" aria-hidden="true"><span class="gift-match-fill" style="width: ' + String(giftMatchRate(gift, state.answers)) + '%;"></span></span></div>' +
         '<p class="gift-reason">' + escapeHtml(buildReason(gift, state.answers)) + '</p>' +
         '<div class="gift-tags">' + tags + '</div>' +
-        '<a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a></article>';
+        '<div class="gift-card-actions"><a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a>' + giftPickMarkup(gift, copy) + '</div></article>';
     }).join('') + '</div>' +
     '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure() + (activeMode === 'new' ? ' ' + copy.results.noveltyNote : '')) + '</p>';
   hero.hidden = true;
@@ -3252,9 +3496,13 @@ function renderResults(shouldCelebrate, preserveRecommendations) {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   };
-  revealResultsAtTop();
-  window.requestAnimationFrame(revealResultsAtTop);
-  window.setTimeout(revealResultsAtTop, 0);
+  if (savedPosition) {
+    restoreScrollPosition(savedPosition);
+  } else {
+    revealResultsAtTop();
+    window.requestAnimationFrame(revealResultsAtTop);
+    window.setTimeout(revealResultsAtTop, 0);
+  }
   results.classList.remove('results-transition');
   void results.offsetWidth;
   results.classList.add('results-transition');
@@ -3277,11 +3525,12 @@ function resetApp() {
     var resetUrl = new URL(window.location.href);
     if (resetUrl.searchParams.get('r') === '1') {
       resetUrl.searchParams.delete('r');
-      ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country', 'interests', 'mode', 'utm_source', 'utm_medium'].forEach(function (key) { resetUrl.searchParams.delete(key); });
+      ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country', 'interests', 'mode', 'challenge', 'pick', 'v', 'utm_source', 'utm_medium', 'utm_campaign'].forEach(function (key) { resetUrl.searchParams.delete(key); });
       window.history.replaceState({}, '', resetUrl.pathname + (resetUrl.search ? resetUrl.search : '') + resetUrl.hash);
     }
   } catch (error) {}
-  state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
+  state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, recommendationMode: 'fit', analyticsStarted: false, challengeMode: false, challengePick: null, challengeChoice: null, answers: { interests: [] } };
+  currentRecommendations = [];
   applyLanguage();
   hero.hidden = false;
   wizard.hidden = false;
@@ -3310,8 +3559,13 @@ function buildShareUrl() {
   });
   params.set('interests', selectedInterests(state.answers).join(','));
   params.set('mode', state.recommendationMode || 'fit');
+  params.set('challenge', '1');
+  params.set('v', String(state.variant));
+  var picked = state.challengeChoice || state.challengePick;
+  if (picked) params.set('pick', picked);
   params.set('utm_source', 'share');
   params.set('utm_medium', 'regalazo');
+  params.set('utm_campaign', 'gift-challenge');
   return window.location.origin + window.location.pathname + '?' + params.toString();
 }
 
@@ -3347,12 +3601,69 @@ function readSharedMode() {
   }
 }
 
+function readSharedVariant() {
+  try {
+    var raw = new URLSearchParams(window.location.search).get('v');
+    var value = Number(raw);
+    return raw && Number.isFinite(value) && value >= 0 ? value : hashString(window.location.search);
+  } catch (error) {
+    return hashString(window.location.search);
+  }
+}
+
+function readSharedPick() {
+  try {
+    var value = new URLSearchParams(window.location.search).get('pick');
+    return value && value.length < 160 ? value : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function buildShareMessage() {
+  var copy = currentCopy();
+  var gift = currentGiftById(state.challengeChoice) || currentGiftById(state.challengePick) || currentRecommendations[0];
+  var title = gift ? localizedGift(gift).title : copy.results.shareText;
+  return copy.results.shareText + ' ' + title + ' →';
+}
+
+function buildWhatsAppUrl() {
+  return 'https://wa.me/?text=' + encodeURIComponent(buildShareMessage() + ' ' + buildShareUrl());
+}
+
+function buildTelegramUrl() {
+  var url = buildShareUrl();
+  return 'https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(buildShareMessage());
+}
+
+function updateChallengeUrl() {
+  try {
+    var url = buildShareUrl();
+    window.history.replaceState({}, '', url.replace(window.location.origin, ''));
+  } catch (error) {}
+}
+
+function pickGift(giftId) {
+  var gift = currentGiftById(giftId);
+  if (!gift) return;
+  var position = getScrollPosition();
+  state.challengeMode = true;
+  state.challengeChoice = gift.id;
+  trackEvent('challenge_pick_made', { giftId: gift.id, position: currentRecommendations.indexOf(gift) + 1, hasIncomingPick: !!state.challengePick });
+  updateChallengeUrl();
+  renderResults(false, true, position);
+}
+
 function shareSelection() {
   var copy = currentCopy();
+  if (!state.challengeMode) {
+    state.challengeMode = true;
+    trackEvent('challenge_started', { mode: state.recommendationMode || 'fit', hasIncomingPick: !!state.challengePick });
+  }
   var url = buildShareUrl();
   trackEvent('share_clicked', { mode: state.recommendationMode || 'fit' });
   if (navigator.share) {
-    navigator.share({ title: copy.results.share, text: copy.results.shareText, url: url }).then(function () {
+    navigator.share({ title: copy.results.share, text: buildShareMessage(), url: url }).then(function () {
       trackEvent('share_completed', { method: 'native', mode: state.recommendationMode || 'fit' });
     }).catch(function () {});
     return;
@@ -3409,9 +3720,10 @@ backButton.addEventListener('click', goBack);
 results.addEventListener('click', function (event) {
   var action = event.target.closest('[data-action]');
   if (action) {
-    if (action.getAttribute('data-action') === 'adjust') showWizardAtLastStep();
-    if (action.getAttribute('data-action') === 'refresh') { state.variant += 1; trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' }); renderResults(false); }
-    if (action.getAttribute('data-action') === 'mode') {
+    var actionName = action.getAttribute('data-action');
+    if (actionName === 'adjust') showWizardAtLastStep();
+    if (actionName === 'refresh') { state.variant += 1; trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' }); renderResults(false); }
+    if (actionName === 'mode') {
       var nextMode = action.getAttribute('data-mode');
       if (['fit', 'surprise', 'new'].indexOf(nextMode) !== -1 && nextMode !== state.recommendationMode) {
         state.recommendationMode = nextMode;
@@ -3420,7 +3732,14 @@ results.addEventListener('click', function (event) {
         renderResults(false);
       }
     }
-    if (action.getAttribute('data-action') === 'share') shareSelection();
+    if (actionName === 'share') shareSelection();
+    if (actionName === 'pick') pickGift(action.getAttribute('data-gift-id'));
+    if (actionName === 'download-card') createShareCard();
+    return;
+  }
+  var shareMethod = event.target.closest('[data-share-method]');
+  if (shareMethod) {
+    trackEvent('share_channel_clicked', { method: shareMethod.getAttribute('data-share-method'), mode: state.recommendationMode || 'fit' });
     return;
   }
   var link = event.target.closest('[data-gift-id]');
@@ -3447,7 +3766,7 @@ function setLanguage(language) {
   } catch (error) {}
   applyLanguage();
   trackEvent('language_changed', { from: previousLanguage, to: language });
-  if (!results.hidden) renderResults(false, true);
+  if (!results.hidden) renderResults(false, true, getScrollPosition());
   else render();
 }
 
@@ -3457,14 +3776,23 @@ if (languageSelect) {
   });
 }
 
+if (weeklyDiscovery) {
+  weeklyDiscovery.addEventListener('click', function (event) {
+    if (event.target.closest('a')) trackEvent('weekly_discovery_clicked', {});
+  });
+}
+
 var sharedAnswers = readSharedAnswers();
 if (sharedAnswers) {
   state.answers = sharedAnswers;
   state.step = QUESTIONS.length;
   state.recommendationMode = readSharedMode();
-  state.variant = hashString(window.location.search);
-  trackEvent('shared_result_opened', { mode: state.recommendationMode });
+  state.variant = readSharedVariant();
+  state.challengeMode = new URLSearchParams(window.location.search).get('challenge') === '1';
+  state.challengePick = readSharedPick();
+  trackEvent('shared_result_opened', { mode: state.recommendationMode, hasPick: !!state.challengePick, challenge: state.challengeMode });
 }
 
+registerPwa();
 applyLanguage();
 render();

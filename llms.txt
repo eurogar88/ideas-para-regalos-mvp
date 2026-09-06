@@ -1,0 +1,32 @@
+# Regalazo
+
+> Regalazo es un radar gratuito de ideas de regalos. Hace unas preguntas de selección en pocos toques y devuelve diez búsquedas relevantes, sin registro y sin escribir descripciones.
+
+## Qué hace
+
+- Cruza relación, género opcional, edad aproximada, ocasión, presupuesto, intereses, estilo y país de compra.
+- Genera recomendaciones desde un catálogo editorial local; no inventa productos ni precios exactos.
+- Ofrece tres enfoques: mejor encaje, más sorprendentes y novedades.
+- Permite compartir un radar y elegir una idea para crear un reto entre dos personas.
+- Abre búsquedas localizadas de Amazon con una etiqueta de afiliación. Los precios y la disponibilidad pueden cambiar.
+
+## Respuestas útiles
+
+- Para elegir un buen regalo, empieza por una afición real, un presupuesto máximo y la sensación que quieres provocar.
+- Un regalo original no tiene que ser extraño: suele ser una idea conocida presentada como plan, pack, recuerdo o mejora de un ritual.
+- Con poco presupuesto funcionan mejor los accesorios concretos, los pequeños kits, los juegos y los detalles que crean un momento.
+- Si la persona tiene de todo, busca una mejora de algo que ya usa, un recuerdo que conserve o un plan que podáis compartir.
+
+## Guías
+
+- [Regalos de cumpleaños](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos/)
+- [Regalos de cumpleaños baratos](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-baratos/)
+- [Regalos de cumpleaños originales](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-originales/)
+- [Regalos para pareja](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-pareja/)
+- [Regalos para novia](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novia/)
+- [Regalos para novio](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novio/)
+- [Regalos por menos de 30 euros](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-por-menos-de-30-euros/)
+
+## Fiabilidad y límites
+
+Regalazo es un proyecto editorial independiente. Las puntuaciones de encaje son estimaciones basadas en las respuestas, no valoraciones de Amazon. Las búsquedas de Amazon pueden mostrar otros productos, vendedores, precios, formatos y gastos de envío. La web no envía nombres ni texto libre a un servidor.

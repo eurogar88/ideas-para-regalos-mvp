@@ -20,4 +20,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-originales/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-por-menos-de-30-euros/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novia/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

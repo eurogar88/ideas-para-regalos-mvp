@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#fff9f2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="description" content="Encuentra regalos de cumpleaños personalizados en pocos toques, según la persona, sus gustos, la ocasión y tu presupuesto.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="author" content="Regalazo">
@@ -16,6 +18,9 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Regalos de cumpleaños personalizados | Regalazo">
     <meta name="twitter:description" content="Ideas de regalos de cumpleaños según la persona, sus gustos y tu presupuesto.">
+    <meta property="og:image" content="https://ideas-para-regalos-mvp.netlify.app/og-image.svg">
+    <meta name="twitter:image" content="https://ideas-para-regalos-mvp.netlify.app/og-image.svg">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <title>Regalos de cumpleaños personalizados | Regalazo</title>
     <script type="application/ld+json">
       {
@@ -41,8 +46,9 @@
         "description": "Recomendador gratuito de regalos de cumpleaños."
       }
     </script>
-    <link rel="stylesheet" href="/styles.css?v=responsive-hardening-5">
-    <script defer src="/app.js?v=variety-engine-7"></script>
+    <link rel="stylesheet" href="/styles.css?v=growth-ui-6">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <script defer src="/app.js?v=growth-engine-8"></script>
   </head>
   <body>
     <div class="page-shell">
@@ -70,7 +76,8 @@
           <p class="hero-copy">Responde con unos toques y descubre 10 ideas de regalos de cumpleaños según la persona, la ocasión, sus gustos y tu presupuesto.</p>
           <div class="hero-notes" aria-label="Cómo funciona">
             <span><strong>8</strong> toques</span>
-            <span><strong>2.000+</strong> combinaciones</span>
+            <span><strong>&lt;1</strong> minuto</span>
+            <span><strong>10</strong> resultados</span>
             <span><strong>sin</strong> cuenta</span>
           </div>
         </section>
@@ -109,6 +116,13 @@
           <div class="trust-item"><span class="trust-icon" aria-hidden="true">◌</span><span><strong>Sin cuenta</strong><small>Tus respuestas se quedan en tu navegador</small></span></div>
         </section>
 
+        <aside id="weekly-discovery" class="weekly-discovery" aria-labelledby="weekly-title">
+          <div class="weekly-topline"><span id="weekly-badge">Descubrimiento de la semana</span><span class="weekly-spark" aria-hidden="true">✦</span></div>
+          <h2 id="weekly-title">Una idea para salir de lo de siempre</h2>
+          <p id="weekly-copy">Cada semana destacamos una idea distinta del catálogo para que encuentres inspiración sin repetir las mismas búsquedas.</p>
+          <div class="weekly-footer"><span id="weekly-price" class="weekly-price">Catálogo editorial</span><a id="weekly-link" class="weekly-link" href="#selector">Abrir el radar <span aria-hidden="true">→</span></a></div>
+        </aside>
+
         <section class="seo-content" aria-labelledby="seo-title">
           <p class="eyebrow">Guía de regalos</p>
           <h2 id="seo-title">Ideas de regalos de cumpleaños para acertar</h2>
@@ -139,6 +153,13 @@
         </section>
 
         <section id="results" class="results" aria-labelledby="results-title" aria-live="polite" hidden></section>
+
+        <aside id="pwa-prompt" class="pwa-prompt" aria-live="polite" hidden>
+          <span class="pwa-prompt-icon" aria-hidden="true">✦</span>
+          <div class="pwa-prompt-copy"><strong id="pwa-prompt-title">Llévate Regalazo contigo</strong><span id="pwa-prompt-text">Instala el radar para tenerlo a mano cuando vuelva a surgir un cumpleaños.</span></div>
+          <button id="pwa-install" class="button button-primary" type="button">Instalar</button>
+          <button id="pwa-dismiss" class="pwa-dismiss" type="button" aria-label="Cerrar">×</button>
+        </aside>
 
         <noscript>
           <div class="noscript-card">Activa JavaScript para usar el selector de regalos. Mientras tanto, puedes consultar la <a href="/regalos-de-cumpleanos/">guía de regalos de cumpleaños</a>.</div>

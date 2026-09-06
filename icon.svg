@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Regalazo</title>
+  <desc id="desc">Icono de regalo coral sobre fondo crema</desc>
+  <rect width="512" height="512" rx="128" fill="#fff0eb"/>
+  <path d="M102 210h308v209H102z" fill="#e46c57"/>
+  <path d="M87 171h338v72H87z" fill="#b64b3c"/>
+  <path d="M238 171h36v248h-36z" fill="#fff9f2" opacity=".9"/>
+  <path d="M256 171c-49-5-101-31-95-71 6-39 61-37 95 71Zm0 0c49-5 101-31 95-71-6-39-61-37-95 71Z" fill="#ef9b82" stroke="#fff9f2" stroke-width="12" stroke-linejoin="round"/>
+</svg>

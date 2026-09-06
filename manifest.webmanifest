@@ -1,0 +1,18 @@
+{
+  "name": "Regalazo · Ideas de regalos",
+  "short_name": "Regalazo",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fff9f2",
+  "theme_color": "#e46c57",
+  "description": "Un radar gratuito para encontrar regalos relevantes en menos de un minuto.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

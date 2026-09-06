@@ -9,8 +9,11 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - Capa de composición con 7 enfoques editoriales —encaje, toque personal, plan, pack, giro inesperado, descubrimiento y pequeño lujo— que amplía las 360 ideas base hasta 2.055 composiciones compatibles.
 - Tres modos de resultado: Mejor encaje, Más sorprendentes y Novedades. El historial anónimo local evita repetir composiciones para el mismo perfil.
 - Diez recomendaciones con título, motivo, precio orientativo y enlace de búsqueda relevante.
-- Cada resultado puede compartirse con sus respuestas codificadas en la URL, para convertir la selección en un pequeño reto entre amigos o pareja.
+- Cada resultado puede compartirse con sus respuestas codificadas en la URL, para convertir la selección en un pequeño reto entre amigos o pareja. La persona que recibe el enlace puede marcar su elección, comparar si coincide y compartirlo de nuevo.
+- El resultado incluye canales rápidos de WhatsApp y Telegram, y permite generar una tarjeta PNG para compartir en redes o mensajería.
 - Responsive endurecido para móvil estrecho: panel de compartir contenido dentro de la tarjeta, controles que pueden envolver texto largo y cero overflow horizontal.
+- PWA instalable: manifest, icono, service worker de shell y aviso de instalación solo cuando el navegador lo permite. Esto deja el producto listo para empaquetarlo más adelante como Android/TWA sin mantener una app nativa desde el día uno.
+- Bloque de descubrimiento semanal para renovar el motivo de vuelta sin añadir un feed ni una base de datos.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
 - Etiqueta de afiliación heredada de la configuración del GPT: lamamihacker-21. Debe verificarse en la cuenta de Amazon Associates antes de considerarla operativa.
 - Sin registro, sin nombres y sin datos enviados a un servidor.
@@ -43,6 +46,7 @@ Es una web estática sin dependencias externas:
 - styles.css: diseño responsive mobile-first.
 - app.js: catálogo, ranking, generación de resultados y enlaces de salida.
 - netlify.toml: publicación desde la raíz y cabeceras básicas.
+- manifest.webmanifest, sw.js, icon.svg y og-image.svg: instalación, caché del shell, identidad y preview social.
 - docs/gpt-recovery.md: recuperación y límites de la configuración del GPT.
 
 La aplicación usa rutas relativas y no acopla el dominio actual, por lo que puede pasar a un dominio propio más adelante sin reescribir la lógica. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
@@ -67,7 +71,8 @@ La web prioriza SEO técnico y carga rápida sin añadir dependencias ni coste v
 
 - La portada tiene title, meta description, canonical, robots, Open Graph, Twitter metadata y datos estructurados WebSite/WebApplication.
 - El primer contenido del selector está presente en HTML desde la respuesta inicial; JavaScript solo mejora la interacción.
-- Hay contenido editorial rastreable y páginas específicas para [regalos de cumpleaños](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos/), [regalos baratos](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-baratos/) y [regalos para pareja](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-pareja/).
+- Hay contenido editorial rastreable y páginas específicas para [regalos de cumpleaños](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos/), [regalos baratos](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-baratos/), [regalos por menos de 30 euros](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-por-menos-de-30-euros/), [regalos originales](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-originales/), [regalos para pareja](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-pareja/), [regalos para novia](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novia/) y [regalos para novio](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novio/).
+- Las guías empiezan con una respuesta directa, usan preguntas completas como subtítulos y publican FAQPage + BreadcrumbList JSON-LD. `llms.txt` resume el producto, sus respuestas útiles y sus límites para facilitar el descubrimiento por sistemas de IA; no se considera una garantía de indexación.
 - robots.txt y sitemap.xml están publicados en la raíz y enlazan la versión actual de Netlify.
 - No se cargan fuentes externas, imágenes pesadas, librerías ni analytics; app.js usa defer y Netlify sirve los estáticos desde CDN.
 - Las páginas HTML se revalidan y CSS/JS usan caché con stale-while-revalidate para mejorar visitas repetidas.
@@ -78,7 +83,7 @@ Cuando se conecte un dominio propio, hay que sustituir la URL de Netlify en los 
 
 La versión pública no carga un SDK externo ni envía analítica por defecto. app.js expone window.RegalazoAnalytics y mantiene una cola local de eventos durante la sesión; ANALYTICS_CONFIG está desactivado y el token está vacío.
 
-Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), recommendations_mode_changed (mode, variant), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_completed (method, mode), shared_result_opened (mode) y quiz_reset. Todos incluyen app, language, version y marca temporal.
+Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), recommendations_mode_changed (mode, variant), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_channel_clicked (method, mode), share_completed (method, mode), shared_result_opened (mode, hasPick, challenge), challenge_started, challenge_pick_made (giftId, position, hasIncomingPick), share_card_created (method), weekly_discovery_viewed (giftId), weekly_discovery_clicked, pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice, pwa_installed, pwa_install_dismissed y quiz_reset. Todos incluyen app, language, version y marca temporal.
 
 Para activarlo habrá que definir consentimiento y privacidad, cargar el SDK o un endpoint propio después de ese consentimiento, proporcionar el token mediante el proceso de despliegue y validar primero en desarrollo. No se guardan nombres, emails ni texto libre.
 
