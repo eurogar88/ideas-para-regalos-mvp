@@ -4,25 +4,23 @@ Este documento convierte el producto en un sistema de descubrimiento y recomenda
 
 ## 1. El bucle que merece la pena optimizar
 
-El mejor bucle para Regalazo no es pedir que alguien “comparta la web”, sino darle una pequeña historia que compartir:
+El mejor bucle para Regalazo no es pedir que alguien “comparta la web”, sino darle una selección útil que compartir:
 
 1. Una persona completa el radar en menos de un minuto.
-2. Recibe diez ideas y elige una como su favorita.
-3. Comparte el reto por WhatsApp, Telegram o una tarjeta visual.
-4. La otra persona elige sin ver la primera elección.
-5. El resultado revela si han coincidido y ofrece volver a enviar el reto.
-6. La persona que recibe el reto entra en un radar propio y puede repetir el ciclo.
+2. Recibe diez ideas relevantes y una recomendación de mejor encaje.
+3. Comparte la selección por el sistema nativo del móvil o copiando el enlace.
+4. La otra persona abre las mismas ideas y puede repetir el radar con sus propias respuestas.
 
-La llamada a la acción principal debe ser “Comparte el reto”, no “Comparte Regalazo”. Es más concreta, tiene curiosidad y da un motivo para abrir el enlace.
+La llamada a la acción debe ser “Compartir selección”: es clara, describe exactamente lo que se envía y no introduce un juego que distraiga de la compra.
 
 ## 2. Mejoras de producto con mayor potencial
 
 ### Prioridad inmediata
 
 - Mantener el resultado en diez opciones, con una primera recomendación muy clara, precio orientativo, motivo de encaje y salida relevante a Amazon.
-- Mantener tres modos: mejor encaje, más sorprendente y novedades. El “Giro de chispa” debe ser voluntario, corto y respetar `prefers-reduced-motion`.
+- Mantener un único modo, “Mejor encaje”, y usar “Ver otras ideas” para generar otra tanda relevante sin repetir resultados. La transición debe ser breve y respetar `prefers-reduced-motion`.
 - Hacer visible el porcentaje de encaje como señal orientativa, no como precisión científica.
-- Aumentar el valor de compartir: tarjeta PNG con el regalo elegido, resumen del perfil sin datos identificativos y CTA para abrir el reto.
+- Aumentar el valor de compartir: enlace a la selección completa, resumen del perfil sin datos identificativos y una CTA clara para abrir el radar.
 - No forzar registro, notificaciones, instalación ni cookies no esenciales.
 
 ### Próxima capa
@@ -81,7 +79,7 @@ Formatos que merecen prueba:
 - carrusel con “perfil → tres pistas → idea final”;
 - vídeo corto mostrando los ocho toques y el reveal de resultados;
 - pins de Pinterest enlazados a una guía específica, no solo a la portada;
-- plantilla de reto para que la persona publique “elige sin mirar mi elección”.
+- plantilla de recomendación para que la persona publique “estas son las ideas que me ha dado el radar”.
 
 La publicación debe hacerse de forma manual o con herramientas autorizadas por cada red. No conviene automatizar respuestas o crear falsas recomendaciones.
 
@@ -102,7 +100,6 @@ Eventos ya preparados o recomendados:
 | Valor | `recommendations_viewed` | Finalización y modo elegido |
 | Monetización | `gift_outbound_clicked` | CTR por posición, país y categoría |
 | Viralidad | `share_clicked`, `share_completed` | Inicio y finalización de compartir |
-| Reto | `challenge_started`, `challenge_pick_made` | Conversión de receptor |
 | Retorno | `weekly_discovery_clicked`, `pwa_installed` | Recurrencia e instalación |
 
 Antes de activar Mixpanel: consentimiento y política actualizada si aplica, token solo en variables de despliegue, exclusión de respuestas que puedan identificar a alguien y una prueba de retención de 7/30 días. El objetivo no es acumular datos; es saber qué combinación produce un buen regalo y qué parte del bucle se rompe.
@@ -111,7 +108,7 @@ Antes de activar Mixpanel: consentimiento y política actualizada si aplica, tok
 
 Probar uno cada vez durante un periodo suficiente:
 
-1. “Comparte el reto” frente a “Envía estas ideas”.
+1. “Compartir selección” frente a “Enviar estas ideas”.
 2. Tarjeta con una idea frente a tarjeta con tres finalistas.
 3. CTA de compartir inmediatamente después de resultados frente a después de elegir una favorita.
 4. Landing centrada en “regalos de cumpleaños” frente a “encuentra un regalo en 8 toques”.
@@ -137,7 +134,7 @@ La confianza es parte del ingreso: más clics cualificados y repetidos valen má
 
 - Verificar Search Console/Bing y enviar sitemap.
 - Revisar las diez búsquedas con más impresiones y mejorar esas páginas.
-- Probar el bucle de reto con cinco parejas o amigos.
+- Probar el enlace compartido con cinco parejas o amigos y comprobar que las respuestas se conservan correctamente.
 - Medir el ratio de finalización en móvil estrecho.
 
 ### Semana 2

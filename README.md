@@ -7,22 +7,21 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - Asistente de 8 pasos: relación, género, edad aproximada, ocasión, presupuesto, gusto principal, estilo y país del comprador.
 - Motor determinista local con catálogo editorial y ranking por coincidencias.
 - Capa de composición con 7 enfoques editoriales —encaje, toque personal, plan, pack, giro inesperado, descubrimiento y pequeño lujo— que amplía las 360 ideas base hasta 2.055 composiciones compatibles.
-- Tres modos de resultado: Mejor encaje, Más sorprendentes y Novedades. El historial anónimo local evita repetir composiciones para el mismo perfil.
+- Un único modo de resultado: Mejor encaje. “Ver otras ideas” genera otra tanda relevante y el historial anónimo local evita repetir composiciones para el mismo perfil.
 - Diez recomendaciones con título, motivo, precio orientativo y enlace de búsqueda relevante.
-- Cada resultado puede compartirse con sus respuestas codificadas en la URL, para convertir la selección en un pequeño reto entre amigos o pareja. La persona que recibe el enlace puede marcar su elección, comparar si coincide y compartirlo de nuevo.
-- El resultado incluye canales rápidos de WhatsApp y Telegram, y permite generar una tarjeta PNG para compartir en redes o mensajería.
+- La selección completa puede compartirse con sus respuestas codificadas en la URL para que otra persona vea las mismas ideas, sin cuenta ni datos identificativos.
 - Responsive endurecido para móvil estrecho: panel de compartir contenido dentro de la tarjeta, controles que pueden envolver texto largo y cero overflow horizontal.
 - PWA instalable: manifest, icono, service worker de shell y aviso de instalación solo cuando el navegador lo permite. Esto deja el producto listo para empaquetarlo más adelante como Android/TWA sin mantener una app nativa desde el día uno.
 - El aviso PWA es compacto, aparece con retraso para no tapar el selector y se controla desde `APP_CONFIG.installPromptEnabled` y `APP_CONFIG.installPromptDelayMs` en `app.js`; basta con cambiar el primer valor a `false` cuando haya que ocultarlo.
 - El idioma inicial respeta una preferencia guardada por el usuario; si no existe, usa el idioma del navegador o del sistema cuando está disponible y cae a inglés. Elegir otro idioma lo deja como preferencia persistente.
 - Modo oscuro alternable con un solo icono en todas las páginas; respeta la preferencia del sistema en la primera visita, recuerda la elección localmente y evita el destello claro gracias a un preloader inline.
-- En resultados, el “Giro de chispa” ofrece una transición corta y opcional para reordenar la siguiente tanda sin perder el filtro de relevancia. Respeta `prefers-reduced-motion`.
+- En resultados, “Ver otras ideas” ofrece una nueva tanda relevante con una transición suave. Respeta `prefers-reduced-motion`.
 - Bloque de descubrimiento semanal para renovar el motivo de vuelta sin añadir un feed ni una base de datos.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
 - Etiqueta de afiliación heredada de la configuración del GPT: lamamihacker-21. Debe verificarse en la cuenta de Amazon Associates antes de considerarla operativa.
 - Sin registro, sin nombres y sin datos enviados a un servidor.
 - Sin runtime de OpenClaw y sin llamadas a modelos de IA en esta primera versión. La IA queda como extensión opcional para más adelante, no como coste fijo del MVP.
-- Novedades no significa inventario en tiempo real: prioriza composiciones de descubrimiento y añade ordenación por incorporaciones recientes a la búsqueda de Amazon cuando el marketplace la admite. La página lo comunica y pide comprobar fecha, precio y disponibilidad.
+- El bloque “Descubrimiento de la semana” no representa inventario en tiempo real: es una idea editorial para volver al radar. Amazon puede mostrar otros productos, precios y disponibilidades.
 
 ## URLs
 
@@ -63,6 +62,8 @@ La aplicación usa rutas relativas y no acopla el dominio actual, por lo que pue
 
 La rama main está conectada al proyecto de Netlify. Cada cambio publicado en GitHub dispara un deploy. La configuración actual es: proyecto estático, directorio de publicación ., sin comando de build.
 
+El badge flotante “Powered by Netlify” está desactivado en la configuración del proyecto. No depende de tener o no un dominio propio: se puede quitar desde Netlify en cualquier momento y un cambio de dominio no lo desactiva automáticamente.
+
 Para una prueba local, sirve la raíz con cualquier servidor estático, por ejemplo: python3 -m http.server 4173. Después abre http://localhost:4173/.
 
 ## Antes de activar IA (si algún día compensa)
@@ -91,7 +92,7 @@ Cuando se conecte un dominio propio, hay que sustituir la URL de Netlify en los 
 
 La versión pública no carga un SDK externo ni envía analítica por defecto. app.js expone window.RegalazoAnalytics y mantiene una cola local de eventos durante la sesión; ANALYTICS_CONFIG está desactivado y el token está vacío.
 
-Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), recommendations_mode_changed (mode, variant), spark_spin_started (mode), spark_spin_completed (variant, mode), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_channel_clicked (method, mode), share_completed (method, mode), shared_result_opened (mode, hasPick, challenge), challenge_started, challenge_pick_made (giftId, position, hasIncomingPick), share_card_created (method), weekly_discovery_viewed (giftId), weekly_discovery_clicked, pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice, pwa_installed, pwa_install_dismissed y quiz_reset. Todos incluyen app, language, version y marca temporal.
+Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_completed (method, mode), shared_result_opened (mode), weekly_discovery_viewed (giftId), weekly_discovery_clicked, pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice, pwa_installed, pwa_install_dismissed y quiz_reset. Todos incluyen app, language, version y marca temporal.
 
 Para activarlo habrá que definir consentimiento y privacidad, cargar el SDK o un endpoint propio después de ese consentimiento, proporcionar el token mediante el proceso de despliegue y validar primero en desarrollo. No se guardan nombres, emails ni texto libre.
 

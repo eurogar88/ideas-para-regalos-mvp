@@ -876,118 +876,6 @@ a { color: inherit; }
 }
 
 
-/* Viral discovery layer: mode switch, share loop and composition labels. */
-.results-mode-panel {
-  margin: 2px 0 15px;
-  padding: 13px;
-  border: 1px solid rgba(228, 108, 87, 0.15);
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255, 240, 235, 0.9), rgba(238, 233, 248, 0.78));
-}
-
-.results-mode-label {
-  display: block;
-  margin: 0 0 8px 2px;
-  color: var(--coral-dark);
-  font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.results-modes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-}
-
-.mode-button {
-  min-height: 39px;
-  padding: 0 7px;
-  border: 1px solid rgba(231, 222, 213, 0.95);
-  border-radius: 11px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.7);
-  font-size: 0.72rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: border-color 150ms ease, color 150ms ease, background 150ms ease, transform 150ms ease;
-}
-
-.mode-button:hover { transform: translateY(-1px); border-color: rgba(228, 108, 87, 0.5); }
-.mode-button:focus-visible { outline: 3px solid rgba(228, 108, 87, 0.3); outline-offset: 2px; }
-.mode-button.is-active { border-color: var(--coral); color: #fff; background: var(--coral); box-shadow: 0 7px 16px rgba(228, 108, 87, 0.18); }
-.results-mode-hint { margin: 9px 2px 0; color: #8b8178; font-size: 0.7rem; line-height: 1.35; }
-.spark-hint { margin: 8px 2px 0; color: #8b8178; font-size: 0.68rem; line-height: 1.35; }
-.spark-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin: 8px 2px 0;
-  padding: 3px 0;
-  border: 0;
-  color: var(--coral-dark);
-  background: transparent;
-  font-size: 0.72rem;
-  font-weight: 850;
-  cursor: pointer;
-  transition: color 150ms ease;
-}
-.spark-button span { display: inline-grid; width: 20px; height: 20px; place-items: center; border-radius: 50%; background: var(--coral-soft); transition: transform 180ms ease, background 180ms ease; }
-.spark-button:hover { color: var(--ink); }
-.spark-button:hover span { transform: rotate(18deg) scale(1.08); background: #ffe1d9; }
-.spark-button:focus-visible { outline: 3px solid rgba(228, 108, 87, 0.3); outline-offset: 3px; border-radius: 8px; }
-.results.casino-spin .spark-button { color: #8b8178; pointer-events: none; }
-.results.casino-spin .spark-button span { animation: spark-pulse 760ms ease-in-out both; }
-.results.casino-spin .gift-card { animation: casino-card 760ms cubic-bezier(0.2, 0.75, 0.3, 1) both; animation-delay: calc(var(--gift-index, 0) * 28ms); }
-.results.casino-spin .gift-match-fill { animation: casino-match 760ms ease-in-out both; }
-
-@keyframes casino-card {
-  0% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-  42% { opacity: 0.68; transform: translate3d(0, -5px, 0) scale(0.985); }
-  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-}
-
-@keyframes casino-match {
-  0%, 44% { transform: scaleX(0.72); }
-  100% { transform: scaleX(1); }
-}
-
-@keyframes spark-pulse {
-  0%, 100% { transform: rotate(0) scale(1); }
-  45% { transform: rotate(180deg) scale(1.12); }
-}
-
-.share-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 18px;
-  padding: 14px;
-  border: 1px solid rgba(228, 108, 87, 0.18);
-  border-radius: 19px;
-  background: linear-gradient(120deg, #fff4ef, #fffdf9 52%, #f4f0fb);
-  box-shadow: 0 10px 25px rgba(92, 61, 39, 0.06);
-}
-
-.share-card-icon {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
-  place-items: center;
-  border-radius: 13px;
-  color: #fff;
-  background: var(--coral-dark);
-  font-size: 1.2rem;
-  font-weight: 900;
-}
-
-.share-card-copy { min-width: 0; flex: 1; }
-.share-card-kicker { margin: 0; color: var(--ink); font-size: 0.82rem; font-weight: 850; }
-.share-card-copy p:last-child { margin: 4px 0 0; color: var(--muted); font-size: 0.72rem; line-height: 1.35; }
-.share-card-button { flex: 0 0 auto; min-height: 40px; padding: 0 12px; font-size: 0.72rem; }
-
 .gift-angle {
   display: flex;
   align-items: center;
@@ -1004,19 +892,6 @@ a { color: inherit; }
 .gift-card-discovery { border-color: rgba(102, 129, 103, 0.3); }
 .gift-card-discovery .gift-angle { color: #5f8063; }
 
-@media (max-width: 520px) {
-  .results-modes { gap: 5px; }
-  .mode-button { font-size: 0.66rem; }
-  .share-card { align-items: flex-start; flex-wrap: wrap; }
-  .share-card-copy { min-width: calc(100% - 55px); }
-  .share-card-button { width: 100%; margin-left: 50px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mode-button:hover { transform: none; }
-}
-
-
 /* Responsive hardening: keep every interactive block inside the viewport. */
 html,
 body {
@@ -1028,9 +903,6 @@ body {
 .results,
 .results-head,
 .results-toolbar,
-.results-mode-panel,
-.results-modes,
-.share-card,
 .gift-card {
   min-width: 0;
 }
@@ -1051,26 +923,6 @@ body {
   min-width: 0;
   line-height: 1.1;
   overflow-wrap: anywhere;
-}
-
-@media (max-width: 520px) {
-  .share-card {
-    display: grid;
-    grid-template-columns: 38px minmax(0, 1fr);
-    align-items: start;
-    gap: 10px 12px;
-  }
-
-  .share-card-copy {
-    min-width: 0;
-  }
-
-  .share-card-button {
-    grid-column: 2;
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
-  }
 }
 
 @media (max-width: 380px) {
@@ -1118,17 +970,6 @@ body {
     font-size: 0.66rem;
   }
 
-  .results-mode-panel {
-    padding: 10px;
-  }
-
-  .mode-button {
-    min-height: 43px;
-    padding-right: 4px;
-    padding-left: 4px;
-    font-size: 0.63rem;
-  }
-
   .gift-card {
     padding: 14px;
   }
@@ -1152,59 +993,10 @@ body {
   }
 }
 
-/* Growth layer: challenge sharing, weekly discovery and install prompt. */
-.challenge-card {
-  align-items: flex-start;
-}
-
-.challenge-card-icon {
-  background: linear-gradient(145deg, var(--coral-dark), #d86d5a);
-}
-
-.share-actions {
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 7px;
-}
-
-.share-actions .share-card-button {
-  min-width: 150px;
-}
-
-.share-channel {
-  display: inline-flex;
-  min-height: 40px;
-  align-items: center;
-  justify-content: center;
-  padding: 0 11px;
-  border: 1px solid rgba(231, 222, 213, 0.95);
-  border-radius: 12px;
-  color: var(--coral-dark);
-  background: rgba(255, 255, 255, 0.72);
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.share-channel:hover,
-.share-channel:focus-visible {
-  border-color: rgba(228, 108, 87, 0.45);
-  background: #fff;
-}
-
-.share-channel:focus-visible,
-.gift-pick:focus-visible,
 .pwa-dismiss:focus-visible,
 .weekly-link:focus-visible {
   outline: 3px solid rgba(228, 108, 87, 0.28);
   outline-offset: 2px;
-}
-
-.share-card-download {
-  cursor: pointer;
 }
 
 .gift-card-actions {
@@ -1215,41 +1007,6 @@ body {
 
 .gift-card-actions .gift-link {
   margin-top: 0;
-}
-
-.gift-pick {
-  width: 100%;
-  min-height: 38px;
-  border: 1px solid rgba(228, 108, 87, 0.24);
-  border-radius: 12px;
-  color: var(--coral-dark);
-  background: var(--coral-soft);
-  font-size: 0.76rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
-}
-
-.gift-pick:hover {
-  border-color: rgba(228, 108, 87, 0.48);
-  background: #ffe6df;
-  transform: translateY(-1px);
-}
-
-.gift-pick.is-picked {
-  color: #fff;
-  border-color: var(--coral-dark);
-  background: var(--coral-dark);
-}
-
-.gift-card-picked {
-  border-color: rgba(228, 108, 87, 0.66);
-  box-shadow: 0 12px 30px rgba(228, 108, 87, 0.16);
-}
-
-.gift-card-incoming {
-  border-style: dashed;
-  border-color: rgba(182, 75, 60, 0.48);
 }
 
 .weekly-discovery {
@@ -1349,20 +1106,6 @@ body {
 .guide-inline-links a:hover { text-decoration: underline; }
 
 @media (max-width: 520px) {
-  .share-actions {
-    grid-column: 2;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    width: 100%;
-  }
-
-  .share-actions .share-card-button {
-    grid-column: 1 / -1;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .share-channel { min-width: 0; padding-right: 7px; padding-left: 7px; }
   .weekly-discovery { margin-right: 0; margin-left: 0; }
   .pwa-prompt { right: 12px; bottom: 72px; left: 12px; grid-template-columns: 30px minmax(0, 1fr) auto auto; padding: 8px; }
   .pwa-prompt-icon { width: 30px; height: 30px; }
@@ -1372,8 +1115,6 @@ body {
 }
 
 @media (max-width: 380px) {
-  .share-actions { gap: 5px; }
-  .share-channel { font-size: 0.64rem; }
   .pwa-prompt-copy strong { font-size: 0.74rem; }
   .pwa-prompt-copy span { font-size: 0.64rem; }
 }
@@ -1381,11 +1122,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .option-card:active,
   .button:active:not(:disabled),
-  .gift-pick:hover,
-  .spark-button:hover span { transform: none; }
-  .results.casino-spin .gift-card,
-  .results.casino-spin .gift-match-fill,
-  .results.casino-spin .spark-button span { animation: none; }
+  .gift-match-fill { transform: none; }
 }
 
 /* Dark mode: preserve the warm Regalazo palette without reducing contrast. */
@@ -1406,8 +1143,7 @@ html[data-theme="dark"] .gift-card,
 html[data-theme="dark"] .seo-card,
 html[data-theme="dark"] .guide-card,
 html[data-theme="dark"] .guide-list li,
-html[data-theme="dark"] .faq-item,
-html[data-theme="dark"] .share-channel {
+html[data-theme="dark"] .faq-item {
   background: rgba(34, 29, 26, 0.92);
   border-color: var(--line);
 }
@@ -1438,13 +1174,6 @@ html[data-theme="dark"] .site-footer,
 html[data-theme="dark"] .legal-meta,
 html[data-theme="dark"] .keyboard-hint,
 html[data-theme="dark"] .breadcrumbs { color: #a9988d; }
-html[data-theme="dark"] .results-mode-panel { background: linear-gradient(135deg, rgba(69, 38, 32, 0.88), rgba(53, 45, 70, 0.88)); border-color: rgba(239, 120, 98, 0.25); }
-html[data-theme="dark"] .mode-button { background: rgba(42, 35, 32, 0.9); border-color: #4d413a; }
-html[data-theme="dark"] .mode-button:hover { border-color: var(--coral); }
-html[data-theme="dark"] .mode-button.is-active { color: #211a17; background: var(--coral); }
-html[data-theme="dark"] .share-card { background: linear-gradient(120deg, #3b2521, #29221f 52%, #332d43); border-color: rgba(239, 120, 98, 0.3); }
-html[data-theme="dark"] .share-channel:hover,
-html[data-theme="dark"] .share-channel:focus-visible { background: #3d3029; }
 html[data-theme="dark"] .weekly-discovery { background: linear-gradient(135deg, rgba(42, 60, 48, 0.9), rgba(37, 31, 28, 0.92) 62%, rgba(51, 45, 67, 0.9)); border-color: rgba(112, 157, 119, 0.35); }
 html[data-theme="dark"] .pwa-prompt { background: rgba(34, 29, 26, 0.97); border-color: rgba(239, 120, 98, 0.38); box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42); }
 html[data-theme="dark"] .answer-block,

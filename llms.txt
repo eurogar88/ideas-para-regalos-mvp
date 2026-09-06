@@ -6,8 +6,8 @@
 
 - Cruza relación, género opcional, edad aproximada, ocasión, presupuesto, intereses, estilo y país de compra.
 - Genera recomendaciones desde un catálogo editorial local; no inventa productos ni precios exactos.
-- Ofrece tres enfoques: mejor encaje, más sorprendentes y novedades.
-- Permite compartir un radar y elegir una idea para crear un reto entre dos personas.
+- Presenta un único enfoque: Mejor encaje. El botón “Ver otras ideas” genera otra tanda relevante para evitar resultados repetidos.
+- Permite compartir un radar completo con sus respuestas codificadas en la URL, sin cuenta ni datos identificativos.
 - Abre búsquedas localizadas de Amazon con una etiqueta de afiliación. Los precios y la disponibilidad pueden cambiar.
 
 ## Respuestas útiles
