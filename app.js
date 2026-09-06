@@ -169,6 +169,7 @@ var GIFT_CATALOG = [
 var state = { step: 0, answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
+var pendingScrollPosition = null;
 var hero = document.getElementById('hero');
 var wizard = document.getElementById('wizard');
 var trustStrip = document.querySelector('.trust-strip');
@@ -238,7 +239,7 @@ function render() {
   renderQuestion();
 }
 
-function handleOption(value) {
+function handleOption(value, scrollPosition) {
   var question = QUESTIONS[state.step];
   if (question.multiple) {
     var current = selectedValues(question);
@@ -250,22 +251,22 @@ function handleOption(value) {
     state.answers[question.id] = exists ? current.filter(function (item) { return item !== value; }) : current.concat(value);
   } else {
     state.answers[question.id] = value;
-    advance();
+    advance(scrollPosition);
     return;
   }
   renderQuestion();
 }
 
-function advance() {
+function advance(scrollPosition) {
   var question = QUESTIONS[state.step];
   if (selectedValues(question).length === 0) {
     showToast(question.multiple ? 'Elige al menos un gusto para continuar.' : 'Elige una opción para continuar.');
     return;
   }
+  var position = scrollPosition || getScrollPosition();
   state.step += 1;
   render();
-  if (state.step < QUESTIONS.length) {
-  }
+  restoreScrollPosition(position);
 }
 
 function goBack() {
@@ -424,9 +425,33 @@ function showToast(message) {
   toastTimer = window.setTimeout(function () { toast.hidden = true; }, 3000);
 }
 
+function getScrollPosition() {
+  return {
+    left: window.scrollX || document.documentElement.scrollLeft || 0,
+    top: window.scrollY || document.documentElement.scrollTop || 0
+  };
+}
+
+function restoreScrollPosition(position) {
+  if (!position) return;
+  window.scrollTo(position.left, position.top);
+  window.requestAnimationFrame(function () {
+    window.scrollTo(position.left, position.top);
+  });
+}
+
+questionRegion.addEventListener('pointerdown', function (event) {
+  var option = event.target.closest('[data-option]');
+  if (option) pendingScrollPosition = getScrollPosition();
+});
+
 questionRegion.addEventListener('click', function (event) {
   var option = event.target.closest('[data-option]');
-  if (option) handleOption(option.getAttribute('data-option'));
+  if (option) {
+    var scrollPosition = pendingScrollPosition;
+    pendingScrollPosition = null;
+    handleOption(option.getAttribute('data-option'), scrollPosition);
+  }
 });
 
 nextButton.addEventListener('click', advance);
