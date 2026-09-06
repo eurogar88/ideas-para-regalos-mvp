@@ -2906,12 +2906,14 @@ function celebrate() {
   window.requestAnimationFrame(draw);
 }
 
-function renderResults(shouldCelebrate) {
+function renderResults(shouldCelebrate, preserveRecommendations) {
   var copy = currentCopy();
-  currentRecommendations = rankGifts(state.answers, state.variant);
-  state.lastRecommendationIds = currentRecommendations.map(function (gift) { return gift.id; });
-  rememberRecommendations(state.answers, currentRecommendations);
-  trackEvent('recommendations_viewed', { resultCount: currentRecommendations.length, variant: state.variant });
+  if (!preserveRecommendations || !currentRecommendations.length) {
+    currentRecommendations = rankGifts(state.answers, state.variant);
+    state.lastRecommendationIds = currentRecommendations.map(function (gift) { return gift.id; });
+    rememberRecommendations(state.answers, currentRecommendations);
+    trackEvent('recommendations_viewed', { resultCount: currentRecommendations.length, variant: state.variant });
+  }
   var title = copy.results.genericTitle + '.';
   var relation = getLabel('relation', state.answers.relation).toLowerCase();
   if (state.answers.relation && state.answers.relation !== 'other') {
@@ -3076,7 +3078,7 @@ function setLanguage(language) {
   } catch (error) {}
   applyLanguage();
   trackEvent('language_changed', { from: previousLanguage, to: language });
-  if (!results.hidden) renderResults(false);
+  if (!results.hidden) renderResults(false, true);
   else render();
 }
 
