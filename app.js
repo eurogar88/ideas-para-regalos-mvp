@@ -2577,9 +2577,17 @@ var GIFT_TITLE_COPY = {
   it: {
     'mini-photo-printer': 'Mini stampante fotografica per ricordi', 'coffee-kit': 'Rituale del caffè specialty', 'tea-ritual': 'Set per una pausa tè', 'portable-speaker': 'Altoparlante per la colonna sonora', 'e-reader': 'E-reader per perdersi nelle storie', 'book-light': 'Lampada da lettura da collo', 'botanical-puzzle': 'Puzzle d’arte per staccare', 'botanical-lego': 'Fiori che non hanno bisogno d’acqua', 'couple-board-game': 'Gioco da tavolo per due', 'travel-organizer': 'Organizer per cavi da viaggio', 'packing-cubes': 'Valigia più ordinata', 'card-holder': 'Portacarte per ogni giorno', 'mechanical-keyboard': 'Tastiera per lavorare o giocare meglio', 'earbuds': 'Auricolari per i suoi momenti', 'usbc-hub': 'Hub per collegare tutto', 'resistance-bands': 'Allenamento che sta in casa', 'yoga-mat': 'Tappetino per rallentare', 'running-belt': 'Cintura per correre leggeri', 'chocolate-box': 'Scatola di cioccolatini con una storia', 'hot-sauce-set': 'Percorso di salse piccanti', 'skincare-set': 'Kit di cura personale senza fretta', 'selfcare-candle': 'Candela per cambiare atmosfera', 'herb-garden': 'Mini orto di erbe in cucina', 'chef-knife': 'Uno strumento per cucinare meglio', 'instant-camera': 'Fotocamera istantanea', 'fountain-pen': 'Quaderno e penna per le sue idee', 'watercolor-kit': 'Kit creativo senza istruzioni', 'portable-projector': 'Cinema improvvisato su qualsiasi parete', 'massage-gun': 'Recupero dopo essersi mossi', 'digital-luggage-scale': 'La bilancia che evita sorprese', 'digital-photo-frame': 'Cornice digitale con foto che cambiano', 'urban-backpack': 'Zaino per ogni giorno', 'powerbank': 'Powerbank per non restare senza batteria', 'date-night-box': 'Box per una serata in casa a due', 'movie-night-kit': 'Kit cinema in casa', 'picnic-set': 'Set per un picnic improvvisato', 'cocktail-kit': 'Kit per preparare cocktail', 'spice-rack': 'Collezione di spezie dal mondo', 'pasta-maker': 'Kit per fare la pasta fresca', 'wireless-charging-station': 'Base di ricarica per avere tutto a portata', 'smart-speaker': 'Altoparlante smart per casa', 'monitor-light-bar': 'Luce per migliorare la scrivania', 'webcam-light': 'Luce compatta per le videochiamate', 'card-game': 'Gioco di carte per iniziare a parlare', 'cooperative-board-game': 'Gioco cooperativo per un pomeriggio', 'gaming-headset': 'Cuffie per il suo setup', 'foam-roller': 'Kit di recupero dopo l’allenamento', 'hiking-bottle': 'Borraccia resistente per i suoi percorsi', 'fitness-tracker': 'Bracciale per muoversi di più', 'hiking-headlamp': 'Lampada frontale per le escursioni', 'toiletry-bag': 'Beauty case ben organizzato', 'passport-wallet': 'Portadocumenti da viaggio leggero', 'weekend-bag': 'Borsa per un weekend fuori', 'travel-pillow': 'Cuscino comodo per viaggiare', 'photo-album': 'Album per ordinare i ricordi', 'custom-map-print': 'Mappa di un luogo importante', 'photo-light-box': 'Light box con una foto speciale', 'memory-journal': 'Diario da riempire di storie', 'calligraphy-kit': 'Kit di lettering per iniziare', 'model-building-kit': 'Modello da costruire con calma', 'bath-salts-set': 'Set da bagno per rallentare', 'sleep-mask': 'Mascherina e piccolo rituale di riposo', 'standing-mirror': 'Specchio da tavolo con stile', 'room-diffuser': 'Diffusore per cambiare atmosfera', 'cozy-blanket': 'Coperta morbida per il divano', 'desk-organizer': 'Organizer da scrivania elegante', 'cookbook': 'Libro di ricette che fa venire fame', 'bookstand': 'Leggio per leggere o cucinare', 'vinyl-record': 'Un vinile da ascoltare con calma', 'midi-keyboard': 'Tastiera per giocare con la musica', 'noise-cancelling-headphones': 'Cuffie per isolarsi un po’', 'instant-film-pack': 'Pack di pellicola istantanea', 'smartwatch': 'Orologio per la vita di ogni giorno', 'coffee-grinder': 'Macinacaffè per migliorare il caffè', 'cast-iron-pot': 'Pentola per cucinare a fuoco lento', 'digital-notebook': 'Quaderno digitale per scrivere e organizzarsi', 'portable-mic': 'Microfono per creare o cantare', 'lego-architecture': 'Costruzione architettonica da esporre', 'backgammon-set': 'Backgammon per pomeriggi lunghi', 'spa-headband-set': 'Set per prendersi cura di sé', 'tea-subscription': 'Selezione di tè da scoprire', 'sauce-making-kit': 'Kit per preparare salse fatte in casa', 'reusable-cup': 'Bicchiere riutilizzabile per le mattine',     'personalized-keychain': 'Portachiavi personalizzato per un ricordo condiviso', 'couples-question-cards': 'Carte di domande per due', 'memory-box': 'Scatola per conservare piccoli ricordi', 'photo-calendar': 'Calendario fotografico per tutto l’anno', 'experience-scratch-card': 'Carte da grattare per i prossimi piani', 'portable-espresso-maker': 'Caffè specialty da portare ovunque', 'milk-frother': 'Montalatte per un caffè migliore', 'pizza-stone': 'Pietra per pizza fatta in casa', 'baking-kit': 'Kit da forno per qualcosa di buono', 'olive-oil-tasting': 'Degustazione di oli per la tavola', 'smart-tracker-tag': 'Localizzatore per le cose importanti', 'wireless-mouse': 'Mouse comodo per la scrivania', 'phone-tripod': 'Treppiede per filmare senza aiuto', 'portable-ssd': 'Disco veloce per i suoi progetti', 'smart-plug': 'Presa smart per semplificare la casa', 'tablet-stand': 'Supporto per leggere o guardare', 'travel-adapter': 'Adattatore per viaggiare tranquilli', 'travel-journal': 'Diario per i prossimi viaggi', 'dry-bag': 'Borsa impermeabile per le escursioni', 'travel-coffee-mug': 'Tazza termica per le mattine fuori', 'massage-ball': 'Palla da massaggio per sciogliere la tensione', 'gym-towel-set': 'Asciugamani leggeri per allenarsi', 'running-socks': 'Calze tecniche per muoversi meglio', 'bike-multitool': 'Multitool per la bicicletta', 'pickleball-set': 'Set per provare un nuovo sport', 'hand-care-set': 'Set per la cura delle mani', 'weighted-eye-mask': 'Mascherina rilassante per staccare', 'sleep-sound-machine': 'Suoni delicati per dormire meglio', 'heated-mug': 'Base per tenere caldo il caffè', 'sunglasses': 'Occhiali da sole per stare all’aperto', 'leather-belt': 'Cintura che sta bene con tutto', 'bookends': 'Reggilibri per una libreria ordinata', 'reading-journal': 'Diario per segnare le letture', 'embroidery-kit': 'Kit da ricamo per creare con calma', 'paint-by-numbers': 'Quadro da dipingere con i numeri', 'record-cleaning-kit': 'Kit per prendersi cura dei vinili', 'karaoke-mic': 'Microfono per cantare senza vergogna', 'vinyl-display-frame': 'Cornice per esporre il vinile preferito', 'trivia-game': 'Gioco di domande per ridere insieme', 'escape-room-game': 'Escape room da risolvere a casa', 'poker-set': 'Set da poker per le serate di gioco', 'plant-watering-kit': 'Kit per prendersi cura delle piante', 'bird-feeder': 'Mangiatoia per osservare la natura', 'electric-blanket': 'Coperta elettrica per le serate sul divano', 'mini-waffle-maker': 'Mini piastra per colazioni speciali', 'beer-tasting-set': 'Set per degustare birre', 'scented-hand-cream': 'Crema mani con un profumo speciale', 'plant-care-tools': 'Strumenti belli per il suo angolo verde', 'crossbody-bag': 'Borsa a tracolla per muoversi leggeri', 'mug-warmer': 'Scalda-tazza per la scrivania',     'coffee-scoop': 'Cucchiaio dosatore per il suo caffè', 'tea-towel-set': 'Strofinacci da cucina dal design speciale', 'bottle-opener': 'Apribottiglie per le serate insieme', 'silicone-ice-tray': 'Stampo per ghiaccio originale', 'mini-cutting-board': 'Piccolo tagliere per aperitivi', 'lunch-bag': 'Borsa termica per il pranzo', 'fruit-infuser-bottle': 'Borraccia per aromatizzare l’acqua', 'spice-spoon-set': 'Cucchiaini dosatori per cucinare', 'pancake-spatula': 'Spatola per colazioni speciali', 'coffee-clip': 'Clip per conservare meglio il caffè', 'charging-cable-set': 'Pack di cavi da portare con sé', 'phone-grip': 'Anello per impugnare meglio il telefono', 'usb-desk-lamp': 'Luce USB per la scrivania', 'webcam-cover': 'Coperture per proteggere la webcam', 'keyring-multitool': 'Multitool da portare con le chiavi', 'luggage-tag': 'Etichetta per valigia con personalità', 'travel-cutlery': 'Posate riutilizzabili da viaggio', 'shoe-bag': 'Borsa per riporre le scarpe da ginnastica', 'resistance-loop': 'Mini bande per allenarsi ovunque', 'hand-warmer': 'Scaldamani per le giornate fredde', 'mini-candle-set': 'Trio di candele per cambiare atmosfera', 'bath-bomb-set': 'Bombe da bagno per una pausa', 'gel-pens': 'Set di penne gel per scrivere bene', 'bookmark-set': 'Set di segnalibri per le sue letture', 'dice-set': 'Dadi belli per le serate di gioco', 'puzzle-cube': 'Cubo per tenere occupate le mani', 'sticker-pack': 'Adesivi per personalizzare le sue cose',     'tea-infuser': 'Infusore bello per le sue pause', 'hot-chocolate-kit': 'Kit per preparare la cioccolata calda', 'coffee-syrup-set': 'Set di sciroppi per variare il caffè', 'gourmet-snack-box': 'Box di snack da condividere', 'spice-blend-set': 'Piccolo set di miscele di spezie', 'kitchen-timer': 'Timer da cucina dal tocco speciale', 'herb-scissors': 'Forbici per le erbe fresche', 'cookie-stamp': 'Timbro per fare biscotti in casa', 'water-bottle': 'Borraccia leggera per ogni giorno', 'phone-stand': 'Supporto per tenere il telefono in vista', 'cable-pouch': 'Piccola custodia per i cavi', 'screen-cleaning-kit': 'Kit per tenere puliti gli schermi', 'mini-notebook': 'Taccuino per le idee veloci', 'magnetic-bookmark': 'Segnalibro magnetico per i suoi libri', 'bookplate-stamp': 'Timbro per segnare la sua biblioteca', 'mini-puzzle': 'Piccolo puzzle per una pausa', 'party-card-game': 'Gioco di carte per ogni riunione', 'plant-mister': 'Spruzzino per il suo angolo verde', 'socks-gift-box': 'Set di calze con personalità', 'lip-balm-set': 'Set di balsami da portare ovunque'
   }
+
+var ENHANCED_RESULT_COPY = {"es":{"modeLabel":"Afinar el radar","modeFit":"Mejor encaje","modeSurprise":"Más sorprendentes","modeNew":"Novedades","modeHint":"Cambia el enfoque y descubre otra tanda sin repetir lo anterior.","shareTitle":"¿Quién te conoce mejor?","shareCopy":"Comparte este radar y comparad qué regalo elegiríais.","shareButton":"Compartir mi radar","newBadge":"Descubrimiento","noveltyNote":"El modo Novedades prioriza búsquedas ordenadas por incorporaciones recientes cuando Amazon las ofrece. Comprueba fecha, precio y disponibilidad."},"en":{"modeLabel":"Tune the radar","modeFit":"Best fit","modeSurprise":"More surprising","modeNew":"New finds","modeHint":"Change the angle and discover another round without repeating what you have seen.","shareTitle":"Who knows them best?","shareCopy":"Share this radar and compare which gift you would choose.","shareButton":"Share my radar","newBadge":"New find","noveltyNote":"New finds prioritises searches sorted by recent additions when Amazon offers them. Check date, price and availability."},"de":{"modeLabel":"Radar einstellen","modeFit":"Beste Passung","modeSurprise":"Überraschender","modeNew":"Neuheiten","modeHint":"Ändere den Blickwinkel und entdecke neue Ideen, ohne bereits gesehene zu wiederholen.","shareTitle":"Wer kennt diese Person am besten?","shareCopy":"Teile diesen Radar und vergleicht, welches Geschenk ihr wählen würdet.","shareButton":"Meinen Radar teilen","newBadge":"Neue Entdeckung","noveltyNote":"Neuheiten priorisiert Suchen nach aktuellen Ergänzungen, wenn Amazon diese Sortierung anbietet. Prüfe Datum, Preis und Verfügbarkeit."},"fr":{"modeLabel":"Affiner le radar","modeFit":"Meilleure adéquation","modeSurprise":"Plus surprenantes","modeNew":"Nouveautés","modeHint":"Changez d’angle et découvrez une nouvelle sélection sans revoir les mêmes idées.","shareTitle":"Qui connaît le mieux cette personne ?","shareCopy":"Partagez ce radar et comparez le cadeau que vous choisiriez.","shareButton":"Partager mon radar","newBadge":"Nouvelle découverte","noveltyNote":"Le mode Nouveautés privilégie les recherches triées par ajouts récents lorsque Amazon le permet. Vérifiez la date, le prix et la disponibilité."},"it":{"modeLabel":"Affina il radar","modeFit":"Miglior abbinamento","modeSurprise":"Più sorprendenti","modeNew":"Novità","modeHint":"Cambia prospettiva e scopri un altro giro senza ripetere le idee già viste.","shareTitle":"Chi conosce meglio questa persona?","shareCopy":"Condividi questo radar e confrontate quale regalo scegliereste.","shareButton":"Condividi il mio radar","newBadge":"Nuova scoperta","noveltyNote":"La modalità Novità privilegia le ricerche ordinate per inserimenti recenti quando Amazon lo consente. Controlla data, prezzo e disponibilità."}};
+var HERO_NOTE_COPY = {"es":[{"value":"8","label":"toques"},{"value":"2.000+","label":"combinaciones"},{"value":"sin","label":"cuenta"}],"en":[{"value":"8","label":"taps"},{"value":"2,000+","label":"combinations"},{"value":"no","label":"sign-up"}],"de":[{"value":"8","label":"Klicks"},{"value":"2.000+","label":"Kombinationen"},{"value":"ohne","label":"Konto"}],"fr":[{"value":"8","label":"touches"},{"value":"2 000+","label":"combinaisons"},{"value":"sans","label":"compte"}],"it":[{"value":"8","label":"tap"},{"value":"2.000+","label":"combinazioni"},{"value":"senza","label":"account"}]};
+Object.keys(ENHANCED_RESULT_COPY).forEach(function (language) {
+  if (!LANGUAGE_COPY[language]) return;
+  LANGUAGE_COPY[language].results = Object.assign({}, LANGUAGE_COPY[language].results, ENHANCED_RESULT_COPY[language]);
+  LANGUAGE_COPY[language].heroNotes = HERO_NOTE_COPY[language] || LANGUAGE_COPY[language].heroNotes;
+});
 };
 
-var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), analyticsStarted: false, answers: { interests: [] } };
+var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
 var pendingScrollPosition = null;
@@ -2639,10 +2647,15 @@ function interpolate(template, replacements) {
 
 function localizedGift(gift) {
   var titles = GIFT_TITLE_COPY[state.language] || {};
+  var baseId = gift.baseId || gift.id;
+  var recipe = gift._recipe;
+  var angle = recipe && recipe.copy ? (recipe.copy[state.language] || recipe.copy.es) : '';
   return {
-    title: titles[gift.id] || (gift.titles && gift.titles[state.language]) || gift.title,
+    title: titles[baseId] || (gift.titles && gift.titles[state.language]) || gift.title,
     tags: gift.tags,
-    reason: gift.reason
+    reason: gift.reason,
+    angle: angle || '',
+    isDiscovery: !!gift._isDiscovery
   };
 }
 
@@ -2853,7 +2866,58 @@ function hashString(value) {
   return hash >>> 0;
 }
 
-var VARIETY_STORAGE_KEY = 'regalazo-variety-v2';
+var VARIETY_STORAGE_KEY = 'regalazo-variety-v3';
+var GIFT_RECIPES = [{"id":"smart-fit","querySuffix":"regalo bien elegido","copy":{"es":"Apuesta afinada","en":"Fine-tuned pick","de":"Treffsichere Wahl","fr":"Choix bien ciblé","it":"Scelta mirata"},"reason":{"es":"La ruta segura: buscar una versión que encaje con lo que ya disfruta.","en":"The reliable route: look for a version that fits what they already enjoy.","de":"Der sichere Weg: eine Variante finden, die zu dem passt, was diese Person bereits mag.","fr":"La valeur sûre : chercher une version qui correspond à ce que cette personne aime déjà.","it":"La strada sicura: cercare una versione in linea con ciò che questa persona ama già."}},{"id":"personal-touch","querySuffix":"personalizable","copy":{"es":"Con un toque personal","en":"Personal touch","de":"Persönliche Note","fr":"Touche personnelle","it":"Tocco personale"},"reason":{"es":"Busca una variante personalizable para que una idea conocida se sienta hecha a medida.","en":"Look for a customisable version so a familiar idea feels made for them.","de":"Eine personalisierbare Variante macht aus einer bekannten Idee etwas Persönliches.","fr":"Une version personnalisable donne à une idée connue une vraie touche personnelle.","it":"Una versione personalizzabile rende personale anche un’idea già conosciuta."}},{"id":"make-a-plan","querySuffix":"plan experiencia","copy":{"es":"Hazlo un plan","en":"Turn it into a plan","de":"Als Erlebnis verschenken","fr":"À vivre ensemble","it":"Da vivere insieme"},"reason":{"es":"La clave es añadir un plan: que el regalo provoque algo que podáis hacer o disfrutar.","en":"The key is adding a plan: let the gift create something you can do or enjoy together.","de":"Der eigentliche Wert ist das Erlebnis: ein Geschenk, das ihr gemeinsam nutzen oder genießen könnt.","fr":"L’idée est d’en faire un moment à vivre : un cadeau qui crée une activité ou un plaisir partagé.","it":"Il punto è aggiungere un piano: un regalo che crea qualcosa da fare o vivere insieme."}},{"id":"gift-set","querySuffix":"set pack regalo","copy":{"es":"En formato pack","en":"Gift-set angle","de":"Als Geschenkset","fr":"En coffret","it":"In formato set"},"reason":{"es":"Un pack bien elegido multiplica la sensación de regalo y deja más de una forma de usarlo.","en":"A well-chosen set feels more gift-like and gives them more than one way to use it.","de":"Ein gut gewähltes Set wirkt besonders und bietet mehr als eine Möglichkeit, es zu nutzen.","fr":"Un coffret bien choisi renforce l’effet cadeau et offre plusieurs façons de l’utiliser.","it":"Un set scelto bene amplifica l’effetto regalo e offre più di un modo per usarlo."}},{"id":"fresh-twist","querySuffix":"regalo original diferente","copy":{"es":"Giro inesperado","en":"Unexpected twist","de":"Unerwarteter Dreh","fr":"Touche inattendue","it":"Svolta inaspettata"},"reason":{"es":"Cambiamos la ruta habitual por una versión más inesperada, sin alejarnos de sus gustos.","en":"We take a less obvious route without drifting away from what they like.","de":"Eine weniger offensichtliche Richtung, die trotzdem bei den Interessen dieser Person bleibt.","fr":"On sort du chemin évident sans s’éloigner de ce que cette personne aime.","it":"Una strada meno ovvia, ma sempre coerente con ciò che piace a questa persona."}},{"id":"new-find","querySuffix":"novedades tendencia regalo","copy":{"es":"Descubrimiento reciente","en":"Fresh discovery","de":"Neue Entdeckung","fr":"Nouvelle découverte","it":"Scoperta recente"},"reason":{"es":"Ponemos el foco en lo que acaba de aparecer o está ganando tracción en la búsqueda.","en":"We focus on items that are newly appearing or gaining traction in the search.","de":"Der Fokus liegt auf Dingen, die neu auftauchen oder in der Suche an Aufmerksamkeit gewinnen.","fr":"On privilégie ce qui apparaît récemment ou gagne en visibilité dans la recherche.","it":"Diamo priorità a ciò che compare da poco o sta guadagnando attenzione nella ricerca."}},{"id":"small-luxury","querySuffix":"premium calidad","copy":{"es":"Pequeño lujo","en":"Small luxury","de":"Kleiner Luxus","fr":"Petit luxe","it":"Piccolo lusso"},"reason":{"es":"Si el presupuesto lo permite, buscamos una versión con mejores materiales o más presencia.","en":"When the budget allows, look for a version with better materials or more presence.","de":"Wenn das Budget es erlaubt, suchen wir nach besseren Materialien und mehr Präsenz.","fr":"Quand le budget le permet, on cherche une version avec de meilleurs matériaux ou plus de présence.","it":"Se il budget lo permette, cerchiamo una versione con materiali migliori o più presenza."}}];
+
+function recipeCopy(recipe, field) {
+  var copy = recipe && recipe[field] || {};
+  return copy[state.language] || copy.es || '';
+}
+
+function isRecipeCompatible(gift, recipe) {
+  if (!gift || !recipe) return false;
+  if (recipe.id === 'make-a-plan' && ['planes', 'momentos', 'sabores', 'viajes', 'juegos', 'creatividad'].indexOf(gift.category) === -1) return false;
+  if (recipe.id === 'small-luxury' && gift.price < 35) return false;
+  return true;
+}
+
+function composeGift(gift, recipe, answers, variant) {
+  var baseId = gift.baseId || gift.id;
+  var composed = Object.assign({}, gift);
+  var discoveryScore = (hashString('discovery|' + baseId) % 1000) / 1000;
+  if (recipe.id === 'new-find') discoveryScore += 0.35;
+  if (recipe.id === 'fresh-twist') discoveryScore += 0.18;
+  composed.baseId = baseId;
+  composed.id = baseId + '::' + recipe.id;
+  composed._recipeId = recipe.id;
+  composed._recipe = recipe;
+  composed._isDiscovery = recipe.id === 'new-find';
+  composed._discoveryScore = Math.min(1, discoveryScore);
+  composed._compositionSeed = hashString(baseId + '|' + recipe.id + '|' + String(variant));
+  composed.amazonQuery = String(gift.amazonQuery || gift.title) + ' ' + recipe.querySuffix;
+  return composed;
+}
+
+function recipeBoost(gift, mode, answers) {
+  var boost = 0;
+  if (!gift || !gift._recipeId) return boost;
+  if (mode === 'fit' && gift._recipeId === 'smart-fit') boost += 5;
+  if (mode === 'surprise') {
+    if (gift._recipeId === 'fresh-twist') boost += 18;
+    if (gift._recipeId === 'make-a-plan') boost += 6;
+    if (gift._recipeId === 'gift-set') boost += 4;
+    if (gift._recipeId === 'smart-fit') boost -= 3;
+  }
+  if (mode === 'new') {
+    if (gift._recipeId === 'new-find') boost += 28;
+    if (gift._recipeId === 'fresh-twist') boost += 12;
+    boost += Math.round((gift._discoveryScore || 0) * 10);
+  }
+  if (answers && answers.style === 'original' && gift._recipeId === 'fresh-twist') boost += 5;
+  if (answers && answers.style === 'premium' && gift._recipeId === 'small-luxury') boost += 5;
+  return boost;
+}
+
 
 function profileKeyFor(answers) {
   var interests = selectedInterests(answers).slice().sort();
@@ -2892,7 +2956,7 @@ function rememberRecommendations(answers, gifts) {
   gifts.forEach(function (gift) {
     if (gift && ids.indexOf(gift.id) === -1) ids.push(gift.id);
   });
-  store.profiles[key] = ids.slice(-GIFT_CATALOG.length);
+  store.profiles[key] = ids.slice(-Math.max(GIFT_CATALOG.length * GIFT_RECIPES.length, 2500));
   try {
     localStorage.setItem(VARIETY_STORAGE_KEY, JSON.stringify(store));
   } catch (error) {}
@@ -2924,7 +2988,7 @@ var MATCH_RATE_DISCLOSURES = { es: 'El encaje es una estimación basada en tus r
 function formatMatchRate(rate) { return String(rate) + '% · ' + (MATCH_RATE_LABELS[state.language] || MATCH_RATE_LABELS.es); }
 function matchRateDisclosure() { return MATCH_RATE_DISCLOSURES[state.language] || MATCH_RATE_DISCLOSURES.es; }
 
-function scoreGift(gift, answers, budget, interests) {
+function scoreGift(gift, answers, budget, interests, mode) {
   var score = (gift.editorialScore || 0) * 2;
   var overlap = gift.interests.filter(function (interest) { return interests.indexOf(interest) !== -1; }).length;
   score += Math.min(overlap * 8, 20);
@@ -2939,88 +3003,93 @@ function scoreGift(gift, answers, budget, interests) {
   if (!answers.occasion || gift.occasions.indexOf(answers.occasion) !== -1) score += 4;
   if (answers.relation === 'child' && gift.ages.indexOf('child') !== -1) score += 5;
   score += giftFitScore(gift, answers, budget, interests) * 0.12;
+  score += recipeBoost(gift, mode, answers);
   return score;
 }
 
 function chooseDiverseGiftItems(items, limit) {
   var result = [];
   var categoryCounts = {};
+  var baseCounts = {};
   [1, 2].forEach(function (maxPerCategory) {
     items.forEach(function (item) {
       if (result.length >= limit || result.indexOf(item) !== -1) return;
       var category = item.gift.category;
+      var baseId = item.gift.baseId || item.gift.id;
       var count = categoryCounts[category] || 0;
-      if (count < maxPerCategory) {
-        result.push(item);
-        categoryCounts[category] = count + 1;
-      }
+      if (baseCounts[baseId] || count >= maxPerCategory) return;
+      result.push(item);
+      categoryCounts[category] = count + 1;
+      baseCounts[baseId] = 1;
     });
   });
   if (result.length < limit) {
     items.forEach(function (item) {
-      if (result.length < limit && result.indexOf(item) === -1) result.push(item);
-    });
-  }
-  return result.slice(0, limit);
-}
-
-function rankGifts(answers, variant) {
+      vafunction rankGifts(answers, variant) {
   variant = Number.isFinite(variant) ? variant : 0;
   var budget = budgetFor(answers.budget);
   var interests = selectedInterests(answers);
   var profileKey = profileKeyFor(answers);
   var seenIds = seenIdsFor(answers);
   var recentIds = state && Array.isArray(state.lastRecommendationIds) ? state.lastRecommendationIds : [];
-  var ranked = GIFT_CATALOG.map(function (gift, index) {
-    var baseScore = scoreGift(gift, answers, budget, interests);
-    var variety = (hashString(profileKey + '|' + String(variant) + '|' + gift.id) % 10000) / 10000;
-    return {
-      gift: gift,
-      baseScore: baseScore,
-      fresh: seenIds.indexOf(gift.id) === -1,
-      recent: recentIds.indexOf(gift.id) !== -1,
-      selectionScore: baseScore * 3 + variety * 12,
-      index: index
-    };
+  var mode = state && state.recommendationMode || 'fit';
+  var candidateItems = [];
+  GIFT_CATALOG.forEach(function (baseGift, index) {
+    GIFT_RECIPES.forEach(function (recipe, recipeIndex) {
+      if (!isRecipeCompatible(baseGift, recipe)) return;
+      var gift = composeGift(baseGift, recipe, answers, variant);
+      var baseScore = scoreGift(gift, answers, budget, interests, mode);
+      var variety = (hashString(profileKey + '|' + String(variant) + '|' + gift.id) % 10000) / 10000;
+      var fresh = seenIds.indexOf(gift.id) === -1;
+      var recent = recentIds.indexOf(gift.id) !== -1;
+      var modeBoost = mode === 'new' && gift._isDiscovery ? 12 : 0;
+      candidateItems.push({ gift: gift, baseScore: baseScore, fresh: fresh, recent: recent, selectionScore: baseScore * 3 + variety * 14 + modeBoost, index: index * 10 + recipeIndex });
+    });
   });
-  ranked.sort(function (a, b) { return b.baseScore - a.baseScore || a.index - b.index; });
-  var budgetRanked = ranked.filter(function (item) { return item.gift.price <= budget.max; });
-  if (budgetRanked.length) ranked = budgetRanked;
+  candidateItems.sort(function (a, b) { return b.baseScore - a.baseScore || b.selectionScore - a.selectionScore || a.index - b.index; });
+  var budgetRanked = candidateItems.filter(function (item) { return item.gift.price <= budget.max; });
+  var ranked = budgetRanked.length ? budgetRanked : candidateItems;
   var topScore = ranked.length ? ranked[0].baseScore : 0;
   var freshStrong = ranked.filter(function (item) { return item.fresh && item.baseScore >= topScore - 12; });
-  var freshGood = ranked.filter(function (item) { return item.fresh && item.baseScore >= topScore - 18; });
-  var candidateItems = freshStrong.length >= 10 ? freshStrong : (freshGood.length >= 10 ? freshGood : freshGood.slice());
-  var alreadyIncluded = candidateItems.map(function (item) { return item.gift.id; });
+  var freshGood = ranked.filter(function (item) { return item.fresh && item.baseScore >= topScore - 20; });
+  var candidatePool = freshStrong.length >= 10 ? freshStrong : (freshGood.length >= 10 ? freshGood : freshGood.slice());
+  var alreadyIncluded = candidatePool.map(function (item) { return item.gift.id; });
   var seenGood = ranked.filter(function (item) {
-    return !item.fresh && item.baseScore >= topScore - 12 && alreadyIncluded.indexOf(item.gift.id) === -1;
+    return !item.fresh && item.baseScore >= topScore - 14 && alreadyIncluded.indexOf(item.gift.id) === -1;
   });
-  if (candidateItems.length < 10) {
+  if (candidatePool.length < 10) {
     seenGood.forEach(function (item) {
-      if (candidateItems.length < 16 && alreadyIncluded.indexOf(item.gift.id) === -1) {
-        candidateItems.push(item);
+      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.gift.id) === -1) {
+        candidatePool.push(item);
         alreadyIncluded.push(item.gift.id);
       }
     });
   }
-  if (candidateItems.length < 10) {
+  if (candidatePool.length < 10) {
     ranked.forEach(function (item) {
-      if (candidateItems.length < 16 && alreadyIncluded.indexOf(item.gift.id) === -1 && item.baseScore >= topScore - 24) {
-        candidateItems.push(item);
+      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.gift.id) === -1 && item.baseScore >= topScore - 28) {
+        candidatePool.push(item);
         alreadyIncluded.push(item.gift.id);
       }
     });
   }
-  candidateItems.forEach(function (item) {
-    item.selectionScore += item.fresh ? 10 : 0;
-    if (item.recent) item.selectionScore -= 100;
+  candidatePool.forEach(function (item) {
+    item.selectionScore += item.fresh ? 12 : 0;
+    if (item.recent) item.selectionScore -= 120;
   });
-  candidateItems.sort(function (a, b) {
+  candidatePool.sort(function (a, b) {
     return b.selectionScore - a.selectionScore || b.baseScore - a.baseScore || a.index - b.index;
   });
-  var selected = chooseDiverseGiftItems(candidateItems, 10);
+  var selected = chooseDiverseGiftItems(candidatePool, 10);
   if (selected.length < 10) {
+    var selectedBases = {};
+    selected.forEach(function (item) { selectedBases[item.gift.baseId || item.gift.id] = 1; });
     ranked.forEach(function (item) {
-      if (selected.length < 10 && selected.every(function (chosen) { return chosen.gift !== item.gift; })) selected.push(item);
+      var baseId = item.gift.baseId || item.gift.id;
+      if (selected.length < 10 && !selectedBases[baseId]) {
+        selected.push(item);
+        selectedBases[baseId] = 1;
+      }
     });
   }
   return selected.slice(0, 10).map(function (item) { return item.gift; });
@@ -3035,17 +3104,23 @@ function buildAmazonUrl(gift, answers) {
   params.set('k', gift.amazonQuery);
   params.set('high-price', String(budgetFor(answers.budget).max));
   if (APP_CONFIG.affiliateTag) params.set('tag', APP_CONFIG.affiliateTag);
+  if (state && state.recommendationMode === 'new') {
+    params.set('s', 'date-desc-rank');
+    params.set('ref', 'sr_st_date-desc-rank');
+  }
   return 'https://' + amazonDomain(answers.country || APP_CONFIG.defaultCountry) + '/s?' + params.toString();
 }
 
 function buildReason(gift, answers) {
   var interests = selectedInterests(answers);
   var matches = gift.interests.filter(function (interest) { return interests.indexOf(interest) !== -1; });
+  var angleReason = gift._recipe && gift._recipe.reason ? recipeCopy(gift._recipe, 'reason') : '';
+  var reason = angleReason ? angleReason + ' ' + gift.reason : gift.reason;
   if (matches.length) {
     var labels = matches.slice(0, 2).map(function (interest) { return getLabel('interests', interest).toLowerCase(); });
-    return 'Conecta con ' + labels.join(' y ') + ' y mantiene un tono ' + getLabel('style', answers.style).toLowerCase() + '. ' + gift.reason;
+    return 'Conecta con ' + labels.join(' y ') + ' y mantiene un tono ' + getLabel('style', answers.style).toLowerCase() + '. ' + reason;
   }
-  return gift.reason;
+  return reason;
 }
 
 function summaryChips(answers) {
@@ -3113,39 +3188,50 @@ function celebrate() {
   window.requestAnimationFrame(draw);
 }
 
+function modeButtonMarkup(mode, label, active) {
+  return '<button class="mode-button' + (active ? ' is-active' : '') + '" type="button" data-action="mode" data-mode="' + escapeHtml(mode) + '" aria-pressed="' + String(active) + '">' + escapeHtml(label) + '</button>';
+}
+
 function renderResults(shouldCelebrate, preserveRecommendations) {
   var copy = currentCopy();
   if (!preserveRecommendations || !currentRecommendations.length) {
     currentRecommendations = rankGifts(state.answers, state.variant);
     state.lastRecommendationIds = currentRecommendations.map(function (gift) { return gift.id; });
     rememberRecommendations(state.answers, currentRecommendations);
-    trackEvent('recommendations_viewed', { resultCount: currentRecommendations.length, variant: state.variant });
+    trackEvent('recommendations_viewed', { resultCount: currentRecommendations.length, variant: state.variant, mode: state.recommendationMode || 'fit' });
   }
   var title = copy.results.genericTitle + '.';
   var relation = getLabel('relation', state.answers.relation).toLowerCase();
   if (state.answers.relation && state.answers.relation !== 'other') {
     title = interpolate(copy.results.relationTitle, { relation: relation });
   }
+  var activeMode = state.recommendationMode || 'fit';
+  var modeButtons = modeButtonMarkup('fit', copy.results.modeFit, activeMode === 'fit') + modeButtonMarkup('surprise', copy.results.modeSurprise, activeMode === 'surprise') + modeButtonMarkup('new', copy.results.modeNew, activeMode === 'new');
   results.innerHTML = '<div class="results-head">' +
     '<p class="results-kicker">' + escapeHtml(copy.results.ready) + '</p>' +
     '<h2 id="results-title">' + escapeHtml(title) + '</h2>' +
     '<p class="results-intro">' + escapeHtml(copy.results.intro) + '</p>' +
     '<div class="summary-chips" aria-label="' + escapeHtml(copy.results.chips) + '">' + summaryChips(state.answers) + '</div>' +
     '</div>' +
+    '<div class="results-mode-panel" aria-label="' + escapeHtml(copy.results.modeLabel) + '"><span class="results-mode-label">' + escapeHtml(copy.results.modeLabel) + '</span><div class="results-modes" role="group">' + modeButtons + '</div><p class="results-mode-hint">' + escapeHtml(copy.results.modeHint) + '</p></div>' +
     '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">' + escapeHtml(copy.results.adjust) + '</button><button class="button button-ghost" type="button" data-action="refresh">' + escapeHtml(copy.results.refresh) + '</button><button class="button button-ghost" type="button" data-action="share">' + escapeHtml(copy.results.share) + '</button></div>' +
+    '<aside class="share-card"><span class="share-card-icon" aria-hidden="true">↗</span><div class="share-card-copy"><p class="share-card-kicker">' + escapeHtml(copy.results.shareTitle) + '</p><p>' + escapeHtml(copy.results.shareCopy) + '</p></div><button class="button button-primary share-card-button" type="button" data-action="share">' + escapeHtml(copy.results.shareButton) + '</button></aside>' +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
       var localized = localizedGift(gift);
       var tags = localized.tags.map(function (tag) { return '<span class="gift-tag">' + escapeHtml(tag) + '</span>'; }).join('');
-      return '<article class="gift-card' + (index === 0 ? ' gift-card-featured' : '') + '" style="--gift-index: ' + index + ';">' +
+      var discovery = activeMode === 'new' || localized.isDiscovery;
+      var cardClass = 'gift-card' + (index === 0 ? ' gift-card-featured' : '') + (discovery ? ' gift-card-discovery' : '');
+      var angle = localized.angle ? '<p class="gift-angle"><span class="gift-angle-mark" aria-hidden="true">✦</span>' + escapeHtml(localized.angle) + (discovery ? ' <span class="gift-new-badge">' + escapeHtml(copy.results.newBadge) + '</span>' : '') + '</p>' : '';
+      return '<article class="' + cardClass + '" style="--gift-index: ' + index + ';">' +
         (index === 0 ? '<p class="gift-badge">' + escapeHtml(copy.results.badge) + '</p>' : '') +
         '<div class="gift-card-top"><span class="gift-number">' + String(index + 1).padStart(2, '0') + '</span><span class="gift-icon" aria-hidden="true">' + gift.icon + '</span></div>' +
-        '<h3>' + escapeHtml(localized.title) + '</h3><p class="gift-price">' + escapeHtml(interpolate(copy.results.price, { price: gift.price })) + '</p>' +
+        '<h3>' + escapeHtml(localized.title) + '</h3><p class="gift-price">' + escapeHtml(interpolate(copy.results.price, { price: gift.price })) + '</p>' + angle +
         '<div class="gift-match" aria-label="' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '"><span class="gift-match-label">' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '</span><span class="gift-match-track" aria-hidden="true"><span class="gift-match-fill" style="width: ' + String(giftMatchRate(gift, state.answers)) + '%;"></span></span></div>' +
         '<p class="gift-reason">' + escapeHtml(buildReason(gift, state.answers)) + '</p>' +
         '<div class="gift-tags">' + tags + '</div>' +
         '<a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a></article>';
     }).join('') + '</div>' +
-    '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure()) + '</p>';
+    '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure() + (activeMode === 'new' ? ' ' + copy.results.noveltyNote : '')) + '</p>';
   hero.hidden = true;
   wizard.hidden = true;
   trustStrip.hidden = true;
@@ -3177,7 +3263,15 @@ function showWizardAtLastStep() {
 
 function resetApp() {
   trackEvent('quiz_reset', {});
-  state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, analyticsStarted: false, answers: { interests: [] } };
+  try {
+    var resetUrl = new URL(window.location.href);
+    if (resetUrl.searchParams.get('r') === '1') {
+      resetUrl.searchParams.delete('r');
+      ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country', 'interests', 'mode', 'utm_source', 'utm_medium'].forEach(function (key) { resetUrl.searchParams.delete(key); });
+      window.history.replaceState({}, '', resetUrl.pathname + (resetUrl.search ? resetUrl.search : '') + resetUrl.hash);
+    }
+  } catch (error) {}
+  state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
   applyLanguage();
   hero.hidden = false;
   wizard.hidden = false;
@@ -3198,15 +3292,63 @@ function recordClick(giftId, position) {
   trackEvent('gift_outbound_clicked', { giftId: giftId, position: position ? Number(position) : null, country: state.answers.country || APP_CONFIG.defaultCountry });
 }
 
+function buildShareUrl() {
+  var params = new URLSearchParams();
+  params.set('r', '1');
+  ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country'].forEach(function (key) {
+    if (state.answers[key]) params.set(key, state.answers[key]);
+  });
+  params.set('interests', selectedInterests(state.answers).join(','));
+  params.set('mode', state.recommendationMode || 'fit');
+  params.set('utm_source', 'share');
+  params.set('utm_medium', 'regalazo');
+  return window.location.origin + window.location.pathname + '?' + params.toString();
+}
+
+function isValidSharedValue(questionId, value) {
+  var question = getQuestion(questionId);
+  return !!(question && value && question.options.some(function (option) { return option.value === value; }));
+}
+
+function readSharedAnswers() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('r') !== '1') return null;
+    var answers = { interests: [] };
+    ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country'].forEach(function (key) {
+      var value = params.get(key);
+      if (isValidSharedValue(key, value)) answers[key] = value;
+    });
+    var interests = (params.get('interests') || '').split(',').filter(function (value) { return isValidSharedValue('interests', value); }).slice(0, 3);
+    if (!answers.relation || !answers.gender || !answers.age || !answers.occasion || !answers.budget || !answers.style || !answers.country || !interests.length) return null;
+    answers.interests = interests;
+    return answers;
+  } catch (error) {
+    return null;
+  }
+}
+
+function readSharedMode() {
+  try {
+    var mode = new URLSearchParams(window.location.search).get('mode');
+    return ['fit', 'surprise', 'new'].indexOf(mode) !== -1 ? mode : 'fit';
+  } catch (error) {
+    return 'fit';
+  }
+}
+
 function shareSelection() {
   var copy = currentCopy();
-  trackEvent('share_clicked', {});
+  var url = buildShareUrl();
+  trackEvent('share_clicked', { mode: state.recommendationMode || 'fit' });
   if (navigator.share) {
-    navigator.share({ title: copy.results.share, text: copy.results.shareText, url: window.location.href }).catch(function () {});
+    navigator.share({ title: copy.results.share, text: copy.results.shareText, url: url }).then(function () {
+      trackEvent('share_completed', { method: 'native', mode: state.recommendationMode || 'fit' });
+    }).catch(function () {});
     return;
   }
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(window.location.href).then(function () { showToast(copy.messages.copied); }).catch(function () { showToast(copy.messages.copyHint); });
+    navigator.clipboard.writeText(url).then(function () { showToast(copy.messages.copied); trackEvent('share_completed', { method: 'clipboard', mode: state.recommendationMode || 'fit' }); }).catch(function () { showToast(copy.messages.copyHint); });
   } else {
     showToast(copy.messages.copyHint);
   }
@@ -3258,7 +3400,16 @@ results.addEventListener('click', function (event) {
   var action = event.target.closest('[data-action]');
   if (action) {
     if (action.getAttribute('data-action') === 'adjust') showWizardAtLastStep();
-    if (action.getAttribute('data-action') === 'refresh') { state.variant += 1; trackEvent('recommendations_refreshed', { variant: state.variant }); renderResults(false); }
+    if (action.getAttribute('data-action') === 'refresh') { state.variant += 1; trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' }); renderResults(false); }
+    if (action.getAttribute('data-action') === 'mode') {
+      var nextMode = action.getAttribute('data-mode');
+      if (['fit', 'surprise', 'new'].indexOf(nextMode) !== -1 && nextMode !== state.recommendationMode) {
+        state.recommendationMode = nextMode;
+        state.variant += 1;
+        trackEvent('recommendations_mode_changed', { mode: nextMode, variant: state.variant });
+        renderResults(false);
+      }
+    }
     if (action.getAttribute('data-action') === 'share') shareSelection();
     return;
   }
@@ -3294,6 +3445,15 @@ if (languageSelect) {
   languageSelect.addEventListener('change', function (event) {
     setLanguage(event.target.value);
   });
+}
+
+var sharedAnswers = readSharedAnswers();
+if (sharedAnswers) {
+  state.answers = sharedAnswers;
+  state.step = QUESTIONS.length;
+  state.recommendationMode = readSharedMode();
+  state.variant = hashString(window.location.search);
+  trackEvent('shared_result_opened', { mode: state.recommendationMode });
 }
 
 applyLanguage();
