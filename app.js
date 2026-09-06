@@ -280,9 +280,15 @@ function budgetFor(value) {
   return option || { label: 'Hasta 40 €', max: 40 };
 }
 
+function selectedInterests(answers) {
+  var value = answers && answers.interests;
+  if (Array.isArray(value)) return value;
+  return value ? [value] : [];
+}
+
 function rankGifts(answers) {
   var budget = budgetFor(answers.budget);
-  var interests = Array.isArray(answers.interests) ? answers.interests : [];
+  var interests = selectedInterests(answers);
   var ranked = GIFT_CATALOG.map(function (gift, index) {
     var score = gift.editorialScore || 0;
     var overlap = gift.interests.filter(function (interest) { return interests.indexOf(interest) !== -1; }).length;
@@ -328,7 +334,8 @@ function buildAmazonUrl(gift, answers) {
 }
 
 function buildReason(gift, answers) {
-  var matches = gift.interests.filter(function (interest) { return (answers.interests || []).indexOf(interest) !== -1; });
+  var interests = selectedInterests(answers);
+  var matches = gift.interests.filter(function (interest) { return interests.indexOf(interest) !== -1; });
   if (matches.length) {
     var labels = matches.slice(0, 2).map(function (interest) { return getLabel('interests', interest).toLowerCase(); });
     return 'Conecta con ' + labels.join(' y ') + ' y mantiene un tono ' + getLabel('style', answers.style).toLowerCase() + '. ' + gift.reason;
@@ -338,7 +345,7 @@ function buildReason(gift, answers) {
 
 function summaryChips(answers) {
   var chips = [getLabel('relation', answers.relation), getLabel('gender', answers.gender), getLabel('age', answers.age), getLabel('occasion', answers.occasion), budgetFor(answers.budget).label, getLabel('style', answers.style), getLabel('country', answers.country)];
-  (answers.interests || []).slice(0, 3).forEach(function (interest) { chips.push(getLabel('interests', interest)); });
+  selectedInterests(answers).slice(0, 3).forEach(function (interest) { chips.push(getLabel('interests', interest)); });
   return chips.filter(Boolean).map(function (chip) { return '<span class="summary-chip">' + escapeHtml(chip) + '</span>'; }).join('');
 }
 
