@@ -1046,7 +1046,7 @@ body {
   position: fixed;
   z-index: 18;
   right: 18px;
-  bottom: 72px;
+  bottom: max(12px, env(safe-area-inset-bottom, 0px));
   left: 18px;
   display: grid;
   grid-template-columns: 30px minmax(0, 1fr) auto auto;
@@ -1107,7 +1107,7 @@ body {
 
 @media (max-width: 520px) {
   .weekly-discovery { margin-right: 0; margin-left: 0; }
-  .pwa-prompt { right: 12px; bottom: 72px; left: 12px; grid-template-columns: 30px minmax(0, 1fr) auto auto; padding: 8px; }
+  .pwa-prompt { right: 12px; bottom: max(12px, env(safe-area-inset-bottom, 0px)); left: 12px; grid-template-columns: 30px minmax(0, 1fr) auto auto; padding: 8px; }
   .pwa-prompt-icon { width: 30px; height: 30px; }
   .pwa-prompt-copy span { display: none; }
   .pwa-prompt .button { grid-column: auto; justify-self: auto; }
