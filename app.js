@@ -2183,7 +2183,7 @@ function makeQuestionCopy(kicker, title, subtitle, options) {
 var LANGUAGE_COPY = {
   es: {
     locale: 'es', label: 'Español', pickerLabel: 'Idioma', stepPrefix: 'Paso ', stepJoin: ' de ',
-    heroEyebrow: 'Ideas para regalos', heroTitle: 'Encuentra un regalo de cumpleaños que encaje de verdad.', heroCopy: 'Responde con unos toques y descubre 10 ideas de regalos de cumpleaños según la persona, la ocasión, sus gustos y tu presupuesto.', heroNotes: [{ value: '8', label: 'toques' }, { value: '10', label: 'ideas' }, { value: 'sin', label: 'registro' }],
+    heroEyebrow: 'Ideas para regalos', heroTitle: 'Encuentra un regalo de cumpleaños que encaje de verdad.', heroCopy: 'Responde con unos toques y descubre 10 ideas de regalos de cumpleaños según la persona, la ocasión, sus gustos y tu presupuesto.', heroNotes: [{ value: '8', label: 'toques' }, { value: '10', label: 'ideas' }, { value: 'sin', label: 'cuenta' }],
     trust: [{ title: 'Ideas pensadas', detail: 'Mezcla de clásicos y sorpresas' }, { title: 'Enlaces claros', detail: 'Te llevamos a una búsqueda relevante' }, { title: 'Sin cuenta', detail: 'Tus respuestas se quedan en tu navegador' }],
     keyboardHint: 'Toca una opción y pasaremos al siguiente paso. No hace falta escribir nombres ni descripciones.',
     messages: { choose: 'Elige una opción para continuar.', chooseInterest: 'Elige al menos un gusto para continuar.', maxInterests: 'Elige hasta 3 gustos para que las ideas no se dispersen.', multiHint: 'Puedes elegir hasta 3 opciones', copied: 'Enlace copiado.', copyHint: 'Copia el enlace de esta página para compartirlo.' },
