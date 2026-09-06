@@ -1266,7 +1266,7 @@ body {
 
   .share-channel { min-width: 0; padding-right: 7px; padding-left: 7px; }
   .weekly-discovery { margin-right: 0; margin-left: 0; }
-  .pwa-prompt { right: 10px; bottom: 10px; left: 10px; grid-template-columns: 34px minmax(0, 1fr) auto; padding: 10px; }
+  .pwa-prompt { right: 10px; bottom: 68px; left: 10px; grid-template-columns: 34px minmax(0, 1fr) auto; padding: 10px; }
   .pwa-prompt-icon { width: 34px; height: 34px; }
   .pwa-prompt-copy span { max-height: 2.6em; overflow: hidden; }
   .pwa-prompt .button { grid-column: 2; justify-self: start; }

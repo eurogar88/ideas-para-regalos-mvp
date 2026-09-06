@@ -2588,6 +2588,16 @@ var GROWTH_COPY = {
   fr: { challengeHeading: 'Défi cadeau', challengeIntro: 'Choisissez votre préférée et défiez quelqu’un : allez-vous choisir la même ?', challengeIncomingHeading: 'Quelqu’un vous a envoyé son radar', challengeIncomingIntro: 'Un choix existe déjà de l’autre côté. Faites le vôtre et comparez.', challengeChoiceHeading: 'Votre choix est fait', challengeCurrentIntro: 'Vous avez choisi {current}. Partagez-le et défiez quelqu’un.', challengeMatchHeading: 'Vous êtes d’accord !', challengeDifferentHeading: 'Vous avez des goûts différents', challengeCompare: 'Vous : {previous}. L’autre choix : {current}.', challengePick: 'Je choisirais celui-ci', challengePicked: 'Votre choix', challengeShare: 'Partager le défi', whatsapp: 'WhatsApp', telegram: 'Telegram', saveCard: 'Enregistrer la carte', cardSaved: 'Carte prête à partager.', cardDownloaded: 'La carte a été enregistrée comme image.', cardUnavailable: 'Impossible de créer l’image ; partagez plutôt le lien.', weeklyBadge: 'Découverte de la semaine', weeklyIntro: 'Une idée différente du catalogue pour sortir de l’évidence : {title}.', weeklyLink: 'Ouvrir le radar', weeklyPricePrefix: 'Prix indicatif', installTitle: 'Emportez Regalazo', installText: 'Installez le radar pour l’avoir sous la main au prochain anniversaire.', installButton: 'Installer', installDismiss: 'Pas maintenant' },
   it: { challengeHeading: 'Sfida regalo', challengeIntro: 'Scegli il tuo preferito e sfida qualcuno: sceglierete la stessa idea?', challengeIncomingHeading: 'Qualcuno ti ha inviato il suo radar', challengeIncomingIntro: 'Dall’altra parte c’è già una scelta. Fai la tua e confrontatevi.', challengeChoiceHeading: 'La tua scelta è fatta', challengeCurrentIntro: 'Hai scelto {current}. Condividilo e sfida qualcun altro.', challengeMatchHeading: 'Avete scelto lo stesso!', challengeDifferentHeading: 'Avete gusti diversi', challengeCompare: 'Tu: {previous}. L’altra scelta: {current}.', challengePick: 'Sceglierei questo', challengePicked: 'La tua scelta', challengeShare: 'Condividi la sfida', whatsapp: 'WhatsApp', telegram: 'Telegram', saveCard: 'Salva scheda', cardSaved: 'Scheda pronta da condividere.', cardDownloaded: 'La scheda è stata salvata come immagine.', cardUnavailable: 'Impossibile creare l’immagine; condividi il link.', weeklyBadge: 'Scoperta della settimana', weeklyIntro: 'Un’idea diversa dal catalogo per uscire dal solito: {title}.', weeklyLink: 'Apri il radar', weeklyPricePrefix: 'Prezzo indicativo', installTitle: 'Porta Regalazo con te', installText: 'Installa il radar per averlo pronto al prossimo compleanno.', installButton: 'Installa', installDismiss: 'Non ora' }
 };
+GROWTH_COPY.es.challengeIncomingIntro = 'La otra persona ha elegido “{previous}”. Elige la tuya y descubre si coincidís.';
+GROWTH_COPY.en.challengeIncomingIntro = 'They picked “{previous}”. Pick yours and see if you match.';
+GROWTH_COPY.de.challengeIncomingIntro = 'Die andere Person hat „{previous}“ gewählt. Wähle deine und vergleicht euch.';
+GROWTH_COPY.fr.challengeIncomingIntro = 'L’autre personne a choisi « {previous} ». Faites le vôtre et comparez.';
+GROWTH_COPY.it.challengeIncomingIntro = 'L’altra persona ha scelto “{previous}”. Fai la tua e confrontatevi.';
+Object.assign(GROWTH_COPY.es, { cardBrand: 'REGALAZO', cardIdea: 'IDEA DE REGALO', cardChallenge: 'RETO DE REGALO', cardDiscover: 'Descubre tu idea en', cardFooter: 'Sin cuenta · resultados personalizados · Amazon' });
+Object.assign(GROWTH_COPY.en, { cardBrand: 'REGALAZO', cardIdea: 'GIFT IDEA', cardChallenge: 'GIFT CHALLENGE', cardDiscover: 'Discover your idea at', cardFooter: 'No account · personalised results · Amazon' });
+Object.assign(GROWTH_COPY.de, { cardBrand: 'REGALAZO', cardIdea: 'GESCHENKIDEE', cardChallenge: 'GESCHENK-CHALLENGE', cardDiscover: 'Entdecke deine Idee auf', cardFooter: 'Ohne Konto · personalisierte Ergebnisse · Amazon' });
+Object.assign(GROWTH_COPY.fr, { cardBrand: 'REGALAZO', cardIdea: 'IDÉE CADEAU', cardChallenge: 'DÉFI CADEAU', cardDiscover: 'Découvrez votre idée sur', cardFooter: 'Sans compte · résultats personnalisés · Amazon' });
+Object.assign(GROWTH_COPY.it, { cardBrand: 'REGALAZO', cardIdea: 'IDEA REGALO', cardChallenge: 'SFIDA REGALO', cardDiscover: 'Scopri la tua idea su', cardFooter: 'Senza account · risultati personalizzati · Amazon' });
 Object.keys(ENHANCED_RESULT_COPY).forEach(function (language) {
   if (!LANGUAGE_COPY[language]) return;
   LANGUAGE_COPY[language].results = Object.assign({}, LANGUAGE_COPY[language].results, ENHANCED_RESULT_COPY[language]);
@@ -3325,7 +3335,7 @@ function challengeCardMarkup(copy) {
     intro = interpolate(growth.challengeCompare, { previous: localizedGift(previous).title, current: localizedGift(choice).title });
   } else if (previous) {
     heading = growth.challengeIncomingHeading;
-    intro = growth.challengeIncomingIntro;
+    intro = interpolate(growth.challengeIncomingIntro, { previous: localizedGift(previous).title });
   } else if (choice) {
     heading = growth.challengeChoiceHeading;
     intro = interpolate(growth.challengeCurrentIntro, { current: localizedGift(choice).title });
@@ -3382,7 +3392,7 @@ function createShareCard() {
   context.fillRect(0, 0, 1080, 1350);
   context.fillStyle = '#b64b3c';
   context.font = '800 34px Arial, sans-serif';
-  context.fillText('REGALAZO · ' + (state.challengeChoice ? 'RETO DE REGALO' : 'IDEA DE REGALO'), 80, 112);
+  context.fillText((growth.cardBrand || 'REGALAZO') + ' · ' + (state.challengeChoice ? (growth.cardChallenge || 'GIFT CHALLENGE') : (growth.cardIdea || 'GIFT IDEA')), 80, 112);
   context.fillStyle = '#29241f';
   context.font = '900 72px Arial, sans-serif';
   var titleLines = drawWrappedText(context, localized.title, 80, 270, 900, 86, 4);
@@ -3396,12 +3406,12 @@ function createShareCard() {
   context.font = '900 92px Arial, sans-serif';
   context.fillText(gift.icon, 80, 1090);
   context.font = '800 32px Arial, sans-serif';
-  context.fillText('Descubre tu idea en', 230, 1050);
+  context.fillText(growth.cardDiscover || 'Discover your idea at', 230, 1050);
   context.fillStyle = '#b64b3c';
   context.fillText('ideas-para-regalos-mvp.netlify.app', 230, 1100);
   context.fillStyle = '#756d65';
   context.font = '500 28px Arial, sans-serif';
-  context.fillText('Sin registro · resultados personalizados · Amazon', 80, 1235);
+  context.fillText(growth.cardFooter || 'No account · personalised results · Amazon', 80, 1235);
   canvas.toBlob(function (blob) {
     if (!blob) {
       showToast(growth.cardUnavailable);
