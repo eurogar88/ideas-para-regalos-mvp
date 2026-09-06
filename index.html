@@ -42,7 +42,7 @@
       }
     </script>
     <link rel="stylesheet" href="/styles.css?v=ui-polish-1">
-    <script defer src="/app.js?v=ui-polish-4"></script>
+    <script defer src="/app.js?v=ui-polish-5"></script>
   </head>
   <body>
     <div class="page-shell">
@@ -51,7 +51,16 @@
           <span class="brand-mark" aria-hidden="true">🎁</span>
           <span>Regalazo</span>
         </a>
-        <span class="header-pill">sin registro</span>
+        <label class="language-picker">
+          <span class="sr-only">Idioma</span>
+          <select id="language-select" aria-label="Idioma">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+          </select>
+        </label>
       </header>
 
       <main id="app" class="app-main">
