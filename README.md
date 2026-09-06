@@ -4,13 +4,13 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 
 ## Estado actual
 
-- Asistente de 7 pasos: relación, edad aproximada, ocasión, presupuesto, intereses, estilo y país del comprador.
+- Asistente de 8 pasos: relación, género, edad aproximada, ocasión, presupuesto, gusto principal, estilo y país del comprador.
 - Motor determinista local con catálogo editorial y ranking por coincidencias.
 - Diez recomendaciones con título, motivo, precio orientativo y enlace de búsqueda relevante.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
 - Etiqueta de afiliación heredada de la configuración del GPT: lamamihacker-21. Debe verificarse en la cuenta de Amazon Associates antes de considerarla operativa.
 - Sin registro, sin nombres y sin datos enviados a un servidor.
-- Sin runtime de OpenClaw y sin llamadas a modelos de IA en esta primera versión.
+- Sin runtime de OpenClaw y sin llamadas a modelos de IA en esta primera versión. La IA queda como extensión opcional para más adelante, no como coste fijo del MVP.
 
 ## URLs
 
@@ -26,7 +26,7 @@ La base funcional procede del GPT público Ideas Para Regalos GPT 🎁 Haz el Re
 - URL pública: https://chatgpt.com/g/g-681e4e889c888191aad9c3eb7fc11b30-ideas-para-regalos-gpt-haz-el-regalo-perfecto
 - Configuración recuperada desde su editor: 10 ideas personalizadas, mezcla de opciones prácticas y originales, enlaces de búsqueda de Amazon por país y etiqueta de afiliación.
 
-El GPT pedía originalmente, en una línea y separadas por comas: edad y género, relación, cosas que le gustan, presupuesto máximo, ocasión, estilo o vibra y país del comprador. El MVP conserva esas señales, pero las convierte en una secuencia guiada de pulsaciones para reducir la escritura.
+El GPT pedía originalmente, en una línea y separadas por comas: edad y género, relación, cosas que le gustan, presupuesto máximo, ocasión, estilo o vibra y país del comprador. El MVP conserva esas señales, añade género y las convierte en una secuencia guiada de pulsaciones para reducir la escritura. Cada elección avanza automáticamente; el paso de gustos recoge un gusto principal para mantener el flujo de un toque por pregunta.
 
 La auditoría completa, incluida la versión inglesa relacionada y lo que todavía falta confirmar, está en docs/gpt-recovery.md.
 
@@ -48,9 +48,9 @@ La rama main está conectada al proyecto de Netlify. Cada cambio publicado en Gi
 
 Para una prueba local, sirve la raíz con cualquier servidor estático, por ejemplo: python3 -m http.server 4173. Después abre http://localhost:4173/.
 
-## Antes de activar IA
+## Antes de activar IA (si algún día compensa)
 
-Falta confirmar con el propietario del GPT: ejemplos reales de 2–5 conversaciones que representen el criterio deseado, preferencias editoriales y exclusiones, estado real de la etiqueta y marketplaces de Amazon, fuente y actualización de precios/productos, y modelo, presupuesto y límites de coste para producción.
+Si algún día se prueba IA, primero habrá que confirmar con el propietario del GPT ejemplos reales de 2–5 conversaciones que representen el criterio deseado, preferencias editoriales y exclusiones, estado real de la etiqueta y marketplaces de Amazon, fuente y actualización de precios/productos, y un presupuesto explícito. No se activa ahora porque el objetivo del MVP es mantener el coste en cero.
 
 ## Afiliación y transparencia
 
