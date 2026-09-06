@@ -173,6 +173,7 @@ var pendingScrollPosition = null;
 var hero = document.getElementById('hero');
 var wizard = document.getElementById('wizard');
 var trustStrip = document.querySelector('.trust-strip');
+var seoContent = document.querySelector('.seo-content');
 var results = document.getElementById('results');
 var questionRegion = document.getElementById('question-region');
 var stepLabel = document.getElementById('step-label');
@@ -438,6 +439,8 @@ function renderResults() {
   hero.hidden = true;
   wizard.hidden = true;
   trustStrip.hidden = true;
+  seoContent.hidden = true;
+  window.scrollTo(0, 0);
   results.hidden = false;
   results.classList.remove('results-transition');
   void results.offsetWidth;
@@ -449,6 +452,7 @@ function showWizardAtLastStep() {
   hero.hidden = false;
   wizard.hidden = false;
   trustStrip.hidden = false;
+  seoContent.hidden = false;
   results.hidden = true;
   state.step = QUESTIONS.length - 1;
   renderQuestion();
@@ -459,6 +463,7 @@ function resetApp() {
   hero.hidden = false;
   wizard.hidden = false;
   trustStrip.hidden = false;
+  seoContent.hidden = false;
   results.hidden = true;
   render();
 }
