@@ -163,10 +163,2015 @@ var GIFT_CATALOG = [
   { id: 'digital-luggage-scale', title: 'La báscula que evita sustos', category: 'viajes', categoryLabel: 'Viajes', icon: '⚖️', price: 15, interests: ['travel'], styles: ['useful', 'fun'], relations: ['friend', 'partner', 'parent', 'coworker'], ages: ['young-adult', 'adult', 'midlife', '50plus'], occasions: ['birthday', 'thankyou', 'secret-santa'], amazonQuery: 'báscula equipaje digital pequeña', tags: ['menos de 20', 'viajes'], reason: 'Una idea útil y ligeramente inesperada para cualquier viajero frecuente.', editorialScore: 5 },
   { id: 'digital-photo-frame', title: 'Fotos que cambian solas', category: 'momentos', categoryLabel: 'Momentos', icon: '🖼️', price: 78, interests: ['tech', 'home', 'creative'], styles: ['emotional', 'premium'], relations: ['parent', 'partner', 'friend', 'sibling'], ages: ['adult', 'midlife', '50plus'], occasions: ['birthday', 'anniversary', 'christmas'], amazonQuery: 'marco digital fotos wifi regalo', tags: ['familia', 'emocional'], reason: 'Mantiene presentes muchos recuerdos, no solo la foto que se elige el día uno.', editorialScore: 4 },
   { id: 'urban-backpack', title: 'Mochila para su día a día', category: 'estilo', categoryLabel: 'Estilo', icon: '🎒', price: 68, interests: ['travel', 'tech', 'home'], styles: ['useful', 'premium'], relations: ['partner', 'friend', 'sibling', 'coworker', 'child'], ages: ['teen', 'young-adult', 'adult', 'midlife'], occasions: ['birthday', 'christmas'], amazonQuery: 'mochila urbana resistente portátil portátil', tags: ['diario', 'viajes'], reason: 'Un objeto de uso frecuente que puede mejorar trabajo, estudios y escapadas.', editorialScore: 3 },
-  { id: 'powerbank', title: 'Batería para no quedarse a cero', category: 'tecnologia', categoryLabel: 'Tecnología', icon: '🔋', price: 29, interests: ['tech', 'travel', 'gaming'], styles: ['useful'], relations: ['friend', 'partner', 'sibling', 'coworker', 'child'], ages: ['teen', 'young-adult', 'adult', 'midlife'], occasions: ['birthday', 'thankyou', 'secret-santa'], amazonQuery: 'batería externa powerbank carga rápida', tags: ['salvavidas', 'útil'], reason: 'Práctico, fácil de acertar y especialmente útil para quien está siempre fuera.', editorialScore: 3 }
+  { id: 'powerbank', title: 'Batería para no quedarse a cero', category: 'tecnologia', categoryLabel: 'Tecnología', icon: '🔋', price: 29, interests: ['tech', 'travel', 'gaming'], styles: ['useful'], relations: ['friend', 'partner', 'sibling', 'coworker', 'child'], ages: ['teen', 'young-adult', 'adult', 'midlife'], occasions: ['birthday', 'thankyou', 'secret-santa'], amazonQuery: 'batería externa powerbank carga rápida', tags: ['salvavidas', 'útil'], reason: 'Práctico, fácil de acertar y especialmente útil para quien está siempre fuera.', editorialScore: 3 },
+
+  {
+    "id": "date-night-box",
+    "title": "Caja para una cita en casa",
+    "category": "planes",
+    "categoryLabel": "Planes",
+    "icon": "🍿",
+    "price": 35,
+    "interests": [
+      "food",
+      "home"
+    ],
+    "styles": [
+      "emotional",
+      "fun",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "justbecause"
+    ],
+    "amazonQuery": "caja noche cita en casa regalo",
+    "tags": [
+      "para compartir",
+      "planazo"
+    ],
+    "reason": "Convierte una tarde normal en un plan fácil de preparar y compartir.",
+    "editorialScore": 4
+  },
+  {
+    "id": "movie-night-kit",
+    "title": "Kit de cine en casa",
+    "category": "planes",
+    "categoryLabel": "Planes",
+    "icon": "🎬",
+    "price": 29,
+    "interests": [
+      "home",
+      "food"
+    ],
+    "styles": [
+      "fun",
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "kit cine en casa palomitas regalo",
+    "tags": [
+      "película",
+      "acogedor"
+    ],
+    "reason": "Una excusa sencilla para apagar el móvil y montar una sesión de película.",
+    "editorialScore": 4
+  },
+  {
+    "id": "picnic-set",
+    "title": "Set para improvisar un picnic",
+    "category": "planes",
+    "categoryLabel": "Planes",
+    "icon": "🧺",
+    "price": 38,
+    "interests": [
+      "travel",
+      "food",
+      "home"
+    ],
+    "styles": [
+      "emotional",
+      "original",
+      "useful"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "justbecause"
+    ],
+    "amazonQuery": "set picnic portátil manta cesta regalo",
+    "tags": [
+      "aire libre",
+      "compartir"
+    ],
+    "reason": "Hace que cualquier parque o escapada tenga pinta de plan pensado.",
+    "editorialScore": 4
+  },
+  {
+    "id": "cocktail-kit",
+    "title": "Kit para preparar cócteles",
+    "category": "sabores",
+    "categoryLabel": "Sabores",
+    "icon": "🍸",
+    "price": 34,
+    "interests": [
+      "food",
+      "home"
+    ],
+    "styles": [
+      "fun",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "kit coctelería cócteles regalo",
+    "tags": [
+      "sabor",
+      "plan"
+    ],
+    "reason": "Un regalo participativo para probar recetas y alargar la sobremesa.",
+    "editorialScore": 4
+  },
+  {
+    "id": "spice-rack",
+    "title": "Colección de especias del mundo",
+    "category": "cocina",
+    "categoryLabel": "Cocina",
+    "icon": "🌶️",
+    "price": 26,
+    "interests": [
+      "food",
+      "travel"
+    ],
+    "styles": [
+      "useful",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "parent",
+      "partner",
+      "friend",
+      "coworker"
+    ],
+    "ages": [
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "set especias del mundo regalo cocina",
+    "tags": [
+      "cocina",
+      "sorpresa"
+    ],
+    "reason": "Aporta variedad a platos cotidianos sin ocupar demasiado espacio.",
+    "editorialScore": 4
+  },
+  {
+    "id": "pasta-maker",
+    "title": "Kit para hacer pasta fresca",
+    "category": "cocina",
+    "categoryLabel": "Cocina",
+    "icon": "🍝",
+    "price": 52,
+    "interests": [
+      "food",
+      "creative",
+      "home"
+    ],
+    "styles": [
+      "fun",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "anniversary",
+      "justbecause"
+    ],
+    "amazonQuery": "máquina kit hacer pasta fresca regalo",
+    "tags": [
+      "cocinar",
+      "experiencia"
+    ],
+    "reason": "Regala una actividad que termina en una comida hecha entre todos.",
+    "editorialScore": 4
+  },
+  {
+    "id": "wireless-charging-station",
+    "title": "Base de carga para tenerlo todo a mano",
+    "category": "tecnologia",
+    "categoryLabel": "Tecnología",
+    "icon": "🔋",
+    "price": 39,
+    "interests": [
+      "tech",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "coworker",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "estación carga inalámbrica móvil reloj auriculares",
+    "tags": [
+      "orden",
+      "setup"
+    ],
+    "reason": "Reduce cables y deja los dispositivos listos para el día siguiente.",
+    "editorialScore": 4
+  },
+  {
+    "id": "smart-speaker",
+    "title": "Altavoz inteligente para la casa",
+    "category": "tecnologia",
+    "categoryLabel": "Tecnología",
+    "icon": "🏠",
+    "price": 49,
+    "interests": [
+      "tech",
+      "music",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "fun"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "altavoz inteligente asistente voz",
+    "tags": [
+      "casa",
+      "música"
+    ],
+    "reason": "Une música, temporizadores y pequeños automatismos en un objeto cotidiano.",
+    "editorialScore": 4
+  },
+  {
+    "id": "monitor-light-bar",
+    "title": "Luz para mejorar el escritorio",
+    "category": "tecnologia",
+    "categoryLabel": "Tecnología",
+    "icon": "💡",
+    "price": 45,
+    "interests": [
+      "tech",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "coworker",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "barra de luz monitor escritorio",
+    "tags": [
+      "escritorio",
+      "útil"
+    ],
+    "reason": "Un cambio pequeño que hace más agradable trabajar, estudiar o jugar.",
+    "editorialScore": 3
+  },
+  {
+    "id": "webcam-light",
+    "title": "Luz compacta para videollamadas",
+    "category": "tecnologia",
+    "categoryLabel": "Tecnología",
+    "icon": "📹",
+    "price": 24,
+    "interests": [
+      "tech",
+      "creative"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "coworker",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "secret-santa"
+    ],
+    "amazonQuery": "luz webcam videollamadas escritorio",
+    "tags": [
+      "menos de 30",
+      "práctico"
+    ],
+    "reason": "Un accesorio útil para quien vive entre reuniones, clases o directos.",
+    "editorialScore": 3
+  },
+  {
+    "id": "card-game",
+    "title": "Juego de cartas para sacar conversación",
+    "category": "juegos",
+    "categoryLabel": "Juegos",
+    "icon": "🃏",
+    "price": 17,
+    "interests": [
+      "gaming",
+      "home"
+    ],
+    "styles": [
+      "fun",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "coworker"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause",
+      "thankyou"
+    ],
+    "amazonQuery": "juego cartas conversación adultos regalo",
+    "tags": [
+      "menos de 20",
+      "para compartir"
+    ],
+    "reason": "Funciona tanto en una sobremesa como en una reunión improvisada.",
+    "editorialScore": 4
+  },
+  {
+    "id": "cooperative-board-game",
+    "title": "Juego cooperativo para una tarde",
+    "category": "juegos",
+    "categoryLabel": "Juegos",
+    "icon": "🧠",
+    "price": 32,
+    "interests": [
+      "gaming",
+      "creative",
+      "home"
+    ],
+    "styles": [
+      "fun",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "parent"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "juego de mesa cooperativo adultos",
+    "tags": [
+      "estrategia",
+      "compartir"
+    ],
+    "reason": "La gracia está en jugar juntos contra el reto, no en competir por todo.",
+    "editorialScore": 4
+  },
+  {
+    "id": "gaming-headset",
+    "title": "Auriculares para su setup",
+    "category": "juegos",
+    "categoryLabel": "Juegos",
+    "icon": "🎮",
+    "price": 62,
+    "interests": [
+      "gaming",
+      "tech",
+      "music"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "auriculares gaming micrófono cómodo",
+    "tags": [
+      "setup",
+      "gaming"
+    ],
+    "reason": "Mejora cada partida y también sirve para música, llamadas o concentración.",
+    "editorialScore": 4
+  },
+  {
+    "id": "foam-roller",
+    "title": "Kit de recuperación después de entrenar",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "icon": "🧘",
+    "price": 25,
+    "interests": [
+      "sport",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "justbecause"
+    ],
+    "amazonQuery": "rodillo masaje recuperación muscular set",
+    "tags": [
+      "bienestar",
+      "útil"
+    ],
+    "reason": "Un detalle práctico para cuidar el cuerpo sin convertirlo en una promesa imposible.",
+    "editorialScore": 3
+  },
+  {
+    "id": "hiking-bottle",
+    "title": "Botella resistente para sus rutas",
+    "category": "deporte",
+    "categoryLabel": "Deporte",
+    "icon": "🥤",
+    "price": 28,
+    "interests": [
+      "sport",
+      "travel"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "botella térmica deporte senderismo",
+    "tags": [
+      "aire libre",
+      "útil"
+    ],
+    "reason": "Acompaña entrenamientos, excursiones y días largos fuera de casa.",
+    "editorialScore": 4
+  },
+  {
+    "id": "fitness-tracker",
+    "title": "Pulsera para moverse más",
+    "category": "deporte",
+    "categoryLabel": "Deporte",
+    "icon": "⌚",
+    "price": 58,
+    "interests": [
+      "sport",
+      "tech"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "pulsera actividad fitness reloj deportivo",
+    "tags": [
+      "movimiento",
+      "tech"
+    ],
+    "reason": "Tiene sentido para quien disfruta viendo sus hábitos y sus avances.",
+    "editorialScore": 3
+  },
+  {
+    "id": "hiking-headlamp",
+    "title": "Linterna frontal para escapadas",
+    "category": "deporte",
+    "categoryLabel": "Deporte",
+    "icon": "🔦",
+    "price": 22,
+    "interests": [
+      "sport",
+      "travel"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "linterna frontal recargable senderismo",
+    "tags": [
+      "aventura",
+      "menos de 30"
+    ],
+    "reason": "Un accesorio inesperado que se vuelve imprescindible cuando hace falta.",
+    "editorialScore": 3
+  },
+  {
+    "id": "toiletry-bag",
+    "title": "Neceser bien organizado",
+    "category": "viajes",
+    "categoryLabel": "Viajes",
+    "icon": "🧴",
+    "price": 23,
+    "interests": [
+      "travel",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "parent",
+      "coworker"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "neceser viaje compartimentos regalo",
+    "tags": [
+      "viajes",
+      "orden"
+    ],
+    "reason": "Resuelve el clásico caos de los líquidos y cabe en la próxima escapada.",
+    "editorialScore": 4
+  },
+  {
+    "id": "passport-wallet",
+    "title": "Cartera para viajar ligero",
+    "category": "viajes",
+    "categoryLabel": "Viajes",
+    "icon": "🛂",
+    "price": 31,
+    "interests": [
+      "travel"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "parent",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "thankyou"
+    ],
+    "amazonQuery": "cartera pasaporte documentos viaje",
+    "tags": [
+      "viajes",
+      "elegante"
+    ],
+    "reason": "Un básico compacto para proteger documentos y tenerlos localizados.",
+    "editorialScore": 3
+  },
+  {
+    "id": "weekend-bag",
+    "title": "Bolsa para una escapada de fin de semana",
+    "category": "viajes",
+    "categoryLabel": "Viajes",
+    "icon": "👜",
+    "price": 54,
+    "interests": [
+      "travel",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "parent"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "anniversary"
+    ],
+    "amazonQuery": "bolsa viaje fin de semana compartimentos",
+    "tags": [
+      "escapada",
+      "práctico"
+    ],
+    "reason": "Invita a usarla pronto: una noche fuera, una visita o una pequeña aventura.",
+    "editorialScore": 4
+  },
+  {
+    "id": "travel-pillow",
+    "title": "Almohada cómoda para moverse",
+    "category": "viajes",
+    "categoryLabel": "Viajes",
+    "icon": "✈️",
+    "price": 26,
+    "interests": [
+      "travel",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "parent",
+      "coworker"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "almohada viaje ergonómica cuello",
+    "tags": [
+      "viajes",
+      "confort"
+    ],
+    "reason": "Mejora trayectos largos y se guarda sin ocupar media maleta.",
+    "editorialScore": 3
+  },
+  {
+    "id": "photo-album",
+    "title": "Álbum para ordenar recuerdos",
+    "category": "momentos",
+    "categoryLabel": "Momentos",
+    "icon": "📷",
+    "price": 21,
+    "interests": [
+      "creative",
+      "travel"
+    ],
+    "styles": [
+      "emotional",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "christmas"
+    ],
+    "amazonQuery": "álbum fotos bonito regalo recuerdos",
+    "tags": [
+      "emocional",
+      "menos de 30"
+    ],
+    "reason": "Ayuda a sacar las fotos del móvil y convertirlas en una historia compartida.",
+    "editorialScore": 5
+  },
+  {
+    "id": "custom-map-print",
+    "title": "Mapa de un lugar importante",
+    "category": "momentos",
+    "categoryLabel": "Momentos",
+    "icon": "🗺️",
+    "price": 36,
+    "interests": [
+      "travel",
+      "creative"
+    ],
+    "styles": [
+      "emotional",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "justbecause"
+    ],
+    "amazonQuery": "mapa personalizado ciudad lugar especial lámina",
+    "tags": [
+      "personalizado",
+      "recuerdo"
+    ],
+    "reason": "Un sitio concreto puede contar mucho más que un objeto genérico.",
+    "editorialScore": 5
+  },
+  {
+    "id": "photo-light-box",
+    "title": "Caja de luz con una foto especial",
+    "category": "momentos",
+    "categoryLabel": "Momentos",
+    "icon": "✨",
+    "price": 44,
+    "interests": [
+      "creative",
+      "home",
+      "travel"
+    ],
+    "styles": [
+      "emotional",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "christmas"
+    ],
+    "amazonQuery": "caja luz foto personalizada regalo",
+    "tags": [
+      "personalizado",
+      "decoración"
+    ],
+    "reason": "Da una presencia nueva a una imagen que ya tiene un significado propio.",
+    "editorialScore": 4
+  },
+  {
+    "id": "memory-journal",
+    "title": "Diario para llenar de historias",
+    "category": "momentos",
+    "categoryLabel": "Momentos",
+    "icon": "📔",
+    "price": 19,
+    "interests": [
+      "creative",
+      "books"
+    ],
+    "styles": [
+      "emotional",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "justbecause"
+    ],
+    "amazonQuery": "diario recuerdos preguntas pareja regalo",
+    "tags": [
+      "emocional",
+      "menos de 20"
+    ],
+    "reason": "Propone escribir, recordar y dejar espacio para lo que todavía está por vivir.",
+    "editorialScore": 4
+  },
+  {
+    "id": "calligraphy-kit",
+    "title": "Kit de lettering para empezar",
+    "category": "creatividad",
+    "categoryLabel": "Creatividad",
+    "icon": "✒️",
+    "price": 27,
+    "interests": [
+      "creative",
+      "books"
+    ],
+    "styles": [
+      "fun",
+      "original",
+      "useful"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "kit lettering caligrafía creativa regalo",
+    "tags": [
+      "crear",
+      "hobby"
+    ],
+    "reason": "Un hobby amable para probar algo nuevo sin necesitar experiencia previa.",
+    "editorialScore": 4
+  },
+  {
+    "id": "model-building-kit",
+    "title": "Maqueta para construir a su ritmo",
+    "category": "creatividad",
+    "categoryLabel": "Creatividad",
+    "icon": "🛠️",
+    "price": 34,
+    "interests": [
+      "creative",
+      "home"
+    ],
+    "styles": [
+      "fun",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "maqueta construcción hobby adulto regalo",
+    "tags": [
+      "concentración",
+      "hobby"
+    ],
+    "reason": "Regala unas horas de concentración y una pieza de la que sentirse orgulloso.",
+    "editorialScore": 4
+  },
+  {
+    "id": "bath-salts-set",
+    "title": "Set de baño para bajar revoluciones",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "icon": "🛁",
+    "price": 24,
+    "interests": [
+      "home",
+      "creative"
+    ],
+    "styles": [
+      "emotional",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "coworker"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "set sales baño relajante regalo",
+    "tags": [
+      "autocuidado",
+      "pausa"
+    ],
+    "reason": "Un detalle pequeño para convertir un rato normal en una pausa de verdad.",
+    "editorialScore": 4
+  },
+  {
+    "id": "sleep-mask",
+    "title": "Antifaz y pequeño ritual de descanso",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "icon": "😴",
+    "price": 18,
+    "interests": [
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "emotional"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "parent",
+      "coworker"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "secret-santa"
+    ],
+    "amazonQuery": "antifaz dormir seda regalo descanso",
+    "tags": [
+      "menos de 20",
+      "descanso"
+    ],
+    "reason": "Sencillo, útil y fácil de acertar para alguien que necesita desconectar.",
+    "editorialScore": 3
+  },
+  {
+    "id": "standing-mirror",
+    "title": "Espejo de sobremesa con estilo",
+    "category": "estilo",
+    "categoryLabel": "Estilo",
+    "icon": "🪞",
+    "price": 33,
+    "interests": [
+      "home",
+      "creative"
+    ],
+    "styles": [
+      "useful",
+      "premium",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "parent"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "espejo sobremesa diseño regalo",
+    "tags": [
+      "estilo",
+      "casa"
+    ],
+    "reason": "Añade un punto bonito a la rutina sin exigir conocer tallas ni gustos exactos.",
+    "editorialScore": 3
+  },
+  {
+    "id": "room-diffuser",
+    "title": "Difusor para cambiar el ambiente",
+    "category": "casa",
+    "categoryLabel": "Casa",
+    "icon": "🌿",
+    "price": 31,
+    "interests": [
+      "home"
+    ],
+    "styles": [
+      "emotional",
+      "premium",
+      "useful"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "difusor aromas aceites esenciales regalo",
+    "tags": [
+      "ambiente",
+      "acogedor"
+    ],
+    "reason": "Una forma suave de hacer más personal un rincón de casa.",
+    "editorialScore": 4
+  },
+  {
+    "id": "cozy-blanket",
+    "title": "Manta suave para sus ratos de sofá",
+    "category": "casa",
+    "categoryLabel": "Casa",
+    "icon": "🧶",
+    "price": 37,
+    "interests": [
+      "home"
+    ],
+    "styles": [
+      "emotional",
+      "useful"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "anniversary"
+    ],
+    "amazonQuery": "manta suave sofá regalo acogedor",
+    "tags": [
+      "acogedor",
+      "casa"
+    ],
+    "reason": "Un regalo sencillo que se disfruta muchas veces y admite cualquier plan.",
+    "editorialScore": 4
+  },
+  {
+    "id": "desk-organizer",
+    "title": "Organizador de escritorio bonito",
+    "category": "escritorio",
+    "categoryLabel": "Escritorio",
+    "icon": "🗂️",
+    "price": 29,
+    "interests": [
+      "home",
+      "tech",
+      "creative"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "coworker",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "secret-santa"
+    ],
+    "amazonQuery": "organizador escritorio diseño cables accesorios",
+    "tags": [
+      "orden",
+      "setup"
+    ],
+    "reason": "Mejora un espacio de uso diario sin convertirse en otro trasto.",
+    "editorialScore": 4
+  },
+  {
+    "id": "cookbook",
+    "title": "Libro de recetas para abrir apetito",
+    "category": "lectura",
+    "categoryLabel": "Lectura",
+    "icon": "📚",
+    "price": 24,
+    "interests": [
+      "books",
+      "food"
+    ],
+    "styles": [
+      "emotional",
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "thankyou"
+    ],
+    "amazonQuery": "libro recetas cocina regalo",
+    "tags": [
+      "lectura",
+      "cocina"
+    ],
+    "reason": "Puede inspirar planes, conversaciones y una receta para estrenar el regalo.",
+    "editorialScore": 4
+  },
+  {
+    "id": "bookstand",
+    "title": "Atril para leer o cocinar",
+    "category": "lectura",
+    "categoryLabel": "Lectura",
+    "icon": "📖",
+    "price": 27,
+    "interests": [
+      "books",
+      "food",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "parent",
+      "partner",
+      "friend",
+      "coworker"
+    ],
+    "ages": [
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "atril libro cocina lectura madera regalo",
+    "tags": [
+      "útil",
+      "casa"
+    ],
+    "reason": "Una mejora discreta para dos aficiones que suelen convivir muy bien.",
+    "editorialScore": 3
+  },
+  {
+    "id": "vinyl-record",
+    "title": "Un vinilo para escuchar con calma",
+    "category": "musica",
+    "categoryLabel": "Música",
+    "icon": "💿",
+    "price": 28,
+    "interests": [
+      "music",
+      "home"
+    ],
+    "styles": [
+      "emotional",
+      "premium",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "christmas"
+    ],
+    "amazonQuery": "vinilo álbum música regalo",
+    "tags": [
+      "música",
+      "nostalgia"
+    ],
+    "reason": "Elegir un disco concreto hace que el detalle se sienta pensado y personal.",
+    "editorialScore": 4
+  },
+  {
+    "id": "midi-keyboard",
+    "title": "Teclado para jugar con la música",
+    "category": "musica",
+    "categoryLabel": "Música",
+    "icon": "🎹",
+    "price": 69,
+    "interests": [
+      "music",
+      "creative",
+      "tech"
+    ],
+    "styles": [
+      "fun",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "teclado midi compacto principiante",
+    "tags": [
+      "crear",
+      "música"
+    ],
+    "reason": "Una puerta de entrada a tocar, producir y trastear sin complicarse.",
+    "editorialScore": 3
+  },
+  {
+    "id": "noise-cancelling-headphones",
+    "title": "Auriculares para aislarse un rato",
+    "category": "tecnologia",
+    "categoryLabel": "Tecnología",
+    "icon": "🎧",
+    "price": 89,
+    "interests": [
+      "tech",
+      "music",
+      "travel"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "coworker"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "auriculares cancelación ruido inalámbricos",
+    "tags": [
+      "silencio",
+      "premium"
+    ],
+    "reason": "Sirven para viajar, concentrarse o escuchar lo que le gusta con más calma.",
+    "editorialScore": 4
+  },
+  {
+    "id": "instant-film-pack",
+    "title": "Pack de película instantánea",
+    "category": "momentos",
+    "categoryLabel": "Momentos",
+    "icon": "📸",
+    "price": 23,
+    "interests": [
+      "creative",
+      "travel"
+    ],
+    "styles": [
+      "fun",
+      "emotional",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary",
+      "justbecause"
+    ],
+    "amazonQuery": "película instantánea pack fotos",
+    "tags": [
+      "fotos",
+      "menos de 30"
+    ],
+    "reason": "Un consumible que invita a usar la cámara y llenar el álbum de planes nuevos.",
+    "editorialScore": 4
+  },
+  {
+    "id": "smartwatch",
+    "title": "Reloj para el día a día",
+    "category": "tecnologia",
+    "categoryLabel": "Tecnología",
+    "icon": "⌚",
+    "price": 119,
+    "interests": [
+      "tech",
+      "sport"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "reloj inteligente smartwatch actividad",
+    "tags": [
+      "tech",
+      "premium"
+    ],
+    "reason": "Combina notificaciones, movimiento y pequeñas ayudas que se usan a diario.",
+    "editorialScore": 3
+  },
+  {
+    "id": "coffee-grinder",
+    "title": "Molinillo para mejorar el café",
+    "category": "sabores",
+    "categoryLabel": "Sabores",
+    "icon": "⚙️",
+    "price": 46,
+    "interests": [
+      "food",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "premium",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "coworker"
+    ],
+    "ages": [
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "thankyou"
+    ],
+    "amazonQuery": "molinillo café manual o eléctrico regalo",
+    "tags": [
+      "café",
+      "ritual"
+    ],
+    "reason": "Para quien ya disfruta del café, mejorar una parte del ritual se nota.",
+    "editorialScore": 4
+  },
+  {
+    "id": "cast-iron-pot",
+    "title": "Cacerola para cocinar a fuego lento",
+    "category": "cocina",
+    "categoryLabel": "Cocina",
+    "icon": "🍲",
+    "price": 58,
+    "interests": [
+      "food",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend"
+    ],
+    "ages": [
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "thankyou"
+    ],
+    "amazonQuery": "cacerola hierro fundido cocina regalo",
+    "tags": [
+      "cocina",
+      "duradero"
+    ],
+    "reason": "Un objeto duradero que acaba asociado a muchas comidas compartidas.",
+    "editorialScore": 3
+  },
+  {
+    "id": "digital-notebook",
+    "title": "Cuaderno digital para escribir y organizarse",
+    "category": "tecnologia",
+    "categoryLabel": "Tecnología",
+    "icon": "📝",
+    "price": 99,
+    "interests": [
+      "tech",
+      "creative",
+      "books"
+    ],
+    "styles": [
+      "useful",
+      "premium",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "coworker",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "cuaderno digital notas escritura",
+    "tags": [
+      "organización",
+      "tech"
+    ],
+    "reason": "Mezcla la sensación de escribir a mano con la comodidad de tenerlo todo ordenado.",
+    "editorialScore": 3
+  },
+  {
+    "id": "portable-mic",
+    "title": "Micrófono para crear contenido o cantar",
+    "category": "musica",
+    "categoryLabel": "Música",
+    "icon": "🎙️",
+    "price": 64,
+    "interests": [
+      "music",
+      "creative",
+      "tech"
+    ],
+    "styles": [
+      "fun",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "micrófono usb podcast cantar grabar",
+    "tags": [
+      "crear",
+      "música"
+    ],
+    "reason": "Tiene recorrido para podcasts, videollamadas, karaoke o primeras grabaciones.",
+    "editorialScore": 3
+  },
+  {
+    "id": "lego-architecture",
+    "title": "Construcción de arquitectura para exponer",
+    "category": "creatividad",
+    "categoryLabel": "Creatividad",
+    "icon": "🏛️",
+    "price": 52,
+    "interests": [
+      "creative",
+      "home",
+      "travel"
+    ],
+    "styles": [
+      "fun",
+      "original",
+      "premium"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "sibling",
+      "child"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas"
+    ],
+    "amazonQuery": "set construcción arquitectura decoración",
+    "tags": [
+      "construir",
+      "decoración"
+    ],
+    "reason": "Combina el placer de construir con una pieza que luego puede quedarse a la vista.",
+    "editorialScore": 4
+  },
+  {
+    "id": "backgammon-set",
+    "title": "Backgammon para tardes largas",
+    "category": "juegos",
+    "categoryLabel": "Juegos",
+    "icon": "🎲",
+    "price": 41,
+    "interests": [
+      "gaming",
+      "home",
+      "travel"
+    ],
+    "styles": [
+      "fun",
+      "premium",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "anniversary"
+    ],
+    "amazonQuery": "backgammon madera juego mesa regalo",
+    "tags": [
+      "clásico",
+      "compartir"
+    ],
+    "reason": "Un clásico con presencia que funciona en casa y también en una escapada.",
+    "editorialScore": 4
+  },
+  {
+    "id": "spa-headband-set",
+    "title": "Set de autocuidado para desconectar",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "icon": "🧖",
+    "price": 22,
+    "interests": [
+      "home",
+      "creative"
+    ],
+    "styles": [
+      "emotional",
+      "useful"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "coworker"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "christmas"
+    ],
+    "amazonQuery": "set spa autocuidado diadema regalo",
+    "tags": [
+      "pausa",
+      "menos de 30"
+    ],
+    "reason": "Un gesto de cuidado fácil de disfrutar sin pedir demasiadas explicaciones.",
+    "editorialScore": 3
+  },
+  {
+    "id": "tea-subscription",
+    "title": "Selección de tés para descubrir",
+    "category": "sabores",
+    "categoryLabel": "Sabores",
+    "icon": "🍵",
+    "price": 39,
+    "interests": [
+      "food",
+      "home"
+    ],
+    "styles": [
+      "emotional",
+      "premium",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "parent",
+      "friend",
+      "coworker"
+    ],
+    "ages": [
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "suscripción té regalo selección",
+    "tags": [
+      "pausa",
+      "sabor"
+    ],
+    "reason": "En vez de un único objeto, propone varios momentos de pausa durante el mes.",
+    "editorialScore": 4
+  },
+  {
+    "id": "sauce-making-kit",
+    "title": "Kit para preparar salsas caseras",
+    "category": "cocina",
+    "categoryLabel": "Cocina",
+    "icon": "🫙",
+    "price": 30,
+    "interests": [
+      "food",
+      "creative"
+    ],
+    "styles": [
+      "fun",
+      "original",
+      "useful"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "parent",
+      "sibling"
+    ],
+    "ages": [
+      "young-adult",
+      "adult",
+      "midlife",
+      "50plus"
+    ],
+    "occasions": [
+      "birthday",
+      "christmas",
+      "justbecause"
+    ],
+    "amazonQuery": "kit hacer salsas picantes caseras regalo",
+    "tags": [
+      "cocina",
+      "experiencia"
+    ],
+    "reason": "Una idea distinta para experimentar y luego compartir el resultado.",
+    "editorialScore": 4
+  },
+  {
+    "id": "reusable-cup",
+    "title": "Vaso reutilizable para sus mañanas",
+    "category": "viajes",
+    "categoryLabel": "Viajes",
+    "icon": "🥤",
+    "price": 20,
+    "interests": [
+      "travel",
+      "home"
+    ],
+    "styles": [
+      "useful",
+      "original"
+    ],
+    "relations": [
+      "partner",
+      "friend",
+      "coworker",
+      "sibling"
+    ],
+    "ages": [
+      "teen",
+      "young-adult",
+      "adult",
+      "midlife"
+    ],
+    "occasions": [
+      "birthday",
+      "thankyou",
+      "secret-santa"
+    ],
+    "amazonQuery": "vaso térmico reutilizable café",
+    "tags": [
+      "menos de 30",
+      "rutina"
+    ],
+    "reason": "Un regalo pequeño que puede acompañar todos los días y fuera de casa.",
+    "editorialScore": 3
+  }
+
 ];
 
-var state = { step: 0, answers: { interests: [] } };
+var state = { step: 0, variant: Math.floor(Math.random() * 8), answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
 var pendingScrollPosition = null;
@@ -293,7 +2298,14 @@ function selectedInterests(answers) {
   return value ? [value] : [];
 }
 
-function rankGifts(answers) {
+function hashString(value) {
+  var hash = 2166136261;
+  String(value).split('').forEach(function (character) { hash = Math.imul(hash ^ character.charCodeAt(0), 16777619); });
+  return hash >>> 0;
+}
+
+function rankGifts(answers, variant) {
+  variant = Number.isFinite(variant) ? variant : 0;
   var budget = budgetFor(answers.budget);
   var interests = selectedInterests(answers);
   var ranked = GIFT_CATALOG.map(function (gift, index) {
@@ -308,6 +2320,8 @@ function rankGifts(answers) {
     if (gift.relations.indexOf(answers.relation) !== -1) score += 3;
     if (answers.age === 'unknown' || gift.ages.indexOf(answers.age) !== -1) score += 2;
     if (gift.occasions.indexOf(answers.occasion) !== -1) score += 2;
+    var variationSeed = [gift.id, answers.relation, answers.age, answers.occasion, answers.budget, answers.style, variant].join('|');
+    score += ((hashString(variationSeed) % 1000) / 1000) * (variant ? 10 : 1.5);
     return { gift: gift, score: score, index: index };
   });
   ranked.sort(function (a, b) { return b.score - a.score || a.index - b.index; });
@@ -315,7 +2329,7 @@ function rankGifts(answers) {
   var categories = {};
   ranked.forEach(function (item) {
     if (result.length >= 10) return;
-    if (result.length < 6 || !categories[item.gift.category]) {
+    if (!categories[item.gift.category] || result.length >= 9) {
       result.push(item.gift);
       categories[item.gift.category] = true;
     }
@@ -415,8 +2429,8 @@ function celebrate() {
   window.requestAnimationFrame(draw);
 }
 
-function renderResults() {
-  currentRecommendations = rankGifts(state.answers);
+function renderResults(shouldCelebrate) {
+  currentRecommendations = rankGifts(state.answers, state.variant);
   var title = '10 ideas para acertar';
   var relation = getLabel('relation', state.answers.relation).toLowerCase();
   if (relation && relation !== 'otra persona') title = '10 ideas para tu ' + relation;
@@ -426,7 +2440,7 @@ function renderResults() {
     '<p class="results-intro">Una mezcla de opciones útiles, originales y con algo que contar. Abre las que te llamen y compara en la tienda de tu país.</p>' +
     '<div class="summary-chips" aria-label="Tus preferencias">' + summaryChips(state.answers) + '</div>' +
     '</div>' +
-    '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">← Ajustar respuestas</button><button class="button button-ghost" type="button" data-action="share">Compartir selección</button></div>' +
+    '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">← Ajustar respuestas</button><button class="button button-ghost" type="button" data-action="refresh">Ver otras ideas</button><button class="button button-ghost" type="button" data-action="share">Compartir selección</button></div>' +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
       var tags = gift.tags.map(function (tag) { return '<span class="gift-tag">' + escapeHtml(tag) + '</span>'; }).join('');
       return '<article class="gift-card' + (index === 0 ? ' gift-card-featured' : '') + '" style="--gift-index: ' + index + ';">' +
@@ -450,7 +2464,7 @@ function renderResults() {
   results.classList.remove('results-transition');
   void results.offsetWidth;
   results.classList.add('results-transition');
-  celebrate();
+  if (shouldCelebrate !== false) celebrate();
 }
 
 function showWizardAtLastStep() {
@@ -464,7 +2478,7 @@ function showWizardAtLastStep() {
 }
 
 function resetApp() {
-  state = { step: 0, answers: { interests: [] } };
+  state = { step: 0, variant: Math.floor(Math.random() * 8), answers: { interests: [] } };
   hero.hidden = false;
   wizard.hidden = false;
   trustStrip.hidden = false;
@@ -542,6 +2556,7 @@ results.addEventListener('click', function (event) {
   var action = event.target.closest('[data-action]');
   if (action) {
     if (action.getAttribute('data-action') === 'adjust') showWizardAtLastStep();
+    if (action.getAttribute('data-action') === 'refresh') { state.variant += 1; renderResults(false); }
     if (action.getAttribute('data-action') === 'share') shareSelection();
     return;
   }
