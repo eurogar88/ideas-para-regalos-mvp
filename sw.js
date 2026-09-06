@@ -2,7 +2,7 @@ const CACHE_NAME = 'regalazo-shell-growth-v1';
 const SHELL = [
   '/',
   '/styles.css?v=growth-ui-7',
-  '/app.js?v=growth-engine-10',
+  '/app.js?v=growth-engine-11',
   '/manifest.webmanifest',
   '/icon.svg',
   '/og-image.svg'

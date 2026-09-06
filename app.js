@@ -2612,6 +2612,7 @@ Object.keys(ENHANCED_RESULT_COPY).forEach(function (language) {
   LANGUAGE_COPY[language].growth = GROWTH_COPY[language] || GROWTH_COPY.es;
 });
 
+var LANGUAGE_STORAGE_KEY = 'regalazo-language-v1';
 var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, challengeMode: false, challengePick: null, challengeChoice: null, casinoSpinning: false, answers: { interests: [] } };
 var currentRecommendations = [];
 var toastTimer;
@@ -2649,8 +2650,6 @@ function getOption(id, value) {
   var question = getQuestion(id);
   return question ? question.options.find(function (option) { return option.value === value; }) : null;
 }
-
-var LANGUAGE_STORAGE_KEY = 'regalazo-language-v1';
 
 function currentCopy() {
   return LANGUAGE_COPY[state.language] || LANGUAGE_COPY.es;
