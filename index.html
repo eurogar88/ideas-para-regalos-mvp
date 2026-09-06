@@ -4,11 +4,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#fff9f2">
-    <meta name="description" content="Encuentra un regalo que encaje de verdad con unos pocos toques.">
-    <meta property="og:title" content="Regalazo · Ideas para regalos">
-    <meta property="og:description" content="Recomendaciones de regalos personalizadas, sin escribir casi nada.">
+    <meta name="description" content="Encuentra regalos de cumpleaños personalizados en pocos toques, según la persona, sus gustos, la ocasión y tu presupuesto.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="Regalazo">
+    <link rel="canonical" href="https://ideas-para-regalos-mvp.netlify.app/">
+    <meta property="og:site_name" content="Regalazo">
+    <meta property="og:title" content="Regalos de cumpleaños personalizados | Regalazo">
+    <meta property="og:description" content="Descubre ideas de regalos de cumpleaños con unos pocos toques, sin escribir casi nada.">
     <meta property="og:type" content="website">
-    <title>Regalazo · Ideas para regalos</title>
+    <meta property="og:url" content="https://ideas-para-regalos-mvp.netlify.app/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Regalos de cumpleaños personalizados | Regalazo">
+    <meta name="twitter:description" content="Ideas de regalos de cumpleaños según la persona, sus gustos y tu presupuesto.">
+    <title>Regalos de cumpleaños personalizados | Regalazo</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://ideas-para-regalos-mvp.netlify.app/#website",
+        "url": "https://ideas-para-regalos-mvp.netlify.app/",
+        "name": "Regalazo",
+        "description": "Ideas de regalos de cumpleaños personalizadas.",
+        "inLanguage": "es"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Regalazo",
+        "url": "https://ideas-para-regalos-mvp.netlify.app/",
+        "applicationCategory": "ShoppingApplication",
+        "operatingSystem": "Web",
+        "isAccessibleForFree": true,
+        "inLanguage": "es",
+        "description": "Recomendador gratuito de regalos de cumpleaños."
+      }
+    </script>
     <link rel="stylesheet" href="/styles.css">
     <script defer src="/app.js"></script>
   </head>
@@ -25,8 +57,8 @@
       <main id="app" class="app-main">
         <section id="hero" class="hero" aria-labelledby="hero-title">
           <p class="eyebrow">Ideas para regalos</p>
-          <h1 id="hero-title">Un regalazo empieza por conocerle.</h1>
-          <p class="hero-copy">Responde con toques y descubre 10 ideas que encajan con esa persona, la ocasión y tu presupuesto.</p>
+          <h1 id="hero-title">Encuentra un regalo de cumpleaños que encaje de verdad.</h1>
+          <p class="hero-copy">Responde con unos toques y descubre 10 ideas de regalos de cumpleaños según la persona, la ocasión, sus gustos y tu presupuesto.</p>
           <div class="hero-notes" aria-label="Ventajas">
             <span><strong>01</strong> pocos pasos</span>
             <span><strong>02</strong> ideas con criterio</span>
@@ -34,16 +66,29 @@
           </div>
         </section>
 
-        <section id="wizard" class="wizard-card" aria-labelledby="question-title">
+        <section id="selector" class="wizard-card" aria-labelledby="question-title">
           <div class="progress-meta">
             <span id="step-label">Paso 1 de 8</span>
             <span id="progress-value">13%</span>
           </div>
           <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
-          <div id="question-region" class="question-region"></div>
+          <div id="question-region" class="question-region">
+            <p class="question-kicker">1 · Para quién</p>
+            <h2 id="question-title" class="question-title">¿Qué relación tienes con esta persona?</h2>
+            <p class="question-subtitle">El vínculo ayuda a encontrar el tono adecuado.</p>
+            <div class="options-grid" role="group" aria-labelledby="question-title">
+              <button class="option-card" type="button" data-option="partner" aria-pressed="false"><span class="option-icon" aria-hidden="true">💞</span><span class="option-copy"><span class="option-label">Pareja</span><span class="option-detail">algo con intención</span></span></button>
+              <button class="option-card" type="button" data-option="parent" aria-pressed="false"><span class="option-icon" aria-hidden="true">🏡</span><span class="option-copy"><span class="option-label">Madre o padre</span><span class="option-detail">un detalle especial</span></span></button>
+              <button class="option-card" type="button" data-option="sibling" aria-pressed="false"><span class="option-icon" aria-hidden="true">🫶</span><span class="option-copy"><span class="option-label">Hermano/a</span><span class="option-detail">con complicidad</span></span></button>
+              <button class="option-card" type="button" data-option="friend" aria-pressed="false"><span class="option-icon" aria-hidden="true">🥂</span><span class="option-copy"><span class="option-label">Amigo/a</span><span class="option-detail">para sorprenderle</span></span></button>
+              <button class="option-card" type="button" data-option="child" aria-pressed="false"><span class="option-icon" aria-hidden="true">🌟</span><span class="option-copy"><span class="option-label">Hijo/a</span><span class="option-detail">según su etapa</span></span></button>
+              <button class="option-card" type="button" data-option="coworker" aria-pressed="false"><span class="option-icon" aria-hidden="true">🎉</span><span class="option-copy"><span class="option-label">Compañero/a</span><span class="option-detail">acierto sin complicarse</span></span></button>
+              <button class="option-card" type="button" data-option="other" aria-pressed="false"><span class="option-icon" aria-hidden="true">✨</span><span class="option-copy"><span class="option-label">Otra persona</span><span class="option-detail">lo afinamos después</span></span></button>
+            </div>
+          </div>
           <div class="wizard-actions">
             <button id="back-button" class="button button-ghost" type="button" hidden>← Atrás</button>
-            <button id="next-button" class="button button-primary" type="button" disabled>Elegir y seguir <span aria-hidden="true">→</span></button>
+            <button id="next-button" class="button button-primary" type="button" disabled hidden>Elegir y seguir <span aria-hidden="true">→</span></button>
           </div>
           <p class="keyboard-hint">Toca una opción y pasaremos al siguiente paso. No hace falta escribir nombres ni descripciones.</p>
         </section>
@@ -54,10 +99,39 @@
           <div class="trust-item"><span class="trust-icon" aria-hidden="true">◌</span><span><strong>Sin cuenta</strong><small>Tus respuestas se quedan en tu navegador</small></span></div>
         </section>
 
+        <section class="seo-content" aria-labelledby="seo-title">
+          <p class="eyebrow">Guía de regalos</p>
+          <h2 id="seo-title">Ideas de regalos de cumpleaños para acertar</h2>
+          <p class="seo-intro">Un buen regalo de cumpleaños no tiene que ser caro ni complicado. Lo importante es que conecte con la relación que tienes con esa persona, con algo que disfruta y con el momento que vais a celebrar. Regalazo combina esas pistas para proponerte ideas útiles, originales y fáciles de buscar.</p>
+          <div class="seo-link-grid">
+            <article class="seo-card">
+              <h3>Regalos para tu pareja</h3>
+              <p>Ideas con intención para celebrar juntos: recuerdos, planes compartidos y pequeños lujos que no se sienten impersonales.</p>
+              <a href="/regalos-de-cumpleanos-para-pareja/">Ver ideas para pareja <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="seo-card">
+              <h3>Regalos de cumpleaños baratos</h3>
+              <p>Detalles con criterio por menos de 20, 40 o 50 euros, sin caer en el regalo genérico de última hora.</p>
+              <a href="/regalos-de-cumpleanos-baratos/">Ver ideas económicas <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="seo-card">
+              <h3>Guía para elegir mejor</h3>
+              <p>Una guía rápida para pensar en intereses, presupuesto, estilo y ocasión antes de comprar.</p>
+              <a href="/regalos-de-cumpleanos/">Leer la guía completa <span aria-hidden="true">→</span></a>
+            </article>
+          </div>
+          <h2 class="faq-title">Preguntas frecuentes sobre regalos de cumpleaños</h2>
+          <div class="faq-list">
+            <article class="faq-item"><h3>¿Cómo elijo un regalo de cumpleaños original?</h3><p>Empieza por algo que la persona ya disfruta y cambia el formato: un accesorio para su afición, un plan para compartir o un objeto cotidiano mejor elegido. La originalidad suele estar en el encaje, no en que sea extravagante.</p></article>
+            <article class="faq-item"><h3>¿Qué regalo puedo hacer con poco presupuesto?</h3><p>Con menos de 20 o 40 euros funcionan bien los detalles que crean un momento: una selección gourmet, un accesorio útil, un pequeño kit creativo o algo para una afición concreta. El recomendador permite filtrar por presupuesto.</p></article>
+            <article class="faq-item"><h3>¿Tengo que saber la edad exacta?</h3><p>No. Basta con elegir un rango aproximado. También puedes indicar que no lo sabes y dejar que el resto de señales —relación, ocasión, gusto y estilo— pese más.</p></article>
+          </div>
+        </section>
+
         <section id="results" class="results" aria-labelledby="results-title" hidden></section>
 
         <noscript>
-          <div class="noscript-card">Activa JavaScript para usar el selector de regalos.</div>
+          <div class="noscript-card">Activa JavaScript para usar el selector de regalos. Mientras tanto, puedes consultar la <a href="/regalos-de-cumpleanos/">guía de regalos de cumpleaños</a>.</div>
         </noscript>
       </main>
 
