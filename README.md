@@ -69,6 +69,14 @@ La web prioriza SEO técnico y carga rápida sin añadir dependencias ni coste v
 
 Cuando se conecte un dominio propio, hay que sustituir la URL de Netlify en los canonical, Open Graph, JSON-LD, robots.txt y sitemap.xml; después conviene verificar el dominio en Google Search Console y enviar el sitemap. Las páginas SEO deben seguir creciendo con contenido útil y original, no con copias cambiando solo una palabra clave.
 
+## Mixpanel (preparado, no activo)
+
+La versión pública no carga un SDK externo ni envía analítica por defecto. app.js expone window.RegalazoAnalytics y mantiene una cola local de eventos durante la sesión; ANALYTICS_CONFIG está desactivado y el token está vacío.
+
+Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant), recommendations_refreshed (variant), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked y quiz_reset. Todos incluyen app, language, version y marca temporal.
+
+Para activarlo habrá que definir consentimiento y privacidad, cargar el SDK o un endpoint propio después de ese consentimiento, proporcionar el token mediante el proceso de despliegue y validar primero en desarrollo. No se guardan nombres, emails ni texto libre.
+
 ## Licencia
 
 MVP privado de producto. No se concede licencia de reutilización del catálogo ni de la marca por este README.
