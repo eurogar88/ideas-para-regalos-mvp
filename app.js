@@ -2456,11 +2456,15 @@ function renderResults(shouldCelebrate) {
   wizard.hidden = true;
   trustStrip.hidden = true;
   seoContent.hidden = true;
-  window.scrollTo(0, 0);
-  window.requestAnimationFrame(function () {
-    window.scrollTo(0, 0);
-  });
   results.hidden = false;
+  var revealResultsAtTop = function () {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+  revealResultsAtTop();
+  window.requestAnimationFrame(revealResultsAtTop);
+  window.setTimeout(revealResultsAtTop, 0);
   results.classList.remove('results-transition');
   void results.offsetWidth;
   results.classList.add('results-transition');
