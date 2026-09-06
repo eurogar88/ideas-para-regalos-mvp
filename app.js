@@ -229,6 +229,9 @@ function renderQuestion() {
     '<div class="options-grid" role="group" aria-labelledby="question-title">' +
     question.options.map(function (option) { return optionMarkup(question, option); }).join('') +
     '</div>' + (question.multiple ? '<p class="multi-hint"><span aria-hidden="true">＋</span> Puedes elegir hasta 3 opciones</p>' : '');
+  questionRegion.classList.remove('question-transition');
+  void questionRegion.offsetWidth;
+  questionRegion.classList.add('question-transition');
 }
 
 function render() {
@@ -350,6 +353,65 @@ function summaryChips(answers) {
   return chips.filter(Boolean).map(function (chip) { return '<span class="summary-chip">' + escapeHtml(chip) + '</span>'; }).join('');
 }
 
+function celebrate() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var canvas = document.createElement('canvas');
+  canvas.className = 'confetti-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(canvas);
+  var context = canvas.getContext('2d');
+  if (!context) {
+    canvas.remove();
+    return;
+  }
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  var ratio = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
+  context.scale(ratio, ratio);
+  var colors = ['#e46c57', '#b64b3c', '#ef9b82', '#dfe9dc', '#eee9f8', '#29241f'];
+  var pieces = Array.from({ length: 76 }, function (_, index) {
+    return {
+      x: Math.random() * width,
+      y: -20 - Math.random() * height * 0.22,
+      width: 5 + Math.random() * 5,
+      height: 7 + Math.random() * 8,
+      velocityX: (Math.random() - 0.5) * 2.2,
+      velocityY: 2.2 + Math.random() * 2.7,
+      rotation: Math.random() * Math.PI,
+      spin: (Math.random() - 0.5) * 0.18,
+      color: colors[index % colors.length]
+    };
+  });
+  var startedAt = performance.now();
+  function draw(now) {
+    var elapsed = now - startedAt;
+    var opacity = elapsed > 1300 ? Math.max(0, 1 - (elapsed - 1300) / 650) : 1;
+    context.clearRect(0, 0, width, height);
+    context.globalAlpha = opacity;
+    pieces.forEach(function (piece) {
+      piece.x += piece.velocityX;
+      piece.y += piece.velocityY;
+      piece.velocityY += 0.035;
+      piece.rotation += piece.spin;
+      context.save();
+      context.translate(piece.x, piece.y);
+      context.rotate(piece.rotation);
+      context.fillStyle = piece.color;
+      context.fillRect(-piece.width / 2, -piece.height / 2, piece.width, piece.height);
+      context.restore();
+    });
+    context.globalAlpha = 1;
+    if (elapsed < 1950) {
+      window.requestAnimationFrame(draw);
+    } else {
+      canvas.remove();
+    }
+  }
+  window.requestAnimationFrame(draw);
+}
+
 function renderResults() {
   currentRecommendations = rankGifts(state.answers);
   var title = '10 ideas para acertar';
@@ -364,7 +426,9 @@ function renderResults() {
     '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">← Ajustar respuestas</button><button class="button button-ghost" type="button" data-action="share">Compartir selección</button></div>' +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
       var tags = gift.tags.map(function (tag) { return '<span class="gift-tag">' + escapeHtml(tag) + '</span>'; }).join('');
-      return '<article class="gift-card"><div class="gift-card-top"><span class="gift-number">' + String(index + 1).padStart(2, '0') + '</span><span class="gift-icon" aria-hidden="true">' + gift.icon + '</span></div>' +
+      return '<article class="gift-card' + (index === 0 ? ' gift-card-featured' : '') + '" style="--gift-index: ' + index + ';">' +
+        (index === 0 ? '<p class="gift-badge">Mejor encaje</p>' : '') +
+        '<div class="gift-card-top"><span class="gift-number">' + String(index + 1).padStart(2, '0') + '</span><span class="gift-icon" aria-hidden="true">' + gift.icon + '</span></div>' +
         '<h3>' + escapeHtml(gift.title) + '</h3><p class="gift-price">≈ ' + gift.price + ' € · presupuesto orientativo</p>' +
         '<p class="gift-reason">' + escapeHtml(buildReason(gift, state.answers)) + '</p>' +
         '<div class="gift-tags">' + tags + '</div>' +
@@ -375,6 +439,10 @@ function renderResults() {
   wizard.hidden = true;
   trustStrip.hidden = true;
   results.hidden = false;
+  results.classList.remove('results-transition');
+  void results.offsetWidth;
+  results.classList.add('results-transition');
+  celebrate();
 }
 
 function showWizardAtLastStep() {
