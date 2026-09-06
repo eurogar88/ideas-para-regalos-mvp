@@ -56,6 +56,19 @@ Si algún día se prueba IA, primero habrá que confirmar con el propietario del
 
 Los enlaces se generan como búsquedas relevantes y llevan rel=sponsored. Amazon puede mostrar productos, precios o disponibilidad distintos. El sitio muestra la divulgación de posible comisión; la pertenencia efectiva a un programa de afiliados y el cumplimiento de sus requisitos deben validarse antes de promocionarlo ampliamente.
 
+## SEO y rendimiento
+
+La web prioriza SEO técnico y carga rápida sin añadir dependencias ni coste variable:
+
+- La portada tiene title, meta description, canonical, robots, Open Graph, Twitter metadata y datos estructurados WebSite/WebApplication.
+- El primer contenido del selector está presente en HTML desde la respuesta inicial; JavaScript solo mejora la interacción.
+- Hay contenido editorial rastreable y páginas específicas para [regalos de cumpleaños](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos/), [regalos baratos](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-baratos/) y [regalos para pareja](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-pareja/).
+- robots.txt y sitemap.xml están publicados en la raíz y enlazan la versión actual de Netlify.
+- No se cargan fuentes externas, imágenes pesadas, librerías ni analytics; app.js usa defer y Netlify sirve los estáticos desde CDN.
+- Las páginas HTML se revalidan y CSS/JS usan caché con stale-while-revalidate para mejorar visitas repetidas.
+
+Cuando se conecte un dominio propio, hay que sustituir la URL de Netlify en los canonical, Open Graph, JSON-LD, robots.txt y sitemap.xml; después conviene verificar el dominio en Google Search Console y enviar el sitemap. Las páginas SEO deben seguir creciendo con contenido útil y original, no con copias cambiando solo una palabra clave.
+
 ## Licencia
 
 MVP privado de producto. No se concede licencia de reutilización del catálogo ni de la marca por este README.
