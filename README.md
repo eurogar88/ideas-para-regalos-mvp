@@ -10,6 +10,7 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - Tres modos de resultado: Mejor encaje, Más sorprendentes y Novedades. El historial anónimo local evita repetir composiciones para el mismo perfil.
 - Diez recomendaciones con título, motivo, precio orientativo y enlace de búsqueda relevante.
 - Cada resultado puede compartirse con sus respuestas codificadas en la URL, para convertir la selección en un pequeño reto entre amigos o pareja.
+- Responsive endurecido para móvil estrecho: panel de compartir contenido dentro de la tarjeta, controles que pueden envolver texto largo y cero overflow horizontal.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
 - Etiqueta de afiliación heredada de la configuración del GPT: lamamihacker-21. Debe verificarse en la cuenta de Amazon Associates antes de considerarla operativa.
 - Sin registro, sin nombres y sin datos enviados a un servidor.
