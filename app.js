@@ -2780,8 +2780,12 @@ function initializeMixpanel() {
   window.mixpanel.init(ANALYTICS_CONFIG.token, {
     api_host: ANALYTICS_CONFIG.apiHost,
     track_pageview: false,
+    autocapture: false,
+    opt_out_tracking_by_default: true,
+    ip: false,
     persistence: 'localStorage'
   });
+  if (analyticsConsentState === 'granted' && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
   analyticsReady = true;
   ANALYTICS_QUEUE.splice(0).forEach(sendMixpanelEvent);
   return true;
