@@ -1069,7 +1069,7 @@ body {
 .analytics-consent-copy span { margin-top: 3px; color: var(--muted); font-size: 0.67rem; line-height: 1.35; }
 .analytics-consent-actions { display: flex; align-items: center; gap: 7px; }
 .analytics-consent-actions .button { min-height: 34px; padding: 0 10px; font-size: 0.68rem; white-space: nowrap; }
-.analytics-consent-actions .button-ghost { border-color: transparent; background: transparent; }
+.analytics-consent-actions .button-ghost { border: 1px solid var(--line); color: var(--ink); background: var(--paper); }
 body.analytics-consent-visible .pwa-prompt { bottom: calc(max(12px, env(safe-area-inset-bottom, 0px)) + 96px); }
 .footer-preferences { display: inline-flex; margin-top: 10px; padding: 0; border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 0.72rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .footer-preferences:hover { color: var(--coral-dark); }
@@ -1215,3 +1215,19 @@ html[data-theme="dark"] .answer-block,
 html[data-theme="dark"] .legal-notice { background: rgba(59, 37, 33, 0.74); }
 html[data-theme="dark"] .seo-cluster-cta a { color: var(--coral-dark); }
 html[data-theme="dark"] .legal-links { border-top-color: var(--line); }
+
+/* Desktop hero: keep the statement bold without the oversized, ultra-heavy mobile treatment. */
+@media (min-width: 640px) {
+  .hero h1 {
+    font-size: clamp(2.8rem, 6.4vw, 4.45rem);
+    font-weight: 760;
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero h1 {
+    font-size: clamp(3.15rem, 5.5vw, 4.45rem);
+  }
+}

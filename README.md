@@ -86,15 +86,15 @@ La web prioriza SEO técnico y carga rápida sin añadir dependencias ni coste v
 - No se cargan fuentes externas, imágenes pesadas ni librerías de UI; app.js usa defer y Netlify sirve los estáticos desde CDN. Mixpanel solo carga su SDK después de un consentimiento explícito.
 - Las páginas HTML se revalidan y CSS/JS usan caché con stale-while-revalidate para mejorar visitas repetidas.
 
-El dominio propio ya está conectado en Netlify; quedan como tareas de lanzamiento verificar `regalazo.xyz` en Google Search Console y enviar el sitemap. Las páginas SEO deben seguir creciendo con contenido útil y original, no con copias cambiando solo una palabra clave.
+El dominio propio está conectado en Netlify y la propiedad `sc-domain:regalazo.xyz` ya está verificada en Google Search Console; el sitemap se ha enviado y deberá revisarse de nuevo cuando el certificado HTTPS esté activo. Las páginas SEO deben seguir creciendo con contenido útil y original, no con copias cambiando solo una palabra clave.
 
 ## Mixpanel (opt-in)
 
 La versión pública muestra un aviso breve y no carga el SDK ni envía eventos hasta que la persona acepta la analítica. Si acepta, el SDK oficial se carga de forma dinámica contra el proyecto europeo de Mixpanel. Si rechaza o retira el consentimiento, no se envían eventos y puede volver a abrir sus preferencias desde el pie de página.
 
-Los eventos están filtrados por una lista de propiedades permitidas: se excluyen las respuestas concretas del cuestionario (relación, género, edad, presupuesto, intereses, estilo y país), nombres, emails, texto libre y URLs compartidas. Solo se conservan métricas agregadas de uso, idioma, variante, posición y método de interacción necesarios para mejorar el producto.
+Los eventos están filtrados por una lista de propiedades permitidas: se excluyen las respuestas concretas del cuestionario (relación, género, edad, presupuesto, intereses, estilo y país), nombres, emails, texto libre y URLs compartidas. Solo se conservan métricas agregadas de uso, ruta sin parámetros, idioma, variante, posición y método de interacción necesarios para mejorar el producto.
 
-Eventos v1: quiz_started, quiz_answered (questionId, value, step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), gift_outbound_clicked (giftId, position, country), language_changed (from, to), share_clicked, share_completed (method, mode), shared_result_opened (mode), weekly_discovery_viewed (giftId), weekly_discovery_clicked, pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice, pwa_installed, pwa_install_dismissed y quiz_reset. Todos incluyen app, language, version y marca temporal.
+Eventos v1: page_viewed (path), quiz_started, quiz_answered (step), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), gift_outbound_clicked (position), language_changed (from, to), share_clicked (method), share_completed (method, mode), shared_result_opened (mode), weekly_discovery_viewed, weekly_discovery_clicked, pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice (choice), pwa_installed, pwa_install_dismissed y quiz_reset. Todos incluyen app, language, version y marca temporal.
 
 La política de privacidad y la política de cookies describen el consentimiento, la carga diferida y la retirada. El token de cliente de Mixpanel vive en el bundle público, como está previsto para el SDK web; no es un secreto de servidor.
 

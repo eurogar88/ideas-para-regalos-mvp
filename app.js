@@ -68,7 +68,8 @@ var QUESTIONS = [
       { value: 'christmas', label: 'Navidad', icon: '🎄' },
       { value: 'secret-santa', label: 'Amigo invisible', icon: '🎲' },
       { value: 'thankyou', label: 'Agradecimiento', icon: '🙏' },
-      { value: 'justbecause', label: 'Porque sí', icon: '🌈' }
+      { value: 'justbecause', label: 'Porque sí', icon: '🌈' },
+      { value: 'any', label: 'Cualquiera', icon: '🎲', detail: 'una idea que funcione en general' }
     ]
   },
   {
@@ -99,7 +100,8 @@ var QUESTIONS = [
       { value: 'gaming', label: 'Juegos', icon: '🎮' },
       { value: 'music', label: 'Música', icon: '🎶' },
       { value: 'home', label: 'Casa y calma', icon: '🛋️' },
-      { value: 'creative', label: 'Crear cosas', icon: '🎨' }
+      { value: 'creative', label: 'Crear cosas', icon: '🎨' },
+      { value: 'any', label: 'Cualquiera', icon: '🎲', detail: 'sorpréndeme con algo relevante' }
     ]
   },
   {
@@ -112,7 +114,8 @@ var QUESTIONS = [
       { value: 'original', label: 'Original', icon: '🚀', detail: 'que no se vea venir' },
       { value: 'emotional', label: 'Emocional', icon: '💛', detail: 'que diga algo' },
       { value: 'fun', label: 'Divertido', icon: '😄', detail: 'para pasarlo bien' },
-      { value: 'premium', label: 'Premium', icon: '✨', detail: 'un pequeño lujo' }
+      { value: 'premium', label: 'Premium', icon: '✨', detail: 'un pequeño lujo' },
+      { value: 'any', label: 'Cualquiera', icon: '🎲', detail: 'deja que el radar decida' }
     ]
   },
   {
@@ -2471,10 +2474,10 @@ var LANGUAGE_COPY = {
       relation: makeQuestionCopy('1 · Para quién', '¿Qué relación tienes con esta persona?', 'El vínculo ayuda a encontrar el tono adecuado.', { partner: makeOptionCopy('Pareja', 'algo con intención'), parent: makeOptionCopy('Madre o padre', 'un detalle especial'), sibling: makeOptionCopy('Hermano/a', 'con complicidad'), friend: makeOptionCopy('Amigo/a', 'para sorprenderle'), child: makeOptionCopy('Hijo/a', 'según su etapa'), coworker: makeOptionCopy('Compañero/a', 'acierto sin complicarse'), other: makeOptionCopy('Otra persona', 'lo afinamos después') }),
       gender: makeQuestionCopy('2 · Género', '¿Qué género describe mejor a esa persona?', 'Si no lo sabes o prefieres no decirlo, puedes elegir esa opción.', { woman: makeOptionCopy('Mujer'), man: makeOptionCopy('Hombre'), nonbinary: makeOptionCopy('Persona no binaria'), other: makeOptionCopy('Otra identidad'), 'prefer-not': makeOptionCopy('Prefiero no decirlo'), unknown: makeOptionCopy('No lo sé') }),
       age: makeQuestionCopy('3 · Edad', '¿En qué rango de edad está?', 'Aproximada es perfecto. No necesitas saber el número exacto.', { child: makeOptionCopy('Menos de 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 o más'), unknown: makeOptionCopy('No lo sé') }),
-      occasion: makeQuestionCopy('4 · Momento', '¿Qué estás celebrando?', 'El contexto cambia mucho el tipo de regalo que se siente bien.', { birthday: makeOptionCopy('Cumpleaños'), anniversary: makeOptionCopy('Aniversario'), christmas: makeOptionCopy('Navidad'), 'secret-santa': makeOptionCopy('Amigo invisible'), thankyou: makeOptionCopy('Agradecimiento'), justbecause: makeOptionCopy('Porque sí') }),
+      occasion: makeQuestionCopy('4 · Momento', '¿Qué estás celebrando?', 'El contexto cambia mucho el tipo de regalo que se siente bien.', { birthday: makeOptionCopy('Cumpleaños'), anniversary: makeOptionCopy('Aniversario'), christmas: makeOptionCopy('Navidad'), 'secret-santa': makeOptionCopy('Amigo invisible'), thankyou: makeOptionCopy('Agradecimiento'), justbecause: makeOptionCopy('Porque sí'), any: makeOptionCopy('Cualquiera', 'una idea que funcione en general') }),
       budget: makeQuestionCopy('5 · Presupuesto', '¿Cuánto quieres gastar?', 'Tomamos el máximo como guía, no como una obligación.', { under20: makeOptionCopy('Menos de 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Más de 150 €') }),
-      interests: makeQuestionCopy('6 · Sus gustos', '¿Qué le mueve por dentro?', 'Elige el gusto que más le representa.', { tech: makeOptionCopy('Tecnología'), sport: makeOptionCopy('Deporte'), food: makeOptionCopy('Cocina y sabores'), travel: makeOptionCopy('Viajes'), beauty: makeOptionCopy('Cuidado personal'), books: makeOptionCopy('Libros'), gaming: makeOptionCopy('Juegos'), music: makeOptionCopy('Música'), home: makeOptionCopy('Casa y calma'), creative: makeOptionCopy('Crear cosas') }),
-      style: makeQuestionCopy('7 · Estilo', '¿Qué sensación quieres provocar?', 'Elige el aire del regalo, incluso si todavía no sabes cuál será.', { useful: makeOptionCopy('Útil', 'lo usará de verdad'), original: makeOptionCopy('Original', 'que no se vea venir'), emotional: makeOptionCopy('Emocional', 'que diga algo'), fun: makeOptionCopy('Divertido', 'para pasarlo bien'), premium: makeOptionCopy('Premium', 'un pequeño lujo') }),
+      interests: makeQuestionCopy('6 · Sus gustos', '¿Qué le mueve por dentro?', 'Elige el gusto que más le representa.', { tech: makeOptionCopy('Tecnología'), sport: makeOptionCopy('Deporte'), food: makeOptionCopy('Cocina y sabores'), travel: makeOptionCopy('Viajes'), beauty: makeOptionCopy('Cuidado personal'), books: makeOptionCopy('Libros'), gaming: makeOptionCopy('Juegos'), music: makeOptionCopy('Música'), home: makeOptionCopy('Casa y calma'), creative: makeOptionCopy('Crear cosas'), any: makeOptionCopy('Cualquiera', 'sorpréndeme con algo relevante') }),
+      style: makeQuestionCopy('7 · Estilo', '¿Qué sensación quieres provocar?', 'Elige el aire del regalo, incluso si todavía no sabes cuál será.', { useful: makeOptionCopy('Útil', 'lo usará de verdad'), original: makeOptionCopy('Original', 'que no se vea venir'), emotional: makeOptionCopy('Emocional', 'que diga algo'), fun: makeOptionCopy('Divertido', 'para pasarlo bien'), premium: makeOptionCopy('Premium', 'un pequeño lujo'), any: makeOptionCopy('Cualquiera', 'deja que el radar decida') }),
       country: makeQuestionCopy('8 · Dónde compras', '¿En qué país estás?', 'Así abrimos la tienda de Amazon que corresponde.', { ES: makeOptionCopy('España'), US: makeOptionCopy('Estados Unidos'), GB: makeOptionCopy('Reino Unido'), DE: makeOptionCopy('Alemania'), FR: makeOptionCopy('Francia'), IT: makeOptionCopy('Italia'), CA: makeOptionCopy('Canadá') })
     },
     seo: { eyebrow: 'Guía de regalos', title: 'Ideas de regalos de cumpleaños para acertar', intro: 'Un buen regalo de cumpleaños no tiene que ser caro ni complicado. Lo importante es que conecte con la relación que tienes con esa persona, con algo que disfruta y con el momento que vais a celebrar. Regalazo combina esas pistas para proponerte ideas útiles, originales y fáciles de buscar.', cards: [{ title: 'Regalos para tu pareja', description: 'Ideas con intención para celebrar juntos: recuerdos, planes compartidos y pequeños lujos que no se sienten impersonales.', link: 'Ver ideas para pareja' }, { title: 'Regalos de cumpleaños baratos', description: 'Detalles con criterio por menos de 20, 40 o 50 euros, sin caer en el regalo genérico de última hora.', link: 'Ver ideas económicas' }, { title: 'Guía para elegir mejor', description: 'Una guía rápida para pensar en intereses, presupuesto, estilo y ocasión antes de comprar.', link: 'Leer la guía completa' }], faqTitle: 'Preguntas frecuentes sobre regalos de cumpleaños', faqs: [{ question: '¿Cómo elijo un regalo de cumpleaños original?', answer: 'Empieza por algo que la persona ya disfruta y cambia el formato: un accesorio para su afición, un plan para compartir o un objeto cotidiano mejor elegido. La originalidad suele estar en el encaje, no en que sea extravagante.' }, { question: '¿Qué regalo puedo hacer con poco presupuesto?', answer: 'Con menos de 20 o 40 euros funcionan bien los detalles que crean un momento: una selección gourmet, un accesorio útil, un pequeño kit creativo o algo para una afición concreta. El recomendador permite filtrar por presupuesto.' }, { question: '¿Tengo que saber la edad exacta?', answer: 'No. Basta con elegir un rango aproximado. También puedes indicar que no lo sabes y dejar que el resto de señales —relación, ocasión, gusto y estilo— pese más.' }] },
@@ -2491,10 +2494,10 @@ var LANGUAGE_COPY = {
       relation: makeQuestionCopy('1 · For whom', 'What is your relationship with this person?', 'The relationship helps us find the right tone.', { partner: makeOptionCopy('Partner', 'something with intention'), parent: makeOptionCopy('Mother or father', 'a special detail'), sibling: makeOptionCopy('Sibling', 'with shared history'), friend: makeOptionCopy('Friend', 'to surprise them'), child: makeOptionCopy('Son or daughter', 'for their stage'), coworker: makeOptionCopy('Colleague', 'an easy win'), other: makeOptionCopy('Someone else', 'we will refine it later') }),
       gender: makeQuestionCopy('2 · Gender', 'Which gender best describes this person?', 'If you do not know or would rather not say, you can choose that option.', { woman: makeOptionCopy('Woman'), man: makeOptionCopy('Man'), nonbinary: makeOptionCopy('Non-binary person'), other: makeOptionCopy('Another identity'), 'prefer-not': makeOptionCopy('Prefer not to say'), unknown: makeOptionCopy('I do not know') }),
       age: makeQuestionCopy('3 · Age', 'What age range are they in?', 'An approximate range is perfect. You do not need the exact number.', { child: makeOptionCopy('Under 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 or older'), unknown: makeOptionCopy('I do not know') }),
-      occasion: makeQuestionCopy('4 · Occasion', 'What are you celebrating?', 'The context changes the kind of gift that feels right.', { birthday: makeOptionCopy('Birthday'), anniversary: makeOptionCopy('Anniversary'), christmas: makeOptionCopy('Christmas'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Thank you'), justbecause: makeOptionCopy('Just because') }),
+      occasion: makeQuestionCopy('4 · Occasion', 'What are you celebrating?', 'The context changes the kind of gift that feels right.', { birthday: makeOptionCopy('Birthday'), anniversary: makeOptionCopy('Anniversary'), christmas: makeOptionCopy('Christmas'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Thank you'), justbecause: makeOptionCopy('Just because'), any: makeOptionCopy('Anything', 'an idea that works in general') }),
       budget: makeQuestionCopy('5 · Budget', 'How much do you want to spend?', 'We use the maximum as a guide, not a rule.', { under20: makeOptionCopy('Under €20'), '20to40': makeOptionCopy('€20–40'), '40to75': makeOptionCopy('€40–75'), '75to150': makeOptionCopy('€75–150'), over150: makeOptionCopy('Over €150') }),
-      interests: makeQuestionCopy('6 · Their interests', 'What makes them tick?', 'Choose the interest that represents them best.', { tech: makeOptionCopy('Technology'), sport: makeOptionCopy('Sports'), food: makeOptionCopy('Food and flavors'), travel: makeOptionCopy('Travel'), beauty: makeOptionCopy('Personal care'), books: makeOptionCopy('Books'), gaming: makeOptionCopy('Games'), music: makeOptionCopy('Music'), home: makeOptionCopy('Home and calm'), creative: makeOptionCopy('Making things') }),
-      style: makeQuestionCopy('7 · Style', 'What feeling do you want to create?', 'Choose the mood of the gift, even if you do not know the exact item yet.', { useful: makeOptionCopy('Useful', 'they will really use it'), original: makeOptionCopy('Original', 'they will not see it coming'), emotional: makeOptionCopy('Emotional', 'it says something'), fun: makeOptionCopy('Fun', 'for a good time'), premium: makeOptionCopy('Premium', 'a little luxury') }),
+      interests: makeQuestionCopy('6 · Their interests', 'What makes them tick?', 'Choose the interest that represents them best.', { tech: makeOptionCopy('Technology'), sport: makeOptionCopy('Sports'), food: makeOptionCopy('Food and flavors'), travel: makeOptionCopy('Travel'), beauty: makeOptionCopy('Personal care'), books: makeOptionCopy('Books'), gaming: makeOptionCopy('Games'), music: makeOptionCopy('Music'), home: makeOptionCopy('Home and calm'), creative: makeOptionCopy('Making things'), any: makeOptionCopy('Anything', 'surprise me with something relevant') }),
+      style: makeQuestionCopy('7 · Style', 'What feeling do you want to create?', 'Choose the mood of the gift, even if you do not know the exact item yet.', { useful: makeOptionCopy('Useful', 'they will really use it'), original: makeOptionCopy('Original', 'they will not see it coming'), emotional: makeOptionCopy('Emotional', 'it says something'), fun: makeOptionCopy('Fun', 'for a good time'), premium: makeOptionCopy('Premium', 'a little luxury'), any: makeOptionCopy('Anything', 'let the radar decide') }),
       country: makeQuestionCopy('8 · Where you shop', 'Which country are you in?', 'We will open the matching Amazon store.', { ES: makeOptionCopy('Spain'), US: makeOptionCopy('United States'), GB: makeOptionCopy('United Kingdom'), DE: makeOptionCopy('Germany'), FR: makeOptionCopy('France'), IT: makeOptionCopy('Italy'), CA: makeOptionCopy('Canada') })
     },
     seo: { eyebrow: 'Gift guide', title: 'Birthday gift ideas to get it right', intro: 'A good birthday gift does not have to be expensive or complicated. What matters is the connection with the person, something they enjoy and the moment you are celebrating. Regalazo combines those clues to suggest useful, original ideas that are easy to find.', cards: [{ title: 'Gifts for your partner', description: 'Thoughtful ideas for celebrating together: memories, shared plans and little luxuries that do not feel impersonal.', link: 'See partner gift ideas' }, { title: 'Affordable birthday gifts', description: 'Considered details under 20, 40 or 50 euros, without falling into the last-minute generic gift.', link: 'See budget ideas' }, { title: 'How to choose better', description: 'A quick guide to thinking about interests, budget, style and occasion before buying.', link: 'Read the full guide' }], faqTitle: 'Frequently asked questions about birthday gifts', faqs: [{ question: 'How do I choose an original birthday gift?', answer: 'Start with something the person already enjoys and change the format: an accessory for a hobby, a plan to share or a better-chosen everyday object. Originality is usually about the fit, not extravagance.' }, { question: 'What gift can I give on a small budget?', answer: 'Under 20 or 40 euros, details that create a moment work well: a gourmet selection, a useful accessory, a small creative kit or something for a specific hobby. The recommender lets you filter by budget.' }, { question: 'Do I need to know their exact age?', answer: 'No. An approximate range is enough. You can also say you do not know and let the other clues —relationship, occasion, interests and style— carry more weight.' }] },
@@ -2511,10 +2514,10 @@ var LANGUAGE_COPY = {
       relation: makeQuestionCopy('1 · Für wen', 'Welche Beziehung hast du zu dieser Person?', 'Die Beziehung hilft uns, den passenden Ton zu finden.', { partner: makeOptionCopy('Partner/in', 'mit persönlicher Note'), parent: makeOptionCopy('Mutter oder Vater', 'ein besonderes Detail'), sibling: makeOptionCopy('Geschwister', 'mit Verbundenheit'), friend: makeOptionCopy('Freund/in', 'zum Überraschen'), child: makeOptionCopy('Sohn oder Tochter', 'passend zum Alter'), coworker: makeOptionCopy('Kolleg/in', 'unkompliziert passend'), other: makeOptionCopy('Andere Person', 'das verfeinern wir später') }),
       gender: makeQuestionCopy('2 · Geschlecht', 'Welches Geschlecht beschreibt die Person am besten?', 'Wenn du es nicht weißt oder nicht sagen möchtest, kannst du diese Option wählen.', { woman: makeOptionCopy('Frau'), man: makeOptionCopy('Mann'), nonbinary: makeOptionCopy('Nicht-binäre Person'), other: makeOptionCopy('Andere Identität'), 'prefer-not': makeOptionCopy('Möchte ich nicht sagen'), unknown: makeOptionCopy('Ich weiß es nicht') }),
       age: makeQuestionCopy('3 · Alter', 'In welcher Altersgruppe ist die Person?', 'Eine ungefähre Angabe reicht völlig. Die genaue Zahl musst du nicht kennen.', { child: makeOptionCopy('Unter 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 oder älter'), unknown: makeOptionCopy('Ich weiß es nicht') }),
-      occasion: makeQuestionCopy('4 · Anlass', 'Was feiert ihr?', 'Der Anlass verändert, welches Geschenk sich richtig anfühlt.', { birthday: makeOptionCopy('Geburtstag'), anniversary: makeOptionCopy('Jahrestag'), christmas: makeOptionCopy('Weihnachten'), 'secret-santa': makeOptionCopy('Wichteln'), thankyou: makeOptionCopy('Dankeschön'), justbecause: makeOptionCopy('Einfach so') }),
+      occasion: makeQuestionCopy('4 · Anlass', 'Was feiert ihr?', 'Der Anlass verändert, welches Geschenk sich richtig anfühlt.', { birthday: makeOptionCopy('Geburtstag'), anniversary: makeOptionCopy('Jahrestag'), christmas: makeOptionCopy('Weihnachten'), 'secret-santa': makeOptionCopy('Wichteln'), thankyou: makeOptionCopy('Dankeschön'), justbecause: makeOptionCopy('Einfach so'), any: makeOptionCopy('Egal', 'eine Idee, die allgemein passt') }),
       budget: makeQuestionCopy('5 · Budget', 'Wie viel möchtest du ausgeben?', 'Wir nutzen den Höchstbetrag als Orientierung, nicht als Pflicht.', { under20: makeOptionCopy('Unter 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Über 150 €') }),
-      interests: makeQuestionCopy('6 · Interessen', 'Wofür begeistert sich die Person?', 'Wähle das Interesse, das am besten passt.', { tech: makeOptionCopy('Technik'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Kochen und Genuss'), travel: makeOptionCopy('Reisen'), beauty: makeOptionCopy('Pflege'), books: makeOptionCopy('Bücher'), gaming: makeOptionCopy('Spiele'), music: makeOptionCopy('Musik'), home: makeOptionCopy('Zuhause und Ruhe'), creative: makeOptionCopy('Kreativ sein') }),
-      style: makeQuestionCopy('7 · Stil', 'Welche Stimmung soll das Geschenk auslösen?', 'Wähle die Richtung des Geschenks, auch wenn du den konkreten Artikel noch nicht kennst.', { useful: makeOptionCopy('Nützlich', 'wird wirklich verwendet'), original: makeOptionCopy('Originell', 'damit rechnet niemand'), emotional: makeOptionCopy('Emotional', 'sagt etwas aus'), fun: makeOptionCopy('Lustig', 'für gute Laune'), premium: makeOptionCopy('Hochwertig', 'ein kleiner Luxus') }),
+      interests: makeQuestionCopy('6 · Interessen', 'Wofür begeistert sich die Person?', 'Wähle das Interesse, das am besten passt.', { tech: makeOptionCopy('Technik'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Kochen und Genuss'), travel: makeOptionCopy('Reisen'), beauty: makeOptionCopy('Pflege'), books: makeOptionCopy('Bücher'), gaming: makeOptionCopy('Spiele'), music: makeOptionCopy('Musik'), home: makeOptionCopy('Zuhause und Ruhe'), creative: makeOptionCopy('Kreativ sein'), any: makeOptionCopy('Egal', 'überrasche mich mit etwas Passendem') }),
+      style: makeQuestionCopy('7 · Stil', 'Welche Stimmung soll das Geschenk auslösen?', 'Wähle die Richtung des Geschenks, auch wenn du den konkreten Artikel noch nicht kennst.', { useful: makeOptionCopy('Nützlich', 'wird wirklich verwendet'), original: makeOptionCopy('Originell', 'damit rechnet niemand'), emotional: makeOptionCopy('Emotional', 'sagt etwas aus'), fun: makeOptionCopy('Lustig', 'für gute Laune'), premium: makeOptionCopy('Hochwertig', 'ein kleiner Luxus'), any: makeOptionCopy('Egal', 'lass den Radar entscheiden') }),
       country: makeQuestionCopy('8 · Einkaufsland', 'In welchem Land bist du?', 'Wir öffnen den passenden Amazon-Shop.', { ES: makeOptionCopy('Spanien'), US: makeOptionCopy('Vereinigte Staaten'), GB: makeOptionCopy('Vereinigtes Königreich'), DE: makeOptionCopy('Deutschland'), FR: makeOptionCopy('Frankreich'), IT: makeOptionCopy('Italien'), CA: makeOptionCopy('Kanada') })
     },
     seo: { eyebrow: 'Geschenkguide', title: 'Geburtstagsgeschenke, die wirklich passen', intro: 'Ein gutes Geburtstagsgeschenk muss weder teuer noch kompliziert sein. Entscheidend sind die Beziehung, etwas, das die Person mag, und der Anlass. Regalazo verbindet diese Hinweise zu nützlichen, originellen und leicht auffindbaren Ideen.', cards: [{ title: 'Geschenke für deine Partnerperson', description: 'Ideen mit persönlicher Note: gemeinsame Erinnerungen, Pläne und kleine Luxusmomente.', link: 'Ideen für Partner ansehen' }, { title: 'Günstige Geburtstagsgeschenke', description: 'Durchdachte Details unter 20, 40 oder 50 Euro statt eines beliebigen Last-Minute-Geschenks.', link: 'Budget-Ideen ansehen' }, { title: 'Besser auswählen', description: 'Ein kurzer Guide zu Interessen, Budget, Stil und Anlass vor dem Kauf.', link: 'Guide lesen' }], faqTitle: 'Häufige Fragen zu Geburtstagsgeschenken', faqs: [{ question: 'Wie finde ich ein originelles Geburtstagsgeschenk?', answer: 'Beginne mit etwas, das die Person bereits mag, und ändere das Format: ein Zubehör für ein Hobby, ein gemeinsamer Plan oder ein besser ausgewählter Alltagsgegenstand. Originalität liegt meist in der Passung.' }, { question: 'Was kann ich mit kleinem Budget schenken?', answer: 'Unter 20 oder 40 Euro funktionieren Details, die einen Moment schaffen: eine Feinkostauswahl, ein nützliches Accessoire, ein kleines Kreativset oder etwas für ein konkretes Hobby.' }, { question: 'Muss ich das genaue Alter wissen?', answer: 'Nein. Eine ungefähre Altersgruppe reicht. Du kannst auch angeben, dass du es nicht weißt, und die anderen Hinweise stärker gewichten lassen.' }] },
@@ -2531,10 +2534,10 @@ var LANGUAGE_COPY = {
       relation: makeQuestionCopy('1 · Pour qui', 'Quelle relation avez-vous avec cette personne ?', 'Le lien aide à trouver le ton juste.', { partner: makeOptionCopy('Partenaire', 'avec une intention'), parent: makeOptionCopy('Mère ou père', 'une attention spéciale'), sibling: makeOptionCopy('Frère ou sœur', 'avec complicité'), friend: makeOptionCopy('Ami(e)', 'pour le surprendre'), child: makeOptionCopy('Fils ou fille', 'selon son âge'), coworker: makeOptionCopy('Collègue', 'une valeur sûre'), other: makeOptionCopy('Autre personne', 'nous affinerons ensuite') }),
       gender: makeQuestionCopy('2 · Genre', 'Quel genre décrit le mieux cette personne ?', 'Si vous ne savez pas ou préférez ne pas le dire, vous pouvez choisir cette option.', { woman: makeOptionCopy('Femme'), man: makeOptionCopy('Homme'), nonbinary: makeOptionCopy('Personne non binaire'), other: makeOptionCopy('Autre identité'), 'prefer-not': makeOptionCopy('Je préfère ne pas le dire'), unknown: makeOptionCopy('Je ne sais pas') }),
       age: makeQuestionCopy('3 · Âge', 'Dans quelle tranche d’âge est-elle ?', 'Une estimation suffit. Vous n’avez pas besoin de connaître le nombre exact.', { child: makeOptionCopy('Moins de 12 ans'), teen: makeOptionCopy('12–17 ans'), 'young-adult': makeOptionCopy('18–24 ans'), adult: makeOptionCopy('25–34 ans'), midlife: makeOptionCopy('35–49 ans'), '50plus': makeOptionCopy('50 ans ou plus'), unknown: makeOptionCopy('Je ne sais pas') }),
-      occasion: makeQuestionCopy('4 · Occasion', 'Que célébrez-vous ?', 'Le contexte change beaucoup le type de cadeau qui convient.', { birthday: makeOptionCopy('Anniversaire'), anniversary: makeOptionCopy('Anniversaire de couple'), christmas: makeOptionCopy('Noël'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Remerciement'), justbecause: makeOptionCopy('Juste comme ça') }),
+      occasion: makeQuestionCopy('4 · Occasion', 'Que célébrez-vous ?', 'Le contexte change beaucoup le type de cadeau qui convient.', { birthday: makeOptionCopy('Anniversaire'), anniversary: makeOptionCopy('Anniversaire de couple'), christmas: makeOptionCopy('Noël'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Remerciement'), justbecause: makeOptionCopy('Juste comme ça'), any: makeOptionCopy('Peu importe', 'une idée qui fonctionne en général') }),
       budget: makeQuestionCopy('5 · Budget', 'Combien souhaitez-vous dépenser ?', 'Le maximum sert de repère, pas d’obligation.', { under20: makeOptionCopy('Moins de 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Plus de 150 €') }),
-      interests: makeQuestionCopy('6 · Ses goûts', 'Qu’est-ce qui la fait vibrer ?', 'Choisissez le goût qui lui ressemble le plus.', { tech: makeOptionCopy('Technologie'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Cuisine et saveurs'), travel: makeOptionCopy('Voyages'), beauty: makeOptionCopy('Soin de soi'), books: makeOptionCopy('Livres'), gaming: makeOptionCopy('Jeux'), music: makeOptionCopy('Musique'), home: makeOptionCopy('Maison et calme'), creative: makeOptionCopy('Créer') }),
-      style: makeQuestionCopy('7 · Style', 'Quelle sensation voulez-vous provoquer ?', 'Choisissez l’esprit du cadeau, même si vous ne connaissez pas encore l’objet.', { useful: makeOptionCopy('Utile', 'elle s’en servira vraiment'), original: makeOptionCopy('Original', 'pour surprendre'), emotional: makeOptionCopy('Émotionnel', 'pour dire quelque chose'), fun: makeOptionCopy('Amusant', 'pour passer un bon moment'), premium: makeOptionCopy('Premium', 'un petit luxe') }),
+      interests: makeQuestionCopy('6 · Ses goûts', 'Qu’est-ce qui la fait vibrer ?', 'Choisissez le goût qui lui ressemble le plus.', { tech: makeOptionCopy('Technologie'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Cuisine et saveurs'), travel: makeOptionCopy('Voyages'), beauty: makeOptionCopy('Soin de soi'), books: makeOptionCopy('Livres'), gaming: makeOptionCopy('Jeux'), music: makeOptionCopy('Musique'), home: makeOptionCopy('Maison et calme'), creative: makeOptionCopy('Créer'), any: makeOptionCopy('Peu importe', 'surprenez-moi avec une idée pertinente') }),
+      style: makeQuestionCopy('7 · Style', 'Quelle sensation voulez-vous provoquer ?', 'Choisissez l’esprit du cadeau, même si vous ne connaissez pas encore l’objet.', { useful: makeOptionCopy('Utile', 'elle s’en servira vraiment'), original: makeOptionCopy('Original', 'pour surprendre'), emotional: makeOptionCopy('Émotionnel', 'pour dire quelque chose'), fun: makeOptionCopy('Amusant', 'pour passer un bon moment'), premium: makeOptionCopy('Premium', 'un petit luxe'), any: makeOptionCopy('Peu importe', 'laissez le radar décider') }),
       country: makeQuestionCopy('8 · Où acheter', 'Dans quel pays êtes-vous ?', 'Nous ouvrirons la boutique Amazon correspondante.', { ES: makeOptionCopy('Espagne'), US: makeOptionCopy('États-Unis'), GB: makeOptionCopy('Royaume-Uni'), DE: makeOptionCopy('Allemagne'), FR: makeOptionCopy('France'), IT: makeOptionCopy('Italie'), CA: makeOptionCopy('Canada') })
     },
     seo: { eyebrow: 'Guide cadeaux', title: 'Idées de cadeaux d’anniversaire pour viser juste', intro: 'Un bon cadeau d’anniversaire n’a pas besoin d’être cher ou compliqué. Ce qui compte, c’est le lien avec la personne, ce qu’elle aime et le moment célébré. Regalazo combine ces indices pour proposer des idées utiles, originales et faciles à trouver.', cards: [{ title: 'Cadeaux pour votre partenaire', description: 'Des idées attentionnées pour célébrer ensemble : souvenirs, projets partagés et petits luxes.', link: 'Voir les idées pour partenaire' }, { title: 'Cadeaux d’anniversaire pas chers', description: 'Des attentions choisies à moins de 20, 40 ou 50 euros, sans cadeau générique de dernière minute.', link: 'Voir les idées petit budget' }, { title: 'Mieux choisir son cadeau', description: 'Un guide rapide pour penser aux goûts, au budget, au style et à l’occasion.', link: 'Lire le guide complet' }], faqTitle: 'Questions fréquentes sur les cadeaux d’anniversaire', faqs: [{ question: 'Comment choisir un cadeau d’anniversaire original ?', answer: 'Partez de quelque chose que la personne aime déjà et changez le format : un accessoire pour son loisir, une activité à partager ou un objet du quotidien mieux choisi. L’originalité est souvent dans la pertinence.' }, { question: 'Quel cadeau offrir avec un petit budget ?', answer: 'Avec moins de 20 ou 40 euros, les détails qui créent un moment fonctionnent bien : une sélection gourmande, un accessoire utile, un petit kit créatif ou quelque chose pour un loisir précis.' }, { question: 'Faut-il connaître l’âge exact ?', answer: 'Non. Une tranche approximative suffit. Vous pouvez aussi indiquer que vous ne savez pas et laisser les autres indices peser davantage.' }] },
@@ -2551,10 +2554,10 @@ var LANGUAGE_COPY = {
       relation: makeQuestionCopy('1 · Per chi', 'Che rapporto hai con questa persona?', 'Il rapporto aiuta a trovare il tono giusto.', { partner: makeOptionCopy('Partner', 'qualcosa con intenzione'), parent: makeOptionCopy('Mamma o papà', 'un dettaglio speciale'), sibling: makeOptionCopy('Fratello o sorella', 'con complicità'), friend: makeOptionCopy('Amico/a', 'per sorprenderlo/a'), child: makeOptionCopy('Figlio/a', 'in base alla sua età'), coworker: makeOptionCopy('Collega', 'una scelta semplice'), other: makeOptionCopy('Altra persona', 'lo definiremo dopo') }),
       gender: makeQuestionCopy('2 · Genere', 'Quale genere descrive meglio questa persona?', 'Se non lo sai o preferisci non dirlo, puoi scegliere questa opzione.', { woman: makeOptionCopy('Donna'), man: makeOptionCopy('Uomo'), nonbinary: makeOptionCopy('Persona non binaria'), other: makeOptionCopy('Altra identità'), 'prefer-not': makeOptionCopy('Preferisco non dirlo'), unknown: makeOptionCopy('Non lo so') }),
       age: makeQuestionCopy('3 · Età', 'In quale fascia d’età si trova?', 'Una stima va benissimo. Non serve conoscere il numero esatto.', { child: makeOptionCopy('Meno di 12'), teen: makeOptionCopy('12–17'), 'young-adult': makeOptionCopy('18–24'), adult: makeOptionCopy('25–34'), midlife: makeOptionCopy('35–49'), '50plus': makeOptionCopy('50 o più'), unknown: makeOptionCopy('Non lo so') }),
-      occasion: makeQuestionCopy('4 · Occasione', 'Che cosa state festeggiando?', 'Il contesto cambia molto il tipo di regalo più adatto.', { birthday: makeOptionCopy('Compleanno'), anniversary: makeOptionCopy('Anniversario'), christmas: makeOptionCopy('Natale'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Ringraziamento'), justbecause: makeOptionCopy('Perché sì') }),
+      occasion: makeQuestionCopy('4 · Occasione', 'Che cosa state festeggiando?', 'Il contesto cambia molto il tipo di regalo più adatto.', { birthday: makeOptionCopy('Compleanno'), anniversary: makeOptionCopy('Anniversario'), christmas: makeOptionCopy('Natale'), 'secret-santa': makeOptionCopy('Secret Santa'), thankyou: makeOptionCopy('Ringraziamento'), justbecause: makeOptionCopy('Perché sì'), any: makeOptionCopy('Qualsiasi', 'un’idea che funzioni in generale') }),
       budget: makeQuestionCopy('5 · Budget', 'Quanto vuoi spendere?', 'Usiamo il massimo come riferimento, non come obbligo.', { under20: makeOptionCopy('Meno di 20 €'), '20to40': makeOptionCopy('20–40 €'), '40to75': makeOptionCopy('40–75 €'), '75to150': makeOptionCopy('75–150 €'), over150: makeOptionCopy('Più di 150 €') }),
-      interests: makeQuestionCopy('6 · I suoi interessi', 'Che cosa lo/a appassiona?', 'Scegli l’interesse che lo/a rappresenta di più.', { tech: makeOptionCopy('Tecnologia'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Cucina e sapori'), travel: makeOptionCopy('Viaggi'), beauty: makeOptionCopy('Cura personale'), books: makeOptionCopy('Libri'), gaming: makeOptionCopy('Giochi'), music: makeOptionCopy('Musica'), home: makeOptionCopy('Casa e calma'), creative: makeOptionCopy('Creare cose') }),
-      style: makeQuestionCopy('7 · Stile', 'Che sensazione vuoi provocare?', 'Scegli lo stile del regalo, anche se non sai ancora quale sarà.', { useful: makeOptionCopy('Utile', 'lo userà davvero'), original: makeOptionCopy('Originale', 'per sorprenderlo/a'), emotional: makeOptionCopy('Emotivo', 'per dire qualcosa'), fun: makeOptionCopy('Divertente', 'per stare bene insieme'), premium: makeOptionCopy('Premium', 'un piccolo lusso') }),
+      interests: makeQuestionCopy('6 · I suoi interessi', 'Che cosa lo/a appassiona?', 'Scegli l’interesse che lo/a rappresenta di più.', { tech: makeOptionCopy('Tecnologia'), sport: makeOptionCopy('Sport'), food: makeOptionCopy('Cucina e sapori'), travel: makeOptionCopy('Viaggi'), beauty: makeOptionCopy('Cura personale'), books: makeOptionCopy('Libri'), gaming: makeOptionCopy('Giochi'), music: makeOptionCopy('Musica'), home: makeOptionCopy('Casa e calma'), creative: makeOptionCopy('Creare cose'), any: makeOptionCopy('Qualsiasi', 'sorprendimi con qualcosa di pertinente') }),
+      style: makeQuestionCopy('7 · Stile', 'Che sensazione vuoi provocare?', 'Scegli lo stile del regalo, anche se non sai ancora quale sarà.', { useful: makeOptionCopy('Utile', 'lo userà davvero'), original: makeOptionCopy('Originale', 'per sorprenderlo/a'), emotional: makeOptionCopy('Emotivo', 'per dire qualcosa'), fun: makeOptionCopy('Divertente', 'per stare bene insieme'), premium: makeOptionCopy('Premium', 'un piccolo lusso'), any: makeOptionCopy('Qualsiasi', 'lascia decidere al radar') }),
       country: makeQuestionCopy('8 · Dove acquisti', 'In quale Paese ti trovi?', 'Apriremo il negozio Amazon corrispondente.', { ES: makeOptionCopy('Spagna'), US: makeOptionCopy('Stati Uniti'), GB: makeOptionCopy('Regno Unito'), DE: makeOptionCopy('Germania'), FR: makeOptionCopy('Francia'), IT: makeOptionCopy('Italia'), CA: makeOptionCopy('Canada') })
     },
     seo: { eyebrow: 'Guida ai regali', title: 'Idee regalo di compleanno per andare sul sicuro', intro: 'Un buon regalo di compleanno non deve essere costoso o complicato. Conta il rapporto con la persona, ciò che le piace e il momento da festeggiare. Regalazo combina questi indizi per proporti idee utili, originali e facili da trovare.', cards: [{ title: 'Regali per il tuo partner', description: 'Idee pensate per festeggiare insieme: ricordi, progetti condivisi e piccoli lussi.', link: 'Vedi idee per partner' }, { title: 'Regali di compleanno economici', description: 'Dettagli scelti sotto i 20, 40 o 50 euro, senza il solito regalo generico dell’ultimo minuto.', link: 'Vedi idee economiche' }, { title: 'Come scegliere meglio', description: 'Una guida rapida a interessi, budget, stile e occasione prima di comprare.', link: 'Leggi la guida completa' }], faqTitle: 'Domande frequenti sui regali di compleanno', faqs: [{ question: 'Come scelgo un regalo di compleanno originale?', answer: 'Parti da qualcosa che la persona ama già e cambia formato: un accessorio per un hobby, un’attività da condividere o un oggetto quotidiano scelto meglio. L’originalità spesso sta nell’abbinamento.' }, { question: 'Che regalo posso fare con un budget ridotto?', answer: 'Sotto i 20 o 40 euro funzionano bene i dettagli che creano un momento: una selezione gourmet, un accessorio utile, un piccolo kit creativo o qualcosa per un hobby preciso.' }, { question: 'Devo conoscere l’età esatta?', answer: 'No. Basta una fascia approssimativa. Puoi anche dire che non lo sai e lasciare che gli altri indizi pesino di più.' }] },
@@ -2571,17 +2574,18 @@ var ANALYTICS_CONFIG = Object.freeze({
   apiHost: 'https://api-eu.mixpanel.com'
 });
 var ANALYTICS_CONSENT_COPY = {
-  es: { title: '¿Nos ayudas a mejorar Regalazo?', text: 'Podemos usar analítica anónima para saber qué funciona y mejorar las recomendaciones. No guardamos nombres, emails ni texto libre.', accept: 'Aceptar analítica', reject: 'Ahora no', preferences: 'Preferencias de analítica' },
-  en: { title: 'Help us improve Regalazo?', text: 'We use anonymous analytics to see what works and improve recommendations. We do not store names, emails or free text.', accept: 'Allow analytics', reject: 'Not now', preferences: 'Analytics preferences' },
-  de: { title: 'Regalazo verbessern?', text: 'Anonyme Analysen helfen uns zu sehen, was funktioniert und Empfehlungen zu verbessern. Wir speichern keine Namen, E-Mails oder freien Texte.', accept: 'Analytik erlauben', reject: 'Jetzt nicht', preferences: 'Analyse-Einstellungen' },
-  fr: { title: 'Nous aider à améliorer Regalazo ?', text: 'Nous pouvons utiliser des statistiques anonymes pour améliorer les recommandations. Nous ne conservons ni noms, ni e-mails, ni texte libre.', accept: 'Autoriser les statistiques', reject: 'Pas maintenant', preferences: 'Préférences statistiques' },
-  it: { title: 'Ci aiuti a migliorare Regalazo?', text: 'Possiamo usare analisi anonime per capire cosa funziona e migliorare i consigli. Non conserviamo nomi, email o testo libero.', accept: 'Consenti analisi', reject: 'Non ora', preferences: 'Preferenze analisi' }
+  es: { title: '¿Nos ayudas a mejorar Regalazo?', text: 'Podemos usar métricas de uso para saber qué funciona y mejorar las recomendaciones. No guardamos nombres, emails, respuestas concretas ni texto libre.', accept: 'Aceptar analítica', reject: 'Ahora no', preferences: 'Preferencias de analítica' },
+  en: { title: 'Help us improve Regalazo?', text: 'We use usage metrics to see what works and improve recommendations. We do not store names, emails, specific answers or free text.', accept: 'Allow analytics', reject: 'Not now', preferences: 'Analytics preferences' },
+  de: { title: 'Regalazo verbessern?', text: 'Wir können Nutzungsmetriken verwenden, um Empfehlungen zu verbessern. Wir speichern keine Namen, E-Mails, konkreten Antworten oder freien Texte.', accept: 'Analytik erlauben', reject: 'Jetzt nicht', preferences: 'Analyse-Einstellungen' },
+  fr: { title: 'Nous aider à améliorer Regalazo ?', text: 'Nous pouvons utiliser des statistiques d’usage pour améliorer les recommandations. Nous ne conservons ni noms, ni e-mails, ni réponses précises, ni texte libre.', accept: 'Autoriser les statistiques', reject: 'Pas maintenant', preferences: 'Préférences statistiques' },
+  it: { title: 'Ci aiuti a migliorare Regalazo?', text: 'Possiamo usare metriche d’uso per capire cosa funziona e migliorare i consigli. Non conserviamo nomi, email, risposte specifiche o testo libero.', accept: 'Consenti analisi', reject: 'Non ora', preferences: 'Preferenze analisi' }
 };
-var ANALYTICS_CONSENT_STORAGE_KEY = 'regalazo-analytics-consent-v1';
+var ANALYTICS_CONSENT_STORAGE_KEY = 'regalazo-analytics-consent-v2';
 var ANALYTICS_QUEUE = [];
 var analyticsConsentState = null;
 var analyticsScriptLoading = false;
 var analyticsReady = false;
+var analyticsPageViewTracked = false;
 
 
 var GIFT_TITLE_COPY = {
@@ -2707,6 +2711,7 @@ function localizedGift(gift) {
 }
 
 var ANALYTICS_SAFE_PROPERTIES = {
+  page_viewed: ['path'],
   quiz_started: [],
   quiz_answered: ['step'],
   recommendations_viewed: ['resultCount', 'variant', 'mode'],
@@ -2793,14 +2798,20 @@ function initializeMixpanel() {
 
 function loadMixpanel() {
   if (analyticsConsentState !== 'granted' || !ANALYTICS_CONFIG.enabled || !ANALYTICS_CONFIG.token || analyticsReady || analyticsScriptLoading) return;
-  if (initializeMixpanel()) return;
+  if (initializeMixpanel()) {
+    trackPageView();
+    return;
+  }
   analyticsScriptLoading = true;
   var script = document.createElement('script');
   script.async = true;
   script.src = ANALYTICS_CONFIG.scriptUrl;
   script.onload = function () {
     analyticsScriptLoading = false;
-    if (initializeMixpanel()) trackEvent('analytics_loaded', {});
+    if (initializeMixpanel()) {
+      trackEvent('analytics_loaded', {});
+      trackPageView();
+    }
   };
   script.onerror = function () {
     analyticsScriptLoading = false;
@@ -2816,12 +2827,14 @@ function setAnalyticsConsent(value) {
   } catch (error) {}
   if (value === 'denied') {
     ANALYTICS_QUEUE.length = 0;
+    analyticsPageViewTracked = false;
     if (window.mixpanel && typeof window.mixpanel.opt_out_tracking === 'function') window.mixpanel.opt_out_tracking();
   }
   hideAnalyticsConsent();
   if (value === 'granted') {
     if (window.mixpanel && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
     loadMixpanel();
+    if (analyticsReady) trackPageView();
   }
 }
 
@@ -2830,8 +2843,16 @@ function openAnalyticsPreferences() {
   try {
     localStorage.removeItem(ANALYTICS_CONSENT_STORAGE_KEY);
   } catch (error) {}
+  analyticsPageViewTracked = false;
   if (window.mixpanel && typeof window.mixpanel.opt_out_tracking === 'function') window.mixpanel.opt_out_tracking();
   showAnalyticsConsent();
+  if (analyticsConsentBanner && typeof analyticsConsentBanner.focus === 'function') analyticsConsentBanner.focus();
+}
+
+function trackPageView() {
+  if (analyticsPageViewTracked) return;
+  analyticsPageViewTracked = true;
+  trackEvent('page_viewed', { path: window.location.pathname || '/' });
 }
 
 function trackEvent(eventName, properties) {
@@ -3122,10 +3143,15 @@ function budgetFor(value) {
   return option || { label: 'Hasta 40 €', max: 40 };
 }
 
-function selectedInterests(answers) {
+function rawInterests(answers) {
   var value = answers && answers.interests;
   if (Array.isArray(value)) return value;
   return value ? [value] : [];
+}
+
+function selectedInterests(answers) {
+  var interests = rawInterests(answers);
+  return interests.indexOf('any') !== -1 ? [] : interests;
 }
 
 function hashString(value) {
@@ -3238,8 +3264,8 @@ function giftFitScore(gift, answers, budget, interests) {
   var overlap = gift.interests.filter(function (interest) { return interests.indexOf(interest) !== -1; }).length;
   var interestSignal = interests.length ? Math.min(1, overlap / Math.max(1, Math.min(interests.length, 2))) : 0.72;
   var budgetSignal = gift.price <= budget.max ? 1 : (gift.price <= budget.max * 1.15 ? 0.65 : (gift.price <= budget.max * 1.4 ? 0.35 : 0.05));
-  var occasionSignal = !answers.occasion || gift.occasions.indexOf(answers.occasion) !== -1 ? 1 : 0.42;
-  var styleSignal = !answers.style || gift.styles.indexOf(answers.style) !== -1 ? 1 : 0.42;
+  var occasionSignal = !answers.occasion || answers.occasion === 'any' || gift.occasions.indexOf(answers.occasion) !== -1 ? 1 : 0.42;
+  var styleSignal = !answers.style || answers.style === 'any' || gift.styles.indexOf(answers.style) !== -1 ? 1 : 0.42;
   var ageSignal = !answers.age || answers.age === 'unknown' ? 0.78 : (gift.ages.indexOf(answers.age) !== -1 ? 1 : 0.35);
   var genderSignal = 0.8;
   if (gift.genders && gift.genders.length && answers.gender) genderSignal = gift.genders.indexOf(answers.gender) !== -1 ? 1 : 0.3;
@@ -3265,10 +3291,10 @@ function scoreGift(gift, answers, budget, interests, mode) {
   else if (gift.price <= budget.max * 1.4) score -= 1;
   else score -= 8;
   if (budget.max >= 150 && gift.price >= 80) score += 3;
-  if (answers.style && gift.styles.indexOf(answers.style) !== -1) score += 7;
+  if (answers.style && answers.style !== 'any' && gift.styles.indexOf(answers.style) !== -1) score += 7;
   if (answers.relation && answers.relation !== 'other' && gift.relations.indexOf(answers.relation) !== -1) score += 6;
   if (!answers.age || answers.age === 'unknown' || gift.ages.indexOf(answers.age) !== -1) score += 4;
-  if (!answers.occasion || gift.occasions.indexOf(answers.occasion) !== -1) score += 4;
+  if (!answers.occasion || answers.occasion === 'any' || gift.occasions.indexOf(answers.occasion) !== -1) score += 4;
   if (answers.relation === 'child' && gift.ages.indexOf('child') !== -1) score += 5;
   score += giftFitScore(gift, answers, budget, interests) * 0.12;
   score += recipeBoost(gift, mode, answers);
@@ -3396,14 +3422,15 @@ function buildReason(gift, answers) {
   var reason = angleReason ? angleReason + ' ' + gift.reason : gift.reason;
   if (matches.length) {
     var labels = matches.slice(0, 2).map(function (interest) { return getLabel('interests', interest).toLowerCase(); });
-    return 'Conecta con ' + labels.join(' y ') + ' y mantiene un tono ' + getLabel('style', answers.style).toLowerCase() + '. ' + reason;
+    var styleLabel = answers.style && answers.style !== 'any' ? getLabel('style', answers.style).toLowerCase() : '';
+    return 'Conecta con ' + labels.join(' y ') + (styleLabel ? ' y mantiene un tono ' + styleLabel : '') + '. ' + reason;
   }
   return reason;
 }
 
 function summaryChips(answers) {
   var chips = [getLabel('relation', answers.relation), getLabel('gender', answers.gender), getLabel('age', answers.age), getLabel('occasion', answers.occasion), getLabel('budget', answers.budget), getLabel('style', answers.style), getLabel('country', answers.country)];
-  selectedInterests(answers).slice(0, 3).forEach(function (interest) { chips.push(getLabel('interests', interest)); });
+  rawInterests(answers).slice(0, 3).forEach(function (interest) { chips.push(getLabel('interests', interest)); });
   return chips.filter(Boolean).map(function (chip) { return '<span class="summary-chip">' + escapeHtml(chip) + '</span>'; }).join('');
 }
 
@@ -3575,7 +3602,7 @@ function buildShareUrl() {
   ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country'].forEach(function (key) {
     if (state.answers[key]) params.set(key, state.answers[key]);
   });
-  params.set('interests', selectedInterests(state.answers).join(','));
+  params.set('interests', rawInterests(state.answers).join(','));
   params.set('v', String(state.variant));
   params.set('utm_source', 'share');
   params.set('utm_medium', 'regalazo');
