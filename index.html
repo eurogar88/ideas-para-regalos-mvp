@@ -160,6 +160,17 @@
 
         <section id="results" class="results" aria-labelledby="results-title" aria-live="polite" hidden></section>
 
+        <aside id="analytics-consent" class="analytics-consent" aria-live="polite" hidden>
+          <div class="analytics-consent-copy">
+            <strong id="analytics-consent-title">¿Nos ayudas a mejorar Regalazo?</strong>
+            <span id="analytics-consent-text">Podemos usar analítica anónima para saber qué funciona y mejorar las recomendaciones. No guardamos tus respuestas personales.</span>
+          </div>
+          <div class="analytics-consent-actions">
+            <button id="analytics-consent-reject" class="button button-ghost" type="button">Ahora no</button>
+            <button id="analytics-consent-accept" class="button button-primary" type="button">Aceptar analítica</button>
+          </div>
+        </aside>
+
         <aside id="pwa-prompt" class="pwa-prompt" aria-live="polite" hidden>
           <span class="pwa-prompt-icon" aria-hidden="true">✦</span>
           <div class="pwa-prompt-copy"><strong id="pwa-prompt-title">Llévate Regalazo contigo</strong><span id="pwa-prompt-text">Instala el radar para tenerlo a mano cuando vuelva a surgir un cumpleaños.</span></div>
@@ -181,6 +192,7 @@
           <a href="/privacidad/">Privacidad</a>
           <a href="/cookies/">Cookies</a>
         </nav>
+        <button id="analytics-preferences" class="footer-preferences" type="button">Preferencias de analítica</button>
       </footer>
     </div>
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>

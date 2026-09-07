@@ -2562,8 +2562,26 @@ var LANGUAGE_COPY = {
   }
 };
 
-var ANALYTICS_CONFIG = Object.freeze({ provider: 'mixpanel', enabled: false, token: '', version: 'growth-v2' });
+var ANALYTICS_CONFIG = Object.freeze({
+  provider: 'mixpanel',
+  enabled: true,
+  token: '7a393adbe60cb8cd073e9aaf44263a33',
+  version: 'growth-v2',
+  scriptUrl: 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js',
+  apiHost: 'https://api-eu.mixpanel.com'
+});
+var ANALYTICS_CONSENT_COPY = {
+  es: { title: '¿Nos ayudas a mejorar Regalazo?', text: 'Podemos usar analítica anónima para saber qué funciona y mejorar las recomendaciones. No guardamos nombres, emails ni texto libre.', accept: 'Aceptar analítica', reject: 'Ahora no', preferences: 'Preferencias de analítica' },
+  en: { title: 'Help us improve Regalazo?', text: 'We use anonymous analytics to see what works and improve recommendations. We do not store names, emails or free text.', accept: 'Allow analytics', reject: 'Not now', preferences: 'Analytics preferences' },
+  de: { title: 'Regalazo verbessern?', text: 'Anonyme Analysen helfen uns zu sehen, was funktioniert und Empfehlungen zu verbessern. Wir speichern keine Namen, E-Mails oder freien Texte.', accept: 'Analytik erlauben', reject: 'Jetzt nicht', preferences: 'Analyse-Einstellungen' },
+  fr: { title: 'Nous aider à améliorer Regalazo ?', text: 'Nous pouvons utiliser des statistiques anonymes pour améliorer les recommandations. Nous ne conservons ni noms, ni e-mails, ni texte libre.', accept: 'Autoriser les statistiques', reject: 'Pas maintenant', preferences: 'Préférences statistiques' },
+  it: { title: 'Ci aiuti a migliorare Regalazo?', text: 'Possiamo usare analisi anonime per capire cosa funziona e migliorare i consigli. Non conserviamo nomi, email o testo libero.', accept: 'Consenti analisi', reject: 'Non ora', preferences: 'Preferenze analisi' }
+};
+var ANALYTICS_CONSENT_STORAGE_KEY = 'regalazo-analytics-consent-v1';
 var ANALYTICS_QUEUE = [];
+var analyticsConsentState = null;
+var analyticsScriptLoading = false;
+var analyticsReady = false;
 
 
 var GIFT_TITLE_COPY = {
@@ -2617,10 +2635,17 @@ var nextButton = document.getElementById('next-button');
 var toast = document.getElementById('toast');
 var languageSelect = document.getElementById('language-select');
 var weeklyDiscovery = document.getElementById('weekly-discovery');
+var analyticsConsentBanner = document.getElementById('analytics-consent');
+var analyticsConsentTitle = document.getElementById('analytics-consent-title');
+var analyticsConsentText = document.getElementById('analytics-consent-text');
+var analyticsConsentAcceptButton = document.getElementById('analytics-consent-accept');
+var analyticsConsentRejectButton = document.getElementById('analytics-consent-reject');
+var analyticsPreferencesButton = document.getElementById('analytics-preferences');
 var pwaPrompt = document.getElementById('pwa-prompt');
 var pwaInstallButton = document.getElementById('pwa-install');
 var pwaDismissButton = document.getElementById('pwa-dismiss');
 var deferredInstallPrompt = null;
+analyticsConsentState = readAnalyticsConsent();
 
 function escapeHtml(value) {
   var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
@@ -2681,7 +2706,132 @@ function localizedGift(gift) {
   };
 }
 
+var ANALYTICS_SAFE_PROPERTIES = {
+  quiz_started: [],
+  quiz_answered: ['step'],
+  recommendations_viewed: ['resultCount', 'variant', 'mode'],
+  recommendations_refreshed: ['variant', 'mode'],
+  gift_outbound_clicked: ['position'],
+  language_changed: ['from', 'to'],
+  share_clicked: ['method'],
+  share_completed: ['method', 'mode'],
+  shared_result_opened: ['mode'],
+  weekly_discovery_viewed: [],
+  weekly_discovery_clicked: [],
+  pwa_ready: [],
+  pwa_install_prompt_viewed: [],
+  pwa_install_prompted: [],
+  pwa_install_choice: ['choice'],
+  pwa_installed: [],
+  pwa_install_dismissed: [],
+  quiz_reset: [],
+  analytics_loaded: []
+};
+
+function readAnalyticsConsent() {
+  try {
+    var value = localStorage.getItem(ANALYTICS_CONSENT_STORAGE_KEY);
+    return value === 'granted' || value === 'denied' ? value : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function updateAnalyticsConsentCopy() {
+  if (!analyticsConsentTitle || !analyticsConsentText || !analyticsConsentAcceptButton || !analyticsConsentRejectButton) return;
+  var copy = ANALYTICS_CONSENT_COPY[state.language] || ANALYTICS_CONSENT_COPY.es;
+  analyticsConsentTitle.textContent = copy.title;
+  analyticsConsentText.textContent = copy.text;
+  analyticsConsentAcceptButton.textContent = copy.accept;
+  analyticsConsentRejectButton.textContent = copy.reject;
+  if (analyticsPreferencesButton) analyticsPreferencesButton.textContent = copy.preferences;
+}
+
+function hideAnalyticsConsent() {
+  if (analyticsConsentBanner) analyticsConsentBanner.hidden = true;
+  document.body.classList.remove('analytics-consent-visible');
+}
+
+function showAnalyticsConsent() {
+  if (!analyticsConsentBanner || analyticsConsentState) return;
+  updateAnalyticsConsentCopy();
+  analyticsConsentBanner.hidden = false;
+  document.body.classList.add('analytics-consent-visible');
+}
+
+function safeAnalyticsProperties(eventName, properties) {
+  var safeKeys = ANALYTICS_SAFE_PROPERTIES[eventName] || [];
+  var safeProperties = {};
+  safeKeys.forEach(function (key) {
+    if (properties && Object.prototype.hasOwnProperty.call(properties, key)) safeProperties[key] = properties[key];
+  });
+  return safeProperties;
+}
+
+function sendMixpanelEvent(event) {
+  if (analyticsReady && window.mixpanel && typeof window.mixpanel.track === 'function') {
+    window.mixpanel.track(event.event, event.properties);
+  }
+}
+
+function initializeMixpanel() {
+  if (analyticsReady) return true;
+  if (!window.mixpanel || typeof window.mixpanel.init !== 'function') return false;
+  window.mixpanel.init(ANALYTICS_CONFIG.token, {
+    api_host: ANALYTICS_CONFIG.apiHost,
+    track_pageview: false,
+    persistence: 'localStorage'
+  });
+  analyticsReady = true;
+  ANALYTICS_QUEUE.splice(0).forEach(sendMixpanelEvent);
+  return true;
+}
+
+function loadMixpanel() {
+  if (analyticsConsentState !== 'granted' || !ANALYTICS_CONFIG.enabled || !ANALYTICS_CONFIG.token || analyticsReady || analyticsScriptLoading) return;
+  if (initializeMixpanel()) return;
+  analyticsScriptLoading = true;
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = ANALYTICS_CONFIG.scriptUrl;
+  script.onload = function () {
+    analyticsScriptLoading = false;
+    if (initializeMixpanel()) trackEvent('analytics_loaded', {});
+  };
+  script.onerror = function () {
+    analyticsScriptLoading = false;
+  };
+  document.head.appendChild(script);
+}
+
+function setAnalyticsConsent(value) {
+  if (value !== 'granted' && value !== 'denied') return;
+  analyticsConsentState = value;
+  try {
+    localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, value);
+  } catch (error) {}
+  if (value === 'denied') {
+    ANALYTICS_QUEUE.length = 0;
+    if (window.mixpanel && typeof window.mixpanel.opt_out_tracking === 'function') window.mixpanel.opt_out_tracking();
+  }
+  hideAnalyticsConsent();
+  if (value === 'granted') {
+    if (window.mixpanel && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
+    loadMixpanel();
+  }
+}
+
+function openAnalyticsPreferences() {
+  analyticsConsentState = null;
+  try {
+    localStorage.removeItem(ANALYTICS_CONSENT_STORAGE_KEY);
+  } catch (error) {}
+  if (window.mixpanel && typeof window.mixpanel.opt_out_tracking === 'function') window.mixpanel.opt_out_tracking();
+  showAnalyticsConsent();
+}
+
 function trackEvent(eventName, properties) {
+  if (analyticsConsentState !== 'granted') return;
   var baseProperties = {
     app: 'regalazo',
     language: state.language,
@@ -2689,17 +2839,17 @@ function trackEvent(eventName, properties) {
   };
   var event = {
     event: eventName,
-    properties: Object.assign(baseProperties, properties || {}),
+    properties: Object.assign(baseProperties, safeAnalyticsProperties(eventName, properties || {})),
     timestamp: new Date().toISOString()
   };
   ANALYTICS_QUEUE.push(event);
-  if (ANALYTICS_CONFIG.enabled && ANALYTICS_CONFIG.token && window.mixpanel && typeof window.mixpanel.track === 'function') {
-    window.mixpanel.track(eventName, event.properties);
-  }
+  sendMixpanelEvent(event);
 }
 
 window.RegalazoAnalytics = Object.freeze({
   track: trackEvent,
+  getConsent: function () { return analyticsConsentState; },
+  setConsent: setAnalyticsConsent,
   getQueue: function () { return ANALYTICS_QUEUE.slice(); }
 });
 
@@ -2772,6 +2922,7 @@ function applyLanguage() {
   });
   renderWeeklyDiscovery();
   updatePwaCopy();
+  updateAnalyticsConsentCopy();
 }
 
 function renderWeeklyDiscovery() {
@@ -3576,6 +3727,22 @@ if (weeklyDiscovery) {
   });
 }
 
+if (analyticsConsentAcceptButton) {
+  analyticsConsentAcceptButton.addEventListener('click', function () {
+    setAnalyticsConsent('granted');
+  });
+}
+
+if (analyticsConsentRejectButton) {
+  analyticsConsentRejectButton.addEventListener('click', function () {
+    setAnalyticsConsent('denied');
+  });
+}
+
+if (analyticsPreferencesButton) {
+  analyticsPreferencesButton.addEventListener('click', openAnalyticsPreferences);
+}
+
 var sharedAnswers = readSharedAnswers();
 if (sharedAnswers) {
   state.answers = sharedAnswers;
@@ -3588,3 +3755,5 @@ if (sharedAnswers) {
 registerPwa();
 applyLanguage();
 render();
+if (analyticsConsentState === 'granted') loadMixpanel();
+else if (!analyticsConsentState) showAnalyticsConsent();
