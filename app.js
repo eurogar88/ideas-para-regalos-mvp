@@ -2832,7 +2832,7 @@ function setAnalyticsConsent(value) {
   }
   hideAnalyticsConsent();
   if (value === 'granted') {
-    if (window.mixpanel && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
+    if (analyticsReady && window.mixpanel && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
     loadMixpanel();
     if (analyticsReady) trackPageView();
   }
@@ -2844,7 +2844,7 @@ function openAnalyticsPreferences() {
     localStorage.removeItem(ANALYTICS_CONSENT_STORAGE_KEY);
   } catch (error) {}
   analyticsPageViewTracked = false;
-  if (window.mixpanel && typeof window.mixpanel.opt_out_tracking === 'function') window.mixpanel.opt_out_tracking();
+  if (analyticsReady && window.mixpanel && typeof window.mixpanel.opt_out_tracking === 'function') window.mixpanel.opt_out_tracking();
   showAnalyticsConsent();
   if (analyticsConsentBanner && typeof analyticsConsentBanner.focus === 'function') analyticsConsentBanner.focus();
 }
