@@ -25,7 +25,7 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 
 ## URLs
 
-- Web pública: https://ideas-para-regalos-mvp.netlify.app/
+- Web pública: https://regalazo.xyz/
 - Repositorio: https://github.com/eurogar88/ideas-para-regalos-mvp
 - Panel de Netlify: https://app.netlify.com/projects/ideas-para-regalos-mvp
 
@@ -56,7 +56,7 @@ Es una web estática sin dependencias externas:
 - docs/seo-content-calendar.md: clusters editoriales, cadencia de publicación, reglas de calidad y checklist de cada URL.
 - aviso-legal/, terminos-de-uso/, privacidad/ y cookies/: textos legales de lanzamiento enlazados desde el footer.
 
-La aplicación usa rutas relativas y no acopla el dominio actual, por lo que puede pasar a un dominio propio más adelante sin reescribir la lógica. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
+La aplicación usa rutas relativas y no acopla la lógica al dominio, por lo que el cambio a `regalazo.xyz` no requiere reescribir la experiencia. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
 
 ## Despliegue
 
@@ -80,13 +80,13 @@ La web prioriza SEO técnico y carga rápida sin añadir dependencias ni coste v
 
 - La portada tiene title, meta description, canonical, robots, Open Graph, Twitter metadata y datos estructurados WebSite/WebApplication.
 - El primer contenido del selector está presente en HTML desde la respuesta inicial; JavaScript solo mejora la interacción.
-- Hay contenido editorial rastreable y páginas específicas para [regalos de cumpleaños](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos/), [regalos baratos](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-baratos/), [regalos por menos de 30 euros](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-por-menos-de-30-euros/), [regalos originales](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-originales/), [regalos para pareja](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-pareja/), [regalos para novia](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novia/) y [regalos para novio](https://ideas-para-regalos-mvp.netlify.app/regalos-de-cumpleanos-para-novio/).
-- Las guías empiezan con una respuesta directa, usan preguntas completas como subtítulos y publican FAQPage + BreadcrumbList JSON-LD. El [hub de guías](https://ideas-para-regalos-mvp.netlify.app/guias-de-regalos/) organiza clusters por persona, situación y afición, y el [calendario editorial](docs/seo-content-calendar.md) define cómo publicar y refrescar contenido útil sin páginas clonadas. `llms.txt` resume el producto, sus respuestas útiles y sus límites para facilitar el descubrimiento por sistemas de IA; no se considera una garantía de indexación.
-- robots.txt y sitemap.xml están publicados en la raíz y enlazan la versión actual de Netlify.
+- Hay contenido editorial rastreable y páginas específicas para [regalos de cumpleaños](https://regalazo.xyz/regalos-de-cumpleanos/), [regalos baratos](https://regalazo.xyz/regalos-de-cumpleanos-baratos/), [regalos por menos de 30 euros](https://regalazo.xyz/regalos-de-cumpleanos-por-menos-de-30-euros/), [regalos originales](https://regalazo.xyz/regalos-de-cumpleanos-originales/), [regalos para pareja](https://regalazo.xyz/regalos-de-cumpleanos-para-pareja/), [regalos para novia](https://regalazo.xyz/regalos-de-cumpleanos-para-novia/) y [regalos para novio](https://regalazo.xyz/regalos-de-cumpleanos-para-novio/).
+- Las guías empiezan con una respuesta directa, usan preguntas completas como subtítulos y publican FAQPage + BreadcrumbList JSON-LD. El [hub de guías](https://regalazo.xyz/guias-de-regalos/) organiza clusters por persona, situación y afición, y el [calendario editorial](docs/seo-content-calendar.md) define cómo publicar y refrescar contenido útil sin páginas clonadas. `llms.txt` resume el producto, sus respuestas útiles y sus límites para facilitar el descubrimiento por sistemas de IA; no se considera una garantía de indexación.
+- robots.txt y sitemap.xml están publicados en la raíz y usan `https://regalazo.xyz` como dominio canónico.
 - No se cargan fuentes externas, imágenes pesadas, librerías ni analytics; app.js usa defer y Netlify sirve los estáticos desde CDN.
 - Las páginas HTML se revalidan y CSS/JS usan caché con stale-while-revalidate para mejorar visitas repetidas.
 
-Cuando se conecte un dominio propio, hay que sustituir la URL de Netlify en los canonical, Open Graph, JSON-LD, robots.txt y sitemap.xml; después conviene verificar el dominio en Google Search Console y enviar el sitemap. Las páginas SEO deben seguir creciendo con contenido útil y original, no con copias cambiando solo una palabra clave.
+El dominio propio ya está conectado en Netlify; quedan como tareas de lanzamiento verificar `regalazo.xyz` en Google Search Console y enviar el sitemap. Las páginas SEO deben seguir creciendo con contenido útil y original, no con copias cambiando solo una palabra clave.
 
 ## Mixpanel (preparado, no activo)
 

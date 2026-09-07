@@ -58,7 +58,7 @@ El primer lote operativo está en el [calendario editorial](seo-content-calendar
 
 ### Distribución técnica
 
-- Enviar sitemap a Google Search Console y Bing Webmaster Tools cuando el dominio propio esté listo.
+- Enviar sitemap a Google Search Console y Bing Webmaster Tools ahora que `regalazo.xyz` está conectado.
 - Medir indexación, consultas, CTR, páginas de entrada y consultas sin respuesta.
 - Usar URLs estables, canonical correcto, enlaces internos y redirecciones solo cuando exista una equivalencia real.
 - Mantener HTML útil en la respuesta inicial, cero dependencias externas y caché de estáticos.

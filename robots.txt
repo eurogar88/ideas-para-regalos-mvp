@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ideas-para-regalos-mvp.netlify.app/sitemap.xml
+Sitemap: https://regalazo.xyz/sitemap.xml
