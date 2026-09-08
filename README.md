@@ -21,7 +21,7 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - Etiqueta de afiliación heredada de la configuración del GPT: lamamihacker-21. Debe verificarse en la cuenta de Amazon Associates antes de considerarla operativa.
 - Sin registro, sin nombres y sin datos enviados a un servidor.
 - Sin runtime de OpenClaw y sin llamadas a modelos de IA en esta primera versión. La IA queda como extensión opcional para más adelante, no como coste fijo del MVP.
-- El bloque “Descubrimiento de la semana” no representa inventario en tiempo real: es una idea editorial para volver al radar. Amazon puede mostrar otros productos, precios y disponibilidades.
+- El bloque “Descubrimiento de la semana” no representa inventario en tiempo real: es una idea editorial que enlaza directamente con una búsqueda de Amazon. Amazon puede mostrar otros productos, precios y disponibilidades.
 
 ## URLs
 

@@ -6,10 +6,10 @@ Este documento convierte el producto en un sistema de descubrimiento y recomenda
 
 El mejor bucle para Regalazo no es pedir que alguien “comparta la web”, sino darle una selección útil que compartir:
 
-1. Una persona completa el radar en menos de un minuto.
+1. Una persona completa el selector en menos de un minuto.
 2. Recibe diez ideas relevantes y una recomendación de mejor encaje.
 3. Comparte la selección por el sistema nativo del móvil o copiando el enlace.
-4. La otra persona abre las mismas ideas y puede repetir el radar con sus propias respuestas.
+4. La otra persona abre las mismas ideas y puede repetir el selector con sus propias respuestas.
 
 La llamada a la acción debe ser “Compartir selección”: es clara, describe exactamente lo que se envía y no introduce un juego que distraiga de la compra.
 
@@ -20,7 +20,7 @@ La llamada a la acción debe ser “Compartir selección”: es clara, describe 
 - Mantener el resultado en diez opciones, con una primera recomendación muy clara, precio orientativo, motivo de encaje y salida relevante a Amazon.
 - Mantener un único modo, “Mejor encaje”, y usar “Ver otras ideas” para generar otra tanda relevante sin repetir resultados. La transición debe ser breve y respetar `prefers-reduced-motion`.
 - Hacer visible el porcentaje de encaje como señal orientativa, no como precisión científica.
-- Aumentar el valor de compartir: enlace a la selección completa, resumen del perfil sin datos identificativos y una CTA clara para abrir el radar.
+- Aumentar el valor de compartir: enlace a la selección completa, resumen del perfil sin datos identificativos y una CTA clara para abrir el selector.
 - No forzar registro, notificaciones, instalación ni cookies no esenciales.
 
 ### Próxima capa
@@ -35,7 +35,7 @@ La llamada a la acción debe ser “Compartir selección”: es clara, describe 
 
 ### Arquitectura de contenidos
 
-Crear páginas solo cuando tengan una respuesta propia, ejemplos y una ruta clara hacia el radar. Los clusters iniciales son:
+Crear páginas solo cuando tengan una respuesta propia, ejemplos y una ruta clara hacia el selector. Los clusters iniciales son:
 
 - regalos de cumpleaños para pareja, novia, novio, madre, padre, amigo, hermana, hermano y compañero;
 - regalos baratos, por menos de 20 €, por menos de 30 €, entre 30 y 50 € y de última hora;
@@ -67,10 +67,10 @@ El primer lote operativo está en el [calendario editorial](seo-content-calendar
 
 El producto puede producir una pieza por recomendación sin crear un panel editorial complejo:
 
-- “Le he pasado el radar a mi pareja: ¿elegiremos lo mismo?”
+- “Le he pasado el selector a mi pareja: ¿elegiremos lo mismo?”
 - “Diez regalos para alguien que ya tiene de todo; este fue el que más encajó.”
 - “Regalos útiles por menos de 20 € que no parecen comprados con prisa.”
-- “El radar eligió entre práctico, original y pequeño lujo.”
+- “El selector eligió entre práctico, original y pequeño lujo.”
 - “Tres regalos para una persona cafetera, sin regalarle otra taza genérica.”
 
 Formatos que merecen prueba:
@@ -79,13 +79,13 @@ Formatos que merecen prueba:
 - carrusel con “perfil → tres pistas → idea final”;
 - vídeo corto mostrando los ocho toques y el reveal de resultados;
 - pins de Pinterest enlazados a una guía específica, no solo a la portada;
-- plantilla de recomendación para que la persona publique “estas son las ideas que me ha dado el radar”.
+- plantilla de recomendación para que la persona publique “estas son las ideas que me ha dado el selector”.
 
 La publicación debe hacerse de forma manual o con herramientas autorizadas por cada red. No conviene automatizar respuestas o crear falsas recomendaciones.
 
 ## 5. PWA y futuro Android
 
-El aviso de instalación debe ser discreto y aparecer después de que el usuario haya entendido el valor. La PWA es el siguiente paso de menor coste: permite volver al radar desde la pantalla de inicio y sirve para validar recurrencia.
+El aviso de instalación debe ser discreto y aparecer después de que el usuario haya entendido el valor. La PWA es el siguiente paso de menor coste: permite volver al selector desde la pantalla de inicio y sirve para validar recurrencia.
 
 Solo después de observar uso recurrente tendría sentido empaquetarla como TWA o aplicación Android. Antes de publicar en una app store habría que añadir contenido y valor específicos de app, política de privacidad accesible, soporte, screenshots, clasificación por edades y un proceso de actualización. Subir una simple web sin distribución ni retención no crea alcance por sí solo.
 

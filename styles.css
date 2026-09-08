@@ -1216,6 +1216,19 @@ html[data-theme="dark"] .legal-notice { background: rgba(59, 37, 33, 0.74); }
 html[data-theme="dark"] .seo-cluster-cta a { color: var(--coral-dark); }
 html[data-theme="dark"] .legal-links { border-top-color: var(--line); }
 
+/* Dark mode: reduce display weights so the same hierarchy reads lighter at night. */
+html[data-theme="dark"] .hero h1 { font-weight: 680; }
+html[data-theme="dark"] .question-title,
+html[data-theme="dark"] .results h2,
+html[data-theme="dark"] .gift-card h3,
+html[data-theme="dark"] .seo-content h2,
+html[data-theme="dark"] .faq-title,
+html[data-theme="dark"] .legal-page h1,
+html[data-theme="dark"] .guide-page h1 { font-weight: 650; }
+html[data-theme="dark"] .option-label,
+html[data-theme="dark"] .button,
+html[data-theme="dark"] .gift-link { font-weight: 650; }
+
 /* Desktop hero: keep the statement bold without the oversized, ultra-heavy mobile treatment. */
 @media (min-width: 640px) {
   .hero h1 {

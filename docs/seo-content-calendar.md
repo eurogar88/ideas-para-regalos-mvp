@@ -10,24 +10,24 @@ La página `/guias-de-regalos/` es el hub. Desde ahí se enlazan tres tipos de i
 - **Situación:** última hora, alguien que tiene de todo y presupuestos bajos.
 - **Afición:** café, viajes y regalos originales.
 
-Cada guía debe responder a la consulta en el primer bloque, aportar criterios para decidir, incluir ejemplos adaptables por presupuesto y terminar con una acción útil hacia el radar. Las FAQs deben coincidir con el texto visible y mantenerse sencillas para que también puedan reutilizarse como respuestas de búsqueda y de asistentes.
+Cada guía debe responder a la consulta en el primer bloque, aportar criterios para decidir, incluir ejemplos adaptables por presupuesto y terminar con una acción útil hacia el selector. Las FAQs deben coincidir con el texto visible y mantenerse sencillas para que también puedan reutilizarse como respuestas de búsqueda y de asistentes.
 
 ## Primer ciclo de publicación
 
 | Semana | Cluster | Página o acción | Aporte que debe ser útil | CTA principal | Medición |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Hub | Revisar `/guias-de-regalos/` | Explica cómo elegir por persona, situación y afición | Radar en 8 toques | Impresiones, clics al radar |
+| 1 | Hub | Revisar `/guias-de-regalos/` | Explica cómo elegir por persona, situación y afición | Selector en 8 toques | Impresiones, clics al selector |
 | 2 | Persona | Madre y padre | Separar rituales, aficiones y mejoras de algo que ya usan | Afinar el regalo | Clics orgánicos, inicio del quiz |
 | 3 | Persona | Amiga y amigo | Relación, complicidad y señales observables, sin clichés | Encontrar una idea | Scroll, quiz completado |
-| 4 | Persona | Hermana y hermano | Estilo actual, hobbies y planes compartidos | Afinar el regalo | CTR hacia el radar |
+| 4 | Persona | Hermana y hermano | Estilo actual, hobbies y planes compartidos | Afinar el regalo | CTR hacia el selector |
 | 5 | Situación | Última hora | Proceso rápido y comprobaciones de entrega, formato y vendedor | Ideas en 8 toques | Entradas, salida a tienda |
 | 6 | Situación | Tiene de todo | Consumo, mejora, recuerdo o tiempo compartido | Idea con sentido | Compartidos, retorno |
 | 7 | Afición | Amantes del café | Diferenciar grano, método, ritual y portabilidad | Regalo cafetero | CTR, modo de compra |
 | 8 | Afición | Viajeros | Elegir por tipo de viaje, volumen y necesidad real | Regalo para viajar | CTR, quiz iniciado |
 | 9 | Presupuesto | Actualizar baratos y menos de 30 € | Añadir ejemplos por debajo de varios límites sin prometer precio vigente | Ideas económicas | Consultas, clics |
 | 10 | Intención | Actualizar regalos originales | Nuevos formatos: kits, mejoras, experiencias y recuerdos | Ver ideas originales | CTR y compartidos |
-| 11 | Ocasión | Cumpleaños | Diferenciar edad aproximada, relación, ocasión y tono | Empezar el radar | Posición y finalización |
-| 12 | Comparativa | Revisar enlaces internos del cluster | Resolver páginas huérfanas y mejorar el siguiente paso | Guía o radar según intención | Enlaces internos, rebote |
+| 11 | Ocasión | Cumpleaños | Diferenciar edad aproximada, relación, ocasión y tono | Empezar el selector | Posición y finalización |
+| 12 | Comparativa | Revisar enlaces internos del cluster | Resolver páginas huérfanas y mejorar el siguiente paso | Guía o selector según intención | Enlaces internos, rebote |
 
 ## Cadencia después de las 12 semanas
 
@@ -54,7 +54,7 @@ La publicación puede ser semanal, quincenal o pausarse. El calendario es una gu
 
 ## Señales para decidir qué publicar
 
-Prioridad alta: consulta con impresiones y CTR bajo cuya respuesta podamos mejorar, página que inicia sesiones pero no lleva al radar, y pregunta repetida que aún no tiene una guía propia.
+Prioridad alta: consulta con impresiones y CTR bajo cuya respuesta podamos mejorar, página que inicia sesiones pero no lleva al selector, y pregunta repetida que aún no tiene una guía propia.
 
 Prioridad media: actualización de un cluster que ya recibe tráfico pero tiene ejemplos repetidos, enlaces rotos o una respuesta demasiado genérica.
 
@@ -67,7 +67,7 @@ Prioridad baja: una nueva combinación de palabras sin intención diferenciada, 
 - [ ] FAQ visible y `FAQPage` consistente.
 - [ ] `BreadcrumbList` e indicación de hub.
 - [ ] Dos enlaces internos útiles como mínimo.
-- [ ] CTA al radar sin interrumpir la lectura.
+- [ ] CTA al selector sin interrumpir la lectura.
 - [ ] Footer legal y disclosure de afiliación.
 - [ ] Prueba a 320–414 px sin overflow horizontal.
 - [ ] URL añadida al sitemap y al índice de `llms.txt` si procede.
