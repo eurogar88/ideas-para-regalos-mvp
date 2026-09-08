@@ -1,9 +1,10 @@
-const CACHE_NAME = 'regalazo-shell-growth-v7';
+const CACHE_NAME = 'regalazo-shell-growth-v8';
 const SHELL = [
   '/',
-  '/styles.css?v=growth-ui-12',
-  '/app.js?v=growth-engine-15',
+  '/styles.css?v=growth-ui-13',
+  '/app.js?v=growth-engine-16',
   '/theme.js?v=theme-1',
+  '/analytics.js?v=analytics-2',
   '/manifest.webmanifest',
   '/icon.svg',
   '/og-image.svg'
@@ -27,15 +28,33 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+  const requestUrl = new URL(event.request.url);
+  const isDocument = event.request.mode === 'navigate' || requestUrl.pathname === '/' || requestUrl.pathname.endsWith('.html');
+  if (isDocument) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            return caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, response.clone());
+              return response;
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request).then((cached) => cached || caches.match('/')))
+    );
+    return;
+  }
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const network = fetch(event.request).then((response) => {
-        if (response.ok) {
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, response.clone()));
-        }
-        return response;
-      }).catch(() => cached);
-      return cached || network;
-    })
+    caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
+      if (response.ok) {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, response.clone());
+          return response;
+        });
+      }
+      return response;
+    }))
   );
 });

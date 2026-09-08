@@ -6,6 +6,7 @@
  */
 var APP_CONFIG = Object.freeze({
   affiliateTag: 'lamamihacker-21',
+  affiliateTags: Object.freeze({ ES: 'lamamihacker-21' }),
   defaultCountry: 'ES',
   clickStorageKey: 'regalazo-clicks-v1',
   installPromptEnabled: true,
@@ -39,7 +40,8 @@ var QUESTIONS = [
       { value: 'nonbinary', label: 'Persona no binaria', icon: '✨' },
       { value: 'other', label: 'Otra identidad', icon: '🌈' },
       { value: 'prefer-not', label: 'Prefiero no decirlo', icon: '🤍' },
-      { value: 'unknown', label: 'No lo sé', icon: '🤷' }
+      { value: 'unknown', label: 'No lo sé', icon: '🤷' },
+      { value: 'any', label: 'Cualquiera', icon: '✨', detail: 'dejamos el género abierto' }
     ]
   },
   {
@@ -2569,18 +2571,18 @@ var ANALYTICS_CONFIG = Object.freeze({
   provider: 'mixpanel',
   enabled: true,
   token: '7a393adbe60cb8cd073e9aaf44263a33',
-  version: 'growth-v2',
+  version: 'growth-v3',
   scriptUrl: 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js',
   apiHost: 'https://api-eu.mixpanel.com'
 });
 var ANALYTICS_CONSENT_COPY = {
-  es: { title: '¿Nos ayudas a mejorar Regalazo?', text: 'Solo si aceptas cargaremos Mixpanel para medir el uso y mejorar las recomendaciones. No guardamos nombres, emails, respuestas concretas ni texto libre.', accept: 'Aceptar analítica', reject: 'Ahora no', preferences: 'Preferencias de analítica' },
-  en: { title: 'Help us improve Regalazo?', text: 'We only load Mixpanel if you allow it, to measure usage and improve recommendations. We do not store names, emails, specific answers or free text.', accept: 'Allow analytics', reject: 'Not now', preferences: 'Analytics preferences' },
-  de: { title: 'Regalazo verbessern?', text: 'Mixpanel wird nur geladen, wenn du zustimmst, um die Nutzung zu messen und Empfehlungen zu verbessern. Wir speichern keine Namen, E-Mails, konkreten Antworten oder freien Texte.', accept: 'Analytik erlauben', reject: 'Jetzt nicht', preferences: 'Analyse-Einstellungen' },
-  fr: { title: 'Nous aider à améliorer Regalazo ?', text: 'Mixpanel ne sera chargé que si vous l’autorisez, afin de mesurer l’usage et d’améliorer les recommandations. Nous ne conservons ni noms, ni e-mails, ni réponses précises, ni texte libre.', accept: 'Autoriser les statistiques', reject: 'Pas maintenant', preferences: 'Préférences statistiques' },
-  it: { title: 'Ci aiuti a migliorare Regalazo?', text: 'Mixpanel viene caricato solo se lo consenti, per misurare l’uso e migliorare i consigli. Non conserviamo nomi, email, risposte specifiche o testo libero.', accept: 'Consenti analisi', reject: 'Non ora', preferences: 'Preferenze analisi' }
+  es: { title: '¿Nos ayudas a mejorar Regalazo?', text: 'Solo si aceptas cargaremos Mixpanel para medir el uso y mejorar las recomendaciones. No guardamos nombres, emails, respuestas concretas ni texto libre.', accept: 'Aceptar analítica', reject: 'Ahora no', preferences: 'Preferencias de analítica', more: 'Más información' },
+  en: { title: 'Help us improve Regalazo?', text: 'We only load Mixpanel if you allow it, to measure usage and improve recommendations. We do not store names, emails, specific answers or free text.', accept: 'Allow analytics', reject: 'Not now', preferences: 'Analytics preferences', more: 'Learn more' },
+  de: { title: 'Regalazo verbessern?', text: 'Mixpanel wird nur geladen, wenn du zustimmst, um die Nutzung zu messen und Empfehlungen zu verbessern. Wir speichern keine Namen, E-Mails, konkreten Antworten oder freien Texte.', accept: 'Analytik erlauben', reject: 'Jetzt nicht', preferences: 'Analyse-Einstellungen', more: 'Mehr erfahren' },
+  fr: { title: 'Nous aider à améliorer Regalazo ?', text: 'Mixpanel ne sera chargé que si vous l’autorisez, afin de mesurer l’usage et d’améliorer les recommandations. Nous ne conservons ni noms, ni e-mails, ni réponses précises, ni texte libre.', accept: 'Autoriser les statistiques', reject: 'Pas maintenant', preferences: 'Préférences statistiques', more: 'En savoir plus' },
+  it: { title: 'Ci aiuti a migliorare Regalazo?', text: 'Mixpanel viene caricato solo se lo consenti, per misurare l’uso e migliorare i consigli. Non conserviamo nomi, email, risposte specifiche o testo libero.', accept: 'Consenti analisi', reject: 'Non ora', preferences: 'Preferenze analisi', more: 'Scopri di più' }
 };
-var ANALYTICS_CONSENT_STORAGE_KEY = 'regalazo-analytics-consent-v3';
+var ANALYTICS_CONSENT_STORAGE_KEY = 'regalazo-analytics-consent-v4';
 var ANALYTICS_QUEUE = [];
 var analyticsConsentState = null;
 var analyticsScriptLoading = false;
@@ -2618,10 +2620,38 @@ Object.keys(ENHANCED_RESULT_COPY).forEach(function (language) {
   LANGUAGE_COPY[language].heroNotes = HERO_NOTE_COPY[language] || LANGUAGE_COPY[language].heroNotes;
   LANGUAGE_COPY[language].growth = GROWTH_COPY[language] || GROWTH_COPY.es;
 });
+var FEEDBACK_COPY = {
+  es: { owned: 'Ya lo tiene', notFit: 'No me encaja', saved: 'Anotado. Buscamos otra idea.', noMore: 'Hemos agotado las opciones más cercanas. Prueba a ampliar el presupuesto o dejar más abierto el estilo.' },
+  en: { owned: 'They already have it', notFit: 'Not a fit', saved: 'Got it. We’ll find another idea.', noMore: 'We have used the closest options. Try widening the budget or style.' },
+  de: { owned: 'Hat die Person schon', notFit: 'Passt nicht', saved: 'Verstanden. Wir suchen eine andere Idee.', noMore: 'Die passendsten Optionen sind ausgeschöpft. Öffne Budget oder Stil etwas weiter.' },
+  fr: { owned: 'La personne l’a déjà', notFit: 'Ça ne convient pas', saved: 'Compris. Nous cherchons une autre idée.', noMore: 'Nous avons épuisé les options les plus proches. Élargissez le budget ou le style.' },
+  it: { owned: 'Ce l’ha già', notFit: 'Non fa per lui/lei', saved: 'Ricevuto. Cerchiamo un’altra idea.', noMore: 'Abbiamo esaurito le opzioni più vicine. Prova ad ampliare budget o stile.' }
+};
+var FIT_REASON_COPY = {
+  es: { budget: 'Dentro de tu presupuesto', interest: 'Para {value}', relation: 'Para {value}', style: 'Estilo {value}', age: 'Adecuado para {value}', occasion: 'Para {value}', open: 'Selección abierta' },
+  en: { budget: 'Within your budget', interest: 'For {value}', relation: 'For {value}', style: '{value} style', age: 'Suitable for {value}', occasion: 'For {value}', open: 'Open selection' },
+  de: { budget: 'In deinem Budget', interest: 'Für {value}', relation: 'Für {value}', style: 'Stil: {value}', age: 'Passend für {value}', occasion: 'Für {value}', open: 'Offene Auswahl' },
+  fr: { budget: 'Dans votre budget', interest: 'Pour {value}', relation: 'Pour {value}', style: 'Style {value}', age: 'Adapté à {value}', occasion: 'Pour {value}', open: 'Sélection ouverte' },
+  it: { budget: 'Nel tuo budget', interest: 'Per {value}', relation: 'Per {value}', style: 'Stile {value}', age: 'Adatto a {value}', occasion: 'Per {value}', open: 'Selezione aperta' }
+};
+Object.keys(LANGUAGE_COPY).forEach(function (language) {
+  LANGUAGE_COPY[language].results = Object.assign({}, LANGUAGE_COPY[language].results, FEEDBACK_COPY[language] || FEEDBACK_COPY.es);
+});
+var OPEN_GENDER_COPY = {
+  es: { label: 'Cualquiera', detail: 'dejamos el género abierto' },
+  en: { label: 'Any', detail: 'keep gender open' },
+  de: { label: 'Beliebig', detail: 'Geschlecht offen lassen' },
+  fr: { label: 'Peu importe', detail: 'laissons le genre ouvert' },
+  it: { label: 'Qualsiasi', detail: 'lasciamo aperto il genere' }
+};
+Object.keys(OPEN_GENDER_COPY).forEach(function (language) {
+  if (LANGUAGE_COPY[language] && LANGUAGE_COPY[language].questions.gender) LANGUAGE_COPY[language].questions.gender.options.any = OPEN_GENDER_COPY[language];
+});
 
 var LANGUAGE_STORAGE_KEY = 'regalazo-language-v1';
-var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
+var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], dismissedBaseIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
 var currentRecommendations = [];
+var sharedRecommendations = null;
 var toastTimer;
 var pendingScrollPosition = null;
 var lastScrollPosition = { left: window.scrollX || 0, top: window.scrollY || 0 };
@@ -2645,11 +2675,12 @@ var analyticsConsentText = document.getElementById('analytics-consent-text');
 var analyticsConsentAcceptButton = document.getElementById('analytics-consent-accept');
 var analyticsConsentRejectButton = document.getElementById('analytics-consent-reject');
 var analyticsPreferencesButton = document.getElementById('analytics-preferences');
+var analyticsConsentMoreButton = document.getElementById('analytics-consent-more');
 var pwaPrompt = document.getElementById('pwa-prompt');
 var pwaInstallButton = document.getElementById('pwa-install');
 var pwaDismissButton = document.getElementById('pwa-dismiss');
 var deferredInstallPrompt = null;
-analyticsConsentState = readAnalyticsConsent();
+analyticsConsentState = window.RegalazoAnalyticsCore ? window.RegalazoAnalyticsCore.getConsent() : readAnalyticsConsent();
 
 function escapeHtml(value) {
   var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
@@ -2670,6 +2701,13 @@ function currentCopy() {
 }
 
 function readLanguage() {
+  try {
+    var forced = new URLSearchParams(window.location.search).get('lang');
+    if (LANGUAGE_COPY[forced]) {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, forced);
+      return forced;
+    }
+  } catch (error) {}
   try {
     var stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
     if (LANGUAGE_COPY[stored]) return stored;
@@ -2713,24 +2751,26 @@ function localizedGift(gift) {
 var ANALYTICS_SAFE_PROPERTIES = {
   page_viewed: ['path'],
   quiz_started: [],
-  quiz_answered: ['step'],
+  quiz_answered: ['questionId', 'step'],
+  quiz_completed: ['genderProvided', 'interestCount'],
   recommendations_viewed: ['resultCount', 'variant', 'mode'],
   recommendations_refreshed: ['variant', 'mode'],
-  gift_outbound_clicked: ['position'],
+  gift_outbound_clicked: ['giftId', 'position', 'store', 'mode'],
   language_changed: ['from', 'to'],
-  share_clicked: ['method'],
+  share_clicked: ['mode', 'ideaCount'],
   share_completed: ['method', 'mode'],
   shared_result_opened: ['mode'],
-  weekly_discovery_viewed: [],
-  weekly_discovery_clicked: [],
+  weekly_discovery_viewed: ['giftId'],
+  weekly_discovery_clicked: ['giftId', 'store'],
   pwa_ready: [],
   pwa_install_prompt_viewed: [],
   pwa_install_prompted: [],
-  pwa_install_choice: ['choice'],
+  pwa_install_choice: ['outcome'],
   pwa_installed: [],
   pwa_install_dismissed: [],
   quiz_reset: [],
-  analytics_loaded: []
+  analytics_loaded: [],
+  gift_feedback: ['giftId', 'feedback']
 };
 
 function readAnalyticsConsent() {
@@ -2750,6 +2790,7 @@ function updateAnalyticsConsentCopy() {
   analyticsConsentAcceptButton.textContent = copy.accept;
   analyticsConsentRejectButton.textContent = copy.reject;
   if (analyticsPreferencesButton) analyticsPreferencesButton.textContent = copy.preferences;
+  if (analyticsConsentMoreButton) analyticsConsentMoreButton.textContent = copy.more;
 }
 
 function hideAnalyticsConsent() {
@@ -2765,10 +2806,20 @@ function showAnalyticsConsent() {
 }
 
 function safeAnalyticsProperties(eventName, properties) {
+  if (!Object.prototype.hasOwnProperty.call(ANALYTICS_SAFE_PROPERTIES, eventName)) return {};
   var safeKeys = ANALYTICS_SAFE_PROPERTIES[eventName] || [];
   var safeProperties = {};
   safeKeys.forEach(function (key) {
-    if (properties && Object.prototype.hasOwnProperty.call(properties, key)) safeProperties[key] = properties[key];
+    if (!properties || !Object.prototype.hasOwnProperty.call(properties, key)) return;
+    var value = properties[key];
+    if (key === 'position' || key === 'step' || key === 'resultCount' || key === 'variant' || key === 'ideaCount') {
+      var number = Number(value);
+      if (Number.isFinite(number)) safeProperties[key] = number;
+      return;
+    }
+    var allowed = key === 'path' ? /[^a-z0-9/_:.~-]/gi : /[^a-z0-9:_.-]/gi;
+    var text = String(value || '').replace(allowed, '').slice(0, key === 'path' ? 200 : 100);
+    if (text) safeProperties[key] = text;
   });
   return safeProperties;
 }
@@ -2797,6 +2848,11 @@ function initializeMixpanel() {
 }
 
 function loadMixpanel() {
+  if (window.RegalazoAnalyticsCore) {
+    analyticsConsentState = window.RegalazoAnalyticsCore.getConsent();
+    window.RegalazoAnalyticsCore.load();
+    return;
+  }
   if (analyticsConsentState !== 'granted' || !ANALYTICS_CONFIG.enabled || !ANALYTICS_CONFIG.token || analyticsReady || analyticsScriptLoading) return;
   if (initializeMixpanel()) {
     trackPageView();
@@ -2821,6 +2877,11 @@ function loadMixpanel() {
 
 function setAnalyticsConsent(value) {
   if (value !== 'granted' && value !== 'denied') return;
+  if (window.RegalazoAnalyticsCore) {
+    window.RegalazoAnalyticsCore.setConsent(value);
+    analyticsConsentState = window.RegalazoAnalyticsCore.getConsent();
+    return;
+  }
   analyticsConsentState = value;
   try {
     localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, value);
@@ -2839,6 +2900,11 @@ function setAnalyticsConsent(value) {
 }
 
 function openAnalyticsPreferences() {
+  if (window.RegalazoAnalyticsCore) {
+    window.RegalazoAnalyticsCore.openPreferences();
+    analyticsConsentState = window.RegalazoAnalyticsCore.getConsent();
+    return;
+  }
   analyticsConsentState = null;
   try {
     localStorage.removeItem(ANALYTICS_CONSENT_STORAGE_KEY);
@@ -2850,13 +2916,21 @@ function openAnalyticsPreferences() {
 }
 
 function trackPageView() {
+  if (window.RegalazoAnalyticsCore) {
+    window.RegalazoAnalyticsCore.trackPageView();
+    return;
+  }
   if (analyticsPageViewTracked) return;
   analyticsPageViewTracked = true;
   trackEvent('page_viewed', { path: window.location.pathname || '/' });
 }
 
 function trackEvent(eventName, properties) {
-  if (analyticsConsentState !== 'granted') return;
+  if (window.RegalazoAnalyticsCore) {
+    window.RegalazoAnalyticsCore.track(eventName, properties || {});
+    return;
+  }
+  if (analyticsConsentState !== 'granted' || !Object.prototype.hasOwnProperty.call(ANALYTICS_SAFE_PROPERTIES, eventName)) return;
   var baseProperties = {
     app: 'regalazo',
     language: state.language,
@@ -2871,12 +2945,14 @@ function trackEvent(eventName, properties) {
   sendMixpanelEvent(event);
 }
 
-window.RegalazoAnalytics = Object.freeze({
-  track: trackEvent,
-  getConsent: function () { return analyticsConsentState; },
-  setConsent: setAnalyticsConsent,
-  getQueue: function () { return ANALYTICS_QUEUE.slice(); }
-});
+if (!window.RegalazoAnalytics) {
+  window.RegalazoAnalytics = Object.freeze({
+    track: trackEvent,
+    getConsent: function () { return analyticsConsentState; },
+    setConsent: setAnalyticsConsent,
+    getQueue: function () { return ANALYTICS_QUEUE.slice(); }
+  });
+}
 
 function applyLanguage() {
   var copy = currentCopy();
@@ -3301,13 +3377,92 @@ function giftFitScore(gift, answers, budget, interests) {
 
 function giftMatchRate(gift, answers) {
   var fit = giftFitScore(gift, answers);
-  return Math.max(62, Math.min(96, Math.round(62 + fit * 0.34)));
+  return Math.max(0, Math.min(100, Math.round(fit)));
 }
 
 var MATCH_RATE_LABELS = { es: 'Encaje estimado', en: 'Estimated fit', de: 'Geschätzte Passung', fr: 'Adéquation estimée', it: 'Corrispondenza stimata' };
 var MATCH_RATE_DISCLOSURES = { es: 'El encaje es una estimación basada en tus respuestas; no es una puntuación de Amazon.', en: 'The fit is an estimate based on your answers; it is not an Amazon rating.', de: 'Die Passung ist eine Schätzung auf Basis deiner Antworten und keine Amazon-Bewertung.', fr: 'L’adéquation est une estimation basée sur vos réponses, pas une note Amazon.', it: 'La corrispondenza è una stima basata sulle tue risposte, non una valutazione Amazon.' };
 function formatMatchRate(rate) { return String(rate) + '% · ' + (MATCH_RATE_LABELS[state.language] || MATCH_RATE_LABELS.es); }
 function matchRateDisclosure() { return MATCH_RATE_DISCLOSURES[state.language] || MATCH_RATE_DISCLOSURES.es; }
+
+function buildFitHighlights(gift, answers) {
+  var copy = FIT_REASON_COPY[state.language] || FIT_REASON_COPY.es;
+  var highlights = [];
+  var budget = budgetFor(answers && answers.budget);
+  var interests = selectedInterests(answers);
+  var matches = gift.interests.filter(function (interest) { return interests.indexOf(interest) !== -1; });
+  if (gift.price <= budget.max) highlights.push(copy.budget);
+  if (matches.length) highlights.push(interpolate(copy.interest, { value: getLabel('interests', matches[0]) }));
+  if (answers && answers.relation && answers.relation !== 'other' && gift.relations.indexOf(answers.relation) !== -1) highlights.push(interpolate(copy.relation, { value: getLabel('relation', answers.relation) }));
+  if (answers && answers.style && answers.style !== 'any' && gift.styles.indexOf(answers.style) !== -1) highlights.push(interpolate(copy.style, { value: getLabel('style', answers.style) }));
+  if (answers && answers.age && answers.age !== 'unknown' && gift.ages.indexOf(answers.age) !== -1) highlights.push(interpolate(copy.age, { value: getLabel('age', answers.age) }));
+  if (answers && answers.occasion && answers.occasion !== 'any' && gift.occasions.indexOf(answers.occasion) !== -1) highlights.push(interpolate(copy.occasion, { value: getLabel('occasion', answers.occasion) }));
+  if (!highlights.length) highlights.push(copy.open);
+  return highlights.slice(0, 3);
+}
+
+function giftClusterKey(gift) {
+  var stopWords = { regalo: true, gift: true, set: true, pack: true, kit: true, para: true, con: true, una: true, the: true, and: true, for: true, version: true, premium: true, portable: true, portatil: true, portátil: true, pequeño: true, pequena: true, pequeño: true, small: true };
+  var text = String((gift && gift.title || '') + ' ' + (gift && gift.amazonQuery || '')).toLowerCase();
+  var tokens = text.replace(/[^a-záéíóúüñ0-9]+/gi, ' ').split(/\s+/).filter(function (token) {
+    return token.length >= 4 && !stopWords[token];
+  });
+  var unique = [];
+  tokens.forEach(function (token) { if (unique.indexOf(token) === -1) unique.push(token); });
+  return unique.slice(0, 3).sort().join('|') || String(gift && gift.category || 'other');
+}
+
+function isGiftAgeCompatible(gift, answers) {
+  if (!answers || !answers.age || answers.age === 'unknown') return true;
+  return !Array.isArray(gift.ages) || !gift.ages.length || gift.ages.indexOf(answers.age) !== -1;
+}
+
+function isGiftContextCompatible(gift, answers) {
+  if (!isGiftAgeCompatible(gift, answers)) return false;
+  if (!answers || !answers.relation || answers.relation === 'other') return true;
+  return !Array.isArray(gift.relations) || !gift.relations.length || gift.relations.indexOf(answers.relation) !== -1;
+}
+
+function eligibleCatalogFor(answers) {
+  var ageEligible = GIFT_CATALOG.filter(function (gift) { return isGiftAgeCompatible(gift, answers); });
+  var contextEligible = ageEligible.filter(function (gift) { return isGiftContextCompatible(gift, answers); });
+  var dismissed = state && Array.isArray(state.dismissedBaseIds) ? state.dismissedBaseIds : [];
+  var available = contextEligible.filter(function (gift) { return dismissed.indexOf(gift.id) === -1; });
+  if (available.length >= 10) return available;
+  var ageAvailable = ageEligible.filter(function (gift) { return dismissed.indexOf(gift.id) === -1; });
+  return ageAvailable.length ? ageAvailable : ageEligible;
+}
+
+function resolveRecommendationId(id, answers, variant) {
+  var parts = String(id || '').split('::');
+  var baseId = parts[0];
+  var recipeId = parts[1] || 'smart-fit';
+  var baseGift = GIFT_CATALOG.find(function (gift) { return gift.id === baseId; });
+  var recipe = GIFT_RECIPES.find(function (item) { return item.id === recipeId; });
+  if (!baseGift || !recipe || !isRecipeCompatible(baseGift, recipe) || !isGiftContextCompatible(baseGift, answers)) return null;
+  return composeGift(baseGift, recipe, answers, variant);
+}
+
+function readSharedRecommendations(answers, variant) {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var ids = (params.get('ideas') || '').split(',').filter(Boolean).slice(0, 10);
+    if (ids.length !== 10) return null;
+    var seen = {};
+    var recommendations = [];
+    ids.forEach(function (id) {
+      var gift = resolveRecommendationId(id, answers, variant);
+      var baseId = gift && (gift.baseId || gift.id);
+      if (gift && !seen[baseId]) {
+        recommendations.push(gift);
+        seen[baseId] = true;
+      }
+    });
+    return recommendations.length === 10 ? recommendations : null;
+  } catch (error) {
+    return null;
+  }
+}
 
 function scoreGift(gift, answers, budget, interests, mode) {
   var score = (gift.editorialScore || 0) * 2;
@@ -3332,24 +3487,30 @@ function chooseDiverseGiftItems(items, limit) {
   var result = [];
   var categoryCounts = {};
   var baseCounts = {};
+  var clusterCounts = {};
   [1, 2].forEach(function (maxPerCategory) {
     items.forEach(function (item) {
       if (result.length >= limit || result.indexOf(item) !== -1) return;
       var category = item.gift.category;
       var baseId = item.gift.baseId || item.gift.id;
+      var cluster = item.cluster || giftClusterKey(item.gift);
       var count = categoryCounts[category] || 0;
-      if (baseCounts[baseId] || count >= maxPerCategory) return;
+      if (baseCounts[baseId] || clusterCounts[cluster] || count >= maxPerCategory) return;
       result.push(item);
       categoryCounts[category] = count + 1;
       baseCounts[baseId] = 1;
+      clusterCounts[cluster] = 1;
     });
   });
   if (result.length < limit) {
     items.forEach(function (item) {
       var baseId = item.gift.baseId || item.gift.id;
-      if (result.length < limit && result.indexOf(item) === -1 && !baseCounts[baseId]) {
+      var cluster = item.cluster || giftClusterKey(item.gift);
+      var clusterCount = clusterCounts[cluster] || 0;
+      if (result.length < limit && result.indexOf(item) === -1 && !baseCounts[baseId] && clusterCount < 2) {
         result.push(item);
         baseCounts[baseId] = 1;
+        clusterCounts[cluster] = clusterCount + 1;
       }
     });
   }
@@ -3367,7 +3528,7 @@ function rankGifts(answers, variant) {
   recentIds.forEach(function (id) { recentBaseIds[baseIdForRecommendationId(id)] = true; });
   var mode = state && state.recommendationMode || 'fit';
   var candidateItems = [];
-  GIFT_CATALOG.forEach(function (baseGift, index) {
+  eligibleCatalogFor(answers).forEach(function (baseGift, index) {
     GIFT_RECIPES.forEach(function (recipe, recipeIndex) {
       if (!isRecipeCompatible(baseGift, recipe)) return;
       var gift = composeGift(baseGift, recipe, answers, variant);
@@ -3377,7 +3538,7 @@ function rankGifts(answers, variant) {
       var fresh = !seenBaseIds[baseId];
       var recent = !!recentBaseIds[baseId];
       var modeBoost = mode === 'new' && gift._isDiscovery ? 12 : 0;
-      candidateItems.push({ gift: gift, baseId: baseId, baseScore: baseScore, fresh: fresh, recent: recent, selectionScore: baseScore * 3 + variety * 14 + modeBoost, index: index * 10 + recipeIndex });
+      candidateItems.push({ gift: gift, baseId: baseId, cluster: giftClusterKey(gift), baseScore: baseScore, fresh: fresh, recent: recent, selectionScore: baseScore * 3 + variety * 14 + modeBoost, index: index * 10 + recipeIndex });
     });
   });
   candidateItems.sort(function (a, b) { return b.baseScore - a.baseScore || b.selectionScore - a.selectionScore || a.index - b.index; });
@@ -3387,23 +3548,23 @@ function rankGifts(answers, variant) {
   var freshStrong = ranked.filter(function (item) { return item.fresh && item.baseScore >= topScore - 12; });
   var freshGood = ranked.filter(function (item) { return item.fresh && item.baseScore >= topScore - 20; });
   var candidatePool = freshStrong.length >= 10 ? freshStrong : (freshGood.length >= 10 ? freshGood : freshGood.slice());
-  var alreadyIncluded = candidatePool.map(function (item) { return item.gift.id; });
+  var alreadyIncluded = candidatePool.map(function (item) { return item.baseId; });
   var seenGood = ranked.filter(function (item) {
-    return !item.fresh && item.baseScore >= topScore - 14 && alreadyIncluded.indexOf(item.gift.id) === -1;
+    return !item.fresh && item.baseScore >= topScore - 14 && alreadyIncluded.indexOf(item.baseId) === -1;
   });
   if (candidatePool.length < 10) {
     seenGood.forEach(function (item) {
-      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.gift.id) === -1) {
+      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.baseId) === -1) {
         candidatePool.push(item);
-        alreadyIncluded.push(item.gift.id);
+        alreadyIncluded.push(item.baseId);
       }
     });
   }
   if (candidatePool.length < 10) {
     ranked.forEach(function (item) {
-      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.gift.id) === -1 && item.baseScore >= topScore - 28) {
+      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.baseId) === -1 && item.baseScore >= topScore - 28) {
         candidatePool.push(item);
-        alreadyIncluded.push(item.gift.id);
+        alreadyIncluded.push(item.baseId);
       }
     });
   }
@@ -3433,11 +3594,17 @@ function amazonDomain(country) {
   return ({ ES: 'amazon.es', US: 'amazon.com', GB: 'amazon.co.uk', DE: 'amazon.de', FR: 'amazon.fr', IT: 'amazon.it', CA: 'amazon.ca' })[country] || 'amazon.com';
 }
 
+function affiliateTagFor(country) {
+  var countryTag = APP_CONFIG.affiliateTags && APP_CONFIG.affiliateTags[country];
+  return countryTag || APP_CONFIG.affiliateTag || '';
+}
+
 function buildAmazonUrl(gift, answers) {
   var params = new URLSearchParams();
   params.set('k', gift.amazonQuery);
   params.set('high-price', String(budgetFor(answers.budget).max));
-  if (APP_CONFIG.affiliateTag) params.set('tag', APP_CONFIG.affiliateTag);
+  var affiliateTag = affiliateTagFor(answers.country || APP_CONFIG.defaultCountry);
+  if (affiliateTag) params.set('tag', affiliateTag);
   if (state && state.recommendationMode === 'new') {
     params.set('s', 'date-desc-rank');
     params.set('ref', 'sr_st_date-desc-rank');
@@ -3527,10 +3694,15 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
   var savedPosition = preservePosition ? getScrollPosition() : null;
   var copy = currentCopy();
   if (!preserveRecommendations || !currentRecommendations.length) {
-    currentRecommendations = rankGifts(state.answers, state.variant);
+    currentRecommendations = sharedRecommendations || rankGifts(state.answers, state.variant);
+    sharedRecommendations = null;
     state.lastRecommendationIds = currentRecommendations.map(function (gift) { return gift.id; });
     rememberRecommendations(state.answers, currentRecommendations);
     trackEvent('recommendations_viewed', { resultCount: currentRecommendations.length, variant: state.variant, mode: state.recommendationMode || 'fit' });
+    trackEvent('quiz_completed', {
+      genderProvided: !!state.answers.gender && ['any', 'unknown', 'prefer-not'].indexOf(state.answers.gender) === -1,
+      interestCount: selectedInterests(state.answers).length
+    });
   }
   var title = copy.results.genericTitle + '.';
   var relation = getLabel('relation', state.answers.relation).toLowerCase();
@@ -3551,16 +3723,18 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
       var discovery = activeMode === 'new' || localized.isDiscovery;
       var cardClass = 'gift-card' + (index === 0 ? ' gift-card-featured' : '') + (discovery ? ' gift-card-discovery' : '');
       var angle = localized.angle ? '<p class="gift-angle"><span class="gift-angle-mark" aria-hidden="true">✦</span>' + escapeHtml(localized.angle) + (discovery ? ' <span class="gift-new-badge">' + escapeHtml(copy.results.newBadge) + '</span>' : '') + '</p>' : '';
+      var highlights = buildFitHighlights(gift, state.answers).map(function (item) { return '<span class="gift-fit-highlight">' + escapeHtml(item) + '</span>'; }).join('');
       return '<article class="' + cardClass + '" style="--gift-index: ' + index + ';">' +
         (index === 0 ? '<p class="gift-badge">' + escapeHtml(copy.results.badge) + '</p>' : '') +
         '<div class="gift-card-top"><span class="gift-number">' + String(index + 1).padStart(2, '0') + '</span><span class="gift-icon" aria-hidden="true">' + gift.icon + '</span></div>' +
         '<h3>' + escapeHtml(localized.title) + '</h3><p class="gift-price">' + escapeHtml(interpolate(copy.results.price, { price: gift.price })) + '</p>' + angle +
         '<div class="gift-match" aria-label="' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '"><span class="gift-match-label">' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '</span><span class="gift-match-track" aria-hidden="true"><span class="gift-match-fill" style="width: ' + String(giftMatchRate(gift, state.answers)) + '%;"></span></span></div>' +
+        '<div class="gift-fit-highlights" aria-label="' + escapeHtml((FIT_REASON_COPY[state.language] || FIT_REASON_COPY.es).open) + '">' + highlights + '</div>' +
         '<p class="gift-reason">' + escapeHtml(buildReason(gift, state.answers)) + '</p>' +
         '<div class="gift-tags">' + tags + '</div>' +
-        '<div class="gift-card-actions"><a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a></div></article>';
+        '<div class="gift-card-actions"><a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '" data-gift-store="' + escapeHtml(amazonDomain(state.answers.country || APP_CONFIG.defaultCountry)) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a><div class="gift-feedback"><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="owned" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.owned) + '</button><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="not-fit" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.notFit) + '</button></div></div></article>';
     }).join('') + '</div>' +
-    '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure()) + '</p>';
+    '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure()) + '</p>' + (currentRecommendations.length < 10 ? '<p class="results-exhaustion">' + escapeHtml(copy.results.noMore) + '</p>' : '');
   hero.hidden = true;
   wizard.hidden = true;
   trustStrip.hidden = true;
@@ -3600,7 +3774,7 @@ function resetApp() {
     var resetUrl = new URL(window.location.href);
     if (resetUrl.searchParams.get('r') === '1') {
       resetUrl.searchParams.delete('r');
-      ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country', 'interests', 'mode', 'v', 'utm_source', 'utm_medium', 'utm_campaign'].forEach(function (key) { resetUrl.searchParams.delete(key); });
+      ['relation', 'gender', 'age', 'occasion', 'budget', 'style', 'country', 'interests', 'mode', 'v', 'ideas', 'utm_source', 'utm_medium', 'utm_campaign'].forEach(function (key) { resetUrl.searchParams.delete(key); });
       window.history.replaceState({}, '', resetUrl.pathname + (resetUrl.search ? resetUrl.search : '') + resetUrl.hash);
     }
   } catch (error) {}
@@ -3616,14 +3790,19 @@ function resetApp() {
 }
 
 function recordClick(giftId, position) {
-  try {
-    var clicks = JSON.parse(localStorage.getItem(APP_CONFIG.clickStorageKey) || '[]');
-    clicks.push({ id: giftId, position: position ? Number(position) : null, at: new Date().toISOString(), country: state.answers.country || APP_CONFIG.defaultCountry });
-    localStorage.setItem(APP_CONFIG.clickStorageKey, JSON.stringify(clicks.slice(-100)));
-  } catch (error) {
-    // Private browsing or blocked storage should never stop an outbound link.
+  var country = state.answers.country || APP_CONFIG.defaultCountry;
+  var store = amazonDomain(country);
+  var consent = window.RegalazoAnalyticsCore ? window.RegalazoAnalyticsCore.getConsent() : analyticsConsentState;
+  if (consent === 'granted') {
+    try {
+      var clicks = JSON.parse(localStorage.getItem(APP_CONFIG.clickStorageKey) || '[]');
+      clicks.push({ id: giftId, position: position ? Number(position) : null, at: new Date().toISOString(), store: store });
+      localStorage.setItem(APP_CONFIG.clickStorageKey, JSON.stringify(clicks.slice(-100)));
+    } catch (error) {
+      // Private browsing or blocked storage should never stop an outbound link.
+    }
   }
-  trackEvent('gift_outbound_clicked', { giftId: giftId, position: position ? Number(position) : null, country: state.answers.country || APP_CONFIG.defaultCountry });
+  trackEvent('gift_outbound_clicked', { giftId: giftId, position: position ? Number(position) : null, store: store, mode: state.recommendationMode || 'fit' });
 }
 
 function buildShareUrl() {
@@ -3634,6 +3813,7 @@ function buildShareUrl() {
   });
   params.set('interests', rawInterests(state.answers).join(','));
   params.set('v', String(state.variant));
+  if (currentRecommendations.length === 10) params.set('ideas', currentRecommendations.map(function (gift) { return gift.id; }).join(','));
   params.set('utm_source', 'share');
   params.set('utm_medium', 'regalazo');
   params.set('utm_campaign', 'gift-selection');
@@ -3656,7 +3836,7 @@ function readSharedAnswers() {
     });
     var interests = (params.get('interests') || '').split(',').filter(function (value) { return isValidSharedValue('interests', value); }).slice(0, 3);
     if (!answers.relation || !answers.gender || !answers.age || !answers.occasion || !answers.budget || !answers.style || !answers.country || !interests.length) return null;
-    if (answers.relation === 'partner' && answers.age === 'child') answers.age = 'unknown';
+    if (answers.relation === 'partner' && answers.age === 'child') return null;
     answers.interests = interests;
     return answers;
   } catch (error) {
@@ -3684,7 +3864,7 @@ function buildShareMessage() {
 function shareSelection() {
   var copy = currentCopy();
   var url = buildShareUrl();
-  trackEvent('share_clicked', { mode: state.recommendationMode || 'fit' });
+  trackEvent('share_clicked', { mode: state.recommendationMode || 'fit', ideaCount: currentRecommendations.length });
   if (navigator.share) {
     navigator.share({ title: copy.results.share, text: buildShareMessage(), url: url }).then(function () {
       trackEvent('share_completed', { method: 'native', mode: state.recommendationMode || 'fit' });
@@ -3696,6 +3876,21 @@ function shareSelection() {
   } else {
     showToast(copy.messages.copyHint);
   }
+}
+
+function replaceGift(giftId, feedback) {
+  var baseId = baseIdForRecommendationId(giftId);
+  if (!baseId) return;
+  if (!Array.isArray(state.dismissedBaseIds)) state.dismissedBaseIds = [];
+  if (state.dismissedBaseIds.indexOf(baseId) === -1) state.dismissedBaseIds.push(baseId);
+  trackEvent('gift_feedback', { giftId: giftId, feedback: feedback });
+  state.variant += 1;
+  currentRecommendations = rankGifts(state.answers, state.variant);
+  state.lastRecommendationIds = currentRecommendations.map(function (gift) { return gift.id; });
+  rememberRecommendations(state.answers, currentRecommendations);
+  trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' });
+  renderResults(false, true, getScrollPosition());
+  showToast((currentCopy().results || {}).saved || FEEDBACK_COPY.es.saved);
 }
 
 function showToast(message) {
@@ -3747,6 +3942,7 @@ results.addEventListener('click', function (event) {
     if (actionName === 'adjust') showWizardAtLastStep();
     if (actionName === 'refresh') { state.variant += 1; trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' }); renderResults(false); }
     if (actionName === 'share') shareSelection();
+    if (actionName === 'feedback') replaceGift(action.getAttribute('data-gift-id'), action.getAttribute('data-feedback'));
     return;
   }
   var link = event.target.closest('[data-gift-id]');
@@ -3785,23 +3981,27 @@ if (languageSelect) {
 
 if (weeklyDiscovery) {
   weeklyDiscovery.addEventListener('click', function (event) {
-    if (event.target.closest('a')) trackEvent('weekly_discovery_clicked', {});
+    var link = event.target.closest('a');
+    if (link) trackEvent('weekly_discovery_clicked', { giftId: link.getAttribute('data-gift-id'), store: amazonDomain(state.answers.country || APP_CONFIG.defaultCountry) });
   });
 }
 
-if (analyticsConsentAcceptButton) {
+if (!window.RegalazoAnalyticsCore && analyticsConsentAcceptButton && !analyticsConsentAcceptButton.dataset.analyticsBound) {
+  analyticsConsentAcceptButton.dataset.analyticsBound = 'true';
   analyticsConsentAcceptButton.addEventListener('click', function () {
     setAnalyticsConsent('granted');
   });
 }
 
-if (analyticsConsentRejectButton) {
+if (!window.RegalazoAnalyticsCore && analyticsConsentRejectButton && !analyticsConsentRejectButton.dataset.analyticsBound) {
+  analyticsConsentRejectButton.dataset.analyticsBound = 'true';
   analyticsConsentRejectButton.addEventListener('click', function () {
     setAnalyticsConsent('denied');
   });
 }
 
-if (analyticsPreferencesButton) {
+if (!window.RegalazoAnalyticsCore && analyticsPreferencesButton && !analyticsPreferencesButton.dataset.analyticsBound) {
+  analyticsPreferencesButton.dataset.analyticsBound = 'true';
   analyticsPreferencesButton.addEventListener('click', openAnalyticsPreferences);
 }
 
@@ -3811,6 +4011,7 @@ if (sharedAnswers) {
   state.step = QUESTIONS.length;
   state.recommendationMode = 'fit';
   state.variant = readSharedVariant();
+  sharedRecommendations = readSharedRecommendations(sharedAnswers, state.variant);
   trackEvent('shared_result_opened', { mode: state.recommendationMode });
 }
 

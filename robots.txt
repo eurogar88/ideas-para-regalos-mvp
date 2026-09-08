@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /docs/
+Disallow: /tests/
+Disallow: /README.md
 
 Sitemap: https://regalazo.xyz/sitemap.xml

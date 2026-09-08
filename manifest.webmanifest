@@ -6,7 +6,7 @@
   "display": "standalone",
   "background_color": "#fff9f2",
   "theme_color": "#e46c57",
-  "description": "Un radar gratuito para encontrar regalos relevantes en menos de un minuto.",
+  "description": "Un recomendador gratuito para encontrar regalos relevantes en menos de un minuto.",
   "icons": [
     {
       "src": "/icon.svg",
