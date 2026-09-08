@@ -48,6 +48,7 @@ for (const url of ['/', '/en/', '/de/', '/fr/', '/it/', '/como-funciona/']) {
 
 const netlify = fs.readFileSync(path.join(root, 'netlify.toml'), 'utf8');
 assert.match(netlify, /Content-Security-Policy/);
+assert.match(netlify, /from = "https:\/\/ideas-para-regalos-mvp\.netlify\.app\/\*"[\s\S]*to = "https:\/\/regalazo\.xyz\/:splat"[\s\S]*status = 301/);
 assert.match(netlify, /from = "\/README\.md"[\s\S]*status = 404/);
 assert.match(netlify, /from = "\/docs\/\*"[\s\S]*status = 404/);
 assert.match(netlify, /from = "\/docs"[\s\S]*status = 404/);

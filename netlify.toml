@@ -66,6 +66,18 @@
     Content-Type = "text/plain; charset=UTF-8"
 
 [[redirects]]
+  from = "https://ideas-para-regalos-mvp.netlify.app/*"
+  to = "https://regalazo.xyz/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://ideas-para-regalos-mvp.netlify.app/*"
+  to = "https://regalazo.xyz/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/README.md"
   to = "/404.html"
   status = 404
