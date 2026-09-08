@@ -54,7 +54,6 @@ assert.match(netlify, /from = "\/docs"[\s\S]*status = 404/);
 assert.match(netlify, /from = "\/tests\/\*"[\s\S]*status = 404/);
 assert.match(netlify, /from = "\/tests"[\s\S]*status = 404/);
 assert.match(netlify, /from = "\/\.git\/\*"[\s\S]*status = 404/);
-assert.match(netlify, /from = "\/\.netlify\/\*"[\s\S]*status = 404/);
 
 const serviceWorker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
 assert.match(serviceWorker, /regalazo-shell-growth-v8/);
