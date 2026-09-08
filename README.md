@@ -6,9 +6,9 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 
 - Asistente de 8 pasos: relación, género, edad aproximada, ocasión, presupuesto, gusto principal, estilo y país del comprador.
 - Motor determinista local con catálogo editorial y ranking por coincidencias.
-- Capa de composición con 7 enfoques editoriales —encaje, toque personal, plan, pack, giro inesperado, descubrimiento y pequeño lujo— que amplía las 360 ideas base hasta 2.055 composiciones compatibles.
+- Catálogo editorial de 360 ideas base únicas y más de 300 búsquedas de producto diferenciadas; la capa de 7 enfoques —encaje, toque personal, plan, pack, giro inesperado, descubrimiento y pequeño lujo— permite recorrer hasta 2.055 composiciones compatibles.
 - Un único modo de resultado: Mejor encaje. “Ver otras ideas” genera otra tanda relevante y el historial anónimo local evita repetir composiciones para el mismo perfil.
-- Diez recomendaciones con título, motivo, precio orientativo y enlace de búsqueda relevante.
+- Diez recomendaciones con título, motivo, precio orientativo, pista de compra y enlace de búsqueda relevante. “Ya lo tiene” y “No me encaja” sustituyen solo la tarjeta descartada, conservando el resto de la selección.
 - La selección completa puede compartirse con sus respuestas y las mismas 10 ideas codificadas en la URL para que otra persona vea exactamente el mismo resultado, sin cuenta ni datos identificativos.
 - Responsive endurecido para móvil estrecho: panel de compartir contenido dentro de la tarjeta, controles que pueden envolver texto largo y cero overflow horizontal.
 - PWA instalable: manifest, icono, service worker de shell y aviso de instalación solo cuando el navegador lo permite. Esto deja el producto listo para empaquetarlo más adelante como Android/TWA sin mantener una app nativa desde el día uno.
@@ -18,7 +18,7 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - En resultados, “Ver otras ideas” ofrece una nueva tanda relevante con una transición suave. Respeta `prefers-reduced-motion`.
 - Bloque de descubrimiento semanal para renovar el motivo de vuelta sin añadir un feed ni una base de datos.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
-- La etiqueta de afiliación actualmente configurada y pendiente de validación operativa es `lamamihacker-21` para España. Los demás marketplaces usan temporalmente esa etiqueta heredada como fallback hasta configurar y verificar un tracking ID propio de cada cuenta; no debe darse por hecho que la atribución internacional está activa.
+- La etiqueta de afiliación actualmente configurada y pendiente de validación operativa es `lamamihacker-21` para España. Los demás marketplaces abren enlaces sin etiqueta hasta configurar y verificar un tracking ID propio; nunca se reutiliza una etiqueta de otro país.
 - Sin registro, sin nombres y sin datos enviados a un servidor.
 - Sin runtime de OpenClaw y sin llamadas a modelos de IA en esta primera versión. La IA queda como extensión opcional para más adelante, no como coste fijo del MVP.
 - El bloque “Descubrimiento de la semana” no representa inventario en tiempo real: es una idea editorial que enlaza directamente con una búsqueda de Amazon. Amazon puede mostrar otros productos, precios y disponibilidades.
@@ -54,6 +54,7 @@ Es una web estática sin dependencias externas:
 - docs/gpt-recovery.md: recuperación y límites de la configuración del GPT.
 - docs/growth-playbook.md: acciones priorizadas para SEO, AEO, viralidad, PWA, medición y monetización responsable.
 - docs/seo-content-calendar.md: clusters editoriales, cadencia de publicación, reglas de calidad y checklist de cada URL.
+- docs/catalog-operations.md: reglas para mantener las 360 ideas, ampliar variedad y pasar más adelante a fichas de producto reales.
 - aviso-legal/, terminos-de-uso/, privacidad/ y cookies/: textos legales de lanzamiento enlazados desde el footer.
 
 La aplicación usa rutas relativas y no acopla la lógica al dominio, por lo que el cambio a `regalazo.xyz` no requiere reescribir la experiencia. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
@@ -94,7 +95,7 @@ La versión pública muestra un aviso breve y no carga el SDK ni envía eventos 
 
 Los eventos están filtrados por una lista de propiedades permitidas: se excluyen las respuestas concretas del cuestionario (relación, género, edad, presupuesto, intereses, estilo y país), nombres, emails, texto libre y URLs compartidas. Solo se conservan métricas agregadas de uso, ruta sin parámetros, idioma, variante, posición y método de interacción necesarios para mejorar el producto.
 
-Eventos growth-v3: page_viewed (path), quiz_started, quiz_answered (questionId, step), quiz_completed (genderProvided, interestCount), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), gift_outbound_clicked (giftId, position, store, mode), language_changed (from, to), share_clicked (mode, ideaCount), share_completed (method, mode), shared_result_opened (mode), weekly_discovery_viewed (giftId), weekly_discovery_clicked (giftId, store), pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice (outcome), pwa_installed, pwa_install_dismissed, quiz_reset, analytics_loaded y gift_feedback (giftId, feedback). Todos incluyen app, language, versión, ruta de entrada, campaña permitida y marca temporal. No se envían respuestas concretas, nombres, emails ni URLs compartidas. El historial local de clics solo se guarda después de aceptar la analítica.
+Eventos growth-v4: page_viewed (path), quiz_started, quiz_answered (questionId, step), quiz_completed (genderProvided, interestCount), recommendations_viewed (resultCount, variant, mode), recommendations_refreshed (variant, mode), gift_outbound_clicked (giftId, position, store, mode), language_changed (from, to), share_clicked (mode, ideaCount), share_completed (method, mode), shared_result_opened (mode), weekly_discovery_viewed (giftId), weekly_discovery_clicked (giftId, store), pwa_ready, pwa_install_prompt_viewed, pwa_install_prompted, pwa_install_choice (outcome), pwa_installed, pwa_install_dismissed, quiz_reset, analytics_loaded y gift_feedback (giftId, feedback). Todos incluyen app, language, versión, ruta de entrada, campaña permitida y marca temporal. No se envían respuestas concretas, nombres, emails ni URLs compartidas; además, el SDK no conserva la URL completa en sus propiedades automáticas. El historial local de clics solo se guarda después de aceptar la analítica, y volver a aceptar después de retirarla reactiva correctamente el SDK.
 
 La política de privacidad y la política de cookies describen el consentimiento, la carga diferida y la retirada. El token de cliente de Mixpanel vive en el bundle público, como está previsto para el SDK web; no es un secreto de servidor.
 

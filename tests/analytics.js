@@ -105,4 +105,22 @@ core.setConsent('denied');
 assert.equal(storage.getItem('regalazo-analytics-consent-v4'), 'denied');
 assert.equal(core.getQueue().length, 0, 'denial must clear queued events');
 
+let optIns = 0;
+let optOuts = 0;
+context.window.mixpanel = {
+  init() {},
+  opt_in_tracking() { optIns += 1; },
+  opt_out_tracking() { optOuts += 1; },
+  track() {}
+};
+assert.ok(document.head.lastScript && typeof document.head.lastScript.onload === 'function', 'analytics script load was not registered');
+document.head.lastScript.onload();
+core.setConsent('granted');
+assert.ok(optIns >= 1, 'grant after SDK readiness should opt analytics back in');
+core.setConsent('denied');
+assert.ok(optOuts >= 1, 'denial should opt analytics out');
+core.openPreferences();
+core.setConsent('granted');
+assert.ok(optIns >= 2, 're-consent after preferences should opt analytics back in');
+
 console.log('PASS: opt-in analytics, route preservation and property allowlist checks');

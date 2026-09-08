@@ -5,8 +5,9 @@
 ## Qué hace
 
 - Cruza relación, género opcional, edad aproximada, ocasión, presupuesto, intereses, estilo y país de compra.
-- Genera recomendaciones desde un catálogo editorial local; no inventa productos ni precios exactos.
+- Genera recomendaciones desde un catálogo editorial local de 360 ideas base y más de 300 búsquedas de producto diferenciadas; no inventa productos ni precios exactos.
 - Presenta un único enfoque: Mejor encaje. El botón “Ver otras ideas” genera otra tanda relevante para evitar resultados repetidos.
+- Si una idea no encaja, permite reemplazar solo esa tarjeta; el resto de la selección se conserva.
 - Permite compartir una selección completa con sus respuestas y las mismas 10 ideas codificadas en la URL, sin cuenta ni datos identificativos.
 - Abre búsquedas localizadas de Amazon con una etiqueta de afiliación. Los precios y la disponibilidad pueden cambiar.
 

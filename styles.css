@@ -167,6 +167,7 @@ a { color: inherit; }
 
 .hero-notes span { display: inline-flex; align-items: center; gap: 7px; }
 .hero-notes strong { color: var(--coral); font-size: 0.68rem; letter-spacing: 0.08em; }
+.hero-catalog-note { margin: 12px 0 0; color: var(--muted); font-size: 0.72rem; line-height: 1.4; }
 
 .wizard-card {
   position: relative;
@@ -381,6 +382,8 @@ a { color: inherit; }
 .gift-card h3 { margin: 10px 0 0; font-size: 1.12rem; letter-spacing: -0.025em; }
 .gift-price { margin: 4px 0 0; color: var(--coral-dark); font-size: 0.78rem; font-weight: 800; }
 .gift-reason { margin: 9px 0 0; color: var(--muted); font-size: 0.87rem; line-height: 1.45; }
+.gift-buying-tip { margin: 10px 0 0; padding: 9px 10px; border-radius: 11px; color: var(--muted); background: rgba(247, 242, 237, 0.72); font-size: 0.72rem; line-height: 1.4; }
+.gift-buying-tip strong { color: var(--ink); }
 .gift-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .gift-tag { padding: 5px 8px; border-radius: 8px; color: #76665a; background: #f7f2ed; font-size: 0.66rem; font-weight: 700; }
 .gift-link { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 44px; margin-top: 15px; border-radius: 12px; color: #fff; background: var(--ink); font-size: 0.82rem; font-weight: 800; text-decoration: none; }
@@ -1314,6 +1317,8 @@ html[data-theme="dark"] .localized-language-links a { background: rgba(34, 29, 2
 html[data-theme="dark"] .seo-cluster-cta a { color: var(--coral-dark); }
 html[data-theme="dark"] .legal-links { border-top-color: var(--line); }
 html[data-theme="dark"] .gift-fit-highlight { background: rgba(77, 43, 38, 0.66); }
+html[data-theme="dark"] .gift-buying-tip { background: rgba(48, 40, 35, 0.86); }
+html[data-theme="dark"] .gift-buying-tip strong { color: var(--paper); }
 html[data-theme="dark"] .results-exhaustion { background: rgba(54, 44, 67, 0.62); }
 
 /* Dark mode: reduce display weights so the same hierarchy reads lighter at night. */

@@ -11,7 +11,7 @@
     token: '7a393adbe60cb8cd073e9aaf44263a33',
     scriptUrl: 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js',
     apiHost: 'https://api-eu.mixpanel.com',
-    version: 'growth-v3'
+    version: 'growth-v4'
   };
   var COPY = {
     es: { title: '¿Nos ayudas a mejorar Regalazo?', text: 'Solo si aceptas cargaremos Mixpanel para medir el uso y mejorar las recomendaciones. No guardamos nombres, emails, respuestas concretas ni texto libre.', accept: 'Aceptar analítica', reject: 'Ahora no', preferences: 'Preferencias de analítica', more: 'Más información' },
@@ -114,7 +114,10 @@
       autocapture: false,
       opt_out_tracking_by_default: true,
       ip: false,
-      persistence: 'localStorage'
+      persistence: 'localStorage',
+      // The app sends its own allowlisted attribution fields. Do not let the
+      // SDK copy shared-result query strings into default properties.
+      property_blacklist: ['$current_url', '$referrer', '$initial_referrer', '$initial_referring_domain']
     });
     if (consent === 'granted' && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
     ready = true;
@@ -173,6 +176,7 @@
     }
     hideBanner();
     if (value === 'granted') {
+      if (ready && window.mixpanel && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
       load();
       trackPageView();
     }

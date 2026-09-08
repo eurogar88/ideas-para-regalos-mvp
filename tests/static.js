@@ -22,8 +22,8 @@ for (const file of htmlFiles) {
   const relative = path.relative(root, file);
   assert.match(html, /<html\s+lang="[a-z]{2}"/, `${relative} is missing a valid language`);
   assert.match(html, /\/theme\.js\?v=theme-1/, `${relative} is missing the theme runtime`);
-  assert.match(html, /\/analytics\.js\?v=analytics-3/, `${relative} is missing shared analytics`);
-  assert.match(html, /styles\.css\?v=growth-ui-14/, `${relative} points to an old stylesheet`);
+  assert.match(html, /\/analytics\.js\?v=analytics-4/, `${relative} is missing shared analytics`);
+  assert.match(html, /styles\.css\?v=growth-ui-15/, `${relative} points to an old stylesheet`);
   assert.doesNotMatch(html, /Tu elección|Yo elegiría|Compartir el reto|Compartir reto|radar/i, `${relative} contains retired product copy`);
   const structuredData = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)];
   for (const match of structuredData) {
@@ -57,10 +57,10 @@ assert.match(netlify, /from = "\/tests"[\s\S]*status = 404/);
 assert.match(netlify, /from = "\/\.git\/\*"[\s\S]*status = 404/);
 
 const serviceWorker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-assert.match(serviceWorker, /regalazo-shell-growth-v9/);
+assert.match(serviceWorker, /regalazo-shell-growth-v10/);
 assert.match(serviceWorker, /event\.request\.mode === 'navigate'/);
 assert.match(serviceWorker, /fetch\(event\.request\)/);
-assert.match(serviceWorker, /analytics\.js\?v=analytics-3/);
+assert.match(serviceWorker, /analytics\.js\?v=analytics-4/);
 
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 assert.match(app, /value: 'any', label: 'Cualquiera'/);

@@ -15,10 +15,13 @@ const engineStart = source.indexOf('function budgetFor(value)');
 const buildReasonStart = source.indexOf('function buildReason(gift, answers)');
 const shareStart = source.indexOf('function buildShareUrl()');
 const shareEnd = source.indexOf('function shareSelection()');
+const replacementStart = source.indexOf('function findReplacementGift(giftId)');
+const replacementEnd = source.indexOf('function showToast(message)', replacementStart);
 
 assert.ok(languageStart > 0 && analyticsStart > languageStart && getQuestionStart > analyticsStart);
 assert.ok(applyLanguageStart > getQuestionStart && engineStart > applyLanguageStart);
 assert.ok(buildReasonStart > engineStart && shareStart > buildReasonStart && shareEnd > shareStart);
+assert.ok(replacementStart > shareEnd && replacementEnd > replacementStart);
 
 function makeStorage() {
   const values = new Map();
@@ -64,7 +67,8 @@ const setup = [
   source.slice(getQuestionStart, applyLanguageStart),
   source.slice(engineStart, buildReasonStart),
   source.slice(shareStart, shareEnd),
-  'globalThis.__api = { GIFT_CATALOG, GIFT_RECIPES, state, currentRecommendations, rankGifts, rememberRecommendations, eligibleCatalogFor, giftClusterKey, buildShareUrl, readSharedAnswers, readSharedRecommendations, readSharedVariant, baseIdForRecommendationId, isGiftAgeCompatible, isGiftContextCompatible };'
+  source.slice(replacementStart, replacementEnd),
+  'globalThis.__api = { GIFT_CATALOG, GIFT_RECIPES, state, currentRecommendations, rankGifts, rememberRecommendations, eligibleCatalogFor, giftClusterKey, buildShareUrl, buildAmazonUrl, readSharedAnswers, readSharedRecommendations, readSharedVariant, baseIdForRecommendationId, isGiftAgeCompatible, isGiftContextCompatible, findReplacementGift };'
 ].join('\n');
 
 vm.runInNewContext(setup, context, { filename: 'app.js' });
@@ -72,6 +76,10 @@ const api = context.__api;
 
 assert.ok(api.GIFT_CATALOG.length >= 360, `expected at least 360 base ideas, got ${api.GIFT_CATALOG.length}`);
 assert.ok(api.GIFT_RECIPES.length >= 7, `expected at least 7 editorial angles, got ${api.GIFT_RECIPES.length}`);
+assert.ok(new Set(api.GIFT_CATALOG.map((gift) => gift.id)).size >= 360, 'catalog ids must be unique');
+assert.ok(new Set(api.GIFT_CATALOG.map((gift) => gift.amazonQuery)).size >= 300, 'catalog needs at least 300 distinct product searches');
+assert.match(api.buildAmazonUrl({ amazonQuery: 'test product' }, { budget: '20to40', country: 'ES' }), /tag=lamamihacker-21/);
+assert.doesNotMatch(api.buildAmazonUrl({ amazonQuery: 'test product' }, { budget: '20to40', country: 'US' }), /tag=/, 'unverified marketplaces must not reuse the Spanish tag');
 
 function answers(overrides = {}) {
   return Object.assign({
@@ -130,6 +138,17 @@ for (let round = 0; round < 12; round += 1) {
 assert.ok(seenAcrossRefreshes.size >= 70, `refreshes produced too little variety: ${seenAcrossRefreshes.size}`);
 
 resetProfile();
+const compositionProfile = answers({ relation: 'friend', age: 'adult', interests: ['food'], style: 'any', budget: '20to40' });
+const compositions = new Set();
+for (let round = 0; round < 42; round += 1) {
+  const result = api.rankGifts(compositionProfile, 500 + round);
+  result.forEach((gift) => compositions.add(gift.id));
+  api.state.lastRecommendationIds = result.map((gift) => gift.id);
+  api.rememberRecommendations(compositionProfile, result);
+}
+assert.ok(compositions.size >= 360, `42 rounds should expose at least 360 compositions: ${compositions.size}`);
+
+resetProfile();
 const shareAnswers = answers({ relation: 'partner', gender: 'any', age: 'adult', interests: ['food', 'travel'], style: 'original', budget: '75to150' });
 api.state.answers = shareAnswers;
 api.state.variant = 987654;
@@ -148,5 +167,15 @@ assert.deepEqual(shared.map((gift) => gift.id), original.map((gift) => gift.id),
 
 context.window.location.search = '?r=1&relation=partner&gender=any&age=child&occasion=birthday&budget=20to40&style=any&country=ES&interests=any&ideas=' + encodeURIComponent(original.map((gift) => gift.id).join(','));
 assert.equal(api.readSharedAnswers(), null, 'invalid partner/child shared profile was accepted');
+
+resetProfile();
+api.state.answers = answers({ relation: 'friend', age: 'adult', interests: ['food'], style: 'any', budget: '20to40' });
+const replacementOriginal = api.rankGifts(api.state.answers, 987);
+api.currentRecommendations.splice(0, api.currentRecommendations.length, ...replacementOriginal);
+api.state.lastRecommendationIds = replacementOriginal.map((gift) => gift.id);
+api.state.dismissedBaseIds = [api.baseIdForRecommendationId(replacementOriginal[0].id)];
+const replacement = api.findReplacementGift(replacementOriginal[0].id);
+assert.ok(replacement, 'a dismissed idea should have an individual replacement');
+assert.ok(!replacementOriginal.some((gift) => api.baseIdForRecommendationId(gift.id) === api.baseIdForRecommendationId(replacement.id)), 'replacement should not duplicate a visible card');
 
 console.log(`PASS: ${api.GIFT_CATALOG.length} base ideas, ${api.GIFT_RECIPES.length} angles, age/budget/refresh/share checks`);

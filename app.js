@@ -5,7 +5,6 @@
  * a future AI layer may rank catalog ids, but it must never invent products or URLs.
  */
 var APP_CONFIG = Object.freeze({
-  affiliateTag: 'lamamihacker-21',
   affiliateTags: Object.freeze({ ES: 'lamamihacker-21' }),
   defaultCountry: 'ES',
   clickStorageKey: 'regalazo-clicks-v1',
@@ -2455,6 +2454,7 @@ var GIFT_CATALOG = [
   {"id":"camera-lens","title":"Objetivo para llevar más lejos sus fotos","category":"creatividad","categoryLabel":"creatividad","icon":"📷","price":209,"interests":["creative","travel","tech"],"styles":["original","premium"],"relations":["friend","sibling","partner","other"],"ages":["young-adult","adult","midlife"],"occasions":["birthday","anniversary","christmas","secret-santa","thankyou","justbecause"],"amazonQuery":"objetivo cámara fotografía retrato viaje regalo","tags":["fotos","más de 150"],"reason":"Una forma de profundizar en la fotografía cuando esa afición ya tiene un lugar importante.","editorialScore":4,"titles":{"en":"Camera lens for creative photography","de":"Objektiv für kreative Fotografie","fr":"Objectif pour photographie créative","it":"Obiettivo per fotografia creativa"}},
   {"id":"weekend-luggage-set","title":"Set de maletas para viajar mejor","category":"viajes","categoryLabel":"viajes","icon":"🧳","price":179,"interests":["travel"],"styles":["useful","premium"],"relations":["partner","parent","sibling","friend","coworker","other"],"ages":["teen","young-adult","adult","midlife","50plus"],"occasions":["birthday","anniversary","christmas","secret-santa","thankyou","justbecause"],"amazonQuery":"set maletas viaje fin de semana premium regalo","tags":["viajes","más de 150"],"reason":"Una inversión en próximos planes, escapadas y muchas historias por estrenar.","editorialScore":5,"titles":{"en":"Premium weekend luggage set","de":"Hochwertiges Wochenend-Gepäckset","fr":"Set de bagages premium pour week-end","it":"Set valigie premium da weekend"}}];
 
+var CATALOG_COUNT = GIFT_CATALOG.length;
 
 function makeOptionCopy(label, detail) {
   return { label: label, detail: detail || '' };
@@ -2571,7 +2571,7 @@ var ANALYTICS_CONFIG = Object.freeze({
   provider: 'mixpanel',
   enabled: true,
   token: '7a393adbe60cb8cd073e9aaf44263a33',
-  version: 'growth-v3',
+  version: 'growth-v4',
   scriptUrl: 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js',
   apiHost: 'https://api-eu.mixpanel.com'
 });
@@ -2634,6 +2634,99 @@ var FIT_REASON_COPY = {
   fr: { budget: 'Dans votre budget', interest: 'Pour {value}', relation: 'Pour {value}', style: 'Style {value}', age: 'Adapté à {value}', occasion: 'Pour {value}', open: 'Sélection ouverte' },
   it: { budget: 'Nel tuo budget', interest: 'Per {value}', relation: 'Per {value}', style: 'Stile {value}', age: 'Adatto a {value}', occasion: 'Per {value}', open: 'Selezione aperta' }
 };
+var CATALOG_NOTE_COPY = {
+  es: 'Catálogo editorial de {count} ideas base, con distintas formas de buscarlas.',
+  en: 'Editorial catalogue of {count} base ideas, with different ways to explore them.',
+  de: 'Redaktioneller Katalog mit {count} Grundideen und verschiedenen Suchwegen.',
+  fr: 'Catalogue éditorial de {count} idées de base, avec plusieurs façons de les explorer.',
+  it: 'Catalogo editoriale di {count} idee di base, con diversi modi per esplorarle.'
+};
+var PURCHASE_GUIDANCE_COPY = {
+  es: {
+    label: 'Antes de comprar',
+    generic: 'Comprueba medidas, compatibilidad y opiniones recientes.',
+    tech: 'Revisa la compatibilidad con sus dispositivos y el formato exacto.',
+    kitchen: 'Comprueba tamaño, materiales y si encaja con lo que ya usa.',
+    travel: 'Mira medidas, peso y si cabe en su forma habitual de viajar.',
+    beauty: 'Revisa ingredientes y preferencias; en cuidado personal, lo específico puede fallar.',
+    games: 'Comprueba edad recomendada, número de jugadores y duración.',
+    creative: 'Mira qué incluye el kit y qué consumibles necesitará después.',
+    style: 'Comprueba talla, medidas y política de devolución.',
+    home: 'Comprueba espacio, mantenimiento y si ya tiene algo parecido.'
+  },
+  en: {
+    label: 'Before buying',
+    generic: 'Check dimensions, compatibility and recent reviews.',
+    tech: 'Check compatibility with their devices and the exact format.',
+    kitchen: 'Check size, materials and whether it fits what they already use.',
+    travel: 'Check dimensions, weight and how it fits the way they travel.',
+    beauty: 'Check ingredients and preferences; highly specific personal-care gifts can miss.',
+    games: 'Check the recommended age, player count and play time.',
+    creative: 'Check what the kit includes and which supplies they will need later.',
+    style: 'Check size, measurements and the return policy.',
+    home: 'Check space, maintenance and whether they already own something similar.'
+  },
+  de: {
+    label: 'Vor dem Kauf',
+    generic: 'Maße, Kompatibilität und aktuelle Bewertungen prüfen.',
+    tech: 'Kompatibilität mit den Geräten und das genaue Format prüfen.',
+    kitchen: 'Größe, Material und die Kompatibilität mit dem vorhandenen Zubehör prüfen.',
+    travel: 'Maße, Gewicht und die übliche Reiseart berücksichtigen.',
+    beauty: 'Inhaltsstoffe und Vorlieben prüfen; sehr persönliche Pflegeprodukte sind riskanter.',
+    games: 'Empfohlenes Alter, Spielerzahl und Spieldauer prüfen.',
+    creative: 'Prüfen, was im Set enthalten ist und was später nachgekauft werden muss.',
+    style: 'Größe, Maße und Rückgabebedingungen prüfen.',
+    home: 'Platz, Pflegeaufwand und mögliche Doppelungen prüfen.'
+  },
+  fr: {
+    label: 'Avant d’acheter',
+    generic: 'Vérifiez les dimensions, la compatibilité et les avis récents.',
+    tech: 'Vérifiez la compatibilité avec ses appareils et le format exact.',
+    kitchen: 'Vérifiez la taille, les matériaux et la compatibilité avec ce qu’il utilise déjà.',
+    travel: 'Vérifiez les dimensions, le poids et son type de voyage habituel.',
+    beauty: 'Vérifiez les ingrédients et les préférences ; un soin trop spécifique peut décevoir.',
+    games: 'Vérifiez l’âge conseillé, le nombre de joueurs et la durée.',
+    creative: 'Vérifiez le contenu du kit et les consommables à prévoir ensuite.',
+    style: 'Vérifiez la taille, les mesures et les conditions de retour.',
+    home: 'Vérifiez l’espace disponible, l’entretien et les doublons possibles.'
+  },
+  it: {
+    label: 'Prima di acquistare',
+    generic: 'Controlla misure, compatibilità e recensioni recenti.',
+    tech: 'Controlla la compatibilità con i suoi dispositivi e il formato esatto.',
+    kitchen: 'Controlla dimensioni, materiali e compatibilità con ciò che usa già.',
+    travel: 'Controlla dimensioni, peso e il suo modo abituale di viaggiare.',
+    beauty: 'Controlla ingredienti e preferenze; i prodotti molto specifici possono non funzionare.',
+    games: 'Controlla età consigliata, numero di giocatori e durata.',
+    creative: 'Controlla cosa contiene il kit e quali materiali serviranno in seguito.',
+    style: 'Controlla taglia, misure e condizioni di reso.',
+    home: 'Controlla spazio, manutenzione e possibili doppioni.'
+  }
+};
+
+function catalogNote() {
+  var template = CATALOG_NOTE_COPY[state.language] || CATALOG_NOTE_COPY.es;
+  return interpolate(template, { count: CATALOG_COUNT });
+}
+
+function purchaseCategory(gift) {
+  var category = String(gift && gift.category || '').toLowerCase();
+  if (/tecnolog|gaming|escritorio/.test(category)) return 'tech';
+  if (/cocin|sabor/.test(category)) return 'kitchen';
+  if (/viaj/.test(category)) return 'travel';
+  if (/cuidado|bienestar/.test(category)) return 'beauty';
+  if (/juego|plan/.test(category)) return 'games';
+  if (/creativ|papeler|lectura/.test(category)) return 'creative';
+  if (/estilo|detalle|movimiento/.test(category)) return 'style';
+  if (/casa|hogar|calma|moment/.test(category)) return 'home';
+  return 'generic';
+}
+
+function buildPurchaseTip(gift) {
+  var copy = PURCHASE_GUIDANCE_COPY[state.language] || PURCHASE_GUIDANCE_COPY.es;
+  return { label: copy.label, text: copy[purchaseCategory(gift)] || copy.generic };
+}
+
 Object.keys(LANGUAGE_COPY).forEach(function (language) {
   LANGUAGE_COPY[language].results = Object.assign({}, LANGUAGE_COPY[language].results, FEEDBACK_COPY[language] || FEEDBACK_COPY.es);
 });
@@ -2839,7 +2932,8 @@ function initializeMixpanel() {
     autocapture: false,
     opt_out_tracking_by_default: true,
     ip: false,
-    persistence: 'localStorage'
+    persistence: 'localStorage',
+    property_blacklist: ['$current_url', '$referrer', '$initial_referrer', '$initial_referring_domain']
   });
   if (analyticsConsentState === 'granted' && typeof window.mixpanel.opt_in_tracking === 'function') window.mixpanel.opt_in_tracking();
   analyticsReady = true;
@@ -2967,9 +3061,11 @@ function applyLanguage() {
   var heroEyebrow = document.querySelector('.hero .eyebrow');
   var heroTitle = document.getElementById('hero-title');
   var heroCopy = document.querySelector('.hero-copy');
+  var heroCatalogNote = document.getElementById('hero-catalog-note');
   if (heroEyebrow) heroEyebrow.textContent = copy.heroEyebrow;
   if (heroTitle) heroTitle.textContent = copy.heroTitle;
   if (heroCopy) heroCopy.textContent = copy.heroCopy;
+  if (heroCatalogNote) heroCatalogNote.textContent = catalogNote();
 
   var notes = document.querySelectorAll('.hero-notes > span');
   copy.heroNotes.forEach(function (note, index) {
@@ -3245,7 +3341,7 @@ function hashString(value) {
   return hash >>> 0;
 }
 
-var VARIETY_STORAGE_KEY = 'regalazo-variety-v3';
+var VARIETY_STORAGE_KEY = 'regalazo-variety-v4';
 var GIFT_RECIPES = [{"id":"smart-fit","querySuffix":"regalo bien elegido","copy":{"es":"Apuesta afinada","en":"Fine-tuned pick","de":"Treffsichere Wahl","fr":"Choix bien ciblé","it":"Scelta mirata"},"reason":{"es":"La ruta segura: buscar una versión que encaje con lo que ya disfruta.","en":"The reliable route: look for a version that fits what they already enjoy.","de":"Der sichere Weg: eine Variante finden, die zu dem passt, was diese Person bereits mag.","fr":"La valeur sûre : chercher une version qui correspond à ce que cette personne aime déjà.","it":"La strada sicura: cercare una versione in linea con ciò che questa persona ama già."}},{"id":"personal-touch","querySuffix":"personalizable","copy":{"es":"Con un toque personal","en":"Personal touch","de":"Persönliche Note","fr":"Touche personnelle","it":"Tocco personale"},"reason":{"es":"Busca una variante personalizable para que una idea conocida se sienta hecha a medida.","en":"Look for a customisable version so a familiar idea feels made for them.","de":"Eine personalisierbare Variante macht aus einer bekannten Idee etwas Persönliches.","fr":"Une version personnalisable donne à une idée connue une vraie touche personnelle.","it":"Una versione personalizzabile rende personale anche un’idea già conosciuta."}},{"id":"make-a-plan","querySuffix":"plan experiencia","copy":{"es":"Hazlo un plan","en":"Turn it into a plan","de":"Als Erlebnis verschenken","fr":"À vivre ensemble","it":"Da vivere insieme"},"reason":{"es":"La clave es añadir un plan: que el regalo provoque algo que podáis hacer o disfrutar.","en":"The key is adding a plan: let the gift create something you can do or enjoy together.","de":"Der eigentliche Wert ist das Erlebnis: ein Geschenk, das ihr gemeinsam nutzen oder genießen könnt.","fr":"L’idée est d’en faire un moment à vivre : un cadeau qui crée une activité ou un plaisir partagé.","it":"Il punto è aggiungere un piano: un regalo che crea qualcosa da fare o vivere insieme."}},{"id":"gift-set","querySuffix":"set pack regalo","copy":{"es":"En formato pack","en":"Gift-set angle","de":"Als Geschenkset","fr":"En coffret","it":"In formato set"},"reason":{"es":"Un pack bien elegido multiplica la sensación de regalo y deja más de una forma de usarlo.","en":"A well-chosen set feels more gift-like and gives them more than one way to use it.","de":"Ein gut gewähltes Set wirkt besonders und bietet mehr als eine Möglichkeit, es zu nutzen.","fr":"Un coffret bien choisi renforce l’effet cadeau et offre plusieurs façons de l’utiliser.","it":"Un set scelto bene amplifica l’effetto regalo e offre più di un modo per usarlo."}},{"id":"fresh-twist","querySuffix":"regalo original diferente","copy":{"es":"Giro inesperado","en":"Unexpected twist","de":"Unerwarteter Dreh","fr":"Touche inattendue","it":"Svolta inaspettata"},"reason":{"es":"Cambiamos la ruta habitual por una versión más inesperada, sin alejarnos de sus gustos.","en":"We take a less obvious route without drifting away from what they like.","de":"Eine weniger offensichtliche Richtung, die trotzdem bei den Interessen dieser Person bleibt.","fr":"On sort du chemin évident sans s’éloigner de ce que cette personne aime.","it":"Una strada meno ovvia, ma sempre coerente con ciò che piace a questa persona."}},{"id":"new-find","querySuffix":"novedades tendencia regalo","copy":{"es":"Descubrimiento reciente","en":"Fresh discovery","de":"Neue Entdeckung","fr":"Nouvelle découverte","it":"Scoperta recente"},"reason":{"es":"Ponemos el foco en lo que acaba de aparecer o está ganando tracción en la búsqueda.","en":"We focus on items that are newly appearing or gaining traction in the search.","de":"Der Fokus liegt auf Dingen, die neu auftauchen oder in der Suche an Aufmerksamkeit gewinnen.","fr":"On privilégie ce qui apparaît récemment ou gagne en visibilité dans la recherche.","it":"Diamo priorità a ciò che compare da poco o sta guadagnando attenzione nella ricerca."}},{"id":"small-luxury","querySuffix":"premium calidad","copy":{"es":"Pequeño lujo","en":"Small luxury","de":"Kleiner Luxus","fr":"Petit luxe","it":"Piccolo lusso"},"reason":{"es":"Si el presupuesto lo permite, buscamos una versión con mejores materiales o más presencia.","en":"When the budget allows, look for a version with better materials or more presence.","de":"Wenn das Budget es erlaubt, suchen wir nach besseren Materialien und mehr Präsenz.","fr":"Quand le budget le permet, on cherche une version avec de meilleurs matériaux ou plus de présence.","it":"Se il budget lo permette, cerchiamo una versione con materiali migliori o più presenza."}}];
 
 function recipeCopy(recipe, field) {
@@ -3339,18 +3435,27 @@ function seenBaseIdsFor(answers) {
   return baseIds;
 }
 
+function seenCompositionIdsFor(answers) {
+  var compositionIds = {};
+  seenIdsFor(answers).forEach(function (id) {
+    compositionIds[String(id)] = true;
+  });
+  return compositionIds;
+}
+
 function rememberRecommendations(answers, gifts) {
   if (!Array.isArray(gifts) || !gifts.length) return;
   var store = readVarietyStore();
   var key = profileKeyFor(answers);
   var ids = Array.isArray(store.profiles[key]) ? store.profiles[key].slice() : [];
-  var knownBaseIds = {};
-  ids.forEach(function (id) { knownBaseIds[baseIdForRecommendationId(id)] = true; });
+  var knownIds = {};
+  ids.forEach(function (id) { knownIds[String(id)] = true; });
   gifts.forEach(function (gift) {
     var baseId = gift && (gift.baseId || baseIdForRecommendationId(gift.id));
-    if (baseId && !knownBaseIds[baseId]) {
-      ids.push(baseId);
-      knownBaseIds[baseId] = true;
+    var recommendationId = gift && (gift.id || baseId);
+    if (recommendationId && !knownIds[String(recommendationId)]) {
+      ids.push(String(recommendationId));
+      knownIds[String(recommendationId)] = true;
     }
   });
   store.profiles[key] = ids.slice(-Math.max(GIFT_CATALOG.length * GIFT_RECIPES.length, 2500));
@@ -3523,6 +3628,7 @@ function rankGifts(answers, variant) {
   var interests = selectedInterests(answers);
   var profileKey = profileKeyFor(answers);
   var seenBaseIds = seenBaseIdsFor(answers);
+  var seenCompositionIds = seenCompositionIdsFor(answers);
   var recentIds = state && Array.isArray(state.lastRecommendationIds) ? state.lastRecommendationIds : [];
   var recentBaseIds = {};
   recentIds.forEach(function (id) { recentBaseIds[baseIdForRecommendationId(id)] = true; });
@@ -3536,9 +3642,13 @@ function rankGifts(answers, variant) {
       var variety = (hashString(profileKey + '|' + String(variant) + '|' + gift.id) % 10000) / 10000;
       var baseId = gift.baseId || gift.id;
       var fresh = !seenBaseIds[baseId];
+      // Keep the first pass broad across product families. Once all base
+      // families have appeared, allow a new editorial angle of an old family
+      // instead of recycling the exact same composition.
+      var compositionFresh = !seenCompositionIds[gift.id] && !seenCompositionIds[baseId];
       var recent = !!recentBaseIds[baseId];
       var modeBoost = mode === 'new' && gift._isDiscovery ? 12 : 0;
-      candidateItems.push({ gift: gift, baseId: baseId, cluster: giftClusterKey(gift), baseScore: baseScore, fresh: fresh, recent: recent, selectionScore: baseScore * 3 + variety * 14 + modeBoost, index: index * 10 + recipeIndex });
+      candidateItems.push({ gift: gift, baseId: baseId, cluster: giftClusterKey(gift), baseScore: baseScore, fresh: fresh, compositionFresh: compositionFresh, recent: recent, selectionScore: baseScore * 3 + variety * 14 + modeBoost, index: index * 10 + recipeIndex });
     });
   });
   candidateItems.sort(function (a, b) { return b.baseScore - a.baseScore || b.selectionScore - a.selectionScore || a.index - b.index; });
@@ -3550,7 +3660,7 @@ function rankGifts(answers, variant) {
   var candidatePool = freshStrong.length >= 10 ? freshStrong : (freshGood.length >= 10 ? freshGood : freshGood.slice());
   var alreadyIncluded = candidatePool.map(function (item) { return item.baseId; });
   var seenGood = ranked.filter(function (item) {
-    return !item.fresh && item.baseScore >= topScore - 14 && alreadyIncluded.indexOf(item.baseId) === -1;
+    return !item.fresh && item.compositionFresh && item.baseScore >= topScore - 14 && alreadyIncluded.indexOf(item.baseId) === -1;
   });
   if (candidatePool.length < 10) {
     seenGood.forEach(function (item) {
@@ -3561,8 +3671,18 @@ function rankGifts(answers, variant) {
     });
   }
   if (candidatePool.length < 10) {
+    ranked.filter(function (item) {
+      return item.compositionFresh && item.baseScore >= topScore - 20;
+    }).forEach(function (item) {
+      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.baseId) === -1) {
+        candidatePool.push(item);
+        alreadyIncluded.push(item.baseId);
+      }
+    });
+  }
+  if (candidatePool.length < 10) {
     ranked.forEach(function (item) {
-      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.baseId) === -1 && item.baseScore >= topScore - 28) {
+      if (candidatePool.length < 24 && alreadyIncluded.indexOf(item.baseId) === -1 && item.compositionFresh && item.baseScore >= topScore - 28) {
         candidatePool.push(item);
         alreadyIncluded.push(item.baseId);
       }
@@ -3570,6 +3690,7 @@ function rankGifts(answers, variant) {
   }
   candidatePool.forEach(function (item) {
     item.selectionScore += item.fresh ? 12 : 0;
+    if (!item.fresh && item.compositionFresh) item.selectionScore += 8;
     if (item.recent) item.selectionScore -= 120;
   });
   candidatePool.sort(function (a, b) {
@@ -3581,9 +3702,20 @@ function rankGifts(answers, variant) {
     selected.forEach(function (item) { selectedBases[item.gift.baseId || item.gift.id] = 1; });
     ranked.forEach(function (item) {
       var baseId = item.gift.baseId || item.gift.id;
-      if (selected.length < 10 && !selectedBases[baseId]) {
+      if (selected.length < 10 && !selectedBases[baseId] && item.compositionFresh) {
         selected.push(item);
         selectedBases[baseId] = 1;
+      }
+    });
+  }
+  if (selected.length < 10) {
+    var fallbackBases = {};
+    selected.forEach(function (item) { fallbackBases[item.gift.baseId || item.gift.id] = 1; });
+    ranked.forEach(function (item) {
+      var baseId = item.gift.baseId || item.gift.id;
+      if (selected.length < 10 && !fallbackBases[baseId]) {
+        selected.push(item);
+        fallbackBases[baseId] = 1;
       }
     });
   }
@@ -3596,7 +3728,10 @@ function amazonDomain(country) {
 
 function affiliateTagFor(country) {
   var countryTag = APP_CONFIG.affiliateTags && APP_CONFIG.affiliateTags[country];
-  return countryTag || APP_CONFIG.affiliateTag || '';
+  // Never reuse an ID from another Amazon marketplace. A missing tag is
+  // deliberately an honest, non-attributed link until that marketplace is
+  // configured and verified.
+  return countryTag || '';
 }
 
 function buildAmazonUrl(gift, answers) {
@@ -3724,6 +3859,7 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
       var cardClass = 'gift-card' + (index === 0 ? ' gift-card-featured' : '') + (discovery ? ' gift-card-discovery' : '');
       var angle = localized.angle ? '<p class="gift-angle"><span class="gift-angle-mark" aria-hidden="true">✦</span>' + escapeHtml(localized.angle) + (discovery ? ' <span class="gift-new-badge">' + escapeHtml(copy.results.newBadge) + '</span>' : '') + '</p>' : '';
       var highlights = buildFitHighlights(gift, state.answers).map(function (item) { return '<span class="gift-fit-highlight">' + escapeHtml(item) + '</span>'; }).join('');
+      var purchaseTip = buildPurchaseTip(gift);
       return '<article class="' + cardClass + '" style="--gift-index: ' + index + ';">' +
         (index === 0 ? '<p class="gift-badge">' + escapeHtml(copy.results.badge) + '</p>' : '') +
         '<div class="gift-card-top"><span class="gift-number">' + String(index + 1).padStart(2, '0') + '</span><span class="gift-icon" aria-hidden="true">' + gift.icon + '</span></div>' +
@@ -3731,10 +3867,11 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
         '<div class="gift-match" aria-label="' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '"><span class="gift-match-label">' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '</span><span class="gift-match-track" aria-hidden="true"><span class="gift-match-fill" style="width: ' + String(giftMatchRate(gift, state.answers)) + '%;"></span></span></div>' +
         '<div class="gift-fit-highlights" aria-label="' + escapeHtml((FIT_REASON_COPY[state.language] || FIT_REASON_COPY.es).open) + '">' + highlights + '</div>' +
         '<p class="gift-reason">' + escapeHtml(buildReason(gift, state.answers)) + '</p>' +
+        '<p class="gift-buying-tip"><strong>' + escapeHtml(purchaseTip.label) + ':</strong> ' + escapeHtml(purchaseTip.text) + '</p>' +
         '<div class="gift-tags">' + tags + '</div>' +
         '<div class="gift-card-actions"><a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '" data-gift-store="' + escapeHtml(amazonDomain(state.answers.country || APP_CONFIG.defaultCountry)) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a><div class="gift-feedback"><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="owned" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.owned) + '</button><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="not-fit" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.notFit) + '</button></div></div></article>';
     }).join('') + '</div>' +
-    '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure()) + '</p>' + (currentRecommendations.length < 10 ? '<p class="results-exhaustion">' + escapeHtml(copy.results.noMore) + '</p>' : '');
+    '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure()) + ' ' + escapeHtml(catalogNote()) + '</p>' + (currentRecommendations.length < 10 ? '<p class="results-exhaustion">' + escapeHtml(copy.results.noMore) + '</p>' : '');
   hero.hidden = true;
   wizard.hidden = true;
   trustStrip.hidden = true;
@@ -3878,14 +4015,33 @@ function shareSelection() {
   }
 }
 
+function findReplacementGift(giftId) {
+  var currentBaseIds = {};
+  currentRecommendations.forEach(function (gift) {
+    currentBaseIds[gift.baseId || baseIdForRecommendationId(gift.id)] = true;
+  });
+  var candidates = rankGifts(state.answers, state.variant + 1);
+  return candidates.find(function (gift) {
+    var baseId = gift.baseId || baseIdForRecommendationId(gift.id);
+    return baseId !== baseIdForRecommendationId(giftId) && !currentBaseIds[baseId];
+  }) || null;
+}
+
 function replaceGift(giftId, feedback) {
   var baseId = baseIdForRecommendationId(giftId);
   if (!baseId) return;
   if (!Array.isArray(state.dismissedBaseIds)) state.dismissedBaseIds = [];
   if (state.dismissedBaseIds.indexOf(baseId) === -1) state.dismissedBaseIds.push(baseId);
   trackEvent('gift_feedback', { giftId: giftId, feedback: feedback });
+  var replacement = findReplacementGift(giftId);
+  if (!replacement) {
+    showToast((currentCopy().results || {}).noMore || FEEDBACK_COPY.es.noMore);
+    return;
+  }
   state.variant += 1;
-  currentRecommendations = rankGifts(state.answers, state.variant);
+  currentRecommendations = currentRecommendations.map(function (gift) {
+    return gift.id === giftId ? replacement : gift;
+  });
   state.lastRecommendationIds = currentRecommendations.map(function (gift) { return gift.id; });
   rememberRecommendations(state.answers, currentRecommendations);
   trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' });
