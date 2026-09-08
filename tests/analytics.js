@@ -34,14 +34,14 @@ function makeElement(id) {
 
 const storage = makeStorage();
 const elements = new Map([
-  ['analytics-consent', makeElement('analytics-consent')],
+  ['regalazo-privacy-choice', makeElement('regalazo-privacy-choice')],
   ['analytics-consent-title', makeElement('analytics-consent-title')],
   ['analytics-consent-text', makeElement('analytics-consent-text')],
   ['analytics-consent-accept', makeElement('analytics-consent-accept')],
   ['analytics-consent-reject', makeElement('analytics-consent-reject')],
   ['analytics-preferences', makeElement('analytics-preferences')]
 ]);
-elements.get('analytics-consent').hidden = true;
+elements.get('regalazo-privacy-choice').hidden = true;
 
 const document = {
   readyState: 'complete',
@@ -77,7 +77,7 @@ vm.runInNewContext(source, context, { filename: 'analytics.js' });
 const core = context.window.RegalazoAnalyticsCore;
 assert.ok(core, 'analytics core was not initialised');
 assert.equal(core.getConsent(), null, 'analytics should start undecided');
-assert.equal(elements.get('analytics-consent').hidden, false, 'consent banner should be visible when undecided');
+assert.equal(elements.get('regalazo-privacy-choice').hidden, false, 'consent banner should be visible when undecided');
 assert.equal(core.getQueue().length, 0, 'events must not queue without consent');
 
 core.track('quiz_answered', { questionId: 'age', step: 3, value: 'adult' });

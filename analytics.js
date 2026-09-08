@@ -195,11 +195,11 @@
   }
 
   function ensureBanner() {
-    var banner = document.getElementById('analytics-consent');
+    var banner = document.getElementById('regalazo-privacy-choice');
     if (!banner) {
       banner = document.createElement('aside');
-      banner.id = 'analytics-consent';
-      banner.className = 'analytics-consent';
+      banner.id = 'regalazo-privacy-choice';
+      banner.className = 'privacy-choice-banner';
       banner.setAttribute('aria-live', 'polite');
       banner.setAttribute('tabindex', '-1');
       banner.hidden = true;
@@ -222,7 +222,7 @@
   }
 
   function hideBanner() {
-    var banner = document.getElementById('analytics-consent');
+    var banner = document.getElementById('regalazo-privacy-choice');
     if (banner) banner.hidden = true;
     document.body.classList.remove('analytics-consent-visible');
   }
@@ -240,7 +240,7 @@
     pageViewTracked = false;
     if (window.mixpanel && typeof window.mixpanel.opt_out_tracking === 'function') window.mixpanel.opt_out_tracking();
     showBanner();
-    var banner = document.getElementById('analytics-consent');
+    var banner = document.getElementById('regalazo-privacy-choice');
     if (banner && typeof banner.focus === 'function') banner.focus();
   }
 

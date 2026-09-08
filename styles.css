@@ -1135,7 +1135,7 @@ body {
 .weekly-link { color: var(--coral-dark); font-size: 0.76rem; font-weight: 850; text-decoration: none; }
 .weekly-link:hover { text-decoration: underline; }
 
-.analytics-consent {
+.privacy-choice-banner {
   position: fixed;
   z-index: 19;
   right: 18px;
@@ -1155,6 +1155,7 @@ body {
   backdrop-filter: blur(14px);
 }
 
+body.analytics-consent-visible .privacy-choice-banner { display: grid !important; }
 .analytics-consent-copy { min-width: 0; }
 .analytics-consent-copy strong,
 .analytics-consent-copy span,
@@ -1234,7 +1235,7 @@ body.analytics-consent-visible .pwa-prompt { bottom: calc(max(12px, env(safe-are
 
 @media (max-width: 520px) {
   .weekly-discovery { margin-right: 0; margin-left: 0; }
-  .analytics-consent { grid-template-columns: 1fr; gap: 8px; padding: 11px 12px; }
+  .privacy-choice-banner { grid-template-columns: 1fr; gap: 8px; padding: 11px 12px; }
   .analytics-consent-actions { justify-content: flex-end; }
   .pwa-prompt { right: 12px; bottom: max(12px, env(safe-area-inset-bottom, 0px)); left: 12px; grid-template-columns: 30px minmax(0, 1fr) auto auto; padding: 8px; }
   .pwa-prompt-icon { width: 30px; height: 30px; }
@@ -1305,7 +1306,7 @@ html[data-theme="dark"] .keyboard-hint,
 html[data-theme="dark"] .breadcrumbs { color: #a9988d; }
 html[data-theme="dark"] .weekly-discovery { background: linear-gradient(135deg, rgba(42, 60, 48, 0.9), rgba(37, 31, 28, 0.92) 62%, rgba(51, 45, 67, 0.9)); border-color: rgba(112, 157, 119, 0.35); }
 html[data-theme="dark"] .pwa-prompt { background: rgba(34, 29, 26, 0.97); border-color: rgba(239, 120, 98, 0.38); box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42); }
-html[data-theme="dark"] .analytics-consent { background: rgba(34, 29, 26, 0.98); border-color: rgba(239, 120, 98, 0.38); box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42); }
+html[data-theme="dark"] .privacy-choice-banner { background: rgba(34, 29, 26, 0.98); border-color: rgba(239, 120, 98, 0.38); box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42); }
 html[data-theme="dark"] .answer-block,
 html[data-theme="dark"] .legal-notice,
 html[data-theme="dark"] .method-note { background: rgba(59, 37, 33, 0.74); }
