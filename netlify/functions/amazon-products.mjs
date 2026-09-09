@@ -109,9 +109,10 @@ function normaliseItem(item, requestId, marketplace, partnerTag) {
   var image = item.images && item.images.primary && (item.images.primary.large || item.images.primary.medium || item.images.primary.small);
   var listing = item.offersV2 && Array.isArray(item.offersV2.listings) ? item.offersV2.listings[0] : null;
   var price = listing && listing.price ? listing.price : null;
-  var priceAmount = price && Number(price.amount);
-  var priceDisplay = price && firstValue(price.displayAmount);
-  if (!title || !price || !Number.isFinite(priceAmount) || priceAmount <= 0) return null;
+  var money = price && price.money ? price.money : price;
+  var priceAmount = money && Number(money.amount);
+  var priceDisplay = money && firstValue(money.displayAmount);
+  if (!title || !money || !Number.isFinite(priceAmount) || priceAmount <= 0) return null;
   return {
     requestId: requestId,
     asin: String(item.asin).slice(0, 20),
@@ -122,7 +123,7 @@ function normaliseItem(item, requestId, marketplace, partnerTag) {
     imageHeight: image && Number.isFinite(Number(image.height)) ? Number(image.height) : null,
     price: priceAmount,
     priceDisplay: priceDisplay || (String(priceAmount) + ' ' + marketplace.currency),
-    currency: price.currency || marketplace.currency,
+    currency: money.currency || marketplace.currency,
     refreshedAt: new Date().toISOString()
   };
 }

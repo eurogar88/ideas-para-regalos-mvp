@@ -28,7 +28,7 @@ async function main() {
           detailPageURL: 'https://www.amazon.es/dp/B000UNIT01?tag=unit-21',
           images: { primary: { medium: { url: 'https://m.media-amazon.com/images/I/unit.jpg', width: 600, height: 600 } } },
           itemInfo: { title: { displayValue: 'Producto unitario de prueba' } },
-          offersV2: { listings: [{ price: { amount: 19.99, currency: 'EUR', displayAmount: '19,99 €' } }] }
+          offersV2: { listings: [{ price: { money: { amount: 19.99, currency: 'EUR', displayAmount: '19,99 €' } } }] }
         }]
       }
     }), { status: 200, headers: { 'content-type': 'application/json' } });
