@@ -190,7 +190,10 @@ async function searchItems(token, request, country, partnerTag) {
   var result = await response.json().catch(function () { return {}; });
   if (!response.ok) throw new Error(apiErrorCode(result, 'amazon_api_error'));
   var items = result.searchResult && Array.isArray(result.searchResult.items) ? result.searchResult.items : [];
-  return items.map(function (item) { return normaliseItem(item, request.id, marketplace, partnerTag); }).filter(Boolean);
+  return {
+    rawCount: items.length,
+    products: items.map(function (item) { return normaliseItem(item, request.id, marketplace, partnerTag); }).filter(Boolean)
+  };
 }
 
 function allowRequest(ip) {
@@ -232,16 +235,20 @@ export default async function handler(request, context) {
     var token = await fetchToken(clientId, clientSecret, version);
     var products = [];
     var failures = 0;
+    var rawItemCount = 0;
+    var failureReasons = [];
     for (var index = 0; index < queries.length; index += 1) {
       try {
         var matches = await searchItems(token, queries[index], country, partnerTag);
-        var product = matches[0];
+        rawItemCount += matches.rawCount;
+        var product = matches.products[0];
         if (product && !products.some(function (item) { return item.asin === product.asin; })) products.push(product);
       } catch (error) {
         failures += 1;
+        if (failureReasons.length < 3) failureReasons.push(String(error && error.message || 'query_failed').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 60) || 'query_failed');
       }
     }
-    if (!products.length) return json({ ok: false, error: failures === queries.length ? 'amazon_no_products' : 'amazon_partial_failure', products: [] }, 502);
+    if (!products.length) return json({ ok: false, error: failures === queries.length ? 'amazon_no_products' : 'amazon_partial_failure', products: [], diagnostics: { rawItemCount: rawItemCount, failedQueries: failures, failureReasons: failureReasons } }, 502);
     return json({
       ok: true,
       source: 'amazon-creators-api',
