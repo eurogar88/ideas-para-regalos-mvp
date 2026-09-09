@@ -1,7 +1,7 @@
-const CACHE_NAME = 'regalazo-shell-growth-v13';
+const CACHE_NAME = 'regalazo-shell-growth-v14';
 const SHELL = [
   '/',
-  '/styles.css?v=growth-ui-18',
+  '/styles.css?v=growth-ui-19',
   '/app.js?v=growth-engine-21',
   '/theme.js?v=theme-1',
   '/analytics.js?v=analytics-6',
