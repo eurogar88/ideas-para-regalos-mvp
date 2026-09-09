@@ -1,8 +1,8 @@
-const CACHE_NAME = 'regalazo-shell-growth-v10';
+const CACHE_NAME = 'regalazo-shell-growth-v11';
 const SHELL = [
   '/',
-  '/styles.css?v=growth-ui-15',
-  '/app.js?v=growth-engine-18',
+  '/styles.css?v=growth-ui-16',
+  '/app.js?v=growth-engine-19',
   '/theme.js?v=theme-1',
   '/analytics.js?v=analytics-4',
   '/manifest.webmanifest',

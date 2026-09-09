@@ -358,6 +358,10 @@ a { color: inherit; }
 .results-kicker { margin: 0 0 10px; color: var(--coral-dark); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 .results h2 { margin: 0; font-size: clamp(2rem, 8vw, 3.5rem); letter-spacing: -0.06em; line-height: 0.98; }
 .results-intro { max-width: 580px; margin: 13px 0 0; color: var(--muted); line-height: 1.5; }
+.amazon-products-status { margin: 13px 0 0; color: var(--muted); font-size: 0.72rem; line-height: 1.45; }
+.amazon-products-status-loading::before { display: inline-block; width: 0.72em; height: 0.72em; margin-right: 6px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; vertical-align: -0.08em; content: ''; animation: status-spin 700ms linear infinite; }
+.amazon-products-status-ready { color: #5f8063; }
+.amazon-products-status-fallback { color: var(--muted); }
 
 .summary-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
 .summary-chip { padding: 7px 10px; border-radius: 999px; color: #5f5147; background: var(--sage); font-size: 0.72rem; font-weight: 750; }
@@ -381,6 +385,7 @@ a { color: inherit; }
 .gift-icon { font-size: 1.8rem; line-height: 1; }
 .gift-card h3 { margin: 10px 0 0; font-size: 1.12rem; letter-spacing: -0.025em; }
 .gift-price { margin: 4px 0 0; color: var(--coral-dark); font-size: 0.78rem; font-weight: 800; }
+.gift-price-updated { display: block; margin-top: 3px; color: var(--muted); font-size: 0.64rem; font-weight: 650; }
 .gift-reason { margin: 9px 0 0; color: var(--muted); font-size: 0.87rem; line-height: 1.45; }
 .gift-buying-tip { margin: 10px 0 0; padding: 9px 10px; border-radius: 11px; color: var(--muted); background: rgba(247, 242, 237, 0.72); font-size: 0.72rem; line-height: 1.4; }
 .gift-buying-tip strong { color: var(--ink); }
@@ -389,6 +394,9 @@ a { color: inherit; }
 .gift-link { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 44px; margin-top: 15px; border-radius: 12px; color: #fff; background: var(--ink); font-size: 0.82rem; font-weight: 800; text-decoration: none; }
 .gift-link:hover { background: var(--coral-dark); }
 .gift-link:focus-visible { outline: 3px solid rgba(228, 108, 87, 0.32); outline-offset: 2px; }
+.gift-similar-link { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; color: var(--coral-dark); font-size: 0.76rem; font-weight: 800; text-decoration: none; }
+.gift-similar-link:hover { text-decoration: underline; }
+.gift-similar-link:focus-visible { outline: 3px solid rgba(228, 108, 87, 0.32); outline-offset: 2px; }
 
 .results-note { margin: 20px 4px 0; color: #8b8178; font-size: 0.73rem; line-height: 1.5; }
 
@@ -722,6 +730,41 @@ a { color: inherit; }
 .gift-card-featured .gift-link { background: var(--coral-dark); }
 .gift-card-featured .gift-link:hover { background: var(--ink); }
 
+.gift-product-media {
+  position: relative;
+  display: grid;
+  min-height: 150px;
+  margin: 13px 0 4px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(228, 108, 87, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.gift-product-media img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 170px;
+  object-fit: contain;
+  padding: 13px 28px;
+}
+
+.gift-product-badge {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  padding: 5px 7px;
+  border-radius: 999px;
+  color: #5f5147;
+  background: rgba(255, 253, 249, 0.9);
+  font-size: 0.59rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .faq-item {
   padding: 0;
   overflow: hidden;
@@ -783,6 +826,10 @@ a { color: inherit; }
 @keyframes gift-in {
   from { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.985); }
   to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes status-spin {
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 639px) {
@@ -1300,6 +1347,10 @@ html[data-theme="dark"] .gift-card-featured { background: linear-gradient(145deg
 html[data-theme="dark"] .gift-badge { background: rgba(62, 42, 36, 0.9); }
 html[data-theme="dark"] .gift-card-featured .gift-link { color: #211a17; background: var(--coral-dark); }
 html[data-theme="dark"] .gift-card-featured .gift-link:hover { background: #ffd0c4; }
+html[data-theme="dark"] .gift-product-media { background: rgba(255, 248, 241, 0.94); border-color: rgba(239, 120, 98, 0.24); }
+html[data-theme="dark"] .gift-product-badge { color: #5f5147; background: rgba(255, 253, 249, 0.94); }
+html[data-theme="dark"] .gift-similar-link { color: var(--coral-dark); }
+html[data-theme="dark"] .amazon-products-status-ready { color: #a8d0a8; }
 html[data-theme="dark"] .seo-content { border-top-color: var(--line); }
 html[data-theme="dark"] .faq-item[open] { background: #2a211e; border-color: rgba(239, 120, 98, 0.48); }
 html[data-theme="dark"] .results-note,

@@ -6,9 +6,9 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 
 - Asistente de 8 pasos: relación, género, edad aproximada, ocasión, presupuesto, gusto principal, estilo y país del comprador.
 - Motor determinista local con catálogo editorial y ranking por coincidencias.
-- Catálogo editorial de 360 ideas base únicas y más de 300 búsquedas de producto diferenciadas; la capa de 7 enfoques —encaje, toque personal, plan, pack, giro inesperado, descubrimiento y pequeño lujo— permite recorrer hasta 2.055 composiciones compatibles.
+- Catálogo editorial de 360 ideas base únicas y más de 300 búsquedas de producto diferenciadas; la capa de 19 enfoques editoriales permite recorrer más de 6.000 composiciones compatibles sin repetir la misma combinación.
 - Un único modo de resultado: Mejor encaje. “Ver otras ideas” genera otra tanda relevante y el historial anónimo local evita repetir composiciones para el mismo perfil.
-- Diez recomendaciones con título, motivo, precio orientativo, pista de compra y enlace de búsqueda relevante. “Ya lo tiene” y “No me encaja” sustituyen solo la tarjeta descartada, conservando el resto de la selección.
+- Diez recomendaciones con título, motivo, precio orientativo, pista de compra y un enlace de salida. Cuando Amazon responde, la tarjeta muestra un producto concreto consultado en tiempo real —foto, título, precio y ficha— y mantiene “Ver similares” como búsqueda afinada para comparar talla, color, vendedor o disponibilidad. Si la API no está disponible, la experiencia degrada limpiamente a la búsqueda relevante editorial.
 - La selección completa puede compartirse con sus respuestas y las mismas 10 ideas codificadas en la URL para que otra persona vea exactamente el mismo resultado, sin cuenta ni datos identificativos.
 - Responsive endurecido para móvil estrecho: panel de compartir contenido dentro de la tarjeta, controles que pueden envolver texto largo y cero overflow horizontal.
 - PWA instalable: manifest, icono, service worker de shell y aviso de instalación solo cuando el navegador lo permite. Esto deja el producto listo para empaquetarlo más adelante como Android/TWA sin mantener una app nativa desde el día uno.
@@ -19,9 +19,10 @@ MVP público y mobile-first de recomendaciones de regalos. La experiencia funcio
 - Bloque de descubrimiento semanal para renovar el motivo de vuelta sin añadir un feed ni una base de datos.
 - Dominios de Amazon localizados para España, Estados Unidos, Reino Unido, Alemania, Francia, Italia y Canadá.
 - La etiqueta de afiliación actualmente configurada y pendiente de validación operativa es `lamamihacker-21` para España. Los demás marketplaces abren enlaces sin etiqueta hasta configurar y verificar un tracking ID propio; nunca se reutiliza una etiqueta de otro país.
-- Sin registro, sin nombres y sin datos enviados a un servidor.
+- Sin registro ni nombres. El ranking principal corre en el navegador; cuando está activa la capa de producto, solo se envían a una función temporal los términos de búsqueda generados, el país y el límite de presupuesto, sin nombre, email ni cuenta.
 - Sin runtime de OpenClaw y sin llamadas a modelos de IA en esta primera versión. La IA queda como extensión opcional para más adelante, no como coste fijo del MVP.
 - El bloque “Descubrimiento de la semana” no representa inventario en tiempo real: es una idea editorial que enlaza directamente con una búsqueda de Amazon. Amazon puede mostrar otros productos, precios y disponibilidades.
+- Capa opcional server-side de Amazon Creators API en `netlify/functions/amazon-products.mjs`: las credenciales nunca llegan al navegador ni al repositorio, se limita el abuso y solo se aceptan enlaces HTTPS del marketplace solicitado.
 
 ## URLs
 
@@ -49,15 +50,16 @@ Es una web estática sin dependencias externas:
 - styles.css: diseño responsive mobile-first.
 - app.js: catálogo, ranking, generación de resultados y enlaces de salida.
 - theme.js: alternancia de tema claro/oscuro, preferencia persistente y sincronización del color de la barra del navegador.
-- netlify.toml: publicación desde la raíz y cabeceras básicas.
+- netlify.toml: publicación desde la raíz, cabeceras básicas y configuración de funciones.
+- netlify/functions/amazon-products.mjs: consulta segura de productos concretos y fallback controlado.
 - manifest.webmanifest, sw.js, icon.svg y og-image.svg: instalación, caché del shell, identidad y preview social.
 - docs/gpt-recovery.md: recuperación y límites de la configuración del GPT.
 - docs/growth-playbook.md: acciones priorizadas para SEO, AEO, viralidad, PWA, medición y monetización responsable.
 - docs/seo-content-calendar.md: clusters editoriales, cadencia de publicación, reglas de calidad y checklist de cada URL.
-- docs/catalog-operations.md: reglas para mantener las 360 ideas, ampliar variedad y pasar más adelante a fichas de producto reales.
+- docs/catalog-operations.md: reglas para mantener las 360 ideas, ampliar variedad, superar 5.000 composiciones y operar fichas de producto reales.
 - aviso-legal/, terminos-de-uso/, privacidad/ y cookies/: textos legales de lanzamiento enlazados desde el footer.
 
-La aplicación usa rutas relativas y no acopla la lógica al dominio, por lo que el cambio a `regalazo.xyz` no requiere reescribir la experiencia. Si se añade IA, la interfaz debería enviar un GiftBrief a una función server-side; el modelo solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación. La composición actual mantiene la relevancia y la trazabilidad sin consumir API.
+La aplicación usa rutas relativas y no acopla la lógica al dominio, por lo que el cambio a `regalazo.xyz` no requiere reescribir la experiencia. El ranking determinista mantiene la relevancia y la trazabilidad; la función server-side opcional añade fichas vivas de Amazon sin exponer credenciales. Si algún día se añade IA, solo podrá devolver IDs de productos del catálogo permitido y motivos de recomendación. Nunca debe inventar fichas ni URLs de afiliación.
 
 ## Despliegue
 
@@ -71,9 +73,17 @@ Para una prueba local, sirve la raíz con cualquier servidor estático, por ejem
 
 Si algún día se prueba IA, primero habrá que confirmar con el propietario del GPT ejemplos reales de 2–5 conversaciones que representen el criterio deseado, preferencias editoriales y exclusiones, estado real de la etiqueta y marketplaces de Amazon, fuente y actualización de precios/productos, y un presupuesto explícito. No se activa ahora porque el objetivo del MVP es mantener el coste en cero.
 
+## Productos concretos y escalabilidad
+
+El número de ideas editoriales y el número de SKU no son lo mismo. Mantener 2.000 fichas estáticas dentro del repositorio sería peor para este producto: los precios, la disponibilidad, las variantes y las imágenes caducan, y habría que revisar cada ficha continuamente. La capa viva consulta Amazon solo después de generar un resultado relevante, muestra una ficha concreta cuando puede y conserva una búsqueda de similares para que la persona tenga alternativas.
+
+El motor parte de 360 intenciones editoriales y 19 enfoques, por lo que permite más de 6.000 composiciones relevantes. Al añadir semillas editoriales y consultas diferenciadas, la capa de producto puede crecer muy por encima de 5.000 candidatos sin inflar el JavaScript ni inventar ASIN, precio o stock. La interfaz deliberadamente enseña una ficha principal por idea: más fichas en cada tarjeta harían más lenta y confusa la decisión; “Ver similares” deja la amplitud donde aporta valor.
+
+Para activar las fichas concretas en producción, Netlify debe tener estas variables protegidas en el contexto de producción: `AMAZON_CREATORS_CLIENT_ID`, `AMAZON_CREATORS_CLIENT_SECRET`, `AMAZON_CREATORS_VERSION` y `AMAZON_PARTNER_TAG_ES` (más un `AMAZON_PARTNER_TAG_<PAÍS>` verificado para cada marketplace adicional). Tras cambiar variables hay que publicar un nuevo deploy para que la función las reciba.
+
 ## Afiliación y transparencia
 
-Los enlaces se generan como búsquedas relevantes y llevan rel=sponsored. Amazon puede mostrar productos, precios o disponibilidad distintos. El sitio muestra la divulgación de posible comisión; la pertenencia efectiva a un programa de afiliados y el cumplimiento de sus requisitos deben validarse antes de promocionarlo ampliamente.
+Los enlaces directos y las búsquedas llevan `rel=sponsored`. Los enlaces directos proceden de la respuesta de Amazon Creators API; las búsquedas se construyen con la intención editorial y las respuestas del formulario. Amazon puede mostrar otros vendedores, variantes, precios o disponibilidad distintos. El sitio muestra la divulgación de posible comisión; la pertenencia efectiva a un programa de afiliados y el cumplimiento de sus requisitos deben validarse antes de promocionarlo ampliamente.
 
 ## SEO y rendimiento
 

@@ -2,9 +2,11 @@
 
 ## Alcance actual
 
-Regalazo mantiene un catálogo local de 360 ideas base únicas. Cada idea tiene un identificador estable, una intención de búsqueda de Amazon, una franja de precio orientativa, intereses, estilos, relaciones, edades, ocasiones y una explicación editorial. El motor combina esas ideas con siete enfoques editoriales, por lo que una persona puede recorrer más de 2.000 composiciones compatibles sin que el modelo invente productos ni enlaces.
+Regalazo mantiene un catálogo local de 360 ideas base únicas. Cada idea tiene un identificador estable, una intención de búsqueda de Amazon, una franja de precio orientativa, intereses, estilos, relaciones, edades, ocasiones y una explicación editorial. El motor combina esas ideas con 19 enfoques editoriales, por lo que una persona puede recorrer más de 6.000 composiciones compatibles sin que el modelo invente productos ni enlaces.
 
-Esto no equivale a 360 SKU en tiempo real. Los enlaces actuales llevan a búsquedas de Amazon y la tienda puede mostrar distintos productos, vendedores, precios, disponibilidad o condiciones de entrega. Para convertir una parte del catálogo en fichas de producto concretas habrá que seleccionar productos reales, comprobar su pertenencia al programa de afiliados y mantener un proceso de revisión.
+Esto no equivale a 360 SKU en tiempo real. La web ahora puede consultar Amazon Creators API server-side para resolver cada una de las diez intenciones visibles a un producto concreto con ficha, imagen y precio de oferta. Si una consulta no devuelve una ficha válida, esa tarjeta conserva la búsqueda editorial como fallback. “Ver similares” es siempre la salida de búsqueda para comparar alternativas.
+
+No se persigue una lista estática de 5.000 ASIN. Una cifra grande de productos sin revisión se queda vieja y empeora la confianza. La combinación correcta es: muchas intenciones editoriales bien diferenciadas, 19 enfoques de búsqueda, consultas live de Amazon, deduplicación por ASIN, una ficha principal por idea y búsqueda de similares para ampliar la elección. Así el inventario potencial puede superar 5.000 sin convertir el repositorio en una base de precios/stock caducada.
 
 ## Regla para añadir una idea
 
@@ -24,4 +26,6 @@ Los botones “Ya lo tiene” y “No me encaja” descartan la familia de la ta
 
 ## Camino para fichas reales
 
-La siguiente mejora comercial es seleccionar 60–100 ideas de alto tráfico y convertirlas, una a una, en fichas con producto o alternativas reales. Cada ficha debe tener una fecha de revisión y una fuente autorizada para imagen, precio y disponibilidad. Hasta disponer de ese mantenimiento, se mantiene el lenguaje de “idea” y “búsqueda relevante”.
+La ficha concreta se obtiene bajo demanda desde `netlify/functions/amazon-products.mjs`. La función no expone credenciales, restringe el marketplace, valida el dominio del enlace y solo devuelve resultados con título, precio y URL de ficha. Las imágenes se aceptan únicamente desde hosts CDN conocidos de Amazon. El navegador muestra la hora de consulta para no presentar la información como permanente.
+
+Si en el futuro se necesita una capa editorial persistente, se deben seleccionar primero 60–100 intenciones de alto tráfico y revisar productos reales con una fecha de revisión y una fuente autorizada para imagen, precio y disponibilidad. No se debe copiar un listado masivo sin mantenimiento.

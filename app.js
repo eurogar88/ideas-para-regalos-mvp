@@ -2455,6 +2455,7 @@ var GIFT_CATALOG = [
   {"id":"weekend-luggage-set","title":"Set de maletas para viajar mejor","category":"viajes","categoryLabel":"viajes","icon":"🧳","price":179,"interests":["travel"],"styles":["useful","premium"],"relations":["partner","parent","sibling","friend","coworker","other"],"ages":["teen","young-adult","adult","midlife","50plus"],"occasions":["birthday","anniversary","christmas","secret-santa","thankyou","justbecause"],"amazonQuery":"set maletas viaje fin de semana premium regalo","tags":["viajes","más de 150"],"reason":"Una inversión en próximos planes, escapadas y muchas historias por estrenar.","editorialScore":5,"titles":{"en":"Premium weekend luggage set","de":"Hochwertiges Wochenend-Gepäckset","fr":"Set de bagages premium pour week-end","it":"Set valigie premium da weekend"}}];
 
 var CATALOG_COUNT = GIFT_CATALOG.length;
+var COMPOSITION_COUNT = 0;
 
 function makeOptionCopy(label, detail) {
   return { label: label, detail: detail || '' };
@@ -2635,11 +2636,11 @@ var FIT_REASON_COPY = {
   it: { budget: 'Nel tuo budget', interest: 'Per {value}', relation: 'Per {value}', style: 'Stile {value}', age: 'Adatto a {value}', occasion: 'Per {value}', open: 'Selezione aperta' }
 };
 var CATALOG_NOTE_COPY = {
-  es: 'Catálogo editorial de {count} ideas base, con distintas formas de buscarlas.',
-  en: 'Editorial catalogue of {count} base ideas, with different ways to explore them.',
-  de: 'Redaktioneller Katalog mit {count} Grundideen und verschiedenen Suchwegen.',
-  fr: 'Catalogue éditorial de {count} idées de base, avec plusieurs façons de les explorer.',
-  it: 'Catalogo editoriale di {count} idee di base, con diversi modi per esplorarle.'
+  es: 'Motor editorial de {count} composiciones, con búsquedas distintas según tus respuestas.',
+  en: 'Editorial engine with {count} compositions and different searches based on your answers.',
+  de: 'Redaktioneller Motor mit {count} Kombinationen und passenden Suchen nach deinen Antworten.',
+  fr: 'Moteur éditorial de {count} combinaisons, avec des recherches adaptées à vos réponses.',
+  it: 'Motore editoriale con {count} combinazioni e ricerche diverse in base alle tue risposte.'
 };
 var PURCHASE_GUIDANCE_COPY = {
   es: {
@@ -2704,9 +2705,77 @@ var PURCHASE_GUIDANCE_COPY = {
   }
 };
 
+var PRODUCT_COPY = {
+  es: {
+    loading: 'Buscando productos concretos en Amazon…',
+    ready: '{count} productos concretos consultados en Amazon.',
+    fallback: 'Ahora mismo no hemos podido cargar fichas concretas; dejamos una búsqueda afinada como alternativa.',
+    direct: 'Ver producto en Amazon',
+    similar: 'Ver similares',
+    badge: 'Producto concreto',
+    price: 'precio en Amazon',
+    updated: 'Consultado {time}',
+    exactDisclosure: 'El enlace principal lleva al producto concreto consultado en Amazon. “Ver similares” abre una búsqueda afinada. El precio y la disponibilidad pueden cambiar.',
+    mixedDisclosure: 'Algunas ideas llevan a un producto concreto y otras a una búsqueda afinada. El precio y la disponibilidad pueden cambiar.'
+  },
+  en: {
+    loading: 'Finding specific products on Amazon…',
+    ready: '{count} specific products checked on Amazon.',
+    fallback: 'We could not load specific product listings right now, so we left a refined search as a fallback.',
+    direct: 'View product on Amazon',
+    similar: 'See similar',
+    badge: 'Specific product',
+    price: 'Amazon price',
+    updated: 'Checked {time}',
+    exactDisclosure: 'The main link goes to the specific product checked on Amazon. “See similar” opens a refined search. Price and availability can change.',
+    mixedDisclosure: 'Some ideas link to a specific product and others to a refined search. Price and availability can change.'
+  },
+  de: {
+    loading: 'Konkrete Produkte auf Amazon werden gesucht…',
+    ready: '{count} konkrete Produkte auf Amazon geprüft.',
+    fallback: 'Konkrete Produktseiten konnten gerade nicht geladen werden; als Alternative bleibt eine passende Suche.',
+    direct: 'Produkt auf Amazon ansehen',
+    similar: 'Ähnliche ansehen',
+    badge: 'Konkretes Produkt',
+    price: 'Amazon-Preis',
+    updated: 'Geprüft um {time}',
+    exactDisclosure: 'Der Hauptlink führt zum geprüften Produkt auf Amazon. „Ähnliche ansehen“ öffnet eine passende Suche. Preis und Verfügbarkeit können sich ändern.',
+    mixedDisclosure: 'Einige Ideen führen zu einem konkreten Produkt, andere zu einer passenden Suche. Preis und Verfügbarkeit können sich ändern.'
+  },
+  fr: {
+    loading: 'Recherche de produits précis sur Amazon…',
+    ready: '{count} produits précis vérifiés sur Amazon.',
+    fallback: 'Les fiches produit précises ne sont pas disponibles pour le moment ; une recherche affinée reste proposée.',
+    direct: 'Voir le produit sur Amazon',
+    similar: 'Voir similaires',
+    badge: 'Produit précis',
+    price: 'prix Amazon',
+    updated: 'Vérifié à {time}',
+    exactDisclosure: 'Le lien principal mène vers le produit vérifié sur Amazon. « Voir similaires » ouvre une recherche affinée. Le prix et la disponibilité peuvent changer.',
+    mixedDisclosure: 'Certaines idées mènent à un produit précis, d’autres à une recherche affinée. Le prix et la disponibilité peuvent changer.'
+  },
+  it: {
+    loading: 'Cerchiamo prodotti concreti su Amazon…',
+    ready: '{count} prodotti concreti verificati su Amazon.',
+    fallback: 'Le schede prodotto concrete non sono disponibili in questo momento; resta una ricerca più mirata.',
+    direct: 'Vedi prodotto su Amazon',
+    similar: 'Vedi simili',
+    badge: 'Prodotto concreto',
+    price: 'prezzo Amazon',
+    updated: 'Verificato alle {time}',
+    exactDisclosure: 'Il link principale porta al prodotto verificato su Amazon. “Vedi simili” apre una ricerca mirata. Prezzo e disponibilità possono cambiare.',
+    mixedDisclosure: 'Alcune idee portano a un prodotto concreto, altre a una ricerca mirata. Prezzo e disponibilità possono cambiare.'
+  }
+};
+
+function productCopy(key) {
+  var copy = PRODUCT_COPY[state.language] || PRODUCT_COPY.es;
+  return copy[key] || PRODUCT_COPY.es[key] || '';
+}
+
 function catalogNote() {
   var template = CATALOG_NOTE_COPY[state.language] || CATALOG_NOTE_COPY.es;
-  return interpolate(template, { count: CATALOG_COUNT });
+  return interpolate(template, { count: COMPOSITION_COUNT || CATALOG_COUNT });
 }
 
 function purchaseCategory(gift) {
@@ -2744,6 +2813,10 @@ Object.keys(OPEN_GENDER_COPY).forEach(function (language) {
 var LANGUAGE_STORAGE_KEY = 'regalazo-language-v1';
 var state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], dismissedBaseIds: [], language: readLanguage(), recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
 var currentRecommendations = [];
+var currentAmazonProducts = Object.create(null);
+var amazonProductPending = Object.create(null);
+var amazonProductStatus = 'idle';
+var amazonProductHydrationToken = 0;
 var sharedRecommendations = null;
 var toastTimer;
 var pendingScrollPosition = null;
@@ -2848,7 +2921,7 @@ var ANALYTICS_SAFE_PROPERTIES = {
   quiz_completed: ['genderProvided', 'interestCount'],
   recommendations_viewed: ['resultCount', 'variant', 'mode'],
   recommendations_refreshed: ['variant', 'mode'],
-  gift_outbound_clicked: ['giftId', 'position', 'store', 'mode'],
+  gift_outbound_clicked: ['giftId', 'position', 'store', 'mode', 'linkType'],
   language_changed: ['from', 'to'],
   share_clicked: ['mode', 'ideaCount'],
   share_completed: ['method', 'mode'],
@@ -3344,6 +3417,26 @@ function hashString(value) {
 var VARIETY_STORAGE_KEY = 'regalazo-variety-v4';
 var GIFT_RECIPES = [{"id":"smart-fit","querySuffix":"regalo bien elegido","copy":{"es":"Apuesta afinada","en":"Fine-tuned pick","de":"Treffsichere Wahl","fr":"Choix bien ciblé","it":"Scelta mirata"},"reason":{"es":"La ruta segura: buscar una versión que encaje con lo que ya disfruta.","en":"The reliable route: look for a version that fits what they already enjoy.","de":"Der sichere Weg: eine Variante finden, die zu dem passt, was diese Person bereits mag.","fr":"La valeur sûre : chercher une version qui correspond à ce que cette personne aime déjà.","it":"La strada sicura: cercare una versione in linea con ciò che questa persona ama già."}},{"id":"personal-touch","querySuffix":"personalizable","copy":{"es":"Con un toque personal","en":"Personal touch","de":"Persönliche Note","fr":"Touche personnelle","it":"Tocco personale"},"reason":{"es":"Busca una variante personalizable para que una idea conocida se sienta hecha a medida.","en":"Look for a customisable version so a familiar idea feels made for them.","de":"Eine personalisierbare Variante macht aus einer bekannten Idee etwas Persönliches.","fr":"Une version personnalisable donne à une idée connue une vraie touche personnelle.","it":"Una versione personalizzabile rende personale anche un’idea già conosciuta."}},{"id":"make-a-plan","querySuffix":"plan experiencia","copy":{"es":"Hazlo un plan","en":"Turn it into a plan","de":"Als Erlebnis verschenken","fr":"À vivre ensemble","it":"Da vivere insieme"},"reason":{"es":"La clave es añadir un plan: que el regalo provoque algo que podáis hacer o disfrutar.","en":"The key is adding a plan: let the gift create something you can do or enjoy together.","de":"Der eigentliche Wert ist das Erlebnis: ein Geschenk, das ihr gemeinsam nutzen oder genießen könnt.","fr":"L’idée est d’en faire un moment à vivre : un cadeau qui crée une activité ou un plaisir partagé.","it":"Il punto è aggiungere un piano: un regalo che crea qualcosa da fare o vivere insieme."}},{"id":"gift-set","querySuffix":"set pack regalo","copy":{"es":"En formato pack","en":"Gift-set angle","de":"Als Geschenkset","fr":"En coffret","it":"In formato set"},"reason":{"es":"Un pack bien elegido multiplica la sensación de regalo y deja más de una forma de usarlo.","en":"A well-chosen set feels more gift-like and gives them more than one way to use it.","de":"Ein gut gewähltes Set wirkt besonders und bietet mehr als eine Möglichkeit, es zu nutzen.","fr":"Un coffret bien choisi renforce l’effet cadeau et offre plusieurs façons de l’utiliser.","it":"Un set scelto bene amplifica l’effetto regalo e offre più di un modo per usarlo."}},{"id":"fresh-twist","querySuffix":"regalo original diferente","copy":{"es":"Giro inesperado","en":"Unexpected twist","de":"Unerwarteter Dreh","fr":"Touche inattendue","it":"Svolta inaspettata"},"reason":{"es":"Cambiamos la ruta habitual por una versión más inesperada, sin alejarnos de sus gustos.","en":"We take a less obvious route without drifting away from what they like.","de":"Eine weniger offensichtliche Richtung, die trotzdem bei den Interessen dieser Person bleibt.","fr":"On sort du chemin évident sans s’éloigner de ce que cette personne aime.","it":"Una strada meno ovvia, ma sempre coerente con ciò che piace a questa persona."}},{"id":"new-find","querySuffix":"novedades tendencia regalo","copy":{"es":"Descubrimiento reciente","en":"Fresh discovery","de":"Neue Entdeckung","fr":"Nouvelle découverte","it":"Scoperta recente"},"reason":{"es":"Ponemos el foco en lo que acaba de aparecer o está ganando tracción en la búsqueda.","en":"We focus on items that are newly appearing or gaining traction in the search.","de":"Der Fokus liegt auf Dingen, die neu auftauchen oder in der Suche an Aufmerksamkeit gewinnen.","fr":"On privilégie ce qui apparaît récemment ou gagne en visibilité dans la recherche.","it":"Diamo priorità a ciò che compare da poco o sta guadagnando attenzione nella ricerca."}},{"id":"small-luxury","querySuffix":"premium calidad","copy":{"es":"Pequeño lujo","en":"Small luxury","de":"Kleiner Luxus","fr":"Petit luxe","it":"Piccolo lusso"},"reason":{"es":"Si el presupuesto lo permite, buscamos una versión con mejores materiales o más presencia.","en":"When the budget allows, look for a version with better materials or more presence.","de":"Wenn das Budget es erlaubt, suchen wir nach besseren Materialien und mehr Präsenz.","fr":"Quand le budget le permet, on cherche une version avec de meilleurs matériaux ou plus de présence.","it":"Se il budget lo permette, cerchiamo una versione con materiali migliori o più presenza."}}];
 
+/*
+ * These extra editorial angles expand the recommendation space without pretending
+ * that they are new SKUs. Each angle changes the search intent and the explanation;
+ * Amazon remains the source of truth for the concrete product, price and stock.
+ */
+GIFT_RECIPES = GIFT_RECIPES.concat([
+  { id: 'value-pick', querySuffix: 'calidad precio regalo', copy: { es: 'Calidad sin pasarse', en: 'Good value', de: 'Gutes Preis-Leistungs-Verhältnis', fr: 'Bon rapport qualité-prix', it: 'Buon rapporto qualità-prezzo' }, reason: { es: 'Priorizamos una opción que se sienta bien elegida sin pagar de más.', en: 'Prioritise something that feels well chosen without overspending.', de: 'Eine gut gewählte Option, ohne unnötig viel auszugeben.', fr: 'Une option bien choisie sans dépasser inutilement le budget.', it: 'Un’opzione scelta bene senza spendere più del necessario.' } },
+  { id: 'daily-upgrade', querySuffix: 'mejora uso diario regalo', copy: { es: 'Mejora el día a día', en: 'Everyday upgrade', de: 'Besser im Alltag', fr: 'Pour le quotidien', it: 'Migliora ogni giorno' }, reason: { es: 'Buscamos algo que tenga muchas oportunidades de ser usado de verdad.', en: 'Look for something with plenty of chances to be genuinely useful.', de: 'Etwas, das im Alltag wirklich oft genutzt werden kann.', fr: 'Quelque chose qui a de vraies chances d’être utilisé souvent.', it: 'Qualcosa che abbia molte occasioni per essere usato davvero.' } },
+  { id: 'last-minute', querySuffix: 'regalo cumpleaños entrega rápida', copy: { es: 'Llega a tiempo', en: 'Ready in time', de: 'Rechtzeitig da', fr: 'À temps pour le jour J', it: 'In tempo per il giorno giusto' }, reason: { es: 'Una ruta práctica para cuando el cumpleaños está más cerca de lo previsto.', en: 'A practical route when the birthday is closer than expected.', de: 'Eine praktische Richtung, wenn der Geburtstag näher ist als gedacht.', fr: 'Une piste pratique quand l’anniversaire approche plus vite que prévu.', it: 'Una strada pratica quando il compleanno è più vicino del previsto.' } },
+  { id: 'conversation-starter', querySuffix: 'regalo divertido original', copy: { es: 'Da pie a una historia', en: 'Starts a story', de: 'Sorgt für Gesprächsstoff', fr: 'Donne envie d’en parler', it: 'Fa nascere una storia' }, reason: { es: 'Elegimos algo con un pequeño giro que dé conversación al abrirlo.', en: 'Choose something with a small twist that sparks conversation when opened.', de: 'Ein kleiner Dreh, der beim Auspacken Gesprächsstoff liefert.', fr: 'Une petite surprise qui donne envie d’en parler dès l’ouverture.', it: 'Un piccolo tocco che fa nascere una conversazione quando si apre.' } },
+  { id: 'understated', querySuffix: 'regalo minimalista elegante', copy: { es: 'Sorpresa discreta', en: 'Understated surprise', de: 'Dezente Überraschung', fr: 'Surprise discrète', it: 'Sorpresa discreta' }, reason: { es: 'Una alternativa con presencia, pero sin caer en algo estridente o difícil de usar.', en: 'A thoughtful alternative with presence, without becoming loud or hard to use.', de: 'Eine besondere, aber zurückhaltende Alternative, die leicht zu nutzen ist.', fr: 'Une alternative soignée, sans être voyante ni difficile à utiliser.', it: 'Un’alternativa curata, senza essere vistosa o difficile da usare.' } },
+  { id: 'hobby-deep-dive', querySuffix: 'accesorio afición regalo', copy: { es: 'Para meterse más en su afición', en: 'Go deeper into their hobby', de: 'Für das liebste Hobby', fr: 'Pour aller plus loin dans sa passion', it: 'Per vivere ancora di più la sua passione' }, reason: { es: 'Partimos de algo que ya le gusta y buscamos una forma nueva de disfrutarlo.', en: 'Start from something they already enjoy and find a new way to enjoy it.', de: 'Aus einem bestehenden Interesse wird eine neue Art, es zu genießen.', fr: 'On part d’un intérêt existant pour trouver une nouvelle façon d’en profiter.', it: 'Partiamo da una passione che ha già per trovare un modo nuovo di viverla.' } },
+  { id: 'small-delight', querySuffix: 'detalle bonito regalo cumpleaños', copy: { es: 'Pequeño detalle con intención', en: 'Small thoughtful detail', de: 'Kleine Aufmerksamkeit', fr: 'Petite attention', it: 'Piccola attenzione' }, reason: { es: 'Una idea sencilla que gana valor por el momento y por cómo se entrega.', en: 'A simple idea whose value comes from the moment and the way it is given.', de: 'Eine einfache Idee, die durch den Moment und die Übergabe gewinnt.', fr: 'Une idée simple qui prend de la valeur grâce au moment et à la façon de l’offrir.', it: 'Un’idea semplice che acquista valore grazie al momento e al modo in cui viene regalata.' } },
+  { id: 'better-materials', querySuffix: 'mejores materiales regalo', copy: { es: 'Una versión que dure', en: 'Built to last', de: 'Für lange Freude', fr: 'Fait pour durer', it: 'Fatto per durare' }, reason: { es: 'La misma intuición, llevada a una versión que prioriza materiales y uso prolongado.', en: 'The same idea, steered towards a version that prioritises materials and longevity.', de: 'Dieselbe Idee, aber mit Fokus auf Material und lange Nutzung.', fr: 'La même idée, orientée vers une version plus durable et mieux finie.', it: 'La stessa idea, orientata verso una versione più durevole e meglio rifinita.' } },
+  { id: 'modern-choice', querySuffix: 'regalo tendencia actual', copy: { es: 'Con un aire más actual', en: 'More current', de: 'Zeitgemäßer', fr: 'Plus actuel', it: 'Più attuale' }, reason: { es: 'Mantenemos el encaje, pero abrimos la búsqueda hacia diseños y formatos actuales.', en: 'Keep the fit while opening the search to current designs and formats.', de: 'Die Passung bleibt, aber Design und Format dürfen zeitgemäßer sein.', fr: 'On garde la pertinence en ouvrant la recherche aux formats actuels.', it: 'Manteniamo la pertinenza, cercando design e formati più attuali.' } },
+  { id: 'surprise-safe', querySuffix: 'sorpresa segura regalo', copy: { es: 'Sorpresa con red', en: 'Safe surprise', de: 'Sichere Überraschung', fr: 'Surprise sans risque', it: 'Sorpresa senza rischi' }, reason: { es: 'Una vuelta distinta, pero dentro de una familia de productos fácil de entender.', en: 'A different direction, still within a product family that is easy to understand.', de: 'Eine andere Richtung, aber in einer verständlichen Produktfamilie.', fr: 'Une autre direction, mais dans une famille de produits facile à comprendre.', it: 'Una direzione diversa, ma all’interno di una categoria facile da capire.' } },
+  { id: 'weekend-ritual', querySuffix: 'regalo para disfrutar fin de semana', copy: { es: 'Para disfrutar sin prisa', en: 'For unhurried weekends', de: 'Für entspannte Wochenenden', fr: 'Pour les week-ends tranquilles', it: 'Per weekend senza fretta' }, reason: { es: 'Una idea pensada para convertirse en un pequeño ritual fuera de la rutina.', en: 'An idea that can become a small ritual outside the daily routine.', de: 'Eine Idee, die außerhalb des Alltags zu einem kleinen Ritual werden kann.', fr: 'Une idée qui peut devenir un petit rituel loin de la routine.', it: 'Un’idea che può diventare un piccolo rituale fuori dalla routine.' } },
+  { id: 'giftable-design', querySuffix: 'presentación bonita regalo', copy: { es: 'Entra por los ojos', en: 'Looks gift-worthy', de: 'Schön zum Verschenken', fr: 'Beau à offrir', it: 'Bello da regalare' }, reason: { es: 'Además de encajar, buscamos una opción que se sienta especial desde que se abre.', en: 'Beyond the fit, look for something that feels special from the moment it is opened.', de: 'Nicht nur passend, sondern schon beim Öffnen besonders.', fr: 'Au-delà de la pertinence, une option qui paraît spéciale dès l’ouverture.', it: 'Oltre alla pertinenza, un’opzione speciale già dal momento in cui si apre.' } }
+]);
+
 function recipeCopy(recipe, field) {
   var copy = recipe && recipe[field] || {};
   return copy[state.language] || copy.es || '';
@@ -3354,6 +3447,14 @@ function isRecipeCompatible(gift, recipe) {
   if (recipe.id === 'make-a-plan' && ['planes', 'momentos', 'sabores', 'viajes', 'juegos', 'creatividad'].indexOf(gift.category) === -1) return false;
   if (recipe.id === 'small-luxury' && gift.price < 35) return false;
   return true;
+}
+
+COMPOSITION_COUNT = GIFT_CATALOG.reduce(function (total, gift) {
+  return total + GIFT_RECIPES.filter(function (recipe) { return isRecipeCompatible(gift, recipe); }).length;
+}, 0);
+
+function compositionCount() {
+  return COMPOSITION_COUNT;
 }
 
 function composeGift(gift, recipe, answers, variant) {
@@ -3747,6 +3848,112 @@ function buildAmazonUrl(gift, answers) {
   return 'https://' + amazonDomain(answers.country || APP_CONFIG.defaultCountry) + '/s?' + params.toString();
 }
 
+function exactProductFor(gift, answers) {
+  var product = gift && currentAmazonProducts[gift.id];
+  if (!product || !product.detailPageURL) return null;
+  try {
+    var url = new URL(product.detailPageURL);
+    var expectedHost = amazonDomain((answers && answers.country) || APP_CONFIG.defaultCountry);
+    if (url.protocol !== 'https:' || (url.hostname !== expectedHost && url.hostname !== 'www.' + expectedHost)) return null;
+  } catch (error) {
+    return null;
+  }
+  return product;
+}
+
+function formatProductTime(value) {
+  try {
+    var date = new Date(value);
+    if (!Number.isFinite(date.getTime())) return '';
+    return new Intl.DateTimeFormat(state.language, { hour: '2-digit', minute: '2-digit' }).format(date);
+  } catch (error) {
+    return '';
+  }
+}
+
+function productCountForCurrentResults() {
+  return currentRecommendations.filter(function (gift) { return !!exactProductFor(gift, state.answers); }).length;
+}
+
+function canLoadAmazonProducts(answers) {
+  return !!affiliateTagFor((answers && answers.country) || APP_CONFIG.defaultCountry);
+}
+
+function amazonProductStatusMarkup() {
+  if (!canLoadAmazonProducts(state.answers) && productCountForCurrentResults() === 0) return '';
+  var message = productCopy('loading');
+  var statusClass = ' amazon-products-status-loading';
+  if (amazonProductStatus === 'ready') {
+    message = interpolate(productCopy(productCountForCurrentResults() === currentRecommendations.length ? 'ready' : 'mixedDisclosure'), { count: productCountForCurrentResults() });
+    statusClass = ' amazon-products-status-ready';
+  } else if (amazonProductStatus === 'unavailable') {
+    message = productCopy('fallback');
+    statusClass = ' amazon-products-status-fallback';
+  }
+  return '<p id="amazon-products-status" class="amazon-products-status' + statusClass + '" role="status" aria-live="polite">' + escapeHtml(message) + '</p>';
+}
+
+function updateAmazonProductStatus() {
+  var status = document.getElementById('amazon-products-status');
+  if (!status) return;
+  var exactCount = productCountForCurrentResults();
+  var message = productCopy('loading');
+  if (amazonProductStatus === 'ready') {
+    message = interpolate(productCopy(exactCount === currentRecommendations.length ? 'ready' : 'mixedDisclosure'), { count: exactCount });
+  } else if (amazonProductStatus === 'unavailable') {
+    message = productCopy('fallback');
+  }
+  status.textContent = message;
+  status.className = 'amazon-products-status amazon-products-status-' + (amazonProductStatus === 'ready' ? 'ready' : amazonProductStatus === 'unavailable' ? 'fallback' : 'loading');
+}
+
+function hydrateAmazonProducts(recommendations) {
+  if (!canLoadAmazonProducts(state.answers) || typeof fetch !== 'function') return;
+  var items = (recommendations || currentRecommendations).filter(function (gift) {
+    return gift && !exactProductFor(gift, state.answers) && !amazonProductPending[gift.id];
+  });
+  if (!items.length) return;
+  var requestToken = amazonProductHydrationToken;
+  var country = state.answers.country || APP_CONFIG.defaultCountry;
+  items.forEach(function (gift) { amazonProductPending[gift.id] = true; });
+  amazonProductStatus = 'loading';
+  updateAmazonProductStatus();
+  fetch('/api/amazon-products', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      country: country,
+      queries: items.map(function (gift) {
+        return { id: gift.id, query: gift.amazonQuery, maxPrice: budgetFor(state.answers.budget).max };
+      })
+    })
+  }).then(function (response) {
+    return response.json().catch(function () { return {}; }).then(function (payload) {
+      return { ok: response.ok, payload: payload };
+    });
+  }).then(function (result) {
+    items.forEach(function (gift) { delete amazonProductPending[gift.id]; });
+    if (requestToken !== amazonProductHydrationToken || country !== (state.answers.country || APP_CONFIG.defaultCountry)) return;
+    var payload = result.payload || {};
+    if (!result.ok || !payload.ok || !Array.isArray(payload.products) || !payload.products.length) {
+      amazonProductStatus = 'unavailable';
+      updateAmazonProductStatus();
+      return;
+    }
+    payload.products.forEach(function (product) {
+      if (!product || !product.requestId || !currentRecommendations.some(function (gift) { return gift.id === product.requestId; })) return;
+      currentAmazonProducts[product.requestId] = product;
+    });
+    amazonProductStatus = productCountForCurrentResults() ? 'ready' : 'unavailable';
+    renderResults(false, true, getScrollPosition(), false);
+  }).catch(function () {
+    items.forEach(function (gift) { delete amazonProductPending[gift.id]; });
+    if (requestToken !== amazonProductHydrationToken) return;
+    amazonProductStatus = 'unavailable';
+    updateAmazonProductStatus();
+  });
+}
+
 function buildReason(gift, answers) {
   var interests = selectedInterests(answers);
   var matches = gift.interests.filter(function (interest) { return interests.indexOf(interest) !== -1; });
@@ -3825,10 +4032,14 @@ function celebrate() {
   window.requestAnimationFrame(draw);
 }
 
-function renderResults(shouldCelebrate, preserveRecommendations, preservePosition) {
+function renderResults(shouldCelebrate, preserveRecommendations, preservePosition, requestProducts) {
   var savedPosition = preservePosition ? getScrollPosition() : null;
   var copy = currentCopy();
   if (!preserveRecommendations || !currentRecommendations.length) {
+    amazonProductHydrationToken += 1;
+    currentAmazonProducts = Object.create(null);
+    amazonProductPending = Object.create(null);
+    amazonProductStatus = 'idle';
     currentRecommendations = sharedRecommendations || rankGifts(state.answers, state.variant);
     sharedRecommendations = null;
     state.lastRecommendationIds = currentRecommendations.map(function (gift) { return gift.id; });
@@ -3849,29 +4060,39 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
     '<p class="results-kicker">' + escapeHtml(copy.results.ready) + '</p>' +
     '<h2 id="results-title">' + escapeHtml(title) + '</h2>' +
     '<p class="results-intro">' + escapeHtml(copy.results.intro) + '</p>' +
+    amazonProductStatusMarkup() +
     '<div class="summary-chips" aria-label="' + escapeHtml(copy.results.chips) + '">' + summaryChips(state.answers) + '</div>' +
     '</div>' +
     '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">' + escapeHtml(copy.results.adjust) + '</button><button class="button button-ghost" type="button" data-action="refresh">' + escapeHtml(copy.results.refresh) + '</button><button class="button button-ghost" type="button" data-action="share">' + escapeHtml(copy.results.share) + '</button></div>' +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
       var localized = localizedGift(gift);
+      var exactProduct = exactProductFor(gift, state.answers);
+      var displayTitle = exactProduct ? exactProduct.title : localized.title;
       var tags = localized.tags.map(function (tag) { return '<span class="gift-tag">' + escapeHtml(tag) + '</span>'; }).join('');
       var discovery = activeMode === 'new' || localized.isDiscovery;
       var cardClass = 'gift-card' + (index === 0 ? ' gift-card-featured' : '') + (discovery ? ' gift-card-discovery' : '');
       var angle = localized.angle ? '<p class="gift-angle"><span class="gift-angle-mark" aria-hidden="true">✦</span>' + escapeHtml(localized.angle) + (discovery ? ' <span class="gift-new-badge">' + escapeHtml(copy.results.newBadge) + '</span>' : '') + '</p>' : '';
       var highlights = buildFitHighlights(gift, state.answers).map(function (item) { return '<span class="gift-fit-highlight">' + escapeHtml(item) + '</span>'; }).join('');
       var purchaseTip = buildPurchaseTip(gift);
+      var productMedia = exactProduct && exactProduct.imageUrl ? '<div class="gift-product-media"><img src="' + escapeHtml(exactProduct.imageUrl) + '" alt="" loading="lazy" decoding="async"' + (exactProduct.imageWidth ? ' width="' + String(exactProduct.imageWidth) + '"' : '') + (exactProduct.imageHeight ? ' height="' + String(exactProduct.imageHeight) + '"' : '') + '><span class="gift-product-badge">' + escapeHtml(productCopy('badge')) + '</span></div>' : '';
+      var priceText = exactProduct ? exactProduct.priceDisplay + ' · ' + productCopy('price') : interpolate(copy.results.price, { price: gift.price });
+      var updatedTime = exactProduct ? formatProductTime(exactProduct.refreshedAt) : '';
+      var updatedMarkup = updatedTime ? '<span class="gift-price-updated">' + escapeHtml(interpolate(productCopy('updated'), { time: updatedTime })) + '</span>' : '';
+      var primaryUrl = exactProduct ? exactProduct.detailPageURL : buildAmazonUrl(gift, state.answers);
+      var primaryLabel = exactProduct ? productCopy('direct') : copy.results.link;
+      var similarLink = exactProduct ? '<a class="gift-similar-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '" data-gift-store="' + escapeHtml(amazonDomain(state.answers.country || APP_CONFIG.defaultCountry)) + '" data-gift-link-type="similar">' + escapeHtml(productCopy('similar')) + ' <span aria-hidden="true">↗</span></a>' : '';
       return '<article class="' + cardClass + '" style="--gift-index: ' + index + ';">' +
         (index === 0 ? '<p class="gift-badge">' + escapeHtml(copy.results.badge) + '</p>' : '') +
         '<div class="gift-card-top"><span class="gift-number">' + String(index + 1).padStart(2, '0') + '</span><span class="gift-icon" aria-hidden="true">' + gift.icon + '</span></div>' +
-        '<h3>' + escapeHtml(localized.title) + '</h3><p class="gift-price">' + escapeHtml(interpolate(copy.results.price, { price: gift.price })) + '</p>' + angle +
+        productMedia + '<h3>' + escapeHtml(displayTitle) + '</h3><p class="gift-price">' + escapeHtml(priceText) + '</p>' + updatedMarkup + angle +
         '<div class="gift-match" aria-label="' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '"><span class="gift-match-label">' + escapeHtml(formatMatchRate(giftMatchRate(gift, state.answers))) + '</span><span class="gift-match-track" aria-hidden="true"><span class="gift-match-fill" style="width: ' + String(giftMatchRate(gift, state.answers)) + '%;"></span></span></div>' +
         '<div class="gift-fit-highlights" aria-label="' + escapeHtml((FIT_REASON_COPY[state.language] || FIT_REASON_COPY.es).open) + '">' + highlights + '</div>' +
         '<p class="gift-reason">' + escapeHtml(buildReason(gift, state.answers)) + '</p>' +
         '<p class="gift-buying-tip"><strong>' + escapeHtml(purchaseTip.label) + ':</strong> ' + escapeHtml(purchaseTip.text) + '</p>' +
         '<div class="gift-tags">' + tags + '</div>' +
-        '<div class="gift-card-actions"><a class="gift-link" href="' + escapeHtml(buildAmazonUrl(gift, state.answers)) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '" data-gift-store="' + escapeHtml(amazonDomain(state.answers.country || APP_CONFIG.defaultCountry)) + '">' + escapeHtml(copy.results.link) + ' <span aria-hidden="true">↗</span></a><div class="gift-feedback"><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="owned" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.owned) + '</button><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="not-fit" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.notFit) + '</button></div></div></article>';
+        '<div class="gift-card-actions"><a class="gift-link" href="' + escapeHtml(primaryUrl) + '" target="_blank" rel="sponsored nofollow noopener" data-gift-id="' + escapeHtml(gift.id) + '" data-gift-position="' + String(index + 1) + '" data-gift-store="' + escapeHtml(amazonDomain(state.answers.country || APP_CONFIG.defaultCountry)) + '" data-gift-link-type="product">' + escapeHtml(primaryLabel) + ' <span aria-hidden="true">↗</span></a>' + similarLink + '<div class="gift-feedback"><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="owned" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.owned) + '</button><button class="gift-feedback-button" type="button" data-action="feedback" data-feedback="not-fit" data-gift-id="' + escapeHtml(gift.id) + '">' + escapeHtml(copy.results.notFit) + '</button></div></div></article>';
     }).join('') + '</div>' +
-    '<p class="results-note">' + escapeHtml(copy.results.note + ' ' + matchRateDisclosure()) + ' ' + escapeHtml(catalogNote()) + '</p>' + (currentRecommendations.length < 10 ? '<p class="results-exhaustion">' + escapeHtml(copy.results.noMore) + '</p>' : '');
+    '<p class="results-note">' + escapeHtml((productCountForCurrentResults() ? (productCountForCurrentResults() === currentRecommendations.length ? productCopy('exactDisclosure') : productCopy('mixedDisclosure')) : copy.results.note) + ' ' + matchRateDisclosure()) + ' ' + escapeHtml(catalogNote()) + '</p>' + (currentRecommendations.length < 10 ? '<p class="results-exhaustion">' + escapeHtml(copy.results.noMore) + '</p>' : '');
   hero.hidden = true;
   wizard.hidden = true;
   trustStrip.hidden = true;
@@ -3893,6 +4114,7 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
   void results.offsetWidth;
   results.classList.add('results-transition');
   if (shouldCelebrate !== false) celebrate();
+  if (requestProducts !== false && !preserveRecommendations) hydrateAmazonProducts(currentRecommendations);
 }
 
 function showWizardAtLastStep() {
@@ -3916,7 +4138,11 @@ function resetApp() {
     }
   } catch (error) {}
   state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
+  amazonProductHydrationToken += 1;
   currentRecommendations = [];
+  currentAmazonProducts = Object.create(null);
+  amazonProductPending = Object.create(null);
+  amazonProductStatus = 'idle';
   applyLanguage();
   hero.hidden = false;
   wizard.hidden = false;
@@ -3926,20 +4152,21 @@ function resetApp() {
   render();
 }
 
-function recordClick(giftId, position) {
+function recordClick(giftId, position, linkType) {
   var country = state.answers.country || APP_CONFIG.defaultCountry;
   var store = amazonDomain(country);
+  var safeLinkType = linkType === 'similar' ? 'similar' : 'product';
   var consent = window.RegalazoAnalyticsCore ? window.RegalazoAnalyticsCore.getConsent() : analyticsConsentState;
   if (consent === 'granted') {
     try {
       var clicks = JSON.parse(localStorage.getItem(APP_CONFIG.clickStorageKey) || '[]');
-      clicks.push({ id: giftId, position: position ? Number(position) : null, at: new Date().toISOString(), store: store });
+      clicks.push({ id: giftId, position: position ? Number(position) : null, at: new Date().toISOString(), store: store, linkType: safeLinkType });
       localStorage.setItem(APP_CONFIG.clickStorageKey, JSON.stringify(clicks.slice(-100)));
     } catch (error) {
       // Private browsing or blocked storage should never stop an outbound link.
     }
   }
-  trackEvent('gift_outbound_clicked', { giftId: giftId, position: position ? Number(position) : null, store: store, mode: state.recommendationMode || 'fit' });
+  trackEvent('gift_outbound_clicked', { giftId: giftId, position: position ? Number(position) : null, store: store, mode: state.recommendationMode || 'fit', linkType: safeLinkType });
 }
 
 function buildShareUrl() {
@@ -4046,6 +4273,7 @@ function replaceGift(giftId, feedback) {
   rememberRecommendations(state.answers, currentRecommendations);
   trackEvent('recommendations_refreshed', { variant: state.variant, mode: state.recommendationMode || 'fit' });
   renderResults(false, true, getScrollPosition());
+  hydrateAmazonProducts([replacement]);
   showToast((currentCopy().results || {}).saved || FEEDBACK_COPY.es.saved);
 }
 
@@ -4102,7 +4330,7 @@ results.addEventListener('click', function (event) {
     return;
   }
   var link = event.target.closest('[data-gift-id]');
-  if (link) recordClick(link.getAttribute('data-gift-id'), link.getAttribute('data-gift-position'));
+  if (link) recordClick(link.getAttribute('data-gift-id'), link.getAttribute('data-gift-position'), link.getAttribute('data-gift-link-type'));
 });
 
 document.querySelector('.brand').addEventListener('click', function (event) {

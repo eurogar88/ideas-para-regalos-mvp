@@ -7,6 +7,7 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+const amazonFunctionSource = fs.readFileSync(path.join(root, 'netlify', 'functions', 'amazon-products.mjs'), 'utf8');
 const languageStart = source.indexOf('var LANGUAGE_COPY =');
 const analyticsStart = source.indexOf('var ANALYTICS_CONFIG =');
 const getQuestionStart = source.indexOf('function getQuestion(id)');
@@ -68,16 +69,23 @@ const setup = [
   source.slice(engineStart, buildReasonStart),
   source.slice(shareStart, shareEnd),
   source.slice(replacementStart, replacementEnd),
-  'globalThis.__api = { GIFT_CATALOG, GIFT_RECIPES, state, currentRecommendations, rankGifts, rememberRecommendations, eligibleCatalogFor, giftClusterKey, buildShareUrl, buildAmazonUrl, readSharedAnswers, readSharedRecommendations, readSharedVariant, baseIdForRecommendationId, isGiftAgeCompatible, isGiftContextCompatible, findReplacementGift };'
+  'globalThis.__api = { GIFT_CATALOG, GIFT_RECIPES, state, currentRecommendations, rankGifts, rememberRecommendations, eligibleCatalogFor, giftClusterKey, buildShareUrl, buildAmazonUrl, readSharedAnswers, readSharedRecommendations, readSharedVariant, baseIdForRecommendationId, isGiftAgeCompatible, isGiftContextCompatible, findReplacementGift, compositionCount };'
 ].join('\n');
 
 vm.runInNewContext(setup, context, { filename: 'app.js' });
 const api = context.__api;
 
 assert.ok(api.GIFT_CATALOG.length >= 360, `expected at least 360 base ideas, got ${api.GIFT_CATALOG.length}`);
-assert.ok(api.GIFT_RECIPES.length >= 7, `expected at least 7 editorial angles, got ${api.GIFT_RECIPES.length}`);
+assert.ok(api.GIFT_RECIPES.length >= 19, `expected at least 19 editorial angles, got ${api.GIFT_RECIPES.length}`);
+assert.ok(api.compositionCount() >= 5000, `expected at least 5000 compatible compositions, got ${api.compositionCount()}`);
 assert.ok(new Set(api.GIFT_CATALOG.map((gift) => gift.id)).size >= 360, 'catalog ids must be unique');
 assert.ok(new Set(api.GIFT_CATALOG.map((gift) => gift.amazonQuery)).size >= 300, 'catalog needs at least 300 distinct product searches');
+assert.match(source, /Ver similares/, 'result cards need a similar-products search fallback');
+assert.match(source, /data-gift-link-type="product"/, 'result cards need product link attribution');
+assert.match(source, /data-gift-link-type="similar"/, 'result cards need similar-search attribution');
+assert.match(amazonFunctionSource, /AMAZON_CREATORS_CLIENT_SECRET/, 'Amazon secret must stay server-side');
+assert.match(amazonFunctionSource, /offersV2\.listings\.price/, 'Amazon function must request live offer prices');
+assert.match(amazonFunctionSource, /safeAmazonImageUrl/, 'Amazon image URLs must be allowlisted');
 assert.match(api.buildAmazonUrl({ amazonQuery: 'test product' }, { budget: '20to40', country: 'ES' }), /tag=lamamihacker-21/);
 assert.doesNotMatch(api.buildAmazonUrl({ amazonQuery: 'test product' }, { budget: '20to40', country: 'US' }), /tag=/, 'unverified marketplaces must not reuse the Spanish tag');
 
@@ -178,4 +186,4 @@ const replacement = api.findReplacementGift(replacementOriginal[0].id);
 assert.ok(replacement, 'a dismissed idea should have an individual replacement');
 assert.ok(!replacementOriginal.some((gift) => api.baseIdForRecommendationId(gift.id) === api.baseIdForRecommendationId(replacement.id)), 'replacement should not duplicate a visible card');
 
-console.log(`PASS: ${api.GIFT_CATALOG.length} base ideas, ${api.GIFT_RECIPES.length} angles, age/budget/refresh/share checks`);
+console.log(`PASS: ${api.GIFT_CATALOG.length} base ideas, ${api.GIFT_RECIPES.length} angles, ${api.compositionCount()} compositions, age/budget/refresh/share checks`);
