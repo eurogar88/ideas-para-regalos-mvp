@@ -96,9 +96,9 @@ Eventos ya preparados o recomendados:
 | Etapa | Evento | Métrica |
 | --- | --- | --- |
 | Entrada | `quiz_started` | Inicio por landing, idioma y dispositivo |
-| Intención | `quiz_answered` | Abandono por paso |
+| Intención | `quiz_step_viewed`, `quiz_answered`, `quiz_abandoned` | Abandono por paso y última pregunta vista |
 | Valor | `recommendations_viewed` | Finalización y modo elegido |
-| Monetización | `gift_outbound_clicked` | CTR por posición, país y categoría |
+| Monetización | `gift_outbound_clicked` | CTR por posición, país, categoría y tipo de enlace (producto/similares) |
 | Viralidad | `share_clicked`, `share_completed` | Inicio y finalización de compartir |
 | Retorno | `weekly_discovery_clicked`, `pwa_installed` | Recurrencia e instalación |
 

@@ -9,7 +9,8 @@ var APP_CONFIG = Object.freeze({
   defaultCountry: 'ES',
   clickStorageKey: 'regalazo-clicks-v1',
   installPromptEnabled: true,
-  installPromptDelayMs: 5200
+  installPromptDelayMs: 5200,
+  discoveryRotationDays: 7
 });
 
 var QUESTIONS = [
@@ -2606,7 +2607,7 @@ var GIFT_TITLE_COPY = {
   }
 
 };
-var ENHANCED_RESULT_COPY = {"es":{"newBadge":"Descubrimiento"},"en":{"newBadge":"New find"},"de":{"newBadge":"Neue Entdeckung"},"fr":{"newBadge":"Nouvelle découverte"},"it":{"newBadge":"Nuova scoperta"}};
+var ENHANCED_RESULT_COPY = {"es":{"newBadge":"Descubrimiento","shareCardTitle":"Comparte estas ideas","shareCardText":"Envía esta selección y la otra persona verá las mismas 10 ideas, sin cuenta."},"en":{"newBadge":"New find","shareCardTitle":"Share these ideas","shareCardText":"Send this selection and the other person will see the same 10 ideas, with no sign-up."},"de":{"newBadge":"Neue Entdeckung","shareCardTitle":"Diese Ideen teilen","shareCardText":"Schicke diese Auswahl weiter; die andere Person sieht dieselben 10 Ideen, ohne Konto."},"fr":{"newBadge":"Nouvelle découverte","shareCardTitle":"Partagez ces idées","shareCardText":"Envoyez cette sélection : l’autre personne verra les mêmes 10 idées, sans compte."},"it":{"newBadge":"Nuova scoperta","shareCardTitle":"Condividi queste idee","shareCardText":"Invia questa selezione: l’altra persona vedrà le stesse 10 idee, senza account."}};
   var HERO_NOTE_COPY = {"es":[{"value":"8","label":"toques"},{"value":"<1","label":"minuto"},{"value":"10","label":"resultados"},{"value":"sin","label":"cuenta"}],"en":[{"value":"8","label":"taps"},{"value":"<1","label":"minute"},{"value":"10","label":"results"},{"value":"no","label":"sign-up"}],"de":[{"value":"8","label":"Klicks"},{"value":"<1","label":"Minute"},{"value":"10","label":"Ergebnisse"},{"value":"ohne","label":"Konto"}],"fr":[{"value":"8","label":"touches"},{"value":"<1","label":"minute"},{"value":"10","label":"résultats"},{"value":"sans","label":"compte"}],"it":[{"value":"8","label":"tap"},{"value":"<1","label":"minuto"},{"value":"10","label":"risultati"},{"value":"senza","label":"account"}]};
 var GROWTH_COPY = {
   es: { weeklyBadge: 'Descubrimiento de la semana', weeklyIntro: 'Una idea distinta del catálogo para salir de lo de siempre: {title}.', weeklyLink: 'Ver opciones en Amazon', weeklyPricePrefix: 'Precio orientativo', installTitle: 'Llévate Regalazo contigo', installText: 'Instálalo para tener Regalazo a mano cuando vuelva a surgir un cumpleaños.', installButton: 'Instalar', installDismiss: 'Ahora no' },
@@ -2709,7 +2710,7 @@ var PRODUCT_COPY = {
   es: {
     loading: 'Buscando productos concretos en Amazon…',
     ready: '{count} productos concretos consultados en Amazon.',
-    fallback: 'Ahora mismo no hemos podido cargar fichas concretas; dejamos una búsqueda afinada como alternativa.',
+    fallback: 'No hemos podido cargar una ficha concreta ahora; puedes abrir una búsqueda afinada y comparar las opciones disponibles en Amazon.',
     direct: 'Ver producto en Amazon',
     similar: 'Ver similares',
     badge: 'Producto concreto',
@@ -2721,7 +2722,7 @@ var PRODUCT_COPY = {
   en: {
     loading: 'Finding specific products on Amazon…',
     ready: '{count} specific products checked on Amazon.',
-    fallback: 'We could not load specific product listings right now, so we left a refined search as a fallback.',
+    fallback: 'We could not load a specific product right now; you can open a focused search and compare the options available on Amazon.',
     direct: 'View product on Amazon',
     similar: 'See similar',
     badge: 'Specific product',
@@ -2733,7 +2734,7 @@ var PRODUCT_COPY = {
   de: {
     loading: 'Konkrete Produkte auf Amazon werden gesucht…',
     ready: '{count} konkrete Produkte auf Amazon geprüft.',
-    fallback: 'Konkrete Produktseiten konnten gerade nicht geladen werden; als Alternative bleibt eine passende Suche.',
+    fallback: 'Eine konkrete Produktseite konnte gerade nicht geladen werden; du kannst eine passende Suche öffnen und die verfügbaren Optionen auf Amazon vergleichen.',
     direct: 'Produkt auf Amazon ansehen',
     similar: 'Ähnliche ansehen',
     badge: 'Konkretes Produkt',
@@ -2745,7 +2746,7 @@ var PRODUCT_COPY = {
   fr: {
     loading: 'Recherche de produits précis sur Amazon…',
     ready: '{count} produits précis vérifiés sur Amazon.',
-    fallback: 'Les fiches produit précises ne sont pas disponibles pour le moment ; une recherche affinée reste proposée.',
+    fallback: 'Une fiche produit précise n’est pas disponible pour le moment ; vous pouvez ouvrir une recherche affinée et comparer les options sur Amazon.',
     direct: 'Voir le produit sur Amazon',
     similar: 'Voir similaires',
     badge: 'Produit précis',
@@ -2757,7 +2758,7 @@ var PRODUCT_COPY = {
   it: {
     loading: 'Cerchiamo prodotti concreti su Amazon…',
     ready: '{count} prodotti concreti verificati su Amazon.',
-    fallback: 'Le schede prodotto concrete non sono disponibili in questo momento; resta una ricerca più mirata.',
+    fallback: 'Una scheda prodotto precisa non è disponibile in questo momento; puoi aprire una ricerca mirata e confrontare le opzioni su Amazon.',
     direct: 'Vedi prodotto su Amazon',
     similar: 'Vedi simili',
     badge: 'Prodotto concreto',
@@ -2776,6 +2777,41 @@ function productCopy(key) {
 function catalogNote() {
   var template = CATALOG_NOTE_COPY[state.language] || CATALOG_NOTE_COPY.es;
   return interpolate(template, { count: COMPOSITION_COUNT || CATALOG_COUNT });
+}
+
+var CAMPAIGN_COPY = {
+  es: 'Has llegado desde La Mami Hacker. En menos de un minuto tendrás una selección de regalos para la persona que tienes en mente.',
+  en: 'You came from La Mami Hacker. In under a minute, you will have a gift selection for the person in mind.',
+  de: 'Du kommst von La Mami Hacker. In weniger als einer Minute hast du eine Geschenkauswahl für diese Person.',
+  fr: 'Vous arrivez de La Mami Hacker. En moins d’une minute, vous aurez une sélection pour la personne à laquelle vous pensez.',
+  it: 'Arrivi da La Mami Hacker. In meno di un minuto avrai una selezione di regali per la persona che hai in mente.'
+};
+
+function renderCampaignContext() {
+  if (!hero) return;
+  var source = '';
+  var campaign = '';
+  try {
+    var params = new URLSearchParams(window.location.search || '');
+    source = String(params.get('utm_source') || '').toLowerCase();
+    campaign = String(params.get('utm_campaign') || '').toLowerCase();
+  } catch (error) {}
+  var isLaMamiHacker = source === 'lamamihacker' || campaign === 'regalazo-launch' || campaign === 'lamamihacker';
+  var note = document.getElementById('campaign-note');
+  if (!isLaMamiHacker) {
+    if (note) note.hidden = true;
+    return;
+  }
+  if (!note) {
+    note = document.createElement('p');
+    note.id = 'campaign-note';
+    note.className = 'campaign-note';
+    var notes = document.querySelector('.hero-notes');
+    if (notes && notes.parentNode) notes.parentNode.insertBefore(note, notes.nextSibling);
+    else hero.appendChild(note);
+  }
+  note.textContent = CAMPAIGN_COPY[state.language] || CAMPAIGN_COPY.es;
+  note.hidden = false;
 }
 
 function purchaseCategory(gift) {
@@ -2846,6 +2882,8 @@ var pwaPrompt = document.getElementById('pwa-prompt');
 var pwaInstallButton = document.getElementById('pwa-install');
 var pwaDismissButton = document.getElementById('pwa-dismiss');
 var deferredInstallPrompt = null;
+var trackedQuestionSteps = Object.create(null);
+var quizExitTracked = false;
 analyticsConsentState = window.RegalazoAnalyticsCore ? window.RegalazoAnalyticsCore.getConsent() : readAnalyticsConsent();
 
 function escapeHtml(value) {
@@ -2917,7 +2955,9 @@ function localizedGift(gift) {
 var ANALYTICS_SAFE_PROPERTIES = {
   page_viewed: ['path'],
   quiz_started: [],
+  quiz_step_viewed: ['questionId', 'step'],
   quiz_answered: ['questionId', 'step'],
+  quiz_abandoned: ['questionId', 'step'],
   quiz_completed: ['genderProvided', 'interestCount'],
   recommendations_viewed: ['resultCount', 'variant', 'mode'],
   recommendations_refreshed: ['variant', 'mode'],
@@ -3144,6 +3184,7 @@ function applyLanguage() {
   copy.heroNotes.forEach(function (note, index) {
     if (notes[index]) notes[index].innerHTML = '<strong>' + escapeHtml(note.value) + '</strong> ' + escapeHtml(note.label);
   });
+  renderCampaignContext();
 
   var trustItems = document.querySelectorAll('.trust-item');
   copy.trust.forEach(function (item, index) {
@@ -3197,8 +3238,9 @@ function applyLanguage() {
 
 function renderWeeklyDiscovery() {
   if (!weeklyDiscovery || !GIFT_CATALOG.length) return;
-  var week = Math.floor((Date.now() - Date.UTC(2024, 0, 1)) / 604800000);
-  var gift = GIFT_CATALOG[Math.abs(week) % GIFT_CATALOG.length];
+  var rotationDays = Math.max(1, Number(APP_CONFIG.discoveryRotationDays) || 7);
+  var rotation = Math.floor((Date.now() - Date.UTC(2024, 0, 1)) / (rotationDays * 86400000));
+  var gift = GIFT_CATALOG[Math.abs(rotation) % GIFT_CATALOG.length];
   var titles = GIFT_TITLE_COPY[state.language] || {};
   var growth = currentCopy().growth || GROWTH_COPY.es;
   var title = titles[gift.id] || gift.title;
@@ -3217,7 +3259,10 @@ function renderWeeklyDiscovery() {
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'sponsored nofollow noopener');
     link.setAttribute('data-gift-id', gift.id);
+    link.setAttribute('data-discovery-rotation', String(rotation));
   }
+  weeklyDiscovery.dataset.discoveryId = gift.id;
+  weeklyDiscovery.dataset.discoveryRotation = String(rotation);
   if (!weeklyDiscovery.dataset.tracked) {
     weeklyDiscovery.dataset.tracked = 'true';
     trackEvent('weekly_discovery_viewed', { giftId: gift.id });
@@ -3338,6 +3383,11 @@ function renderQuestion() {
   questionRegion.classList.remove('question-transition');
   void questionRegion.offsetWidth;
   questionRegion.classList.add('question-transition');
+  var questionStepKey = question.id + ':' + String(state.step + 1);
+  if (!trackedQuestionSteps[questionStepKey]) {
+    trackedQuestionSteps[questionStepKey] = true;
+    trackEvent('quiz_step_viewed', { questionId: question.id, step: state.step + 1 });
+  }
 }
 
 function render() {
@@ -4049,6 +4099,7 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
       genderProvided: !!state.answers.gender && ['any', 'unknown', 'prefer-not'].indexOf(state.answers.gender) === -1,
       interestCount: selectedInterests(state.answers).length
     });
+    quizExitTracked = true;
   }
   var title = copy.results.genericTitle + '.';
   var relation = getLabel('relation', state.answers.relation).toLowerCase();
@@ -4063,7 +4114,8 @@ function renderResults(shouldCelebrate, preserveRecommendations, preservePositio
     amazonProductStatusMarkup() +
     '<div class="summary-chips" aria-label="' + escapeHtml(copy.results.chips) + '">' + summaryChips(state.answers) + '</div>' +
     '</div>' +
-    '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">' + escapeHtml(copy.results.adjust) + '</button><button class="button button-ghost" type="button" data-action="refresh">' + escapeHtml(copy.results.refresh) + '</button><button class="button button-ghost" type="button" data-action="share">' + escapeHtml(copy.results.share) + '</button></div>' +
+    '<div class="results-toolbar"><button class="button button-ghost" type="button" data-action="adjust">' + escapeHtml(copy.results.adjust) + '</button><button class="button button-ghost" type="button" data-action="refresh">' + escapeHtml(copy.results.refresh) + '</button></div>' +
+    '<aside class="results-share-card" aria-labelledby="share-card-title"><div class="share-card-copy"><span class="share-card-icon" aria-hidden="true">↗</span><div><strong id="share-card-title">' + escapeHtml(copy.results.shareCardTitle || copy.results.share) + '</strong><p>' + escapeHtml(copy.results.shareCardText || copy.results.shareText) + '</p></div></div><button class="button button-primary" type="button" data-action="share">' + escapeHtml(copy.results.share) + '</button></aside>' +
     '<div class="gift-list">' + currentRecommendations.map(function (gift, index) {
       var localized = localizedGift(gift);
       var exactProduct = exactProductFor(gift, state.answers);
@@ -4138,6 +4190,8 @@ function resetApp() {
     }
   } catch (error) {}
   state = { step: 0, variant: Math.floor(Math.random() * 1000000), lastRecommendationIds: [], language: state.language, recommendationMode: 'fit', analyticsStarted: false, answers: { interests: [] } };
+  trackedQuestionSteps = Object.create(null);
+  quizExitTracked = false;
   amazonProductHydrationToken += 1;
   currentRecommendations = [];
   currentAmazonProducts = Object.create(null);
@@ -4369,6 +4423,15 @@ if (weeklyDiscovery) {
     if (link) trackEvent('weekly_discovery_clicked', { giftId: link.getAttribute('data-gift-id'), store: amazonDomain(state.answers.country || APP_CONFIG.defaultCountry) });
   });
 }
+
+function trackQuizAbandonment() {
+  if (quizExitTracked || !state.analyticsStarted || state.step >= QUESTIONS.length) return;
+  quizExitTracked = true;
+  var question = QUESTIONS[state.step];
+  trackEvent('quiz_abandoned', { questionId: question ? question.id : 'unknown', step: state.step + 1 });
+}
+
+window.addEventListener('pagehide', trackQuizAbandonment);
 
 if (!window.RegalazoAnalyticsCore && analyticsConsentAcceptButton && !analyticsConsentAcceptButton.dataset.analyticsBound) {
   analyticsConsentAcceptButton.dataset.analyticsBound = 'true';

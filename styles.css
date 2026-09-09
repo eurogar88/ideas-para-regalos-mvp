@@ -167,6 +167,7 @@ a { color: inherit; }
 
 .hero-notes span { display: inline-flex; align-items: center; gap: 7px; }
 .hero-notes strong { color: var(--coral); font-size: 0.68rem; letter-spacing: 0.08em; }
+.campaign-note { max-width: 590px; margin: 12px 0 0; padding: 9px 12px; border: 1px solid rgba(228, 108, 87, 0.2); border-radius: 12px; color: var(--coral-dark); background: rgba(255, 240, 235, 0.58); font-size: 0.74rem; line-height: 1.4; }
 .hero-catalog-note { margin: 12px 0 0; color: var(--muted); font-size: 0.72rem; line-height: 1.4; }
 
 .wizard-card {
@@ -370,6 +371,12 @@ a { color: inherit; }
 
 .results-toolbar { display: flex; flex-wrap: wrap; gap: 9px; margin: 4px 0 20px; }
 .results-toolbar .button { min-height: 42px; font-size: 0.8rem; }
+.results-share-card { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 0 0 20px; padding: 14px; border: 1px solid rgba(228, 108, 87, 0.24); border-radius: 18px; background: linear-gradient(135deg, rgba(255, 240, 235, 0.82), rgba(238, 233, 248, 0.66)); }
+.share-card-copy { display: flex; min-width: 0; align-items: center; gap: 10px; }
+.share-card-icon { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border-radius: 12px; color: #fff; background: var(--coral); font-size: 1.15rem; font-weight: 900; }
+.share-card-copy strong { display: block; font-size: 0.82rem; }
+.share-card-copy p { margin: 3px 0 0; color: var(--muted); font-size: 0.7rem; line-height: 1.35; }
+.results-share-card .button { flex: 0 0 auto; min-height: 38px; padding: 0 13px; font-size: 0.72rem; }
 
 .gift-list { display: grid; gap: 12px; }
 .gift-card {
@@ -1285,6 +1292,8 @@ body.analytics-consent-visible .pwa-prompt { bottom: calc(max(12px, env(safe-are
 
 @media (max-width: 520px) {
   .weekly-discovery { margin-right: 0; margin-left: 0; }
+  .results-share-card { align-items: stretch; flex-direction: column; }
+  .results-share-card .button { width: 100%; }
   .privacy-choice-banner { grid-template-columns: 1fr; gap: 8px; padding: 11px 12px; }
   .analytics-consent-actions { justify-content: flex-end; }
   .pwa-prompt { right: 12px; bottom: max(12px, env(safe-area-inset-bottom, 0px)); left: 12px; grid-template-columns: 30px minmax(0, 1fr) auto auto; padding: 8px; }
@@ -1323,7 +1332,8 @@ html[data-theme="dark"] .gift-card,
 html[data-theme="dark"] .seo-card,
 html[data-theme="dark"] .guide-card,
 html[data-theme="dark"] .guide-list li,
-html[data-theme="dark"] .faq-item {
+html[data-theme="dark"] .faq-item,
+html[data-theme="dark"] .results-share-card {
   background: rgba(34, 29, 26, 0.92);
   border-color: var(--line);
 }
@@ -1358,6 +1368,8 @@ html[data-theme="dark"] .site-footer,
 html[data-theme="dark"] .legal-meta,
 html[data-theme="dark"] .keyboard-hint,
 html[data-theme="dark"] .breadcrumbs { color: #a9988d; }
+html[data-theme="dark"] .campaign-note { color: #f1a08d; background: rgba(77, 43, 38, 0.66); border-color: rgba(239, 120, 98, 0.32); }
+html[data-theme="dark"] .results-share-card { background: linear-gradient(135deg, rgba(77, 43, 38, 0.66), rgba(54, 44, 67, 0.72)); border-color: rgba(239, 120, 98, 0.36); }
 html[data-theme="dark"] .weekly-discovery { background: linear-gradient(135deg, rgba(42, 60, 48, 0.9), rgba(37, 31, 28, 0.92) 62%, rgba(51, 45, 67, 0.9)); border-color: rgba(112, 157, 119, 0.35); }
 html[data-theme="dark"] .pwa-prompt { background: rgba(34, 29, 26, 0.97); border-color: rgba(239, 120, 98, 0.38); box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42); }
 html[data-theme="dark"] .privacy-choice-banner { background: rgba(34, 29, 26, 0.98); border-color: rgba(239, 120, 98, 0.38); box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42); }

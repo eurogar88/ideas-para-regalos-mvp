@@ -24,6 +24,12 @@ La primera pasada prioriza familias de producto que aún no se han mostrado para
 
 Los botones “Ya lo tiene” y “No me encaja” descartan la familia de la tarjeta pulsada y sustituyen esa tarjeta individualmente. No se debe cambiar este comportamiento por una regeneración completa: conservar las opciones que ya interesaban es parte de la confianza del recomendador.
 
+## Rotación editorial sin deploy diario
+
+La portada rota automáticamente una idea de descubrimiento cada siete días a partir del catálogo editorial. La rotación es determinista por fecha, así que no requiere una base de datos ni una publicación manual cada mañana y evita presentar como “producto nuevo” una ficha cuyo precio o stock no se haya comprobado. Las diez ideas del selector se vuelven a consultar bajo demanda cuando la capa de Amazon está disponible; la ficha concreta, el precio y la imagen deben seguir viniendo de esa fuente autorizada.
+
+La cadencia semanal es deliberada: da tiempo a que una idea se vea, se comparta y se mida. Si los datos demuestran que la gente vuelve con frecuencia, se puede bajar a una rotación diaria cambiando `discoveryRotationDays` en `app.js`, sin duplicar productos ni generar páginas SEO de baja calidad.
+
 ## Camino para fichas reales
 
 La ficha concreta se obtiene bajo demanda desde `netlify/functions/amazon-products.mjs`. La función no expone credenciales, restringe el marketplace, valida el dominio del enlace y solo devuelve resultados con título, precio y URL de ficha. Las imágenes se aceptan únicamente desde hosts CDN conocidos de Amazon. El navegador muestra la hora de consulta para no presentar la información como permanente.
