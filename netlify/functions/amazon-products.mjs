@@ -188,7 +188,7 @@ async function searchItems(token, request, country, partnerTag) {
     body: JSON.stringify(payload)
   });
   var result = await response.json().catch(function () { return {}; });
-  if (!response.ok) throw new Error(apiErrorCode(result, 'amazon_api_error'));
+  if (!response.ok) throw new Error(apiErrorCode(result, 'amazon_api_error_' + response.status));
   var items = result.searchResult && Array.isArray(result.searchResult.items) ? result.searchResult.items : [];
   return {
     rawCount: items.length,
