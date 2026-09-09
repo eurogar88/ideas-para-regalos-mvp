@@ -6,8 +6,9 @@ Este calendario convierte el contenido SEO en un proceso continuo, barato y revi
 
 La página `/guias-de-regalos/` es el hub. Desde ahí se enlazan tres tipos de intención:
 
-- **Persona:** madre, padre, amiga, amigo, hermana y hermano.
+- **Persona:** madre, padre, amiga, amigo, hermana, hermano, hombre, mujer y adolescente.
 - **Situación:** última hora, alguien que tiene de todo y presupuestos bajos.
+- **Contexto:** compañero de trabajo y alguien a quien apenas conoces.
 - **Afición:** café, viajes y regalos originales.
 
 Cada guía debe responder a la consulta en el primer bloque, aportar criterios para decidir, incluir ejemplos adaptables por presupuesto y terminar con una acción útil hacia el selector. Las FAQs deben coincidir con el texto visible y mantenerse sencillas para que también puedan reutilizarse como respuestas de búsqueda y de asistentes.
@@ -28,6 +29,10 @@ Cada guía debe responder a la consulta en el primer bloque, aportar criterios p
 | 10 | Intención | Actualizar regalos originales | Nuevos formatos: kits, mejoras, experiencias y recuerdos | Ver ideas originales | CTR y compartidos |
 | 11 | Ocasión | Cumpleaños | Diferenciar edad aproximada, relación, ocasión y tono | Empezar el selector | Posición y finalización |
 | 12 | Comparativa | Revisar enlaces internos del cluster | Resolver páginas huérfanas y mejorar el siguiente paso | Guía o selector según intención | Enlaces internos, rebote |
+| 13 | Persona | Hombre y mujer | Separar género de estereotipos y volver a aficiones, rituales y estilo | Encontrar una idea | CTR y quiz iniciado |
+| 14 | Persona | Adolescente | Elegir por señales recientes, compatibilidad y etapa, no por etiquetas | Afinar la idea | Finalización, clics |
+| 15 | Contexto | Compañero de trabajo | Resolver el nivel de confianza y evitar regalos incómodos | Detalle con buen tono | Compartidos, salida a tienda |
+| 16 | Contexto | Alguien que no conoces mucho | Ofrecer un método de bajo riesgo cuando faltan datos | Ideas en 8 toques | Inicio y finalización |
 
 ## Cadencia después de las 12 semanas
 

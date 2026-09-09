@@ -98,6 +98,15 @@ assert.deepEqual(queued.properties.step, 3);
 assert.equal(Object.hasOwn(queued.properties, 'value'), false, 'concrete answers must be excluded');
 assert.equal(Object.hasOwn(queued.properties, 'relation'), false, 'concrete answers must be excluded');
 
+core.track('gift_impression', { giftId: 'coffee-kit::smart-fit', position: 1, answer: 'private' });
+core.track('share_card_created', { ideaCount: 10, answers: 'private' });
+const impression = core.getQueue().find((event) => event.event === 'gift_impression');
+const card = core.getQueue().find((event) => event.event === 'share_card_created');
+assert.ok(impression && impression.properties.giftId === 'coffee-kit::smart-fit', 'gift impression should be allowlisted');
+assert.equal(Object.hasOwn(impression.properties, 'answer'), false, 'gift impression must not include answers');
+assert.ok(card && card.properties.ideaCount === 10, 'share card event should be allowlisted');
+assert.equal(Object.hasOwn(card.properties, 'answers'), false, 'share card event must not include answers');
+
 core.track('made_up_event', { secret: 'should-not-be-sent' });
 assert.equal(core.getQueue().some((event) => event.event === 'made_up_event'), false, 'unknown events must be rejected');
 

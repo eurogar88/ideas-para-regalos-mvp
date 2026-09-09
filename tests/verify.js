@@ -7,6 +7,7 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+const catalogSource = fs.readFileSync(path.join(root, 'catalog.js'), 'utf8');
 const amazonFunctionSource = fs.readFileSync(path.join(root, 'netlify', 'functions', 'amazon-products.mjs'), 'utf8');
 const languageStart = source.indexOf('var LANGUAGE_COPY =');
 const analyticsStart = source.indexOf('var ANALYTICS_CONFIG =');
@@ -65,6 +66,7 @@ const setup = [
   'var LANGUAGE_STORAGE_KEY = "regalazo-language-v1";\n' +
     'var state = { step: 0, variant: 0, lastRecommendationIds: [], dismissedBaseIds: [], language: "es", recommendationMode: "fit", analyticsStarted: false, answers: { interests: [] } };\n' +
     'var currentRecommendations = [];\nvar sharedRecommendations = null;\n',
+  source.slice(source.indexOf('function escapeHtml(value)'), getQuestionStart),
   source.slice(getQuestionStart, applyLanguageStart),
   source.slice(engineStart, buildReasonStart),
   source.slice(shareStart, shareEnd),
@@ -72,6 +74,7 @@ const setup = [
   'globalThis.__api = { GIFT_CATALOG, GIFT_RECIPES, state, currentRecommendations, rankGifts, rememberRecommendations, eligibleCatalogFor, giftClusterKey, buildShareUrl, buildAmazonUrl, readSharedAnswers, readSharedRecommendations, readSharedVariant, baseIdForRecommendationId, isGiftAgeCompatible, isGiftContextCompatible, findReplacementGift, compositionCount };'
 ].join('\n');
 
+vm.runInNewContext(catalogSource, context, { filename: 'catalog.js' });
 vm.runInNewContext(setup, context, { filename: 'app.js' });
 const api = context.__api;
 

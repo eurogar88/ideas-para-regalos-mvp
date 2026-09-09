@@ -11,7 +11,7 @@
     token: '7a393adbe60cb8cd073e9aaf44263a33',
     scriptUrl: 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js',
     apiHost: 'https://api-eu.mixpanel.com',
-    version: 'growth-v4'
+    version: 'growth-v5'
   };
   var COPY = {
     es: { title: '¿Nos ayudas a mejorar Regalazo?', text: 'Solo si aceptas cargaremos Mixpanel para medir el uso y mejorar las recomendaciones. No guardamos nombres, emails, respuestas concretas ni texto libre.', accept: 'Aceptar analítica', reject: 'Ahora no', preferences: 'Preferencias de analítica', more: 'Más información' },
@@ -35,7 +35,11 @@
     share_completed: ['method', 'mode'],
     shared_result_opened: ['mode'],
     weekly_discovery_viewed: ['giftId'],
-    weekly_discovery_clicked: ['giftId', 'store'],
+    weekly_discovery_clicked: ['giftId', 'store', 'linkType'],
+    weekly_discovery_product_ready: ['giftId', 'linkType'],
+    gift_impression: ['giftId', 'position'],
+    share_card_created: ['ideaCount'],
+    share_card_downloaded: ['ideaCount'],
     pwa_ready: [],
     pwa_install_prompt_viewed: [],
     pwa_install_prompted: [],

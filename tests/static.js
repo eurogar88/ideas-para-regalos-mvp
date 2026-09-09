@@ -15,15 +15,15 @@ function filesUnder(directory) {
 }
 
 const htmlFiles = filesUnder(root).filter((file) => path.basename(file) === 'index.html');
-assert.equal(htmlFiles.length, 28, `expected 28 public index pages, got ${htmlFiles.length}`);
+assert.equal(htmlFiles.length, 33, `expected 33 public index pages, got ${htmlFiles.length}`);
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const relative = path.relative(root, file);
   assert.match(html, /<html\s+lang="[a-z]{2}"/, `${relative} is missing a valid language`);
   assert.match(html, /\/theme\.js\?v=theme-1/, `${relative} is missing the theme runtime`);
-  assert.match(html, /\/analytics\.js\?v=analytics-5/, `${relative} is missing shared analytics`);
-  assert.match(html, /styles\.css\?v=growth-ui-17/, `${relative} points to an old stylesheet`);
+  assert.match(html, /\/analytics\.js\?v=analytics-6/, `${relative} is missing current shared analytics`);
+  assert.match(html, /styles\.css\?v=growth-ui-18/, `${relative} points to an old stylesheet`);
   assert.doesNotMatch(html, /Tu elección|Yo elegiría|Compartir el reto|Compartir reto|radar/i, `${relative} contains retired product copy`);
   const structuredData = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)];
   for (const match of structuredData) {
@@ -45,6 +45,9 @@ const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 for (const url of ['/', '/en/', '/de/', '/fr/', '/it/', '/como-funciona/']) {
   assert.match(sitemap, new RegExp(`https://regalazo\\.xyz${url.replaceAll('/', '\\/')}`), `sitemap is missing ${url}`);
 }
+for (const url of ['/regalos-de-cumpleanos-para-hombre/', '/regalos-de-cumpleanos-para-mujer/', '/regalos-de-cumpleanos-para-adolescente/', '/regalos-de-cumpleanos-para-companero-de-trabajo/', '/regalos-de-cumpleanos-para-alguien-que-no-conoces-mucho/']) {
+  assert.match(sitemap, new RegExp(`https://regalazo\\.xyz${url.replaceAll('/', '\\/')}`), `sitemap is missing ${url}`);
+}
 
 const netlify = fs.readFileSync(path.join(root, 'netlify.toml'), 'utf8');
 assert.match(netlify, /Content-Security-Policy/);
@@ -57,10 +60,12 @@ assert.match(netlify, /from = "\/tests"[\s\S]*status = 404/);
 assert.match(netlify, /from = "\/\.git\/\*"[\s\S]*status = 404/);
 
 const serviceWorker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-assert.match(serviceWorker, /regalazo-shell-growth-v12/);
+assert.match(serviceWorker, /regalazo-shell-growth-v13/);
 assert.match(serviceWorker, /event\.request\.mode === 'navigate'/);
 assert.match(serviceWorker, /fetch\(event\.request\)/);
-assert.match(serviceWorker, /analytics\.js\?v=analytics-5/);
+assert.match(serviceWorker, /styles\.css\?v=growth-ui-18/);
+assert.match(serviceWorker, /app\.js\?v=growth-engine-21/);
+assert.match(serviceWorker, /analytics\.js\?v=analytics-6/);
 
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 assert.match(app, /value: 'any', label: 'Cualquiera'/);
@@ -70,6 +75,11 @@ assert.match(app, /params\.set\('ideas'/);
 assert.match(app, /function affiliateTagFor/);
 assert.match(app, /rel="sponsored nofollow noopener"/);
 assert.match(app, /results-share-card/);
+assert.match(app, /data-action=\"download-share-card\"/);
+assert.match(app, /function buildShareCardBlob/);
+assert.match(app, /weekly_discovery_product_ready/);
+assert.match(app, /gift_impression/);
+assert.match(app, /gift-avoid-tip/);
 assert.match(app, /quiz_step_viewed/);
 assert.match(app, /quiz_abandoned/);
 assert.match(app, /discoveryRotationDays: 7/);
